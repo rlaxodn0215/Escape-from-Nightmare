@@ -56,7 +56,7 @@ local roomObjects = {
     stairwell_2f = {
         { id = "stairwell_2f_to_hallway", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 84, y = 176, w = 150, h = 340 } },
         { id = "stairwell_2f_down", type = "edge_navigation", targetRoom = "stairwell_1f", hitbox = { x = 0, y = 96, w = 64, h = 528 } },
-        { id = "stairwell_2f_up_attic", type = "locked_door", targetRoom = "attic_main", locked = true, hitbox = { x = 1070, y = 150, w = 148, h = 300 } }
+        { id = "stairwell_2f_up_attic", type = "door", targetRoom = "attic_main", hitbox = { x = 1070, y = 150, w = 148, h = 300 } }
     },
     stairwell_1f = {
         { id = "stairwell_1f_to_hallway", type = "door", targetRoom = "first_floor_hallway", hitbox = { x = 84, y = 176, w = 150, h = 340 } },
@@ -97,7 +97,8 @@ local roomObjects = {
     laundry_room = {
         { id = "laundry_to_kitchen", type = "door", targetRoom = "kitchen", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "laundry_storage_box", type = "puzzle_object", useTarget = "laundry_storage_box", hitbox = { x = 842, y = 408, w = 164, h = 82 } },
-        { id = "breaker_box", type = "item_pickup", itemId = "old_keychain", useTarget = "breaker_box", hitbox = { x = 1028, y = 180, w = 108, h = 160 } },
+        { id = "breaker_box", type = "mechanism", useTarget = "breaker_box", hitbox = { x = 1028, y = 180, w = 108, h = 160 } },
+        { id = "breaker_box_old_keychain", type = "item_pickup", itemId = "old_keychain", visibleFlag = "electricity_restored", hitbox = { x = 1028, y = 180, w = 108, h = 160 } },
         { id = "laundry_machine_hide", type = "hide_spot", hitbox = { x = 398, y = 414, w = 174, h = 94 } },
         { id = "laundry_edge_back", type = "edge_navigation", targetRoom = "kitchen", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
@@ -110,12 +111,12 @@ local roomObjects = {
         { id = "storage_1f_to_hallway", type = "door", targetRoom = "first_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "storage_1f_shelf_hide", type = "hide_spot", hitbox = { x = 336, y = 238, w = 152, h = 270 } },
         { id = "storage_1f_box_hide", type = "hide_spot", hitbox = { x = 690, y = 414, w = 172, h = 94 } },
-        { id = "storage_1f_to_basement", type = "locked_door", targetRoom = "basement_entry", locked = true, hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
+        { id = "storage_1f_to_basement", type = "locked_door", targetRoom = "basement_entry", locked = true, unlockFlag = "basement_electronic_lock_released", hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
     },
     garage = {
         { id = "garage_to_kitchen", type = "door", targetRoom = "kitchen", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "garage_car_hide", type = "hide_spot", hitbox = { x = 456, y = 392, w = 284, h = 120 } },
-        { id = "garage_to_basement", type = "locked_door", targetRoom = "basement_entry", locked = true, hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
+        { id = "garage_to_basement", type = "locked_door", targetRoom = "basement_entry", locked = true, unlockFlag = "basement_electronic_lock_released", hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
     },
     family_photo_room = {
         { id = "photo_room_to_living", type = "door", targetRoom = "living_room", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
@@ -133,7 +134,7 @@ local roomObjects = {
         { id = "basement_wall_symbols", type = "clue_object", hitbox = { x = 452, y = 168, w = 376, h = 156 }, placeholder = true },
         { id = "basement_main_to_storage", type = "door", targetRoom = "basement_storage", hitbox = { x = 548, y = 168, w = 184, h = 360 } },
         { id = "basement_main_crate_hide", type = "hide_spot", hitbox = { x = 326, y = 416, w = 176, h = 94 } },
-        { id = "basement_main_to_altar", type = "locked_door", targetRoom = "altar_room", locked = true, hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
+        { id = "basement_main_to_altar", type = "locked_door", targetRoom = "altar_room", locked = true, unlockFlag = "basement_electronic_lock_released", hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
     },
     basement_storage = {
         { id = "basement_storage_to_main", type = "door", targetRoom = "basement_main", hitbox = { x = 72, y = 176, w = 150, h = 340 } },

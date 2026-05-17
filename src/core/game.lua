@@ -6,6 +6,7 @@ local GameScene = require("src.scenes.game_scene")
 local PauseScene = require("src.scenes.pause_scene")
 local GameoverScene = require("src.scenes.gameover_scene")
 local EndingScene = require("src.scenes.ending_scene")
+local Stage1 = require("data.stage1")
 
 local Game = {}
 Game.__index = Game
@@ -54,9 +55,20 @@ function Game:showTitle()
 end
 
 function Game:startStage1()
+    local flags = {}
+    for flag, value in pairs(Stage1.initial_flags or {}) do
+        flags[flag] = value
+    end
+
     self.currentRun = {
-        currentRoom = "child_room",
-        inventory = {}
+        currentRoom = Stage1.start_room or "child_room",
+        inventory = {},
+        flags = flags,
+        events = {},
+        puzzles = {},
+        monster = {},
+        hiding = {},
+        danger = {}
     }
     self.sceneManager:switch(GameScene.new(self, self.currentRun))
 end

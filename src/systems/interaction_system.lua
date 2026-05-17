@@ -85,6 +85,12 @@ function InteractionSystem:handleClick(roomSystem, x, y, inventorySystem)
         return { handled = true, blocked = true, object = object, reason = "inventory_unavailable" }
     end
 
+    if object.type == "locked_door" and object.unlockFlag and self.flags[object.unlockFlag] == true then
+        if roomSystem:moveTo(object.targetRoom) then
+            return { handled = true, moved = true, object = object, roomId = roomSystem:getCurrentRoomId() }
+        end
+    end
+
     if object.type == "locked_door" then
         return { handled = true, blocked = true, object = object, reason = "locked" }
     end

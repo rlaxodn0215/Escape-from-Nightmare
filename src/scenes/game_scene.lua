@@ -200,6 +200,62 @@ function GameScene:handlePuzzleResult(result)
     end
 end
 
+function GameScene:applyStageEvent(eventId)
+    if self.puzzleSystem then
+        self.puzzleSystem:applyEvent(eventId)
+    end
+
+    if self.monster and eventId == "event_electric_noise_attracts_monster" then
+        self.monster:triggerEvent(eventId, self.roomSystem:getCurrentRoomId())
+    elseif self.monster and eventId == "event_final_chase_trigger" then
+        self.monster:triggerEvent(eventId, self.roomSystem:getCurrentRoomId())
+    end
+end
+
+function GameScene:handlePickupEvent(item)
+    if not item then
+        return
+    end
+
+    if item.id == "torn_drawing_fragment" then
+        self:applyStageEvent("event_window_silhouette")
+    elseif item.id == "study_safe_clue" then
+        self:applyStageEvent("event_open_hidden_photo_drawer")
+    elseif item.id == "front_door_key" then
+        self:applyStageEvent("event_final_chase_trigger")
+    end
+end
+
+function GameScene:handleBreakerBoxUse(item)
+    if not item then
+        return false
+    end
+
+    if item.id == "fuse_holder" then
+        self.run.flags.breaker_box_has_fuse_holder = true
+    elseif item.id == "fuse" then
+        self.run.flags.breaker_box_has_fuse = true
+    else
+        return false
+    end
+
+    if self.run.flags.electricity_restored then
+        self.notice = "Already restored"
+        return true
+    end
+
+    if self.run.flags.breaker_box_has_fuse_holder and self.run.flags.breaker_box_has_fuse then
+        self:applyStageEvent("event_restore_electricity")
+        self:applyStageEvent("event_basement_door_unlocked")
+        self:applyStageEvent("event_electric_noise_attracts_monster")
+        self.notice = "Power restored"
+    else
+        self.notice = "Part inserted"
+    end
+
+    return true
+end
+
 function GameScene:mousepressed(x, y, button)
     if button ~= 1 then
         return
@@ -281,12 +337,7 @@ function GameScene:mousepressed(x, y, button)
             end
             self.notice = nil
         elseif result.itemPickup then
-            if result.item and result.item.id == "front_door_key" and self.monster then
-                self.monster:triggerEvent("event_final_chase_trigger", self.roomSystem:getCurrentRoomId())
-                if self.dangerSystem then
-                    self.dangerSystem:applyEvent("event_final_chase_trigger")
-                end
-            end
+            self:handlePickupEvent(result.item)
             self.notice = "Taken: " .. result.item.name
         elseif result.reason == "already_acquired" then
             self.notice = "Already taken"
@@ -294,6 +345,8 @@ function GameScene:mousepressed(x, y, button)
             local puzzle = self.puzzleSystem:getPuzzleForObject(result.object)
             if puzzle and puzzle.type == "item_use" then
                 self:handlePuzzleResult(self.puzzleSystem:useItemOnObject(result.object, result.item.id))
+            elseif result.object and result.object.useTarget == "breaker_box" and self:handleBreakerBoxUse(result.item) then
+                -- Notice is set by the breaker flow.
             else
                 self.notice = "Used: " .. result.item.name
             end
