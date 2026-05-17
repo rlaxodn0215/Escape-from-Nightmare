@@ -10,7 +10,7 @@ The resource fallback step must:
 4. fail or block if any referenced resource is missing;
 5. keep placeholders replaceable and avoid claiming they are final art or final audio.
 
-If local tools cannot generate or verify a required image/audio format, the step must stop as `blocked` and include 2-3 objective choices in `blocked_reason`, with one marked `(Recommended)`.
+If local tools cannot generate or verify a required image/audio format, the step must stop as `blocked` and include 2-3 objective choices in `blocked_reason`, with one marked `(Recommended)`. When the user explicitly approves dependency installation, the resource step may install `imageio-ffmpeg` into the bundled Python environment to obtain a local ffmpeg binary for silent OGG placeholder generation.
 
 # Codex Harness
 

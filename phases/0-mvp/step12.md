@@ -24,7 +24,10 @@ Create replaceable fallback resources before packaging so the build is never shi
    - Room backgrounds must be `1280x720`.
    - Item icons and UI/object/monster images may be smaller, but must be valid PNG files.
    - Keep the visual style dark, mostly monochrome, and unobtrusive.
-3. Create every missing sound as a valid silent `.ogg` file at the exact referenced path, or add a documented fallback generator script if local tools cannot encode OGG.
+3. Create every missing sound as a valid silent `.ogg` file at the exact referenced path.
+   - Prefer an existing local `ffmpeg`, `oggenc`, or equivalent encoder.
+   - If no encoder is available and the user explicitly approves dependency installation, the bundled Python may install `imageio-ffmpeg` to obtain a local ffmpeg binary for placeholder generation.
+   - If no encoder is available and dependency installation is not approved, stop as `blocked` with 2-3 objective choices.
 4. Add or update a verification script that fails when:
    - any referenced `assets/...` file is missing,
    - `assets/` contains zero files,
