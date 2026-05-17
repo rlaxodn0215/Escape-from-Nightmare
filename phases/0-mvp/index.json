@@ -93,7 +93,10 @@
     {
       "step": 11,
       "name": "stage1-integration",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T16:34:36+0900",
+      "completed_at": "2026-05-17T16:38:55+0900",
+      "summary": "Connected Stage 1 runtime flow with fresh child_room starts, breaker-box electricity restoration, basement/altar unlock flags, front_door_key final chase trigger, stage1_clear save-only completion, and restart-safe in-memory run state."
     },
     {
       "step": 12,
