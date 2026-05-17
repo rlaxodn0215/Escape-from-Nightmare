@@ -61,7 +61,10 @@
     {
       "step": 7,
       "name": "puzzle-system",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T16:17:31+0900",
+      "completed_at": "2026-05-17T16:23:40+0900",
+      "summary": "Added data-driven puzzle_system and puzzle_ui for number_lock, symbol_sequence, silent_sequence, color_sequence, symbol_item_matching, and item_use, with success rewards/events and non-lethal failure danger hooks."
     },
     {
       "step": 8,
