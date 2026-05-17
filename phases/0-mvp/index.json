@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "project-skeleton",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T11:56:38+0900",
+      "completed_at": "2026-05-17T11:59:19+0900",
+      "summary": "Created main.lua/conf.lua, core state/game/input/save_manager skeletons, and workspace folders for src/data/assets/saves/build without adding progress saves."
     },
     {
       "step": 2,
