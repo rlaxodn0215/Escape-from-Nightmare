@@ -245,7 +245,7 @@ class StepExecutor:
         try:
             result = subprocess.run(
                 [self._codex_executable(), "exec", "--sandbox", "workspace-write", "--json", prompt],
-                cwd=self._root, capture_output=True, text=True, timeout=1800,
+                cwd=self._root, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800,
             )
         except OSError as exc:
             result = types.SimpleNamespace(
@@ -336,6 +336,21 @@ class StepExecutor:
                             "- Fix local Codex CLI permissions or PATH, then retry. (Recommended): Keeps automated step execution.\n"
                             "- Run this step manually in the current Codex session: Bypasses the CLI harness for this step.\n"
                             "- Replace the harness executor command with another approved local Codex entrypoint: Requires a known executable path."
+                        )
+                self._write_json(self._index_file, index)
+
+            combined_output = f"{output.get('stdout') or ''}\n{output.get('stderr') or ''}".lower()
+            if "usage limit" in combined_output:
+                index = self._read_json(self._index_file)
+                for s in index["steps"]:
+                    if s["step"] == step_num:
+                        s["status"] = "blocked"
+                        s["blocked_reason"] = (
+                            "Question: Codex CLI hit its usage limit before completing this step. How should work continue?\n"
+                            "Options:\n"
+                            "- Wait until the CLI limit resets, then retry. (Recommended): Preserves automated harness execution.\n"
+                            "- Run this step manually in the current Codex session: Bypasses the CLI harness for this step.\n"
+                            "- Add credits or upgrade the Codex plan, then retry: Restores CLI capacity sooner."
                         )
                 self._write_json(self._index_file, index)
 

@@ -1,6 +1,7 @@
 local roomObjects = {
     child_room = {
         { id = "child_desk_drawer", type = "item_pickup", itemId = "torn_drawing_fragment", hitbox = { x = 792, y = 388, w = 144, h = 72 } },
+        { id = "child_toy_clue", type = "clue_object", hitbox = { x = 388, y = 426, w = 172, h = 92 }, placeholder = true },
         { id = "child_room_door", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 548, y = 168, w = 184, h = 360 } },
         { id = "child_room_edge_out", type = "edge_navigation", targetRoom = "second_floor_hallway", hitbox = { x = 1216, y = 96, w = 64, h = 528 } }
     },
@@ -21,6 +22,7 @@ local roomObjects = {
     },
     dressing_room = {
         { id = "dressing_to_master", type = "door", targetRoom = "master_bedroom", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "dressing_color_clue", type = "clue_object", hitbox = { x = 520, y = 250, w = 240, h = 96 }, placeholder = true },
         { id = "dressing_edge_back", type = "edge_navigation", targetRoom = "master_bedroom", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
     guest_room = {
@@ -29,10 +31,12 @@ local roomObjects = {
     },
     second_floor_bathroom = {
         { id = "bathroom_2f_to_hallway", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "second_floor_bathroom_mirror_clue", type = "clue_object", hitbox = { x = 574, y = 158, w = 146, h = 230 }, placeholder = true },
         { id = "bathroom_2f_edge_back", type = "edge_navigation", targetRoom = "second_floor_hallway", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
     study = {
         { id = "study_to_hallway", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "study_number_order_clue", type = "clue_object", hitbox = { x = 468, y = 298, w = 196, h = 110 }, placeholder = true },
         { id = "study_safe", type = "item_pickup", itemId = "fuse_holder", hitbox = { x = 894, y = 292, w = 132, h = 148 } },
         { id = "study_edge_back", type = "edge_navigation", targetRoom = "second_floor_hallway", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
@@ -69,11 +73,13 @@ local roomObjects = {
     },
     dining_room = {
         { id = "dining_to_hallway", type = "door", targetRoom = "first_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "dining_seat_clue", type = "clue_object", hitbox = { x = 472, y = 394, w = 336, h = 122 }, placeholder = true },
         { id = "dining_to_kitchen", type = "door", targetRoom = "kitchen", hitbox = { x = 1044, y = 176, w = 150, h = 340 } },
         { id = "dining_edge_kitchen", type = "edge_navigation", targetRoom = "kitchen", hitbox = { x = 1216, y = 96, w = 64, h = 528 } }
     },
     kitchen = {
         { id = "kitchen_to_dining", type = "door", targetRoom = "dining_room", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "kitchen_clock_clue", type = "clue_object", hitbox = { x = 596, y = 122, w = 88, h = 88 }, placeholder = true },
         { id = "kitchen_to_laundry", type = "door", targetRoom = "laundry_room", hitbox = { x = 548, y = 168, w = 184, h = 360 } },
         { id = "kitchen_to_garage", type = "locked_door", targetRoom = "garage", locked = true, hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
     },
@@ -97,6 +103,7 @@ local roomObjects = {
     },
     family_photo_room = {
         { id = "photo_room_to_living", type = "door", targetRoom = "living_room", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "family_photo_puzzle", type = "clue_object", hitbox = { x = 468, y = 154, w = 344, h = 210 }, placeholder = true },
         { id = "hidden_photo_drawer", type = "item_pickup", itemId = "study_safe_clue", hitbox = { x = 824, y = 410, w = 156, h = 76 } },
         { id = "photo_room_edge_back", type = "edge_navigation", targetRoom = "living_room", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
@@ -106,6 +113,7 @@ local roomObjects = {
     },
     basement_main = {
         { id = "basement_main_to_entry", type = "door", targetRoom = "basement_entry", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "basement_wall_symbols", type = "clue_object", hitbox = { x = 452, y = 168, w = 376, h = 156 }, placeholder = true },
         { id = "basement_main_to_storage", type = "door", targetRoom = "basement_storage", hitbox = { x = 548, y = 168, w = 184, h = 360 } },
         { id = "basement_main_to_altar", type = "locked_door", targetRoom = "altar_room", locked = true, hitbox = { x = 1044, y = 176, w = 150, h = 340 } }
     },
@@ -130,7 +138,8 @@ local roomObjects = {
         { id = "attic_toy_box_symbol", type = "item_pickup", itemId = "symbol_fragment", hitbox = { x = 1014, y = 410, w = 108, h = 88 } }
     },
     attic_album_storage = {
-        { id = "attic_album_to_main", type = "door", targetRoom = "attic_main", hitbox = { x = 72, y = 176, w = 150, h = 340 } }
+        { id = "attic_album_to_main", type = "door", targetRoom = "attic_main", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
+        { id = "attic_family_album_photo", type = "clue_object", hitbox = { x = 486, y = 280, w = 308, h = 142 }, placeholder = true }
     }
 }
 

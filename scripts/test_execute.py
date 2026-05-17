@@ -485,6 +485,26 @@ class TestExecuteSingleStepCommitPolicy:
         assert exc_info.value.code == 2
         executor._commit_step.assert_not_called()
 
+    def test_usage_limit_blocks_without_commit(self, executor):
+        step = {"step": 2, "name": "ui", "status": "pending"}
+        executor._invoke_codex = MagicMock(return_value={
+            "exitCode": 1,
+            "stdout": "You've hit your usage limit. try again later.",
+            "stderr": "",
+        })
+        executor._commit_step = MagicMock()
+        executor._update_top_index = MagicMock()
+
+        with pytest.raises(SystemExit) as exc_info:
+            executor._execute_single_step(step, "")
+
+        assert exc_info.value.code == 2
+        executor._commit_step.assert_not_called()
+        index = executor._read_json(executor._index_file)
+        step_state = next(s for s in index["steps"] if s["step"] == 2)
+        assert step_state["status"] == "blocked"
+        assert "usage limit" in step_state["blocked_reason"]
+
 
 # ---------------------------------------------------------------------------
 # _invoke_codex (mocked)
