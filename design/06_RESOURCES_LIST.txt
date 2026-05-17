@@ -1,0 +1,194 @@
+파일명: 06_RESOURCES_LIST.txt
+
+Escape From Nightmares
+리소스 명세 문서
+
+================================================================================
+01. 리소스 제작 기준
+================================================================================
+
+리소스 제작 기준:
+- 어두운 손그림풍 2D
+- 1280x720 기준
+- 배경, 오브젝트, 일부 전경/후경 레이어 분리
+- 클릭 가능 표시 없음
+- UI는 손그림 선 미니멀 스타일
+- 거의 흑백 + 약한 붉은 포인트
+
+리소스가 없을 경우:
+- 지정된 파일명 기준으로 더미 리소스를 생성한다.
+- 방 배경은 어두운 placeholder로 대체 가능.
+- 사운드는 무음 또는 더미 사운드로 대체 가능.
+- 구조는 최종 리소스로 교체 가능한 형태여야 한다.
+
+================================================================================
+02. 필수 방 배경
+================================================================================
+
+1층:
+- room_entrance.png
+- room_1f_hallway.png
+- room_living_room.png
+- room_dining_room.png
+- room_kitchen.png
+- room_laundry_room.png
+- room_1f_bathroom.png
+- room_1f_storage.png
+- room_garage.png
+- room_family_photo.png
+- room_stairwell_1f.png
+
+2층:
+- room_child_room.png
+- room_2f_hallway.png
+- room_master_bedroom.png
+- room_dressing_room.png
+- room_guest_room.png
+- room_2f_bathroom.png
+- room_study.png
+- room_mirror_room.png
+- room_stairwell_2f.png
+
+지하실:
+- room_basement_entry.png
+- room_basement_main.png
+- room_basement_storage.png
+- room_altar_room.png
+
+다락방:
+- room_attic_main.png
+- room_attic_toy_storage.png
+- room_attic_album_storage.png
+
+================================================================================
+03. 필수 아이템 아이콘
+================================================================================
+
+- item_torn_drawing_fragment.png
+- item_study_safe_clue.png
+- item_electric_part.png
+- item_fuse.png
+- item_broken_hand_mirror.png
+- item_small_doll.png
+- item_old_keychain.png
+- item_old_necklace.png
+- item_symbol_fragment.png
+- item_front_door_key.png
+
+================================================================================
+04. 몬스터 리소스
+================================================================================
+
+- monster_silhouette_window.png
+- monster_doorway_kitchen.png
+- monster_shadow_hallway.png
+- monster_dark_corner.png
+- monster_near_detection.png
+- monster_chase_overlay.png
+- monster_gameover_shadow.png
+
+================================================================================
+05. UI 리소스
+================================================================================
+
+- ui_button_start.png
+- ui_button_settings.png
+- ui_button_quit.png
+- ui_button_continue.png
+- ui_button_return_title.png
+- ui_button_inventory.png
+- ui_button_map.png
+- ui_button_settings_small.png
+- ui_inventory_panel.png
+- ui_inventory_slot.png
+- ui_selected_item_frame.png
+- ui_map_panel.png
+- ui_map_floor_1f.png
+- ui_map_floor_2f.png
+- ui_map_floor_basement.png
+- ui_map_floor_attic.png
+- ui_map_current_room_marker.png
+- ui_puzzle_panel.png
+- ui_number_lock_digit.png
+- ui_symbol_button.png
+- ui_hiding_danger_gauge_bg.png
+- ui_hiding_danger_gauge_fill.png
+- ui_gameover_text.png
+
+================================================================================
+06. 사운드 리소스
+================================================================================
+
+BGM:
+- bgm_title.ogg
+- bgm_stage1_ambient.ogg
+- bgm_chase.ogg
+- bgm_final_chase.ogg
+- bgm_ending_hint.ogg
+
+환경음:
+- amb_house_low_hum.ogg
+- amb_1f_hallway.ogg
+- amb_2f_hallway.ogg
+- amb_child_room.ogg
+- amb_kitchen.ogg
+- amb_laundry_room.ogg
+- amb_basement.ogg
+- amb_attic.ogg
+- amb_mirror_room.ogg
+- amb_altar_room.ogg
+
+효과음:
+- sfx_click.ogg
+- sfx_item_pickup.ogg
+- sfx_inventory_open.ogg
+- sfx_inventory_close.ogg
+- sfx_item_use.ogg
+- sfx_item_combine.ogg
+- sfx_door_open.ogg
+- sfx_door_locked.ogg
+- sfx_drawer_open.ogg
+- sfx_box_open.ogg
+- sfx_puzzle_success.ogg
+- sfx_puzzle_error.ogg
+- sfx_object_shake.ogg
+- sfx_number_lock_turn.ogg
+- sfx_safe_open.ogg
+- sfx_symbol_click.ogg
+- sfx_fuse_insert.ogg
+- sfx_breaker_switch.ogg
+- sfx_electricity_restore.ogg
+- sfx_electronic_lock_release.ogg
+- sfx_mirror_crack.ogg
+- sfx_altar_activate.ogg
+- sfx_key_appear.ogg
+- sfx_front_door_unlock.ogg
+- sfx_toy_wrong_sound.ogg
+- sfx_toy_box_open.ogg
+
+몬스터음:
+- monster_footstep_far.ogg
+- monster_footstep_mid.ogg
+- monster_footstep_near.ogg
+- monster_breath_far.ogg
+- monster_breath_near.ogg
+- monster_low_growl.ogg
+- monster_searching.ogg
+- monster_detected.ogg
+- monster_chase_start.ogg
+- monster_capture.ogg
+
+UI음:
+- ui_button_hover.ogg
+- ui_button_click.ogg
+- ui_menu_open.ogg
+- ui_menu_close.ogg
+- ui_map_open.ogg
+- ui_map_close.ogg
+
+이벤트음:
+- event_gameover_bgm_cut.ogg
+- event_screen_rewind.ogg
+- event_window_silhouette.ogg
+- event_kitchen_first_appearance.ogg
+- event_final_chase_trigger.ogg
