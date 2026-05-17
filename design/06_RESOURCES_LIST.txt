@@ -21,6 +21,15 @@ Escape From Nightmares
 - 사운드는 무음 또는 더미 사운드로 대체 가능.
 - 구조는 최종 리소스로 교체 가능한 형태여야 한다.
 
+Unity 배치 기준:
+- 방 배경: Assets/Sprites/Rooms
+- 오브젝트/효과: Assets/Sprites/Objects, Assets/Sprites/Effects
+- 아이템 아이콘: Assets/Sprites/Items
+- 몬스터 이미지: Assets/Sprites/Monster
+- UI 이미지: Assets/Sprites/UI 또는 Assets/UI
+- 사운드: Assets/Audio/BGM, Assets/Audio/Ambience, Assets/Audio/SFX, Assets/Audio/Monster, Assets/Audio/UI, Assets/Audio/Events
+- 각 리소스는 ScriptableObject, Prefab, Scene에서 Sprite/AudioClip reference로 연결한다.
+
 ================================================================================
 02. 필수 방 배경
 ================================================================================
@@ -177,6 +186,54 @@ BGM:
 - monster_detected.ogg
 - monster_chase_start.ogg
 - monster_capture.ogg
+
+================================================================================
+07. Unity Placeholder 규칙
+================================================================================
+
+이미지 placeholder:
+- Sprite import가 가능한 png 파일로 만든다.
+- 방 배경은 1280 x 720 기준 어두운 이미지로 만든다.
+- 개발용 방 이름 표시는 가능하지만, 클릭 오브젝트 위치를 하이라이트하지 않는다.
+
+오디오 placeholder:
+- AudioClip reference가 필요하면 무음 wav 또는 ogg를 사용한다.
+- AudioClip이 없어도 시스템이 예외 없이 재생을 생략할 수 있어야 한다.
+
+교체 규칙:
+- placeholder 파일명과 ScriptableObject reference는 최종 리소스 교체 시 유지 가능한 이름을 사용한다.
+- final art/audio가 들어와도 런타임 코드 수정 없이 교체 가능해야 한다.
+
+================================================================================
+08. Resource Inventory / Harness 검증 기준
+================================================================================
+
+첫 Harness step:
+- 리소스 검증은 반드시 `resource-inventory` step에서 먼저 수행한다.
+- 이 step이 `ready_for_review`가 되고 사용자가 `approved`로 승인하기 전에는 C# 시스템, scene, prefab 개발을 시작하지 않는다.
+
+resource_manifest.json 필드:
+- required_filename
+- unity_target_path
+- category
+- status: missing / placeholder / final
+- referenced_by: ScriptableObject / prefab / scene / pending
+
+필수 검증:
+- ResourceManifestValidation: 본 문서의 모든 필수 파일명이 manifest에 포함되어야 한다.
+- RequiredAssetPresenceValidation: Unity target path에 final 또는 placeholder asset이 있어야 한다.
+- ZeroByteAssetValidation: 0바이트 파일은 리소스로 인정하지 않는다.
+- UnityImportableAssetValidation: png, wav, ogg 등 Unity import 가능한 형식이어야 한다.
+- DesignResourceConsistencyValidation: 아이템, 퍼즐, 이벤트 설계 ID와 리소스 파일명이 충돌하지 않아야 한다.
+
+현재 알려진 검토 대상:
+- 퍼즐/아이템 문서의 `fuse_holder`와 리소스 명세의 `item_electric_part.png` 명칭은 구현 전 사용자 검토가 필요하다.
+- 이름 불일치는 임의로 확정하지 않고 blocked_reason에 선택지를 제시한다.
+
+blocked 기준:
+- Assets/Sprites, Assets/Audio, Assets/UI에 필수 리소스가 없고 placeholder 계획도 승인되지 않은 경우.
+- 필수 prefab이 없거나 scene/manager/ScriptableObject에서 참조되지 않는 경우.
+- Build Settings가 SampleScene만 enabled인 경우.
 
 UI음:
 - ui_button_hover.ogg

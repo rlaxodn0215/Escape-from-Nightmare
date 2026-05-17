@@ -1,50 +1,60 @@
 파일명: 08_REMAINING_TASKS.txt
 
 Escape From Nightmares
-남은 작업 / 추후 확정 항목
+Unity 남은 작업 / 추후 확정 항목
 
 ================================================================================
 01. 현재 부족한 부분
 ================================================================================
 
 현재 기획서와 개발 지시서는 스테이지 1을 구현하기 위한 핵심 구조를 대부분 포함하고 있다.
-다만 실제 개발 단계에서 아래 항목은 추가 확정 또는 실제 리소스 작업이 필요하다.
+다만 실제 Unity 개발 단계에서 아래 항목은 추가 확정 또는 실제 리소스 작업이 필요하다.
 
 1. 클릭 오브젝트 좌표
-- 모든 클릭 오브젝트는 사각형 hitbox를 사용하기로 확정했다.
-- 하지만 실제 x, y, w, h 좌표는 최종 방 배경 이미지가 있어야 정확히 정할 수 있다.
-- 현재 단계에서는 임시 좌표 또는 더미 좌표를 사용해야 한다.
+- 모든 클릭 오브젝트는 1280 x 720 기준 Rect hit area를 사용하기로 확정했다.
+- 하지만 실제 x, y, width, height 값은 최종 방 배경 이미지가 있어야 정확히 정할 수 있다.
+- 현재 단계에서는 Unity RectTransform 또는 Serializable Rect 기반 임시 좌표를 사용해야 한다.
 
 2. 실제 방 배경 이미지
 - 방 배경 파일명과 아트 방향은 확정했다.
 - 실제 이미지 리소스는 아직 없다.
-- Codex 구현 시에는 더미 이미지로 먼저 실행 가능하게 만들고, 이후 최종 리소스로 교체 가능한 구조가 필요하다.
+- Codex 구현 시에는 placeholder Sprite로 먼저 실행 가능하게 만들고, 이후 최종 리소스로 교체 가능한 구조가 필요하다.
 
 3. 실제 오브젝트 이미지
 - 아이템, 퍼즐 장치, 문, 은신 장소, 몬스터 연출 이미지 파일명은 정했다.
 - 실제 이미지 리소스는 아직 없다.
-- 더미 오브젝트 또는 단순 도형/텍스트 placeholder로 구현 가능해야 한다.
+- placeholder Sprite, UI Image, Prefab으로 구현 가능해야 한다.
 
 4. 실제 사운드 파일
 - 사운드 파일명과 카테고리는 정했다.
-- 실제 ogg 파일은 아직 없다.
-- 없을 경우 무음 처리 또는 더미 사운드로 대체해야 한다.
+- 실제 ogg 또는 wav 파일은 아직 없다.
+- 없을 경우 무음 처리 또는 dummy AudioClip으로 대체해야 한다.
 
 5. 몬스터 등장 연출 세부 프레임
 - 몬스터 외형과 등장 방식은 확정했다.
-- 각 등장 연출의 이미지 프레임 수, 지속 시간, 애니메이션 방식은 실제 구현 중 조정이 필요하다.
+- 각 등장 연출의 Sprite frame 수, 지속 시간, Animator/Timeline/코루틴 방식은 실제 구현 중 조정이 필요하다.
 
 6. 난이도 밸런싱
 - danger_level, noise_level, stay_timer, capture_gauge 개념은 확정했다.
-- 정확한 증가량, 감소량, 시간 기준은 플레이 테스트로 조정해야 한다.
+- 정확한 증가량, 감소량, 시간 기준은 PlayMode 테스트와 플레이 테스트로 조정해야 한다.
 
 7. 데이터 세부 조정
-- room_objects.lua, rooms.lua, events.lua, monster_nodes.lua의 구조는 설계되었다.
-- 실제 구현 시에는 각 방의 최종 연결, hitbox, 더미 리소스 경로를 코드에 맞게 정리해야 한다.
+- RoomDefinition, InteractableDefinition, EventDefinition, MonsterNodeDefinition 구조는 설계되었다.
+- 실제 구현 시에는 각 방의 최종 연결, hit area, placeholder resource reference를 Unity serialized asset에 맞게 정리해야 한다.
 
-8. Windows exe 패키징
-- 최종 산출물 목표는 프로젝트 폴더 + .love 파일 + Windows exe 패키지다.
-- exe 패키징은 개발 환경의 LÖVE 버전과 Windows 빌드 방식에 맞춰 진행해야 한다.
+8. Windows player build
+- 최종 산출물 목표는 Unity 프로젝트 폴더 + Windows PC player build다.
+- player build는 개발 환경의 Unity 6.3.9f1 설치와 Windows build support 상태에 맞춰 진행해야 한다.
+
+9. Resource-first Harness 설정
+- 현재 Unity Assets 안에는 필수 이미지, 오디오, prefab 리소스가 아직 없다.
+- 첫 Harness step은 `resource-inventory`여야 한다.
+- `resource_manifest.json` 또는 동등한 산출물로 missing / placeholder / final 상태를 먼저 분류해야 한다.
+- 이 step이 사용자 승인되기 전에는 C# 시스템, scene, prefab 개발을 시작하지 않는다.
+
+10. 리소스 명칭 불일치 검토
+- `03_PUZZLES_ITEMS_EVENTS.txt`의 `fuse_holder`와 `06_RESOURCES_LIST.txt`의 `item_electric_part.png` 명칭이 서로 어긋난다.
+- 구현 전 `DesignResourceConsistencyValidation`에서 blocked 처리하고 사용자 결정을 받아야 한다.
 
 ================================================================================
 02. 실제 제작 단계에서 남는 항목
@@ -52,20 +62,25 @@ Escape From Nightmares
 
 아래 항목은 실제 리소스 제작 또는 구현 중 보정이 필요하다.
 
-1. 모든 클릭 오브젝트의 정확한 x, y, w, h 좌표
+1. 모든 클릭 오브젝트의 정확한 Rect 좌표
 2. 실제 방 배경 이미지
 3. 실제 오브젝트 이미지
 4. 실제 사운드 파일
 5. 실제 UI 이미지
-6. 몬스터 등장 연출 이미지 세부 프레임
+6. 몬스터 등장 연출 Sprite frame 세부 구성
 7. 각 이벤트의 정확한 연출 지속 시간
 8. 최종 난이도 밸런싱
 9. danger_level 증가/감소 수치 미세 조정
 10. capture_gauge 상승 속도 조정
-11. 최종 방별 hitbox 조정
+11. 최종 방별 hit area 조정
 12. 실제 플레이 테스트 후 몬스터 접근 빈도 조정
 13. 최종 추격 난이도 조정
-14. 더미 리소스에서 최종 손그림풍 리소스로 교체
+14. placeholder 리소스에서 최종 손그림풍 리소스로 교체
+15. Unity BuildScript 작성 여부 확정
+16. EditMode / PlayMode 테스트 범위 확정
+17. resource_manifest.json 생성 및 사용자 승인
+18. 필수 placeholder 이미지/오디오 생성 또는 final 리소스 수급
+19. ZeroByteAssetValidation, UnityImportableAssetValidation 통과
 
 ================================================================================
 03. 다음에 추가로 만들면 좋은 문서
@@ -76,13 +91,14 @@ Escape From Nightmares
 1. 09_ROOM_OBJECTS_DETAIL.txt
 - 각 방별 클릭 오브젝트 상세 목록
 - 각 오브젝트 type, action, required item, event 정리
+- Unity Rect 기준 좌표 표 포함
 
 2. 10_MONSTER_NODE_GRAPH_DETAIL.txt
-- monster_nodes.lua 전체 노드 그래프 상세화
+- MonsterNodeDefinition 전체 노드 그래프 상세화
 - 조건부 연결 포함
 
 3. 11_EVENT_DETAIL_TABLE.txt
-- events.lua의 effects, monster_effects, set_flags 상세표
+- EventDefinition의 effects, monster_effects, set_flags 상세표
 
 4. 12_BALANCE_VALUES.txt
 - danger_level 증가량

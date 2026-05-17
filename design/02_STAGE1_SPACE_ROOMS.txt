@@ -34,6 +34,12 @@ Escape From Nightmares
 - 차고는 지하실과 후반에만 연결된다.
 - 전기 복구 이후 차고-지하실 연결 통로가 개방된다.
 
+Unity 데이터 기준:
+- 각 방은 RoomDefinition ScriptableObject로 정의한다.
+- 방 ID는 아래 목록의 id를 그대로 사용한다.
+- 방 배경은 Assets/Sprites/Rooms 아래 Sprite reference로 연결한다.
+- 방 연결은 RoomDefinition의 connected rooms 또는 door/screen_edge InteractableDefinition으로 정의한다.
+
 ================================================================================
 02. 방 목록
 ================================================================================
@@ -191,3 +197,23 @@ entrance:
 - attic_main: 1
 - attic_toy_storage: 0~1
 - attic_album_storage: 0~1
+
+================================================================================
+05. Unity RoomDefinition 필드 기준
+================================================================================
+
+필수 필드:
+- room_id
+- floor_id
+- display_name_for_debug
+- background_sprite
+- ambience_audio
+- danger_modifier
+- monster_can_enter
+- connected_room_ids
+- interactable_definitions
+
+좌표 기준:
+- room background는 1280 x 720 기준으로 제작한다.
+- 클릭 오브젝트 좌표는 동일 기준의 Rect로 작성한다.
+- 최종 아트 교체 후 Rect 보정이 필요할 수 있다.

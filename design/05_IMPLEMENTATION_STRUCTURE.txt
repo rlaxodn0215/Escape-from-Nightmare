@@ -1,116 +1,133 @@
 파일명: 05_IMPLEMENTATION_STRUCTURE.txt
 
 Escape From Nightmares
-구현 구조 / 데이터 파일 설계 문서
+Unity 구현 구조 / 데이터 에셋 설계 문서
 
 ================================================================================
-01. 프로젝트 폴더 구조
+01. Unity 프로젝트 폴더 구조
 ================================================================================
 
 EscapeFromNightmares/
-│
-├─ main.lua
-├─ conf.lua
-│
-├─ src/
-│  ├─ core/
-│  │  ├─ game.lua
-│  │  ├─ state_manager.lua
-│  │  ├─ input.lua
-│  │  ├─ camera.lua
-│  │  └─ save_manager.lua
+├─ Assets/
+│  ├─ Scenes/
+│  │  ├─ Boot.unity
+│  │  ├─ Title.unity
+│  │  ├─ Stage1.unity
+│  │  └─ Ending.unity
 │  │
-│  ├─ scenes/
-│  │  ├─ title_scene.lua
-│  │  ├─ game_scene.lua
-│  │  ├─ pause_scene.lua
-│  │  ├─ gameover_scene.lua
-│  │  └─ ending_scene.lua
+│  ├─ Scripts/
+│  │  ├─ Core/
+│  │  │  ├─ GameBootstrap.cs
+│  │  │  ├─ GameStateManager.cs
+│  │  │  ├─ SceneFlowController.cs
+│  │  │  ├─ InputRouter.cs
+│  │  │  └─ SaveManager.cs
+│  │  │
+│  │  ├─ Systems/
+│  │  │  ├─ RoomSystem.cs
+│  │  │  ├─ InteractionSystem.cs
+│  │  │  ├─ InventorySystem.cs
+│  │  │  ├─ PuzzleSystem.cs
+│  │  │  ├─ EventSystem.cs
+│  │  │  ├─ HidingSystem.cs
+│  │  │  ├─ SoundSystem.cs
+│  │  │  └─ MapSystem.cs
+│  │  │
+│  │  ├─ AI/
+│  │  │  ├─ MonsterStateMachine.cs
+│  │  │  ├─ DangerModel.cs
+│  │  │  └─ MonsterController.cs
+│  │  │
+│  │  ├─ UI/
+│  │  │  ├─ TitleUI.cs
+│  │  │  ├─ PauseUI.cs
+│  │  │  ├─ InventoryUI.cs
+│  │  │  ├─ PuzzleUI.cs
+│  │  │  ├─ MapUI.cs
+│  │  │  ├─ DangerGaugeUI.cs
+│  │  │  └─ SettingsUI.cs
+│  │  │
+│  │  └─ Data/
+│  │     ├─ RoomDefinition.cs
+│  │     ├─ InteractableDefinition.cs
+│  │     ├─ ItemDefinition.cs
+│  │     ├─ PuzzleDefinition.cs
+│  │     ├─ MonsterNodeDefinition.cs
+│  │     ├─ StageDefinition.cs
+│  │     └─ EventDefinition.cs
 │  │
-│  ├─ systems/
-│  │  ├─ room_system.lua
-│  │  ├─ interaction_system.lua
-│  │  ├─ inventory_system.lua
-│  │  ├─ puzzle_system.lua
-│  │  ├─ event_system.lua
-│  │  ├─ hiding_system.lua
-│  │  ├─ sound_system.lua
-│  │  └─ map_system.lua
+│  ├─ ScriptableObjects/
+│  │  └─ Stage1/
+│  │     ├─ Rooms/
+│  │     ├─ Interactables/
+│  │     ├─ Items/
+│  │     ├─ Puzzles/
+│  │     ├─ Events/
+│  │     ├─ MonsterNodes/
+│  │     ├─ Sounds/
+│  │     └─ Stage1Definition.asset
 │  │
-│  ├─ ai/
-│  │  ├─ fsm.lua
-│  │  ├─ danger.lua
-│  │  └─ monster.lua
+│  ├─ Prefabs/
+│  │  ├─ UI/
+│  │  │  ├─ TitleUI.prefab
+│  │  │  ├─ PauseUI.prefab
+│  │  │  ├─ SettingsUI.prefab
+│  │  │  ├─ InventoryUI.prefab
+│  │  │  ├─ MapUI.prefab
+│  │  │  ├─ PuzzleUI.prefab
+│  │  │  ├─ HidingGaugeUI.prefab
+│  │  │  └─ GameOverUI.prefab
+│  │  ├─ Interactables/
+│  │  │  ├─ InteractableHotspot.prefab
+│  │  │  ├─ ScreenEdgeHotspot.prefab
+│  │  │  └─ HideSpot.prefab
+│  │  ├─ Rooms/
+│  │  │  └─ RoomView.prefab
+│  │  └─ Monster/
+│  │     ├─ MonsterOverlay.prefab
+│  │     └─ AudioEmitter.prefab
 │  │
-│  └─ ui/
-│     ├─ inventory_ui.lua
-│     ├─ puzzle_ui.lua
-│     ├─ map_ui.lua
-│     ├─ danger_gauge_ui.lua
-│     └─ settings_ui.lua
+│  ├─ Sprites/
+│  │  ├─ Rooms/
+│  │  ├─ Objects/
+│  │  ├─ Items/
+│  │  ├─ UI/
+│  │  ├─ Monster/
+│  │  └─ Effects/
+│  │
+│  ├─ Audio/
+│  │  ├─ BGM/
+│  │  ├─ Ambience/
+│  │  ├─ SFX/
+│  │  ├─ Monster/
+│  │  ├─ UI/
+│  │  └─ Events/
+│  │
+│  ├─ UI/
+│  │  ├─ Fonts/
+│  │  └─ Materials/
+│  │
+│  └─ Tests/
+│     ├─ EditMode/
+│     └─ PlayMode/
 │
-├─ data/
-│  ├─ rooms.lua
-│  ├─ room_objects.lua
-│  ├─ items.lua
-│  ├─ puzzle_chains.lua
-│  ├─ puzzle_inputs.lua
-│  ├─ events.lua
-│  ├─ monster_nodes.lua
-│  ├─ sound_data.lua
-│  └─ stage1.lua
-│
-├─ assets/
-│  ├─ images/
-│  │  ├─ rooms/
-│  │  ├─ objects/
-│  │  ├─ items/
-│  │  ├─ ui/
-│  │  ├─ monster/
-│  │  └─ effects/
-│  │
-│  ├─ sounds/
-│  │  ├─ bgm/
-│  │  ├─ ambience/
-│  │  ├─ sfx/
-│  │  ├─ monster/
-│  │  ├─ ui/
-│  │  └─ events/
-│  │
-│  └─ fonts/
-│
-├─ saves/
-│  ├─ settings.json
-│  └─ clear_records.json
-│
-└─ build/
-   ├─ EscapeFromNightmares.love
-   └─ windows/
+├─ Packages/
+├─ ProjectSettings/
+└─ Build/Windows/  (local generated output, not source ownership)
 
 ================================================================================
-02. 데이터 파일 설계 지시
+02. 표준 데이터 타입
 ================================================================================
 
-data/items.lua:
-- 아이템 10개를 정의한다.
-- item id, name, icon, acquired_from, used_in, altar_symbol, flags_on_acquire 포함.
-- 현재 실제 아이템 조합식은 비워 둔다.
+RoomDefinition:
+- room id, floor, background sprite, connected rooms, danger modifier, monster entry flag를 정의한다.
+- 방 이동은 door interactable 또는 screen_edge interactable로 연결한다.
 
-data/puzzle_inputs.lua:
-- 실제 입력 장치를 정의한다.
-- study_safe
-- laundry_storage_box
-- mirror_symbol_panel
-- attic_toy_sequence
-- master_bedroom_drawer
-- basement_altar
-- front_door_escape
-- 정답값, 성공 이벤트, 실패 이벤트, 보상 아이템, 위험도 증가값 포함.
-
-data/room_objects.lua:
+InteractableDefinition:
 - 각 방의 클릭 오브젝트를 정의한다.
 - type 예시:
   - door
+  - screen_edge
   - container
   - item_pickup
   - puzzle_object
@@ -119,60 +136,198 @@ data/room_objects.lua:
   - locked_door
   - monster_spawn_marker
   - escape_door
-- 모든 hitbox는 {x, y, w, h} 사각형 구조.
-- 최종 배경 리소스가 없으면 임시 좌표를 사용한다.
+- 클릭 영역은 1280 x 720 기준 Rect 또는 RectTransform 값으로 관리한다.
+- 화면에는 클릭 가능 표시를 하지 않는다.
 
-data/puzzle_chains.lua:
-- 목표 체인 9개를 정의한다.
-- 각 체인에 rooms, required_items, required_flags, main_steps, completion_condition, next_chains 포함.
+ItemDefinition:
+- 아이템 id, name, icon sprite, acquired_from, used_in, altar_symbol, flags_on_acquire를 포함한다.
+- 실제 아이템 조합식은 Stage 1에서 최소화한다.
 
-data/events.lua:
-- 퍼즐 성공/실패, 몬스터 등장, 전기 복구, 지하실 해금, 최종 추격, 클리어, 게임오버 이벤트를 정의한다.
+PuzzleDefinition:
+- 실제 입력 장치를 정의한다.
+- study_safe
+- laundry_storage_box
+- mirror_symbol_panel
+- attic_toy_sequence
+- master_bedroom_drawer
+- basement_altar
+- front_door_escape
+- 정답, 성공 이벤트, 실패 이벤트, 보상 아이템, 위험도 증가 값을 포함한다.
 
-data/rooms.lua:
-- 방 ID, 층, 배경, 레이어, 이동 연결, 은신 수, 위험도 보정, 몬스터 진입 여부를 정의한다.
+EventDefinition:
+- 퍼즐 성공/실패, 몬스터 등장, 전기 복구, 지하실 잠금 해제, 최종 추격, 클리어, 게임오버 이벤트를 정의한다.
+- 이벤트는 플래그 변경, 아이템 생성, UI 전환, 사운드 재생, 몬스터 상태 변경을 호출할 수 있다.
 
-data/monster_nodes.lua:
+MonsterNodeDefinition:
 - 몬스터 이동 노드 그래프를 정의한다.
-- 일반 방은 1노드.
-- 큰 방/복도/계단/지하실/다락방은 다중 노드.
+- 일반 방은 1노드, 복도/계단/큰 방은 다중 노드로 분리한다.
 - 최종 추격 경로를 포함한다.
 
-data/sound_data.lua:
-- BGM, ambience, sfx, monster, ui, events 사운드 분류를 정의한다.
-- 파일이 없으면 무음 fallback 처리 가능.
-
-data/stage1.lua:
-- 스테이지 1 시작 방, 초기 플래그, 클리어 조건, 실패 조건, 진행 초기화 규칙을 정의한다.
+StageDefinition:
+- Stage 1 시작 방, 초기 플래그, 클리어 조건, 실패 조건, room list, puzzle list, event list, monster node list를 묶는다.
 
 ================================================================================
-03. 핵심 구현 규칙
+03. 필수 Scene Hierarchy
+================================================================================
+
+Playable scene은 아래 root object를 가져야 한다.
+
+StageRoot:
+- Stage1 scene의 최상위 진행 컨트롤러.
+- StageDefinition reference를 가진다.
+
+Systems:
+- GameStateManager, RoomSystem, InteractionSystem, InventorySystem, PuzzleSystem, EventSystem, MonsterController, HidingSystem, SoundSystem, MapSystem을 배치한다.
+- 시스템은 scene object 또는 bootstrap prefab으로 구성할 수 있다.
+
+RoomView:
+- 현재 방 배경 Sprite/Image와 room visual layer를 표시한다.
+- RoomView.prefab instance를 사용한다.
+
+InteractableLayer:
+- InteractableHotspot, ScreenEdgeHotspot, HideSpot prefab instance를 담는다.
+- normal play에서 hotspot은 보이지 않아야 한다.
+
+MonsterLayer:
+- MonsterOverlay prefab instance를 담는다.
+- 실루엣, 근접 감지, 추격, game over shadow 연출을 담당한다.
+
+AudioRoot:
+- AudioEmitter prefab 또는 AudioSource object를 담는다.
+- BGM, ambience, SFX, monster, UI, event audio route를 분리한다.
+
+UICanvas:
+- HUD와 title, pause, settings, inventory, map, puzzle, hiding gauge, game over UI prefab을 배치한다.
+- Canvas Scaler는 1280 x 720 기준으로 설정한다.
+
+EventSystem:
+- Unity EventSystem과 Input System UI Input Module을 둔다.
+
+DebugRoot:
+- 개발용 상태 표시와 validation helper를 둔다.
+- release build에서는 비활성화 또는 제거 가능해야 한다.
+
+SampleScene 규칙:
+- SampleScene 기본 오브젝트만 있는 상태는 playable scene으로 인정하지 않는다.
+- Build Settings에 SampleScene만 enabled 상태이면 build step 전에 blocked 처리한다.
+
+================================================================================
+04. Prefab 개발 기준
+================================================================================
+
+UI Prefab:
+- TitleUI.prefab
+- PauseUI.prefab
+- SettingsUI.prefab
+- InventoryUI.prefab
+- MapUI.prefab
+- PuzzleUI.prefab
+- HidingGaugeUI.prefab
+- GameOverUI.prefab
+
+Gameplay Prefab:
+- RoomView.prefab
+- InteractableHotspot.prefab
+- ScreenEdgeHotspot.prefab
+- HideSpot.prefab
+- MonsterOverlay.prefab
+- AudioEmitter.prefab
+
+완료 기준:
+- prefab 파일 생성만으로 완료하지 않는다.
+- prefab은 scene에 배치되거나 ScriptableObject/manager에서 참조되어야 한다.
+- missing script, missing component, missing serialized reference가 없어야 한다.
+- prefab과 scene 변경은 C# script 변경과 동일한 구현 산출물로 취급한다.
+- prefab은 하나씩 사용자와 설계안을 상의한 뒤 제작한다.
+- 예: TitleUI.prefab step에서 InventoryUI.prefab, PauseUI.prefab, Stage1 scene까지 함께 만들지 않는다.
+- 각 prefab step은 `design_review -> approved_for_implementation -> in_progress -> ready_for_review` 흐름을 따른다.
+
+================================================================================
+05. 구성요소 단위 협업 기준
+================================================================================
+
+기본 원칙:
+- 게임 구성요소 하나를 하나의 step으로 다룬다.
+- 구현 전 `design_review`에서 사용자와 의도, 구성, 리소스, 완료 기준을 확정한다.
+- 사용자 승인 전에는 파일 생성, prefab 생성, scene 편집, C# 구현을 시작하지 않는다.
+
+unit_type:
+- resource
+- prefab
+- scene
+- room
+- puzzle
+- ui
+- monster_event
+- system
+
+unit_id 예시:
+- TitleUI.prefab
+- InventoryUI.prefab
+- Stage1.unity
+- child_room
+- child_room_to_second_floor_hallway
+- study_safe
+- MonsterOverlay.prefab
+- RoomView.prefab
+
+분할 규칙:
+- scene은 hierarchy skeleton, UI 배치, gameplay layer 연결을 분리한다.
+- room/level은 방 하나 또는 연결 하나 단위로 만든다.
+- puzzle은 퍼즐 하나 단위로 만든다.
+- monster event는 이벤트 하나 단위로 만든다.
+- resource는 manifest와 placeholder/final 여부를 먼저 승인받는다.
+
+================================================================================
+06. Unity MCP / Validation 기준
+================================================================================
+
+Unity MCP:
+- com.coplaydev.unity-mcp 패키지가 설치되어 있으므로 callable tool이 있으면 우선 사용한다.
+- scene hierarchy, prefab instance, missing component, serialized reference, Build Settings를 점검한다.
+
+Fallback:
+- Unity MCP callable tool이 없으면 Unity BatchMode, scene YAML, prefab YAML, ProjectSettings/EditorBuildSettings.asset static validation을 사용한다.
+- fallback 사용 시 step summary에 명시한다.
+
+Validation 이름:
+- SceneHierarchyValidation
+- PrefabReferenceValidation
+- ScriptableObjectReferenceValidation
+- BuildSettingsValidation
+
+================================================================================
+07. 핵심 구현 규칙
 ================================================================================
 
 방 이동:
 - 문 오브젝트 클릭 이동
 - 화면 가장자리 클릭 이동
-- 둘 다 데이터화한다.
+- 이동 시 현재 room id를 갱신하고 RoomSystem이 배경, interactable, ambience를 교체한다.
 
 클릭 판정:
-- 모든 클릭 오브젝트는 사각형 hitbox 사용
-- {x, y, w, h}
+- 모든 클릭 오브젝트는 Rect 기반 hit area를 사용한다.
+- Unity UI 기반이면 투명 Image 또는 GraphicRaycaster를 사용할 수 있다.
+- 월드 기반이면 Collider2D 또는 Physics2D raycast를 사용할 수 있다.
+- 어느 방식이든 일반 플레이 화면에서 하이라이트를 표시하지 않는다.
 
 인벤토리:
-- items.lua는 아이템 자체 정의
-- room_objects.lua는 어느 방/오브젝트에서 획득하는지 정의
+- ItemDefinition은 아이템 자체를 정의한다.
+- InteractableDefinition은 어느 방/오브젝트에서 획득하는지 정의한다.
+- InventorySystem은 런타임 보유 상태와 선택 아이템을 메모리로 관리한다.
 
 퍼즐:
-- puzzle_inputs.lua는 실제 입력 장치
-- puzzle_chains.lua는 여러 방을 오가는 목표 체인
+- PuzzleDefinition은 입력 방식과 정답을 정의한다.
+- PuzzleSystem은 공통 성공/실패 처리와 EventSystem 연결을 담당한다.
 
 몬스터:
-- monster_nodes.lua는 방/노드 그래프
-- fsm.lua는 상태 전환
-- danger.lua는 위험 수치 계산
-- monster.lua는 현재 노드, 목표 노드, 추격/수색 처리
+- MonsterNodeDefinition은 방/노드 그래프를 정의한다.
+- MonsterStateMachine은 NORMAL, APPROACHING, SEARCHING, NEAR_DETECTION, CHASE 상태 전환을 처리한다.
+- DangerModel은 danger_level, noise_level, stay_timer, capture_gauge, hide_noise를 계산한다.
+- MonsterController는 현재 노드, 목표 노드, 추격/수색 처리를 담당한다.
 
 저장:
-- 진행 저장 없음
-- settings.json 저장
-- clear_records.json 저장
+- 진행 저장은 없음.
+- 설정 저장은 PlayerPrefs 또는 작은 JSON 파일을 사용한다.
+- clear record는 stage1_clear만 저장한다.
+- 인벤토리, 퍼즐 상태, 열린 문, 현재 방, 몬스터 상태, 체크포인트는 저장하지 않는다.

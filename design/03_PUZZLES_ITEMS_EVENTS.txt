@@ -3,6 +3,12 @@
 Escape From Nightmares
 퍼즐 / 아이템 / 이벤트 문서
 
+Unity 데이터 기준:
+- 아이템은 ItemDefinition ScriptableObject로 정의한다.
+- 퍼즐은 PuzzleDefinition ScriptableObject로 정의한다.
+- 이벤트는 EventDefinition ScriptableObject 또는 Serializable C# data로 정의한다.
+- 런타임 보유 아이템, 플래그, 퍼즐 해결 상태는 메모리에만 유지한다.
+
 ================================================================================
 01. 아이템 목록
 ================================================================================
@@ -218,6 +224,24 @@ front_door_escape:
 - front_door_key_on_altar 생성
 - front_door_key 획득
 - 최종 추격 시작
+
+================================================================================
+04. Unity Definition 매핑
+================================================================================
+
+ItemDefinition:
+- id는 본 문서의 item id를 그대로 사용한다.
+- icon은 Assets/Sprites/Items의 Sprite reference를 사용한다.
+- altar_symbol이 있는 아이템은 basement_altar PuzzleDefinition에서 매칭 대상으로 사용한다.
+
+PuzzleDefinition:
+- id는 본 문서의 puzzle id를 그대로 사용한다.
+- input_type은 number_lock, symbol_sequence, silent_sequence, color_sequence, symbol_item_matching, item_use 중 하나를 사용한다.
+- success_event_id와 failure_event_id를 통해 EventSystem에 연결한다.
+
+EventDefinition:
+- event id는 퍼즐 체인과 연출 이름을 기준으로 작성한다.
+- 가능한 effect: set_flag, give_item, spawn_interactable, play_audio, change_room, start_monster, change_monster_state, show_ui, game_over, stage_clear.
 
 9. final_chase_escape
 - 경로:
