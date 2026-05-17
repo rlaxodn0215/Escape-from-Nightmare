@@ -2,19 +2,79 @@
   "project": "Escape From Nightmares",
   "phase": "0-mvp",
   "steps": [
-    { "step": 0, "name": "environment-foundation", "status": "pending" },
-    { "step": 1, "name": "project-skeleton", "status": "pending" },
-    { "step": 2, "name": "scene-shells", "status": "pending" },
-    { "step": 3, "name": "room-navigation", "status": "pending" },
-    { "step": 4, "name": "inventory-items", "status": "pending" },
-    { "step": 5, "name": "map-ui", "status": "pending" },
-    { "step": 6, "name": "stage-data", "status": "pending" },
-    { "step": 7, "name": "puzzle-system", "status": "pending" },
-    { "step": 8, "name": "monster-fsm", "status": "pending" },
-    { "step": 9, "name": "danger-system", "status": "pending" },
-    { "step": 10, "name": "hiding-system", "status": "pending" },
-    { "step": 11, "name": "stage1-integration", "status": "pending" },
-    { "step": 12, "name": "love-package", "status": "pending" },
-    { "step": 13, "name": "windows-package", "status": "pending" }
-  ]
+    {
+      "step": 0,
+      "name": "environment-foundation",
+      "status": "completed",
+      "started_at": "2026-05-17T11:48:10+0900",
+      "completed_at": "2026-05-17T11:56:37+0900",
+      "summary": "Confirmed local LOVE CLI at C:\\Program Files\\LOVE\\lovec.exe (LOVE 11.5), no luac on PATH, added PowerShell env/syntax/package scripts, and created build/ plus build/windows/."
+    },
+    {
+      "step": 1,
+      "name": "project-skeleton",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "scene-shells",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "room-navigation",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "inventory-items",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "map-ui",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "stage-data",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "puzzle-system",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "monster-fsm",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "danger-system",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "hiding-system",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "stage1-integration",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "love-package",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "windows-package",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-05-17T11:48:10+0900"
 }
