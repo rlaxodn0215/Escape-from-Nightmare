@@ -109,7 +109,10 @@
     {
       "step": 13,
       "name": "love-package",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T21:36:59+0900",
+      "completed_at": "2026-05-17T21:39:30+0900",
+      "summary": "Created build/EscapeFromNightmares.love with scripts/package-love.ps1 after verifying Step 12 resources; archive includes only main.lua, conf.lua, src/, data/, and assets/ and passed a LOVE smoke run."
     },
     {
       "step": 14,
