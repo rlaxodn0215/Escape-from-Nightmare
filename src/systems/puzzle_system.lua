@@ -39,18 +39,21 @@ local function copyList(list)
     return copied
 end
 
-function PuzzleSystem.new(puzzleInputs, events, inventorySystem, run)
+function PuzzleSystem.new(puzzleInputs, events, inventorySystem, run, dangerSystem)
     run = run or {}
     run.puzzles = run.puzzles or {}
     run.flags = run.flags or {}
     run.events = run.events or {}
-    run.danger = run.danger or 0
+    if not dangerSystem then
+        run.danger = run.danger or 0
+    end
 
     return setmetatable({
         puzzleInputs = puzzleInputs or {},
         events = events or {},
         inventorySystem = inventorySystem,
-        run = run
+        run = run,
+        dangerSystem = dangerSystem
     }, PuzzleSystem)
 end
 
@@ -104,7 +107,9 @@ function PuzzleSystem:applyEvent(eventId)
         self.run.clearRecords[event.clear_record] = true
     end
 
-    if event.danger_delta then
+    if self.dangerSystem then
+        self.dangerSystem:applyEvent(event)
+    elseif event.danger_delta then
         self.run.danger = math.max(0, self.run.danger + event.danger_delta)
     end
 end
@@ -141,7 +146,9 @@ end
 
 function PuzzleSystem:fail(puzzle)
     self:applyEvents(puzzle.failure_events)
-    if puzzle.danger_delta_on_failure then
+    if self.dangerSystem then
+        self.dangerSystem:applyPuzzleFailure(puzzle)
+    elseif puzzle.danger_delta_on_failure then
         self.run.danger = math.max(0, self.run.danger + puzzle.danger_delta_on_failure)
     end
 
@@ -149,7 +156,7 @@ function PuzzleSystem:fail(puzzle)
         solved = false,
         failed = true,
         puzzle = puzzle,
-        danger = self.run.danger
+        danger = self.dangerSystem and self.dangerSystem:getState() or self.run.danger
     }
 end
 

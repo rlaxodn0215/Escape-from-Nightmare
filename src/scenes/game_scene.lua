@@ -10,6 +10,7 @@ local InventoryUi = require("src.ui.inventory_ui")
 local MapUi = require("src.ui.map_ui")
 local PuzzleUi = require("src.ui.puzzle_ui")
 local Monster = require("src.ai.monster")
+local Danger = require("src.ai.danger")
 local Rooms = require("data.rooms")
 local RoomObjects = require("data.room_objects")
 local Items = require("data.items")
@@ -45,6 +46,7 @@ function GameScene.new(app, run)
         inventorySystem = nil,
         mapSystem = nil,
         puzzleSystem = nil,
+        dangerSystem = nil,
         monster = nil,
         inventoryUi = nil,
         mapUi = nil,
@@ -59,7 +61,8 @@ function GameScene:enter()
     self.interactionSystem = InteractionSystem.new(RoomObjects, self.run.flags)
     self.inventorySystem = InventorySystem.new(Items, self.run.inventory)
     self.mapSystem = MapSystem.new(self.roomSystem)
-    self.puzzleSystem = PuzzleSystem.new(PuzzleInputs, Events, self.inventorySystem, self.run)
+    self.dangerSystem = Danger.new(self.run, Events)
+    self.puzzleSystem = PuzzleSystem.new(PuzzleInputs, Events, self.inventorySystem, self.run, self.dangerSystem)
     self.monster = Monster.new(MonsterNodes, Events, self.run)
     self.inventoryUi = InventoryUi.new(self.inventorySystem)
     self.mapUi = MapUi.new(self.mapSystem)
@@ -71,6 +74,18 @@ end
 function GameScene:update(dt)
     if self.monster then
         self.monster:update(dt)
+    end
+
+    if self.dangerSystem then
+        self.dangerSystem:update(dt, self.monster and self.monster:getState() or nil)
+
+        if self.dangerSystem:isCaptureFull() then
+            if self.monster then
+                self.monster:triggerEvent("event_player_captured", self.roomSystem:getCurrentRoomId())
+            end
+            self.app:showGameOver()
+            return
+        end
     end
 
     if self.puzzleUi then
@@ -223,10 +238,16 @@ function GameScene:mousepressed(x, y, button)
                     self.monster:triggerEvent("event_kitchen_first_appearance", result.roomId)
                 end
             end
+            if self.dangerSystem then
+                self.dangerSystem:setPlayerRoom(result.roomId)
+            end
             self.notice = nil
         elseif result.itemPickup then
             if result.item and result.item.id == "front_door_key" and self.monster then
                 self.monster:triggerEvent("event_final_chase_trigger", self.roomSystem:getCurrentRoomId())
+                if self.dangerSystem then
+                    self.dangerSystem:applyEvent("event_final_chase_trigger")
+                end
             end
             self.notice = "Taken: " .. result.item.name
         elseif result.reason == "already_acquired" then
