@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Harness Step Executor — phase 내 step을 순차 실행하고 자가 교정한다.
+Harness Step Executor - phase 내 step을 순차 실행하고 자가 교정한다.
 
 Usage:
     python3 scripts/execute.py <phase-dir> [--push]
@@ -9,6 +9,7 @@ Usage:
 import argparse
 import contextlib
 import json
+import os
 import subprocess
 import sys
 import threading
@@ -19,12 +20,13 @@ from pathlib import Path
 from typing import Optional
 
 ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_LOCAL_CODEX = Path.home() / "AppData" / "Local" / "OpenAI" / "Codex" / "bin" / "codex.exe"
 
 
 @contextlib.contextmanager
 def progress_indicator(label: str):
     """터미널 진행 표시기. with 문으로 사용하며 .elapsed 로 경과 시간을 읽는다."""
-    frames = "◐◓◑◒"
+    frames = "|/-\\"
     stop = threading.Event()
     t0 = time.monotonic()
 
@@ -53,7 +55,7 @@ class StepExecutor:
     """Phase 디렉토리 안의 step들을 순차 실행하는 하네스."""
 
     MAX_RETRIES = 3
-    FEAT_MSG = "feat({phase}): step {num} — {name}"
+    FEAT_MSG = "feat({phase}): step {num} - {name}"
     CHORE_MSG = "chore({phase}): step {num} output"
     TZ = timezone(timedelta(hours=9))
 
@@ -200,7 +202,7 @@ class StepExecutor:
         retry_section = ""
         if prev_error:
             retry_section = (
-                f"\n## ⚠ 이전 시도 실패 — 아래 에러를 반드시 참고하여 수정하라\n\n"
+                f"\n## 이전 시도 실패 - 아래 에러를 반드시 참고하여 수정하라\n\n"
                 f"{prev_error}\n\n---\n\n"
             )
         return (
@@ -222,6 +224,15 @@ class StepExecutor:
 
     # --- Codex 호출 ---
 
+    @staticmethod
+    def _codex_executable() -> str:
+        env_path = os.environ.get("CODEX_CLI_PATH")
+        if env_path:
+            return env_path
+        if DEFAULT_LOCAL_CODEX.exists():
+            return str(DEFAULT_LOCAL_CODEX)
+        return "codex"
+
     def _invoke_codex(self, step: dict, preamble: str) -> dict:
         step_num, step_name = step["step"], step["name"]
         step_file = self._phase_dir / f"step{step_num}.md"
@@ -231,10 +242,17 @@ class StepExecutor:
             sys.exit(1)
 
         prompt = preamble + step_file.read_text(encoding="utf-8")
-        result = subprocess.run(
-            ["codex", "exec", "--sandbox", "workspace-write", "--json", prompt],
-            cwd=self._root, capture_output=True, text=True, timeout=1800,
-        )
+        try:
+            result = subprocess.run(
+                [self._codex_executable(), "exec", "--sandbox", "workspace-write", "--json", prompt],
+                cwd=self._root, capture_output=True, text=True, timeout=1800,
+            )
+        except OSError as exc:
+            result = types.SimpleNamespace(
+                returncode=126,
+                stdout="",
+                stderr=f"Failed to start Codex CLI: {exc}",
+            )
 
         if result.returncode != 0:
             print(f"\n  WARN: Codex가 비정상 종료됨 (code {result.returncode})")
@@ -266,13 +284,13 @@ class StepExecutor:
         index = self._read_json(self._index_file)
         for s in reversed(index["steps"]):
             if s["status"] == "error":
-                print(f"\n  ✗ Step {s['step']} ({s['name']}) failed.")
+                print(f"\n  ERROR Step {s['step']} ({s['name']}) failed.")
                 print(f"  Error: {s.get('error_message', 'unknown')}")
                 print("  Uncommitted changes were left for manual review.")
                 print("  Fix or discard them, then reset status to 'pending' to retry.")
                 sys.exit(1)
             if s["status"] == "blocked":
-                print(f"\n  ⏸ Step {s['step']} ({s['name']}) blocked.")
+                print(f"\n  BLOCKED Step {s['step']} ({s['name']}) blocked.")
                 print(f"  Reason: {s.get('blocked_reason', 'unknown')}")
                 print("  Uncommitted changes were left for manual review.")
                 print("  Resolve the decision or environment issue, then reset status to 'pending' to retry.")
@@ -304,8 +322,22 @@ class StepExecutor:
                 tag += f" [retry {attempt}/{self.MAX_RETRIES}]"
 
             with progress_indicator(tag) as pi:
-                self._invoke_codex(step, preamble)
+                output = self._invoke_codex(step, preamble)
                 elapsed = int(pi.elapsed)
+
+            if output.get("exitCode") == 126:
+                index = self._read_json(self._index_file)
+                for s in index["steps"]:
+                    if s["step"] == step_num:
+                        s["status"] = "blocked"
+                        s["blocked_reason"] = (
+                            "Question: Codex CLI could not be started. How should the harness continue?\n"
+                            "Options:\n"
+                            "- Fix local Codex CLI permissions or PATH, then retry. (Recommended): Keeps automated step execution.\n"
+                            "- Run this step manually in the current Codex session: Bypasses the CLI harness for this step.\n"
+                            "- Replace the harness executor command with another approved local Codex entrypoint: Requires a known executable path."
+                        )
+                self._write_json(self._index_file, index)
 
             index = self._read_json(self._index_file)
             status = next((s.get("status", "pending") for s in index["steps"] if s["step"] == step_num), "pending")
@@ -317,7 +349,7 @@ class StepExecutor:
                         s["completed_at"] = ts
                 self._write_json(self._index_file, index)
                 self._commit_step(step_num, step_name)
-                print(f"  ✓ Step {step_num}: {step_name} [{elapsed}s]")
+                print(f"  OK Step {step_num}: {step_name} [{elapsed}s]")
                 return True
 
             if status == "blocked":
@@ -326,7 +358,7 @@ class StepExecutor:
                         s["blocked_at"] = ts
                 self._write_json(self._index_file, index)
                 reason = next((s.get("blocked_reason", "") for s in index["steps"] if s["step"] == step_num), "")
-                print(f"  ⏸ Step {step_num}: {step_name} blocked [{elapsed}s]")
+                print(f"  BLOCKED Step {step_num}: {step_name} blocked [{elapsed}s]")
                 print(f"    Reason: {reason}")
                 print("    Uncommitted changes were left for manual review.")
                 self._update_top_index("blocked")
@@ -344,7 +376,7 @@ class StepExecutor:
                         s.pop("error_message", None)
                 self._write_json(self._index_file, index)
                 prev_error = err_msg
-                print(f"  ↻ Step {step_num}: retry {attempt}/{self.MAX_RETRIES} — {err_msg}")
+                print(f"  RETRY Step {step_num}: retry {attempt}/{self.MAX_RETRIES} - {err_msg}")
             else:
                 for s in index["steps"]:
                     if s["step"] == step_num:
@@ -352,7 +384,7 @@ class StepExecutor:
                         s["error_message"] = f"[{self.MAX_RETRIES}회 시도 후 실패] {err_msg}"
                         s["failed_at"] = ts
                 self._write_json(self._index_file, index)
-                print(f"  ✗ Step {step_num}: {step_name} failed after {self.MAX_RETRIES} attempts [{elapsed}s]")
+                print(f"  ERROR Step {step_num}: {step_name} failed after {self.MAX_RETRIES} attempts [{elapsed}s]")
                 print(f"    Error: {err_msg}")
                 print("    Uncommitted changes were left for manual review.")
                 self._update_top_index("error")
@@ -388,7 +420,7 @@ class StepExecutor:
             msg = f"chore({self._phase_name}): mark phase completed"
             r = self._run_git("commit", "-m", msg)
             if r.returncode == 0:
-                print(f"  ✓ {msg}")
+                print(f"  OK {msg}")
 
         if self._auto_push:
             branch = f"feat-{self._phase_name}"
@@ -396,7 +428,7 @@ class StepExecutor:
             if r.returncode != 0:
                 print(f"\n  ERROR: git push 실패: {r.stderr.strip()}")
                 sys.exit(1)
-            print(f"  ✓ Pushed to origin/{branch}")
+            print(f"  OK Pushed to origin/{branch}")
 
         print(f"\n{'='*60}")
         print(f"  Phase '{self._phase_name}' completed!")

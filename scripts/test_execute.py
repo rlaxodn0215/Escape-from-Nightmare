@@ -534,6 +534,10 @@ class TestInvokeCodex:
 
         assert mock_run.call_args[1]["timeout"] == 1800
 
+    def test_codex_executable_prefers_env(self):
+        with patch.dict("os.environ", {"CODEX_CLI_PATH": "C:/custom/codex.exe"}):
+            assert ex.StepExecutor._codex_executable() == "C:/custom/codex.exe"
+
 
 # ---------------------------------------------------------------------------
 # progress_indicator (= 이전 Spinner)
