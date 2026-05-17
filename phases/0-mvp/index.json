@@ -85,7 +85,10 @@
     {
       "step": 10,
       "name": "hiding-system",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T16:29:57+0900",
+      "completed_at": "2026-05-17T16:34:35+0900",
+      "summary": "Added hide_spot entry handling, mouse-acceleration-based hiding danger/noise, danger gauge UI, detection/gameover hooks, and Stage 1 hide spot data including living_room_curtain_hide for final chase."
     },
     {
       "step": 11,
