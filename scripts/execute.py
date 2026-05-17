@@ -3,7 +3,7 @@
 Harness Step Executor - phase 내 step을 순차 실행하고 자가 교정한다.
 
 Usage:
-    python3 scripts/execute.py <phase-dir> [--push]
+    python3 scripts/execute.py <phase-dir> [--push] [--publish-main]
 """
 
 import argparse
@@ -59,13 +59,15 @@ class StepExecutor:
     CHORE_MSG = "chore({phase}): step {num} output"
     TZ = timezone(timedelta(hours=9))
 
-    def __init__(self, phase_dir_name: str, *, auto_push: bool = False):
+    def __init__(self, phase_dir_name: str, *, auto_push: bool = False, publish_main: bool = False, target_branch: str = "main"):
         self._root = str(ROOT)
         self._phases_dir = ROOT / "phases"
         self._phase_dir = self._phases_dir / phase_dir_name
         self._phase_dir_name = phase_dir_name
         self._top_index_file = self._phases_dir / "index.json"
         self._auto_push = auto_push
+        self._publish_main = publish_main
+        self._target_branch = target_branch
 
         if not self._phase_dir.is_dir():
             print(f"ERROR: {self._phase_dir} not found")
@@ -278,6 +280,8 @@ class StepExecutor:
         print(f"  Phase: {self._phase_name} | Steps: {self._total}")
         if self._auto_push:
             print(f"  Auto-push: enabled")
+        if self._publish_main:
+            print(f"  Publish main: enabled -> {self._target_branch}")
         print(f"{'='*60}")
 
     def _check_blockers(self):
@@ -445,18 +449,67 @@ class StepExecutor:
                 sys.exit(1)
             print(f"  OK Pushed to origin/{branch}")
 
+        if self._publish_main:
+            self._publish_to_main()
+
         print(f"\n{'='*60}")
         print(f"  Phase '{self._phase_name}' completed!")
         print(f"{'='*60}")
+
+    def _publish_to_main(self):
+        feature_branch = f"feat-{self._phase_name}"
+        target = self._target_branch
+
+        status = self._run_git("status", "--porcelain")
+        if status.returncode != 0:
+            print(f"\n  ERROR: git status 실패: {status.stderr.strip()}")
+            sys.exit(1)
+        if status.stdout.strip():
+            print("\n  ERROR: publish-main requires a clean worktree.")
+            print("  Commit, discard, or inspect remaining changes before publishing.")
+            sys.exit(1)
+
+        current = self._run_git("rev-parse", "--abbrev-ref", "HEAD")
+        if current.returncode != 0:
+            print(f"\n  ERROR: 현재 브랜치 확인 실패: {current.stderr.strip()}")
+            sys.exit(1)
+        original_branch = current.stdout.strip()
+
+        commands = [
+            ("fetch", "origin", target),
+            ("checkout", target),
+            ("pull", "--ff-only", "origin", target),
+            ("merge", "--no-ff", feature_branch, "-m", f"merge: {self._phase_name}"),
+            ("push", "origin", target),
+        ]
+
+        for command in commands:
+            r = self._run_git(*command)
+            if r.returncode != 0:
+                if command[0] != "checkout":
+                    self._run_git("checkout", original_branch)
+                print(f"\n  ERROR: git {' '.join(command)} 실패: {r.stderr.strip()}")
+                sys.exit(1)
+
+        if original_branch != target:
+            self._run_git("checkout", original_branch)
+        print(f"  OK Published {feature_branch} to origin/{target}")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Harness Step Executor")
     parser.add_argument("phase_dir", help="Phase directory name (e.g. 0-mvp)")
     parser.add_argument("--push", action="store_true", help="Push branch after completion")
+    parser.add_argument("--publish-main", action="store_true", help="After completion, merge the phase branch into main and push origin/main")
+    parser.add_argument("--target-branch", default="main", help="Target branch for --publish-main (default: main)")
     args = parser.parse_args()
 
-    StepExecutor(args.phase_dir, auto_push=args.push).run()
+    StepExecutor(
+        args.phase_dir,
+        auto_push=args.push,
+        publish_main=args.publish_main,
+        target_branch=args.target_branch,
+    ).run()
 
 
 if __name__ == "__main__":

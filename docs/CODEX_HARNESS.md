@@ -12,6 +12,15 @@ The resource fallback step must:
 
 If local tools cannot generate or verify a required image/audio format, the step must stop as `blocked` and include 2-3 objective choices in `blocked_reason`, with one marked `(Recommended)`. When the user explicitly approves dependency installation, the resource step may install `imageio-ffmpeg` into the bundled Python environment to obtain a local ffmpeg binary for silent OGG placeholder generation.
 
+## Publish Main Policy
+
+- `build/` is ignored by Git. Final `.love` and Windows exe outputs stay local and are not pushed to `main`.
+- Successful source, data, placeholder assets, docs, scripts, and phase metadata commits are the publishable history.
+- `--publish-main` requires a clean worktree.
+- `--publish-main` merges `feat-{task-name}` into `main` and pushes `origin/main`.
+- If checkout, pull, merge, or push fails, stop and leave the issue for manual review.
+- Use `--target-branch <branch>` only when publishing to a branch other than `main`.
+
 # Codex Harness
 
 이 프로젝트는 Codex 기반 Harness 워크플로우를 사용한다. Harness는 큰 작업을 phase와 step으로 나누고, 각 step을 독립 실행 가능한 지시서로 만들어 순차 실행한다.
@@ -148,6 +157,7 @@ love .                       # LÖVE smoke run 예시. 로컬 LÖVE 경로 확�
 ```bash
 python3 scripts/execute.py {task-name}
 python3 scripts/execute.py {task-name} --push
+python3 scripts/execute.py {task-name} --publish-main
 ```
 
 `execute.py`가 자동으로 처리하는 것:

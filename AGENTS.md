@@ -47,4 +47,5 @@
 - Final `.love` output: `build/EscapeFromNightmares.love`.
 - Final Windows exe package output: `build/windows/`.
 - `build/` is for distributable outputs only. Do not move runtime source, original `assets/`, or `data/` into `build/`.
+- `build/` is ignored by Git. Final build outputs stay local and must not be pushed to `main`.
 - Verification commands should be added as the Lua project is implemented, such as Lua syntax checks, data load checks, and LÖVE smoke runs.

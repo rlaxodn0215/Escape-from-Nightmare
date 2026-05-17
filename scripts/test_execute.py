@@ -425,6 +425,45 @@ class TestCommitStep:
 
 
 # ---------------------------------------------------------------------------
+# _publish_to_main (mocked)
+# ---------------------------------------------------------------------------
+
+class TestPublishToMain:
+    def test_publishes_clean_feature_branch_to_main(self, executor):
+        calls = []
+
+        def fake_git(*args):
+            calls.append(args)
+            if args == ("status", "--porcelain"):
+                return MagicMock(returncode=0, stdout="", stderr="")
+            if args == ("rev-parse", "--abbrev-ref", "HEAD"):
+                return MagicMock(returncode=0, stdout="feat-mvp\n", stderr="")
+            return MagicMock(returncode=0, stdout="", stderr="")
+
+        executor._run_git = fake_git
+        executor._publish_to_main()
+
+        assert ("fetch", "origin", "main") in calls
+        assert ("checkout", "main") in calls
+        assert ("pull", "--ff-only", "origin", "main") in calls
+        assert ("merge", "--no-ff", "feat-mvp", "-m", "merge: mvp") in calls
+        assert ("push", "origin", "main") in calls
+        assert calls[-1] == ("checkout", "feat-mvp")
+
+    def test_publish_requires_clean_worktree(self, executor):
+        def fake_git(*args):
+            if args == ("status", "--porcelain"):
+                return MagicMock(returncode=0, stdout=" M file.lua\n", stderr="")
+            return MagicMock(returncode=0, stdout="", stderr="")
+
+        executor._run_git = fake_git
+
+        with pytest.raises(SystemExit) as exc_info:
+            executor._publish_to_main()
+        assert exc_info.value.code == 1
+
+
+# ---------------------------------------------------------------------------
 # _execute_single_step commit policy (mocked)
 # ---------------------------------------------------------------------------
 
