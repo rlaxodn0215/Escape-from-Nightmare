@@ -425,6 +425,45 @@ class TestCommitStep:
 
 
 # ---------------------------------------------------------------------------
+# _publish_to_main (mocked)
+# ---------------------------------------------------------------------------
+
+class TestPublishToMain:
+    def test_publishes_clean_feature_branch_to_main(self, executor):
+        calls = []
+
+        def fake_git(*args):
+            calls.append(args)
+            if args == ("status", "--porcelain"):
+                return MagicMock(returncode=0, stdout="", stderr="")
+            if args == ("rev-parse", "--abbrev-ref", "HEAD"):
+                return MagicMock(returncode=0, stdout="feat-mvp\n", stderr="")
+            return MagicMock(returncode=0, stdout="", stderr="")
+
+        executor._run_git = fake_git
+        executor._publish_to_main()
+
+        assert ("fetch", "origin", "main") in calls
+        assert ("checkout", "main") in calls
+        assert ("pull", "--ff-only", "origin", "main") in calls
+        assert ("merge", "--no-ff", "feat-mvp", "-m", "merge: mvp") in calls
+        assert ("push", "origin", "main") in calls
+        assert calls[-1] == ("checkout", "feat-mvp")
+
+    def test_publish_requires_clean_worktree(self, executor):
+        def fake_git(*args):
+            if args == ("status", "--porcelain"):
+                return MagicMock(returncode=0, stdout=" M file.lua\n", stderr="")
+            return MagicMock(returncode=0, stdout="", stderr="")
+
+        executor._run_git = fake_git
+
+        with pytest.raises(SystemExit) as exc_info:
+            executor._publish_to_main()
+        assert exc_info.value.code == 1
+
+
+# ---------------------------------------------------------------------------
 # _execute_single_step commit policy (mocked)
 # ---------------------------------------------------------------------------
 
@@ -485,6 +524,26 @@ class TestExecuteSingleStepCommitPolicy:
         assert exc_info.value.code == 2
         executor._commit_step.assert_not_called()
 
+    def test_usage_limit_blocks_without_commit(self, executor):
+        step = {"step": 2, "name": "ui", "status": "pending"}
+        executor._invoke_codex = MagicMock(return_value={
+            "exitCode": 1,
+            "stdout": "You've hit your usage limit. try again later.",
+            "stderr": "",
+        })
+        executor._commit_step = MagicMock()
+        executor._update_top_index = MagicMock()
+
+        with pytest.raises(SystemExit) as exc_info:
+            executor._execute_single_step(step, "")
+
+        assert exc_info.value.code == 2
+        executor._commit_step.assert_not_called()
+        index = executor._read_json(executor._index_file)
+        step_state = next(s for s in index["steps"] if s["step"] == 2)
+        assert step_state["status"] == "blocked"
+        assert "usage limit" in step_state["blocked_reason"]
+
 
 # ---------------------------------------------------------------------------
 # _invoke_codex (mocked)
@@ -533,6 +592,10 @@ class TestInvokeCodex:
             executor._invoke_codex(step, "preamble")
 
         assert mock_run.call_args[1]["timeout"] == 1800
+
+    def test_codex_executable_prefers_env(self):
+        with patch.dict("os.environ", {"CODEX_CLI_PATH": "C:/custom/codex.exe"}):
+            assert ex.StepExecutor._codex_executable() == "C:/custom/codex.exe"
 
 
 # ---------------------------------------------------------------------------

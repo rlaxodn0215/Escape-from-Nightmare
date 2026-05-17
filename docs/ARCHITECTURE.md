@@ -43,6 +43,7 @@ LÖVE callbacks
 - `build/EscapeFromNightmares.love` is the final LÖVE archive.
 - `build/windows/` contains the Windows exe package and its required runtime files.
 - `build/` is a distribution output directory only. Do not relocate source code, original assets, or `data/*.lua` ownership into `build/`.
+- `build/` is ignored by Git. Publish source/data/assets/docs/scripts to `main`; keep generated build artifacts local.
 - Windows packaging requires a local LÖVE runtime path. If the path is unknown or not executable, the packaging step must stop as `blocked`.
 
 ## Source Details

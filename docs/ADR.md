@@ -37,3 +37,8 @@ Ship a playable Stage 1 MVP first. Prefer simple, data-driven Lua systems that c
 **Decision**: Write `build/EscapeFromNightmares.love` and the Windows package under `build/windows/`.  
 **Reason**: Final outputs must be easy to find and separate from source files.  
 **Tradeoff**: Packaging steps must copy or archive source/assets into build outputs without changing source ownership.
+
+## ADR-008: Do Not Track Build Outputs
+**Decision**: Ignore `build/` in Git and publish only source, data, placeholder assets, docs, scripts, and phase metadata to `main`.
+**Reason**: Build outputs are generated artifacts and can be recreated locally by the harness.
+**Tradeoff**: Release distribution needs a separate artifact upload or local handoff step.
