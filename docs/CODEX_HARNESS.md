@@ -27,6 +27,7 @@
 5. **실행 가능한 AC**: 추상적인 완료 조건 대신 Lua 문법 검사, 데이터 로드 검증, LÖVE smoke run처럼 실제 검증 커맨드를 포함한다.
 6. **구체적인 금지사항**: "조심해라" 대신 "X를 하지 마라. 이유: Y" 형식으로 적는다.
 7. **네이밍**: step name은 kebab-case slug로 작성한다. 예: `project-setup`, `api-layer`, `auth-flow`.
+8. **모르는 부분 처리**: 상상하거나 임의 결정하지 않는다. 사용자 결정이 필요하면 `blocked_reason`에 질문과 2~3개의 객관식 선택지를 적고, 추천 선택지는 `(Recommended)`로 표시한다.
 
 ## Phase 파일 구조
 
@@ -79,6 +80,13 @@
 
 `summary`는 step 완료 시 산출물을 한 줄로 요약한 값이다. `execute.py`가 다음 step 프롬프트에 컨텍스트로 누적 전달하므로, 생성된 파일과 핵심 결정을 담아야 한다.
 
+커밋 정책:
+
+- 성공한 step만 harness가 커밋한다.
+- Codex 세션은 직접 `git commit`을 실행하지 않는다.
+- 실패하거나 blocked 된 step의 변경사항은 커밋하지 않는다.
+- 실패/blocked 상태의 dirty worktree는 수동 점검 대상이다. 수정하거나 폐기한 뒤 해당 step status를 `pending`으로 되돌려 재실행한다.
+
 ### `phases/{task-name}/step{N}.md`
 
 각 step마다 하나의 Markdown 파일을 둔다.
@@ -105,8 +113,8 @@
 ## Acceptance Criteria
 
 ```bash
-lua -p main.lua              # Lua 문법 검증 예시. 실제 명령은 환경에 맞게 조정
-love .                       # LÖVE smoke run 예시. 로컬 설치 여부 확인 필요
+luac -p main.lua             # Lua 문법 검증 예시. 실제 명령은 환경에 맞게 조정
+love .                       # LÖVE smoke run 예시. 로컬 LÖVE 경로 확인 필요
 ```
 
 ## 검증 절차
@@ -135,7 +143,7 @@ python3 scripts/execute.py {task-name} --push
 - 컨텍스트 절약: step 파일에는 필요한 `design/*.txt` 원문만 명시.
 - 컨텍스트 누적: 완료된 step의 `summary`를 다음 step 프롬프트에 전달.
 - 자가 교정: 실패 시 최대 3회 재시도하며 이전 에러 메시지를 프롬프트에 피드백.
-- 2단계 커밋: 코드 변경(`feat`)과 메타데이터(`chore`)를 분리 커밋.
+- 커밋: 성공한 step만 코드 변경(`feat`)과 메타데이터(`chore`)를 분리 커밋.
 - 타임스탬프: `started_at`, `completed_at`, `failed_at`, `blocked_at` 자동 기록.
 - step 실행: `codex exec --sandbox workspace-write --json <prompt>` 형식으로 비대화형 Codex를 호출.
 
@@ -151,6 +159,28 @@ python3 scripts/execute.py {task-name} --push
 | CRITICAL 규칙 | AGENTS.md의 CRITICAL 규칙을 위반하지 않았는가 |
 | 실행 가능 | Lua 문법 검증, 데이터 로드 검증, LÖVE smoke run 등 해당 step의 검증이 통과하는가 |
 
+## Build 자동화 정책
+
+- 첫 구현 phase에는 환경 확인 step을 포함한다.
+- 환경 확인 step은 LÖVE 실행 파일 경로, `luac` 또는 대체 Lua 문법 검증 방법, `build/` 디렉토리 생성, 검증/패키징 스크립트 위치를 확정한다.
+- LÖVE runtime은 repo에 포함하지 않고 로컬 경로 설정으로 사용한다.
+- LÖVE 경로가 없거나 실행 불가하면 Windows exe 패키징 step은 `blocked`로 멈춘다.
+- 최종 `.love` 산출물은 `build/EscapeFromNightmares.love`에 저장한다.
+- 최종 Windows exe 패키지는 `build/windows/` 아래에 저장한다.
+- `build/`에는 배포 산출물만 둔다. 런타임 소스, 원본 `assets/`, 원본 `data/`의 소유 위치를 `build/`로 옮기지 않는다.
+
+## Blocked 질문 형식
+
+사용자 결정이나 환경 정보가 필요하면 추측하지 말고 즉시 blocked 처리한다. `blocked_reason`에는 아래 형식을 포함한다.
+
+```text
+Question: <결정이 필요한 질문>
+Options:
+- <선택지 A> (Recommended): <영향>
+- <선택지 B>: <영향>
+- <선택지 C>: <영향>
+```
+
 ## Design 파일 선택 기준
 
 - 프로젝트와 범위: `design/00_PROJECT_OVERVIEW.txt`
@@ -165,5 +195,5 @@ python3 scripts/execute.py {task-name} --push
 
 ## 에러 복구
 
-- `error` 발생 시: `phases/{task-name}/index.json`에서 해당 step의 `status`를 `"pending"`으로 바꾸고 `error_message`를 삭제한 뒤 재실행한다.
-- `blocked` 발생 시: `blocked_reason`에 적힌 사유를 해결한 뒤 `status`를 `"pending"`으로 바꾸고 `blocked_reason`을 삭제한 뒤 재실행한다.
+- `error` 발생 시: 커밋되지 않은 변경을 수동 점검한다. 수정하거나 폐기한 뒤 `phases/{task-name}/index.json`에서 해당 step의 `status`를 `"pending"`으로 바꾸고 `error_message`를 삭제한 뒤 재실행한다.
+- `blocked` 발생 시: `blocked_reason`의 객관식 질문에 대한 결정을 반영한다. 커밋되지 않은 변경을 수동 점검한 뒤 `status`를 `"pending"`으로 바꾸고 `blocked_reason`을 삭제한 뒤 재실행한다.

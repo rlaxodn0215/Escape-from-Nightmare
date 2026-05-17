@@ -197,9 +197,6 @@ class StepExecutor:
 
     def _build_preamble(self, guardrails: str, step_context: str,
                         prev_error: Optional[str] = None) -> str:
-        commit_example = self.FEAT_MSG.format(
-            phase=self._phase_name, num="N", name="<step-name>"
-        )
         retry_section = ""
         if prev_error:
             retry_section = (
@@ -218,9 +215,9 @@ class StepExecutor:
             f"5. /phases/{self._phase_dir_name}/index.json의 해당 step status를 업데이트하라:\n"
             f"   - AC 통과 → \"completed\" + \"summary\" 필드에 이 step의 산출물을 한 줄로 요약\n"
             f"   - {self.MAX_RETRIES}회 수정 시도 후에도 실패 → \"error\" + \"error_message\" 기록\n"
-            f"   - 사용자 개입이 필요한 경우 (API 키, 인증, 수동 설정 등) → \"blocked\" + \"blocked_reason\" 기록 후 즉시 중단\n"
-            f"6. 모든 변경사항을 커밋하라:\n"
-            f"   {commit_example}\n\n---\n\n"
+            f"   - 사용자 결정이나 환경 설정이 필요한 경우 → \"blocked\" + \"blocked_reason\" 기록 후 즉시 중단\n"
+            f"6. 모르는 부분은 상상하지 마라. blocked_reason에는 질문과 2~3개의 객관식 선택지를 포함하고, 추천 선택지는 (Recommended)로 표시하라.\n"
+            f"7. 직접 git commit 하지 마라. 성공한 step만 harness가 커밋한다.\n\n---\n\n"
         )
 
     # --- Codex 호출 ---
@@ -271,12 +268,14 @@ class StepExecutor:
             if s["status"] == "error":
                 print(f"\n  ✗ Step {s['step']} ({s['name']}) failed.")
                 print(f"  Error: {s.get('error_message', 'unknown')}")
-                print(f"  Fix and reset status to 'pending' to retry.")
+                print("  Uncommitted changes were left for manual review.")
+                print("  Fix or discard them, then reset status to 'pending' to retry.")
                 sys.exit(1)
             if s["status"] == "blocked":
                 print(f"\n  ⏸ Step {s['step']} ({s['name']}) blocked.")
                 print(f"  Reason: {s.get('blocked_reason', 'unknown')}")
-                print(f"  Resolve and reset status to 'pending' to retry.")
+                print("  Uncommitted changes were left for manual review.")
+                print("  Resolve the decision or environment issue, then reset status to 'pending' to retry.")
                 sys.exit(2)
             if s["status"] != "pending":
                 break
@@ -329,6 +328,7 @@ class StepExecutor:
                 reason = next((s.get("blocked_reason", "") for s in index["steps"] if s["step"] == step_num), "")
                 print(f"  ⏸ Step {step_num}: {step_name} blocked [{elapsed}s]")
                 print(f"    Reason: {reason}")
+                print("    Uncommitted changes were left for manual review.")
                 self._update_top_index("blocked")
                 sys.exit(2)
 
@@ -352,9 +352,9 @@ class StepExecutor:
                         s["error_message"] = f"[{self.MAX_RETRIES}회 시도 후 실패] {err_msg}"
                         s["failed_at"] = ts
                 self._write_json(self._index_file, index)
-                self._commit_step(step_num, step_name)
                 print(f"  ✗ Step {step_num}: {step_name} failed after {self.MAX_RETRIES} attempts [{elapsed}s]")
                 print(f"    Error: {err_msg}")
+                print("    Uncommitted changes were left for manual review.")
                 self._update_top_index("error")
                 sys.exit(1)
 

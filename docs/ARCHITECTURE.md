@@ -13,7 +13,7 @@ src/
 data/         # rooms, objects, items, puzzles, events, monster nodes, sounds, stage
 assets/       # images, sounds, fonts
 saves/        # settings and clear records only
-build/        # .love and Windows package outputs
+build/        # distributable .love and Windows package outputs
 ```
 
 ## Core Pattern
@@ -38,6 +38,12 @@ LÖVE callbacks
 - `saves/settings.json` may store BGM/SFX settings.
 - `saves/clear_records.json` may store `stage1_clear`.
 - Do not persist inventory, puzzle state, unlocked doors, monster state, current room, or checkpoints.
+
+## Build Outputs
+- `build/EscapeFromNightmares.love` is the final LÖVE archive.
+- `build/windows/` contains the Windows exe package and its required runtime files.
+- `build/` is a distribution output directory only. Do not relocate source code, original assets, or `data/*.lua` ownership into `build/`.
+- Windows packaging requires a local LÖVE runtime path. If the path is unknown or not executable, the packaging step must stop as `blocked`.
 
 ## Source Details
 - Full folder design: `design/05_IMPLEMENTATION_STRUCTURE.txt`

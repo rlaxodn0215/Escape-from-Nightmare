@@ -38,8 +38,13 @@
 - Keep each implementation step small and tied to one layer or subsystem.
 - Follow TDD where practical: write focused tests or verification scripts before risky behavior changes.
 - Use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`.
+- Do not guess unknown decisions. If user input is required, stop as `blocked` and provide a question with 2-3 choices. Mark the recommended choice with `(Recommended)`.
 
 ## Commands
 - Development run command depends on the local LÖVE installation and must be confirmed per environment.
+- LÖVE runtime is provided by a local path, not committed into this repo. If the path is unknown or not executable, block with choices instead of guessing.
 - Packaging `.love` and Windows exe outputs must be handled in dedicated build steps.
+- Final `.love` output: `build/EscapeFromNightmares.love`.
+- Final Windows exe package output: `build/windows/`.
+- `build/` is for distributable outputs only. Do not move runtime source, original `assets/`, or `data/` into `build/`.
 - Verification commands should be added as the Lua project is implemented, such as Lua syntax checks, data load checks, and LÖVE smoke runs.

@@ -27,3 +27,13 @@ Ship a playable Stage 1 MVP first. Prefer simple, data-driven Lua systems that c
 **Decision**: Missing final images and sounds may be replaced by dummy images or silent fallbacks.  
 **Reason**: The project must remain runnable before final resources exist.  
 **Tradeoff**: Placeholder presentation is acceptable during implementation, but asset paths must remain final-resource-compatible.
+
+## ADR-006: Local LÖVE Runtime for Packaging
+**Decision**: Use a locally configured LÖVE runtime path for smoke runs and Windows exe packaging.  
+**Reason**: The runtime is environment-specific and should not be guessed or silently committed into the repo.  
+**Tradeoff**: Packaging can be blocked until the local runtime path is provided.
+
+## ADR-007: Build Outputs Stay Under `build/`
+**Decision**: Write `build/EscapeFromNightmares.love` and the Windows package under `build/windows/`.  
+**Reason**: Final outputs must be easy to find and separate from source files.  
+**Tradeoff**: Packaging steps must copy or archive source/assets into build outputs without changing source ownership.

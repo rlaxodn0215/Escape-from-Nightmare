@@ -242,9 +242,17 @@ class TestBuildPreamble:
         result = executor._build_preamble("", ctx)
         assert "이전 Step 산출물" in result
 
-    def test_includes_commit_example(self, executor):
+    def test_disallows_direct_commit(self, executor):
         result = executor._build_preamble("", "")
-        assert "feat(mvp):" in result
+        assert "직접 git commit 하지 마라" in result
+        forbidden = "모든 변경사항을 " + "커밋하라"
+        assert forbidden not in result
+
+    def test_blocked_reason_requires_choices(self, executor):
+        result = executor._build_preamble("", "")
+        assert "blocked_reason" in result
+        assert "2~3개의 객관식 선택지" in result
+        assert "(Recommended)" in result
 
     def test_includes_rules(self, executor):
         result = executor._build_preamble("", "")
@@ -414,6 +422,68 @@ class TestCommitStep:
         commit_msgs = [c[2] for c in calls if c[0] == "commit"]
         assert len(commit_msgs) == 1
         assert "chore" in commit_msgs[0]
+
+
+# ---------------------------------------------------------------------------
+# _execute_single_step commit policy (mocked)
+# ---------------------------------------------------------------------------
+
+class TestExecuteSingleStepCommitPolicy:
+    def test_completed_step_commits(self, executor):
+        step = {"step": 2, "name": "ui", "status": "pending"}
+
+        def complete_step(_step, _preamble):
+            index = executor._read_json(executor._index_file)
+            for s in index["steps"]:
+                if s["step"] == 2:
+                    s["status"] = "completed"
+                    s["summary"] = "UI 구현 완료"
+            executor._write_json(executor._index_file, index)
+            return {"exitCode": 0}
+
+        executor._invoke_codex = complete_step
+        executor._commit_step = MagicMock()
+
+        assert executor._execute_single_step(step, "") is True
+        executor._commit_step.assert_called_once_with(2, "ui")
+
+    def test_error_step_does_not_commit(self, executor):
+        step = {"step": 2, "name": "ui", "status": "pending"}
+        executor._invoke_codex = MagicMock(return_value={"exitCode": 1})
+        executor._commit_step = MagicMock()
+        executor._update_top_index = MagicMock()
+
+        with pytest.raises(SystemExit) as exc_info:
+            executor._execute_single_step(step, "")
+
+        assert exc_info.value.code == 1
+        executor._commit_step.assert_not_called()
+
+    def test_blocked_step_does_not_commit(self, executor):
+        step = {"step": 2, "name": "ui", "status": "pending"}
+
+        def block_step(_step, _preamble):
+            index = executor._read_json(executor._index_file)
+            for s in index["steps"]:
+                if s["step"] == 2:
+                    s["status"] = "blocked"
+                    s["blocked_reason"] = (
+                        "LÖVE runtime path is missing. "
+                        "Options: A) Set LOVE_PATH (Recommended), "
+                        "B) Install LÖVE, C) Skip packaging."
+                    )
+            executor._write_json(executor._index_file, index)
+            return {"exitCode": 0}
+
+        executor._invoke_codex = block_step
+        executor._commit_step = MagicMock()
+        executor._update_top_index = MagicMock()
+
+        with pytest.raises(SystemExit) as exc_info:
+            executor._execute_single_step(step, "")
+
+        assert exc_info.value.code == 2
+        executor._commit_step.assert_not_called()
 
 
 # ---------------------------------------------------------------------------
