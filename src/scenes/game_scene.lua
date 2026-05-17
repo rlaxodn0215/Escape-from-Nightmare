@@ -3,8 +3,11 @@ GameScene.__index = GameScene
 
 local RoomSystem = require("src.systems.room_system")
 local InteractionSystem = require("src.systems.interaction_system")
+local InventorySystem = require("src.systems.inventory_system")
+local InventoryUi = require("src.ui.inventory_ui")
 local Rooms = require("data.rooms")
 local RoomObjects = require("data.room_objects")
+local Items = require("data.items")
 
 local BUTTONS = {
     inventory = { x = 24, y = 24, w = 112, h = 36, label = "Inventory" },
@@ -31,6 +34,8 @@ function GameScene.new(app, run)
         run = run,
         roomSystem = nil,
         interactionSystem = nil,
+        inventorySystem = nil,
+        inventoryUi = nil,
         notice = nil
     }, GameScene)
 end
@@ -38,6 +43,9 @@ end
 function GameScene:enter()
     self.roomSystem = RoomSystem.new(Rooms, self.run.currentRoom or Rooms.startRoom)
     self.interactionSystem = InteractionSystem.new(RoomObjects)
+    self.inventorySystem = InventorySystem.new(Items, self.run.inventory)
+    self.inventoryUi = InventoryUi.new(self.inventorySystem)
+    self.run.inventory = self.inventorySystem.state
     self.run.currentRoom = self.roomSystem:getCurrentRoomId()
 end
 
@@ -67,9 +75,21 @@ function GameScene:draw()
     drawButton(BUTTONS.map)
     drawButton(BUTTONS.pause)
 
+    local selectedItem = self.inventorySystem and self.inventorySystem:getSelectedItem() or nil
+    if selectedItem then
+        love.graphics.setColor(0.52, 0.08, 0.08, 1)
+        love.graphics.rectangle("line", 24, 642, 256, 38)
+        love.graphics.setColor(0.74, 0.74, 0.74, 1)
+        love.graphics.printf("Using: " .. selectedItem.name, 34, 654, 236, "left")
+    end
+
     if self.notice then
         love.graphics.setColor(0.62, 0.62, 0.62, 1)
         love.graphics.printf(self.notice, 0, 646, 1280, "center")
+    end
+
+    if self.inventoryUi then
+        self.inventoryUi:draw()
     end
 end
 
@@ -78,18 +98,37 @@ function GameScene:mousepressed(x, y, button)
         return
     end
 
+    if self.inventoryUi and self.inventoryUi:isOpen() then
+        local uiResult = self.inventoryUi:handleClick(x, y)
+        if uiResult.selectedItem then
+            self.notice = "Select a target"
+        end
+        if uiResult.handled then
+            return
+        end
+    end
+
     if contains(BUTTONS.pause, x, y) then
         self.app:pause()
     elseif contains(BUTTONS.inventory, x, y) then
-        self.notice = "Inventory shell"
+        self.inventoryUi:toggle()
+        self.notice = nil
     elseif contains(BUTTONS.map, x, y) then
         self.notice = "Map shell"
     elseif self.interactionSystem and self.roomSystem then
-        local result = self.interactionSystem:handleClick(self.roomSystem, x, y)
+        local result = self.interactionSystem:handleClick(self.roomSystem, x, y, self.inventorySystem)
 
         if result.moved then
             self.run.currentRoom = result.roomId
             self.notice = nil
+        elseif result.itemPickup then
+            self.notice = "Taken: " .. result.item.name
+        elseif result.reason == "already_acquired" then
+            self.notice = "Already taken"
+        elseif result.itemUsed then
+            self.notice = "Used: " .. result.item.name
+        elseif result.blocked and result.reason == "wrong_target" then
+            self.notice = "No reaction"
         elseif result.blocked and result.reason == "locked" then
             self.notice = "Locked"
         elseif result.blocked and result.reason == "escape_locked" then

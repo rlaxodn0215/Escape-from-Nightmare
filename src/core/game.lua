@@ -51,7 +51,8 @@ end
 
 function Game:startStage1()
     self.currentRun = {
-        currentRoom = "child_room"
+        currentRoom = "child_room",
+        inventory = {}
     }
     self.sceneManager:switch(GameScene.new(self, self.currentRun))
 end
