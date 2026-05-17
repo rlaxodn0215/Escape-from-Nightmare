@@ -101,7 +101,10 @@
     {
       "step": 12,
       "name": "resource-fallback-assets",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T21:30:19+0900",
+      "completed_at": "2026-05-17T21:36:31+0900",
+      "summary": "Generated replaceable placeholder resources for every referenced asset path: 40 dark PNG image placeholders and 62 valid silent OGG files, added generation/verification scripts, and verified 102 referenced assets are present and readable."
     },
     {
       "step": 13,
