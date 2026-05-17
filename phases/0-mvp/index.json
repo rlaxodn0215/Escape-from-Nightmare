@@ -53,7 +53,10 @@
     {
       "step": 6,
       "name": "stage-data",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T12:11:14+0900",
+      "completed_at": "2026-05-17T16:17:29+0900",
+      "summary": "Added Stage 1 data files for puzzle inputs/chains, events, monster nodes, sound metadata, and stage rules; aligned room/item resource paths and clue object ids for downstream systems."
     },
     {
       "step": 7,
