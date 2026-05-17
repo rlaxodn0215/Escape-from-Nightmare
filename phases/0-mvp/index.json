@@ -77,7 +77,10 @@
     {
       "step": 9,
       "name": "danger-system",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T16:26:51+0900",
+      "completed_at": "2026-05-17T16:29:56+0900",
+      "summary": "Added src/ai/danger.lua with runtime danger/noise/stay/capture/hide-noise tracking, puzzle/event/final-chase hooks, pressure warning hooks, and gameover capture integration."
     },
     {
       "step": 10,
