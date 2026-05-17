@@ -21,7 +21,10 @@
     {
       "step": 2,
       "name": "scene-shells",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T11:59:20+0900",
+      "completed_at": "2026-05-17T12:01:52+0900",
+      "summary": "Added title/game/pause/gameover/ending scene shells with mouse-click transitions, child_room restart hook, and minimal settings/inventory/map placeholders."
     },
     {
       "step": 3,
