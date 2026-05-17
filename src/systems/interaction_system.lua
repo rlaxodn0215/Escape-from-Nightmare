@@ -13,9 +13,10 @@ local function contains(hitbox, x, y)
         and y <= hitbox.y + hitbox.h
 end
 
-function InteractionSystem.new(objectsByRoom)
+function InteractionSystem.new(objectsByRoom, flags)
     return setmetatable({
-        objectsByRoom = objectsByRoom or {}
+        objectsByRoom = objectsByRoom or {},
+        flags = flags or {}
     }, InteractionSystem)
 end
 
@@ -28,7 +29,8 @@ function InteractionSystem:findObjectAt(roomId, x, y)
 
     for index = #objects, 1, -1 do
         local object = objects[index]
-        if object.hitbox and contains(object.hitbox, x, y) then
+        local visible = not object.visibleFlag or self.flags[object.visibleFlag] == true
+        if visible and object.hitbox and contains(object.hitbox, x, y) then
             return object
         end
     end
@@ -85,6 +87,10 @@ function InteractionSystem:handleClick(roomSystem, x, y, inventorySystem)
 
     if object.type == "escape_door" then
         return { handled = true, blocked = true, object = object, reason = "escape_locked" }
+    end
+
+    if object.type == "puzzle_object" then
+        return { handled = true, blocked = true, object = object, reason = "puzzle" }
     end
 
     if MOVEMENT_TYPES[object.type] and roomSystem:moveTo(object.targetRoom) then

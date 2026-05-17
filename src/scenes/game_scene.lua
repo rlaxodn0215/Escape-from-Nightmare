@@ -5,11 +5,15 @@ local RoomSystem = require("src.systems.room_system")
 local InteractionSystem = require("src.systems.interaction_system")
 local InventorySystem = require("src.systems.inventory_system")
 local MapSystem = require("src.systems.map_system")
+local PuzzleSystem = require("src.systems.puzzle_system")
 local InventoryUi = require("src.ui.inventory_ui")
 local MapUi = require("src.ui.map_ui")
+local PuzzleUi = require("src.ui.puzzle_ui")
 local Rooms = require("data.rooms")
 local RoomObjects = require("data.room_objects")
 local Items = require("data.items")
+local PuzzleInputs = require("data.puzzle_inputs")
+local Events = require("data.events")
 
 local BUTTONS = {
     inventory = { x = 24, y = 24, w = 112, h = 36, label = "Inventory" },
@@ -38,24 +42,32 @@ function GameScene.new(app, run)
         interactionSystem = nil,
         inventorySystem = nil,
         mapSystem = nil,
+        puzzleSystem = nil,
         inventoryUi = nil,
         mapUi = nil,
+        puzzleUi = nil,
         notice = nil
     }, GameScene)
 end
 
 function GameScene:enter()
+    self.run.flags = self.run.flags or {}
     self.roomSystem = RoomSystem.new(Rooms, self.run.currentRoom or Rooms.startRoom)
-    self.interactionSystem = InteractionSystem.new(RoomObjects)
+    self.interactionSystem = InteractionSystem.new(RoomObjects, self.run.flags)
     self.inventorySystem = InventorySystem.new(Items, self.run.inventory)
     self.mapSystem = MapSystem.new(self.roomSystem)
+    self.puzzleSystem = PuzzleSystem.new(PuzzleInputs, Events, self.inventorySystem, self.run)
     self.inventoryUi = InventoryUi.new(self.inventorySystem)
     self.mapUi = MapUi.new(self.mapSystem)
+    self.puzzleUi = PuzzleUi.new(self.puzzleSystem)
     self.run.inventory = self.inventorySystem.state
     self.run.currentRoom = self.roomSystem:getCurrentRoomId()
 end
 
-function GameScene:update(_dt)
+function GameScene:update(dt)
+    if self.puzzleUi then
+        self.puzzleUi:update(dt)
+    end
 end
 
 function GameScene:draw()
@@ -96,11 +108,69 @@ function GameScene:draw()
     if self.mapUi then
         self.mapUi:draw()
     end
+
+    if self.puzzleUi then
+        self.puzzleUi:draw()
+    end
+end
+
+function GameScene:describePuzzleResult(result)
+    if result.alreadySolved then
+        return "Already solved"
+    end
+
+    if result.solved then
+        if result.clearFlag == "stage1_clear" then
+            return "Unlocked"
+        end
+
+        local names = {}
+        for _, item in ipairs(result.addedItems or {}) do
+            names[#names + 1] = item.name
+        end
+
+        if #names > 0 then
+            return "Taken: " .. table.concat(names, ", ")
+        end
+
+        if result.spawnedObjects and #result.spawnedObjects > 0 then
+            return "Something changed"
+        end
+
+        return "Solved"
+    end
+
+    if result.failed then
+        return "No reaction"
+    end
+
+    return nil
+end
+
+function GameScene:handlePuzzleResult(result)
+    self.notice = self:describePuzzleResult(result)
+
+    if result.solved and result.clearFlag == "stage1_clear" then
+        if self.app.saveManager then
+            self.app.saveManager:setStage1Clear()
+        end
+        self.app:showEnding()
+    end
 end
 
 function GameScene:mousepressed(x, y, button)
     if button ~= 1 then
         return
+    end
+
+    if self.puzzleUi and self.puzzleUi:isOpen() then
+        local uiResult = self.puzzleUi:handleClick(x, y)
+        if uiResult.result then
+            self:handlePuzzleResult(uiResult.result)
+        end
+        if uiResult.handled then
+            return
+        end
     end
 
     if self.inventoryUi and self.inventoryUi:isOpen() then
@@ -145,9 +215,34 @@ function GameScene:mousepressed(x, y, button)
         elseif result.reason == "already_acquired" then
             self.notice = "Already taken"
         elseif result.itemUsed then
-            self.notice = "Used: " .. result.item.name
+            local puzzle = self.puzzleSystem:getPuzzleForObject(result.object)
+            if puzzle and puzzle.type == "item_use" then
+                self:handlePuzzleResult(self.puzzleSystem:useItemOnObject(result.object, result.item.id))
+            else
+                self.notice = "Used: " .. result.item.name
+            end
         elseif result.blocked and result.reason == "wrong_target" then
             self.notice = "No reaction"
+        elseif result.blocked and result.object and result.object.type == "puzzle_object" then
+            local puzzle = self.puzzleSystem:getPuzzleForObject(result.object)
+            local canOpen, reason = self.puzzleSystem:canOpen(puzzle)
+
+            if canOpen and not self.puzzleSystem:isSolved(puzzle.id) then
+                self.puzzleUi:openPuzzle(puzzle)
+                if self.inventoryUi then
+                    self.inventoryUi:close()
+                end
+                if self.mapUi then
+                    self.mapUi:close()
+                end
+                self.notice = nil
+            elseif canOpen then
+                self.notice = "Already solved"
+            elseif reason == "missing_required_item" then
+                self.notice = "Something is missing"
+            else
+                self.notice = "No reaction"
+            end
         elseif result.blocked and result.reason == "locked" then
             self.notice = "Locked"
         elseif result.blocked and result.reason == "escape_locked" then

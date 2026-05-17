@@ -17,7 +17,7 @@ local roomObjects = {
     master_bedroom = {
         { id = "master_to_hallway", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "master_to_dressing", type = "door", targetRoom = "dressing_room", hitbox = { x = 1044, y = 176, w = 150, h = 340 } },
-        { id = "master_bedroom_drawer", type = "item_pickup", itemId = "old_necklace", hitbox = { x = 776, y = 426, w = 162, h = 76 } },
+        { id = "master_bedroom_drawer", type = "puzzle_object", useTarget = "master_bedroom_drawer", hitbox = { x = 776, y = 426, w = 162, h = 76 } },
         { id = "master_edge_back", type = "edge_navigation", targetRoom = "second_floor_hallway", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
     dressing_room = {
@@ -37,12 +37,12 @@ local roomObjects = {
     study = {
         { id = "study_to_hallway", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "study_number_order_clue", type = "clue_object", hitbox = { x = 468, y = 298, w = 196, h = 110 }, placeholder = true },
-        { id = "study_safe", type = "item_pickup", itemId = "fuse_holder", hitbox = { x = 894, y = 292, w = 132, h = 148 } },
+        { id = "study_safe", type = "puzzle_object", useTarget = "study_safe", hitbox = { x = 894, y = 292, w = 132, h = 148 } },
         { id = "study_edge_back", type = "edge_navigation", targetRoom = "second_floor_hallway", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
     mirror_room = {
         { id = "mirror_to_hallway", type = "door", targetRoom = "second_floor_hallway", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
-        { id = "mirror_symbol_panel", type = "item_pickup", itemId = "broken_hand_mirror", hitbox = { x = 536, y = 170, w = 208, h = 306 } },
+        { id = "mirror_symbol_panel", type = "puzzle_object", useTarget = "mirror_symbol_panel", hitbox = { x = 536, y = 170, w = 208, h = 306 } },
         { id = "mirror_edge_back", type = "edge_navigation", targetRoom = "second_floor_hallway", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
     stairwell_2f = {
@@ -85,7 +85,7 @@ local roomObjects = {
     },
     laundry_room = {
         { id = "laundry_to_kitchen", type = "door", targetRoom = "kitchen", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
-        { id = "laundry_storage_box", type = "item_pickup", itemId = "fuse", hitbox = { x = 842, y = 408, w = 164, h = 82 } },
+        { id = "laundry_storage_box", type = "puzzle_object", useTarget = "laundry_storage_box", hitbox = { x = 842, y = 408, w = 164, h = 82 } },
         { id = "breaker_box", type = "item_pickup", itemId = "old_keychain", useTarget = "breaker_box", hitbox = { x = 1028, y = 180, w = 108, h = 160 } },
         { id = "laundry_edge_back", type = "edge_navigation", targetRoom = "kitchen", hitbox = { x = 0, y = 96, w = 64, h = 528 } }
     },
@@ -124,7 +124,7 @@ local roomObjects = {
     altar_room = {
         { id = "altar_to_basement_main", type = "door", targetRoom = "basement_main", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "basement_altar", type = "puzzle_object", useTarget = "basement_altar", hitbox = { x = 492, y = 198, w = 296, h = 250 } },
-        { id = "front_door_key_on_altar", type = "item_pickup", itemId = "front_door_key", hitbox = { x = 594, y = 370, w = 92, h = 54 } }
+        { id = "front_door_key_on_altar", type = "item_pickup", itemId = "front_door_key", visibleFlag = "front_door_key_on_altar_visible", hitbox = { x = 594, y = 370, w = 92, h = 54 } }
     },
     attic_main = {
         { id = "attic_main_to_stairwell", type = "door", targetRoom = "stairwell_2f", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
@@ -134,8 +134,8 @@ local roomObjects = {
     attic_toy_storage = {
         { id = "attic_toy_to_main", type = "door", targetRoom = "attic_main", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
         { id = "attic_toy_sequence", type = "puzzle_object", useTarget = "attic_toy_sequence", hitbox = { x = 496, y = 252, w = 286, h = 166 } },
-        { id = "attic_toy_box", type = "item_pickup", itemId = "small_doll", hitbox = { x = 820, y = 410, w = 176, h = 88 } },
-        { id = "attic_toy_box_symbol", type = "item_pickup", itemId = "symbol_fragment", hitbox = { x = 1014, y = 410, w = 108, h = 88 } }
+        { id = "attic_toy_box", type = "item_pickup", itemId = "small_doll", visibleFlag = "attic_toy_box_open", hitbox = { x = 820, y = 410, w = 176, h = 88 } },
+        { id = "attic_toy_box_symbol", type = "item_pickup", itemId = "symbol_fragment", visibleFlag = "attic_toy_box_open", hitbox = { x = 1014, y = 410, w = 108, h = 88 } }
     },
     attic_album_storage = {
         { id = "attic_album_to_main", type = "door", targetRoom = "attic_main", hitbox = { x = 72, y = 176, w = 150, h = 340 } },
