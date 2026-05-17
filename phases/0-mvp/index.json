@@ -37,7 +37,10 @@
     {
       "step": 4,
       "name": "inventory-items",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T12:05:13+0900",
+      "completed_at": "2026-05-17T12:08:31+0900",
+      "summary": "Added data/items.lua with the 10 Stage 1 items, runtime-only inventory system/UI, item_pickup handling in interaction_system, and wired game_scene inventory selection/use flow without progress saves."
     },
     {
       "step": 5,
