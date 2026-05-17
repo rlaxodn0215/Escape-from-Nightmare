@@ -29,7 +29,10 @@
     {
       "step": 3,
       "name": "room-navigation",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-05-17T12:01:52+0900",
+      "completed_at": "2026-05-17T12:05:12+0900",
+      "summary": "Added data-driven Stage 1 room navigation via data/rooms.lua, data/room_objects.lua, src/systems/room_system.lua, src/systems/interaction_system.lua, and wired game_scene.lua to start at child_room and move by door or edge hitboxes."
     },
     {
       "step": 4,
