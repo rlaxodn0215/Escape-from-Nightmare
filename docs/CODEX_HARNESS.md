@@ -1,3 +1,17 @@
+# Resource Gate
+
+Packaging steps must never run against an empty `assets/` tree. Every implementation phase that leads to a playable build must include a resource fallback step before `.love` or Windows packaging.
+
+The resource fallback step must:
+
+1. scan data files for referenced `assets/images/...` and `assets/sounds/...` paths;
+2. create valid placeholder files at those exact paths when final resources are not available;
+3. verify `assets/` has at least one real file;
+4. fail or block if any referenced resource is missing;
+5. keep placeholders replaceable and avoid claiming they are final art or final audio.
+
+If local tools cannot generate or verify a required image/audio format, the step must stop as `blocked` and include 2-3 objective choices in `blocked_reason`, with one marked `(Recommended)`.
+
 # Codex Harness
 
 이 프로젝트는 Codex 기반 Harness 워크플로우를 사용한다. Harness는 큰 작업을 phase와 step으로 나누고, 각 step을 독립 실행 가능한 지시서로 만들어 순차 실행한다.

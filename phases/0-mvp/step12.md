@@ -1,46 +1,56 @@
-# Step 12: love-package
+# Step 12: resource-fallback-assets
 
-## 읽어야 할 파일
+## Read First
 
 - `/AGENTS.md`
 - `/docs/ARCHITECTURE.md`
 - `/docs/ADR.md`
+- `/docs/UI_GUIDE.md`
 - `/docs/CODEX_HARNESS.md`
-- `/design/05_IMPLEMENTATION_STRUCTURE.txt`
+- `/design/06_RESOURCES_LIST.txt`
 - `/design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt`
 - `/design/08_REMAINING_TASKS.txt`
-- `/phases/0-mvp/index.json`
+- `/data/rooms.lua`
+- `/data/items.lua`
+- `/data/events.lua`
+- `/data/sound_data.lua`
 
-## 작업
+## Task
 
-배포용 `.love` 패키지를 만든다.
+Create replaceable fallback resources before packaging so the build is never shipped with an empty `assets/` tree.
 
-1. 필요한 경우 packaging script를 작성하거나 기존 script를 보강한다.
-2. source root의 `main.lua`, `conf.lua`, `src/`, `data/`, `assets/` 등 LÖVE 실행에 필요한 파일만 archive에 포함한다.
-3. `phases/`, `.git/`, `docs/`, `design/`, `scripts/`, `build/`, `saves/`의 런타임 불필요 파일은 `.love`에 포함하지 않는다. 단, 실제 구현이 runtime scripts를 필요로 하면 이유를 명시한다.
-4. 최종 산출물은 `build/EscapeFromNightmares.love`에 저장한다.
-5. 패키징 도구가 없으면 blocked 처리하고 객관식 선택지를 제시한다.
+1. Scan `data/*.lua` for every referenced path under `assets/images/` and `assets/sounds/`.
+2. Create every missing image as a simple dummy PNG at the exact referenced path.
+   - Room backgrounds must be `1280x720`.
+   - Item icons and UI/object/monster images may be smaller, but must be valid PNG files.
+   - Keep the visual style dark, mostly monochrome, and unobtrusive.
+3. Create every missing sound as a valid silent `.ogg` file at the exact referenced path, or add a documented fallback generator script if local tools cannot encode OGG.
+4. Add or update a verification script that fails when:
+   - any referenced `assets/...` file is missing,
+   - `assets/` contains zero files,
+   - an image file is invalid or unreadable,
+   - a sound file is invalid or unreadable when the local verification tool can check it.
+5. Do not add final art claims. These are placeholder resources only, with stable paths for later replacement.
 
 ## Acceptance Criteria
 
 ```bash
-dir build
+Get-ChildItem -Recurse -File assets | Measure-Object
 ```
 
-환경에서 가능한 경우:
+The count must be greater than `0`.
 
-```bash
-love build/EscapeFromNightmares.love
-```
+Run the project verification command or script added by this step. It must pass before this step can be marked completed.
 
-## 검증 절차
+## Verification
 
-1. `build/EscapeFromNightmares.love`가 생성됐는지 확인한다.
-2. archive에 runtime 불필요 파일이 들어가지 않았는지 확인한다.
-3. LÖVE에서 `.love`가 실행 가능한지 확인한다.
-4. 성공 시 step 12를 `completed`로 바꾸고 패키징 스크립트/산출물을 `summary`에 적는다.
+1. Confirm every resource path referenced by `data/rooms.lua`, `data/items.lua`, `data/events.lua`, and `data/sound_data.lua` exists under `assets/`.
+2. Confirm the placeholder files are committed by the successful step commit.
+3. Confirm no source, data, docs, design, saves, or build output files were moved into `assets/`.
+4. Mark step 12 completed only after real files exist in `assets/`.
 
-## 금지사항
+## Prohibited
 
-- `build/`를 소스의 소유 위치로 바꾸지 마라. 이유: build는 배포 산출물 전용이다.
-- 실패한 패키지를 성공 산출물처럼 표시하지 마라. 이유: Windows 패키징의 입력이 된다.
+- Do not leave `assets/` empty and proceed to packaging. Reason: packaged builds must include visible/audio fallback resources.
+- Do not invent final production art direction beyond `docs/UI_GUIDE.md`. Reason: this step creates replaceable placeholders.
+- Do not skip a referenced resource path because the runtime has silent fallback. Reason: packaging must include complete placeholder files.

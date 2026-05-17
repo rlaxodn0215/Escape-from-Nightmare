@@ -100,11 +100,16 @@
     },
     {
       "step": 12,
-      "name": "love-package",
+      "name": "resource-fallback-assets",
       "status": "pending"
     },
     {
       "step": 13,
+      "name": "love-package",
+      "status": "pending"
+    },
+    {
+      "step": 14,
       "name": "windows-package",
       "status": "pending"
     }
