@@ -23,3 +23,7 @@ end
 function love.mousereleased(x, y, button)
     stateManager:mousereleased(x, y, button)
 end
+
+function love.mousemoved(x, y, dx, dy)
+    stateManager:mousemoved(x, y, dx, dy)
+end

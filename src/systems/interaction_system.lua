@@ -45,6 +45,10 @@ function InteractionSystem:handleClick(roomSystem, x, y, inventorySystem)
         return { handled = false }
     end
 
+    if object.type == "hide_spot" then
+        return { handled = true, hiding = true, object = object }
+    end
+
     if inventorySystem and inventorySystem:getSelectedItemId() then
         local useResult = inventorySystem:useSelectedOn(object)
 

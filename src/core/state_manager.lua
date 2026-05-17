@@ -43,4 +43,10 @@ function StateManager:mousereleased(x, y, button)
     end
 end
 
+function StateManager:mousemoved(x, y, dx, dy)
+    if self.current and self.current.mousemoved then
+        self.current:mousemoved(x, y, dx, dy)
+    end
+end
+
 return StateManager

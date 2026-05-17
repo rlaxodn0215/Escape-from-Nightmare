@@ -44,6 +44,10 @@ end
 function Game:mousereleased(_x, _y, _button)
 end
 
+function Game:mousemoved(x, y, dx, dy)
+    self.sceneManager:mousemoved(x, y, dx, dy)
+end
+
 function Game:showTitle()
     self.currentRun = nil
     self.sceneManager:switch(TitleScene.new(self))

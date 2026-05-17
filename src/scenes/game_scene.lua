@@ -6,9 +6,11 @@ local InteractionSystem = require("src.systems.interaction_system")
 local InventorySystem = require("src.systems.inventory_system")
 local MapSystem = require("src.systems.map_system")
 local PuzzleSystem = require("src.systems.puzzle_system")
+local HidingSystem = require("src.systems.hiding_system")
 local InventoryUi = require("src.ui.inventory_ui")
 local MapUi = require("src.ui.map_ui")
 local PuzzleUi = require("src.ui.puzzle_ui")
+local DangerGaugeUi = require("src.ui.danger_gauge_ui")
 local Monster = require("src.ai.monster")
 local Danger = require("src.ai.danger")
 local Rooms = require("data.rooms")
@@ -46,11 +48,13 @@ function GameScene.new(app, run)
         inventorySystem = nil,
         mapSystem = nil,
         puzzleSystem = nil,
+        hidingSystem = nil,
         dangerSystem = nil,
         monster = nil,
         inventoryUi = nil,
         mapUi = nil,
         puzzleUi = nil,
+        dangerGaugeUi = nil,
         notice = nil
     }, GameScene)
 end
@@ -64,9 +68,11 @@ function GameScene:enter()
     self.dangerSystem = Danger.new(self.run, Events)
     self.puzzleSystem = PuzzleSystem.new(PuzzleInputs, Events, self.inventorySystem, self.run, self.dangerSystem)
     self.monster = Monster.new(MonsterNodes, Events, self.run)
+    self.hidingSystem = HidingSystem.new(self.run, self.dangerSystem, self.monster)
     self.inventoryUi = InventoryUi.new(self.inventorySystem)
     self.mapUi = MapUi.new(self.mapSystem)
     self.puzzleUi = PuzzleUi.new(self.puzzleSystem)
+    self.dangerGaugeUi = DangerGaugeUi.new(self.hidingSystem)
     self.run.inventory = self.inventorySystem.state
     self.run.currentRoom = self.roomSystem:getCurrentRoomId()
 end
@@ -83,6 +89,15 @@ function GameScene:update(dt)
             if self.monster then
                 self.monster:triggerEvent("event_player_captured", self.roomSystem:getCurrentRoomId())
             end
+            self.app:showGameOver()
+            return
+        end
+    end
+
+    if self.hidingSystem then
+        self.hidingSystem:update(dt, self.roomSystem:getCurrentRoomId())
+
+        if self.hidingSystem:getState().detected then
             self.app:showGameOver()
             return
         end
@@ -135,6 +150,10 @@ function GameScene:draw()
     if self.puzzleUi then
         self.puzzleUi:draw()
     end
+
+    if self.dangerGaugeUi then
+        self.dangerGaugeUi:draw()
+    end
 end
 
 function GameScene:describePuzzleResult(result)
@@ -186,6 +205,16 @@ function GameScene:mousepressed(x, y, button)
         return
     end
 
+    if self.hidingSystem and self.hidingSystem:isActive() then
+        local result = self.hidingSystem:exit()
+        if result.exited then
+            self.notice = result.finalChaseHideSuccess and "It passed" or nil
+        elseif result.reason == "too_early" then
+            self.notice = "Too close"
+        end
+        return
+    end
+
     if self.puzzleUi and self.puzzleUi:isOpen() then
         local uiResult = self.puzzleUi:handleClick(x, y)
         if uiResult.result then
@@ -230,7 +259,16 @@ function GameScene:mousepressed(x, y, button)
     elseif self.interactionSystem and self.roomSystem then
         local result = self.interactionSystem:handleClick(self.roomSystem, x, y, self.inventorySystem)
 
-        if result.moved then
+        if result.hiding then
+            self.hidingSystem:enter(self.roomSystem:getCurrentRoomId(), result.object)
+            if self.inventoryUi then
+                self.inventoryUi:close()
+            end
+            if self.mapUi then
+                self.mapUi:close()
+            end
+            self.notice = nil
+        elseif result.moved then
             self.run.currentRoom = result.roomId
             if self.monster then
                 self.monster:setPlayerRoom(result.roomId)
@@ -286,6 +324,12 @@ function GameScene:mousepressed(x, y, button)
         elseif result.blocked and result.reason == "escape_locked" then
             self.notice = "Locked"
         end
+    end
+end
+
+function GameScene:mousemoved(x, y, dx, dy)
+    if self.hidingSystem then
+        self.hidingSystem:mousemoved(x, y, dx, dy)
     end
 end
 
