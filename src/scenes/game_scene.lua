@@ -4,7 +4,9 @@ GameScene.__index = GameScene
 local RoomSystem = require("src.systems.room_system")
 local InteractionSystem = require("src.systems.interaction_system")
 local InventorySystem = require("src.systems.inventory_system")
+local MapSystem = require("src.systems.map_system")
 local InventoryUi = require("src.ui.inventory_ui")
+local MapUi = require("src.ui.map_ui")
 local Rooms = require("data.rooms")
 local RoomObjects = require("data.room_objects")
 local Items = require("data.items")
@@ -35,7 +37,9 @@ function GameScene.new(app, run)
         roomSystem = nil,
         interactionSystem = nil,
         inventorySystem = nil,
+        mapSystem = nil,
         inventoryUi = nil,
+        mapUi = nil,
         notice = nil
     }, GameScene)
 end
@@ -44,7 +48,9 @@ function GameScene:enter()
     self.roomSystem = RoomSystem.new(Rooms, self.run.currentRoom or Rooms.startRoom)
     self.interactionSystem = InteractionSystem.new(RoomObjects)
     self.inventorySystem = InventorySystem.new(Items, self.run.inventory)
+    self.mapSystem = MapSystem.new(self.roomSystem)
     self.inventoryUi = InventoryUi.new(self.inventorySystem)
+    self.mapUi = MapUi.new(self.mapSystem)
     self.run.inventory = self.inventorySystem.state
     self.run.currentRoom = self.roomSystem:getCurrentRoomId()
 end
@@ -54,8 +60,6 @@ end
 
 function GameScene:draw()
     local room = self.roomSystem and self.roomSystem:getCurrentRoom() or nil
-    local currentRoomId = self.roomSystem and self.roomSystem:getCurrentRoomId() or self.run.currentRoom
-
     love.graphics.clear(0.018, 0.018, 0.022, 1)
 
     love.graphics.setColor(0.09, 0.09, 0.095, 1)
@@ -63,12 +67,9 @@ function GameScene:draw()
     love.graphics.setColor(0.22, 0.22, 0.22, 1)
     love.graphics.rectangle("line", 76, 128, 1128, 448)
 
-    love.graphics.setColor(0.36, 0.36, 0.36, 1)
-    love.graphics.printf(currentRoomId, 0, 332, 1280, "center")
-
     if room then
         love.graphics.setColor(0.22, 0.22, 0.22, 1)
-        love.graphics.printf(room.background, 0, 366, 1280, "center")
+        love.graphics.printf("Room view placeholder", 0, 366, 1280, "center")
     end
 
     drawButton(BUTTONS.inventory)
@@ -91,6 +92,10 @@ function GameScene:draw()
     if self.inventoryUi then
         self.inventoryUi:draw()
     end
+
+    if self.mapUi then
+        self.mapUi:draw()
+    end
 end
 
 function GameScene:mousepressed(x, y, button)
@@ -108,13 +113,27 @@ function GameScene:mousepressed(x, y, button)
         end
     end
 
+    if self.mapUi and self.mapUi:isOpen() then
+        local uiResult = self.mapUi:handleClick(x, y)
+        if uiResult.handled then
+            return
+        end
+    end
+
     if contains(BUTTONS.pause, x, y) then
         self.app:pause()
     elseif contains(BUTTONS.inventory, x, y) then
         self.inventoryUi:toggle()
+        if self.mapUi then
+            self.mapUi:close()
+        end
         self.notice = nil
     elseif contains(BUTTONS.map, x, y) then
-        self.notice = "Map shell"
+        self.mapUi:toggle()
+        if self.inventoryUi then
+            self.inventoryUi:close()
+        end
+        self.notice = nil
     elseif self.interactionSystem and self.roomSystem then
         local result = self.interactionSystem:handleClick(self.roomSystem, x, y, self.inventorySystem)
 
