@@ -289,12 +289,28 @@ Unity MCP:
 Fallback:
 - Unity MCP callable tool이 없으면 Unity BatchMode, scene YAML, prefab YAML, ProjectSettings/EditorBuildSettings.asset static validation을 사용한다.
 - fallback 사용 시 step summary에 명시한다.
+- Unity MCP callable tool이 없거나 필요한 검증 기능이 부족하면 자동 통과하지 않는다.
+- 먼저 `unity-validation-tooling` game unit을 `design_review` 상태로 만들고 사용자에게 검증 툴 생성안을 제시한다.
+- 사용자 승인 전에는 검증 스크립트나 Editor tool을 생성하지 않는다.
+
+검증 툴 표준 위치:
+- EscapeFromNightmares/Assets/Scripts/Editor/Validation
+- Tools/UnityValidation
+- reports/unity-validation/*.json
 
 Validation 이름:
 - SceneHierarchyValidation
 - PrefabReferenceValidation
 - ScriptableObjectReferenceValidation
 - BuildSettingsValidation
+- MissingComponentValidation
+
+검증 report 최소 필드:
+- validation_name
+- status: pass / blocked / error
+- checked_paths
+- findings
+- blocked_reason
 
 ================================================================================
 07. 핵심 구현 규칙

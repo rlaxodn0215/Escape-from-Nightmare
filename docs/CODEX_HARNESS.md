@@ -80,7 +80,66 @@ Unity MCP 사용 대상:
 - serialized reference 누락 점검
 - Build Settings scene 점검
 
-현재 세션에서 Unity MCP callable tool이 없으면 Unity BatchMode, YAML/static validation, ProjectSettings/EditorBuildSettings.asset 검사로 fallback한다. 이 경우 step summary에 "Unity MCP unavailable; used fallback validation"을 남긴다.
+현재 세션에서 Unity MCP callable tool이 없으면 자동 통과하지 않는다. Unity BatchMode, YAML/static validation, ProjectSettings/EditorBuildSettings.asset 검사로 fallback할 수 있지만, 필요한 검증 기능이 없으면 먼저 `Unity MCP Tooling Gap Policy`를 따른다.
+
+## Unity MCP Tooling Gap Policy
+
+Unity MCP tool 사용 전 먼저 callable tool 목록과 기능 범위를 확인한다.
+
+tooling gap으로 처리하는 경우:
+
+- Unity MCP callable tool이 없다.
+- scene hierarchy 점검 기능이 없다.
+- prefab 존재, prefab instance, missing component 점검 기능이 없다.
+- ScriptableObject/serialized reference 점검 기능이 없다.
+- Build Settings scene 점검 기능이 없다.
+- Resource manifest와 Unity asset importability 점검 기능이 없다.
+
+tooling gap이 있으면 `unity-validation-tooling` step을 만든다.
+
+```json
+{
+  "step": "<next>",
+  "name": "unity-validation-tooling",
+  "status": "design_review",
+  "unit_type": "system",
+  "unit_id": "UnityValidationTools",
+  "requires_user_design_approval": true
+}
+```
+
+`unity-validation-tooling`은 하나의 game unit이다. `design_review`에서 사용자에게 검증 툴 생성안을 먼저 보여주고, `approved_for_implementation` 전에는 검증 스크립트나 Editor tool을 만들지 않는다.
+
+승인 후 생성 가능한 표준 위치:
+
+- Unity Editor C# validation: `EscapeFromNightmares/Assets/Scripts/Editor/Validation`
+- external static validation scripts: `Tools/UnityValidation`
+- validation report output: `reports/unity-validation/*.json`
+
+최소 검증 기능:
+
+- `ResourceManifestValidation`
+- `SceneHierarchyValidation`
+- `PrefabReferenceValidation`
+- `ScriptableObjectReferenceValidation`
+- `BuildSettingsValidation`
+- `MissingComponentValidation`
+
+Tool Output Contract:
+
+```json
+{
+  "validation_name": "SceneHierarchyValidation",
+  "status": "blocked",
+  "checked_paths": ["EscapeFromNightmares/Assets/Scenes/Stage1.unity"],
+  "findings": ["StageRoot is missing"],
+  "blocked_reason": "Playable scene hierarchy is incomplete."
+}
+```
+
+`status`는 `"pass"`, `"blocked"`, `"error"` 중 하나다.
+
+MCP가 없으면 대충 통과시키지 않는다. 검증 기능이 부족하면 필요한 검증 툴을 사용자 승인 후 생성한다. 검증 툴 생성도 component-by-component workflow를 따른다.
 
 ## Publish Policy
 
@@ -151,6 +210,32 @@ game unit 예시:
 
 ## Phase 파일 구조
 
+## Resume-Safe Work Log
+
+모든 Harness step은 채팅 기록이 사라져도 파일만 보고 재개 가능해야 한다. 결정, 상태, 산출물, 검증 결과, 다음 행동을 채팅에만 남기지 않는다.
+
+기록 원칙:
+
+- step 상태가 바뀔 때마다 `phases/{task-name}/index.json`과 `phases/{task-name}/step{N}.md`를 함께 갱신한다.
+- 사용자 결정은 `User Decisions`, `Decision Log`, `decision_log`에 남긴다.
+- blocked 사유는 `blocked_reason`과 `decision_needed`에 남긴다.
+- 검증 결과는 `Validation Results`, `validation_reports`, `Review Artifact`에 남긴다.
+- 다음에 해야 할 일은 `Next Action`과 `resume_prompt`에 남긴다.
+- 채팅 내용에만 존재하는 결정, 승인, blocked 사유, 검증 결과는 유효한 Harness 기록으로 보지 않는다.
+
+상태별 필수 기록:
+
+- `design_review`: proposal, pending decisions, `resume_prompt`.
+- `blocked`: `blocked_reason`, `decision_needed`, 재개 시 사용자에게 물어볼 질문.
+- `ready_for_review`: `review_artifacts`, `review_checklist`, `approval_needed`.
+- `completed`: `summary`, produced artifacts, validation reports, next suggested unit.
+
+현재 기준 재개 예시:
+
+- `phases/0-resource-inventory`는 `blocked` 상태다.
+- blocked 이유는 OGG placeholder가 Vorbis 인코딩 오디오가 아니라는 점과 `fuse_holder`/`item_electric_part.png` 명칭 불일치다.
+- 재개 시에는 이 두 결정을 먼저 사용자에게 확인해야 한다.
+
 ### `phases/index.json`
 
 여러 task를 관리하는 top-level 인덱스다. 이미 존재하면 `phases` 배열에 새 항목을 추가한다.
@@ -179,7 +264,18 @@ game unit 예시:
       "status": "pending",
       "unit_type": "resource",
       "unit_id": "stage1_required_assets",
-      "requires_user_design_approval": true
+      "requires_user_design_approval": true,
+      "started_at": null,
+      "updated_at": null,
+      "summary": "",
+      "last_known_state": "",
+      "next_action": "",
+      "decision_log": [],
+      "review_artifacts": [],
+      "validation_reports": [],
+      "resume_prompt": "",
+      "blocked_reason": "",
+      "decision_needed": ""
     },
     {
       "step": 1,
@@ -187,7 +283,16 @@ game unit 예시:
       "status": "pending",
       "unit_type": "prefab",
       "unit_id": "TitleUI.prefab",
-      "requires_user_design_approval": true
+      "requires_user_design_approval": true,
+      "started_at": null,
+      "updated_at": null,
+      "summary": "",
+      "last_known_state": "",
+      "next_action": "",
+      "decision_log": [],
+      "review_artifacts": [],
+      "validation_reports": [],
+      "resume_prompt": ""
     },
     {
       "step": 2,
@@ -195,7 +300,33 @@ game unit 예시:
       "status": "pending",
       "unit_type": "scene",
       "unit_id": "Stage1.unity",
-      "requires_user_design_approval": true
+      "requires_user_design_approval": true,
+      "started_at": null,
+      "updated_at": null,
+      "summary": "",
+      "last_known_state": "",
+      "next_action": "",
+      "decision_log": [],
+      "review_artifacts": [],
+      "validation_reports": [],
+      "resume_prompt": ""
+    },
+    {
+      "step": 3,
+      "name": "unity-validation-tooling",
+      "status": "design_review",
+      "unit_type": "system",
+      "unit_id": "UnityValidationTools",
+      "requires_user_design_approval": true,
+      "started_at": null,
+      "updated_at": null,
+      "summary": "",
+      "last_known_state": "",
+      "next_action": "",
+      "decision_log": [],
+      "review_artifacts": [],
+      "validation_reports": [],
+      "resume_prompt": ""
     }
   ]
 }
@@ -257,6 +388,14 @@ game unit 예시:
 
 {사용자가 확정한 선택을 기록한다. 결정되지 않은 항목은 blocked 처리한다.}
 
+## Work Log
+
+{시간순 작업 기록. 상태 전이, 수행한 검증, 생성/수정한 산출물, 사용자에게 받은 승인을 짧게 남긴다.}
+
+## Decision Log
+
+{사용자 결정과 그 근거를 남긴다. 채팅에서 받은 결정도 여기에 복사한다.}
+
 ## Out of Scope
 
 {이번 game unit에서 절대 만들지 않을 prefab, scene, room, puzzle, system을 명시한다.}
@@ -272,6 +411,18 @@ game unit 예시:
 ## Unity MCP Checks
 
 {Unity MCP로 수행할 scene hierarchy, prefab, missing component, serialized reference 검사 목록을 적는다. MCP가 없을 때의 BatchMode/YAML fallback도 적는다.}
+
+## Tooling Gap
+
+{누락된 Unity MCP/tool 기능을 적는다. Unity MCP callable tool이 없거나 필요한 검증 기능이 부족하면 `unity-validation-tooling` step으로 분리한다.}
+
+## Proposed Validation Tools
+
+{사용자 승인 후 만들 Unity Editor validation 또는 static validation tool 목록, 위치, 실행 방법을 적는다.}
+
+## Tool Output Contract
+
+{검증 결과 JSON/report 형식, `pass`/`blocked`/`error` 기준, review artifact 위치를 적는다.}
 
 ## Acceptance Criteria
 
@@ -292,6 +443,15 @@ Unity.exe -batchmode -quit -projectPath EscapeFromNightmares -executeMethod Buil
 - `PrefabReferenceValidation`
 - `ScriptableObjectReferenceValidation`
 - `BuildSettingsValidation`
+- `MissingComponentValidation`
+
+## Validation Results
+
+{실행한 검증 이름, 결과(pass/blocked/error), 보고서 경로, 핵심 finding을 적는다.}
+
+## Current State
+
+{현재 status, last_known_state, 남은 문제, 작업 산출물 상태를 적는다.}
 
 ## User Review Checklist
 
@@ -300,6 +460,14 @@ Unity.exe -batchmode -quit -projectPath EscapeFromNightmares -executeMethod Buil
 ## Review Artifact
 
 {사용자가 검토할 prefab, scene, resource manifest, screenshot, validation output, 문서 경로를 적는다.}
+
+## Resume Instructions
+
+{채팅이 사라진 뒤 다음 세션이 가장 먼저 읽어야 할 파일, 물어봐야 할 사용자 결정, 재개 명령 또는 다음 step을 적는다.}
+
+## Next Action
+
+{다음에 할 단 하나의 행동을 적는다. blocked 상태면 사용자에게 물어볼 질문을 적는다.}
 
 ## Next Step Blocker
 
@@ -332,9 +500,12 @@ Unity.exe -batchmode -quit -projectPath EscapeFromNightmares -executeMethod Buil
 | 리소스 | 필수 리소스 manifest가 있고 missing/placeholder/final 상태가 검토되었는가 |
 | 리소스 무결성 | 0바이트, 잘못된 확장자, import 불가, 설계-파일명 불일치가 없는가 |
 | Scene/Prefab | 필수 scene hierarchy와 prefab reference가 실제로 연결되었는가 |
+| Tooling Gap | Unity MCP/tool 기능이 부족할 때 `unity-validation-tooling` step을 만들었는가 |
+| Validation Tool | 검증 툴 생성 전 `design_review`와 `approved_for_implementation`을 거쳤는가 |
 | 구성요소 단위 | step이 하나의 game unit만 다루는가 |
 | 구현 전 승인 | `design_review`에서 사용자 승인 후 `approved_for_implementation`으로 넘어갔는가 |
 | 사용자 검토 | step이 `ready_for_review`에서 멈추고 사용자 승인 후 다음 step으로 진행하는가 |
+| 재개 가능성 | `resume_prompt`, `Next Action`, `Decision Log`, `Validation Results`가 파일에 남아 있는가 |
 
 ## Build 자동화 정책
 

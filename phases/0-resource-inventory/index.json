@@ -1,0 +1,383 @@
+{
+  "project": "Escape From Nightmares",
+  "phase": "0-resource-inventory",
+  "steps": [
+    {
+      "step": 0,
+      "name": "resource-inventory",
+      "status": "blocked",
+      "unit_type": "resource",
+      "unit_id": "stage1_required_assets",
+      "requires_user_design_approval": true
+    },
+    {
+      "step": 1,
+      "name": "item-torn-drawing-fragment-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_torn_drawing_fragment.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_torn_drawing_fragment.png. resource_manifest.json marks only this item icon as final.",
+      "next_action": "User reviews item_torn_drawing_fragment.png and approves or requests revision before the next resource unit starts.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to proceed with the next Harness-recorded task; treated as implementation approval for this resource unit."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "EscapeFromNightmares/Assets/Sprites/Items/item_torn_drawing_fragment.png",
+        "resource_manifest.json",
+        "phases/0-resource-inventory/step1.md"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Review EscapeFromNightmares/Assets/Sprites/Items/item_torn_drawing_fragment.png. If accepted, approve this step, then create or open the next item icon resource unit for item_study_safe_clue.png."
+    },
+    {
+      "step": 2,
+      "name": "stage1-audio-selection-manifest",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "stage1_audio_selection_manifest",
+      "requires_user_design_approval": true,
+      "last_known_state": "Mapped all 62 required Stage 1 audio slots to source WAV files from EscapeFromNightmares/Assets/Audio/Gamemaster Audio - Pro Sound Collection. No target placeholder audio files were replaced.",
+      "next_action": "User reviews audio_selection_manifest.json and approves either OGG conversion/replacement or WAV target-format update as a separate Harness unit.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved implementation with approved_for_implementation: stage1_audio_selection_manifest."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Created an audio selection manifest only; did not copy, convert, delete, move, or replace audio files."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "audio_selection_manifest.json",
+        "reports/unity-validation/stage1_audio_selection_validation.json",
+        "phases/0-resource-inventory/step2.md"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/stage1_audio_selection_validation.json"
+      ],
+      "resume_prompt": "Review audio_selection_manifest.json. If accepted, approve a new unit for converting selected WAV files to the required OGG target filenames or for changing the design targets to WAV."
+    },
+    {
+      "step": 3,
+      "name": "stage1-audio-wav-target-update",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "stage1_audio_wav_target_update",
+      "requires_user_design_approval": true,
+      "last_known_state": "Converted 62 Stage 1 audio targets from OGG placeholders to WAV target assets. Copied selected WAV files into Unity target folders and deleted obsolete target OGG placeholders plus OGG meta files.",
+      "next_action": "User reviews the WAV target update, then approves the next single resource unit or Unity validation tooling unit.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User chose WAV target update instead of OGG conversion."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User chose deletion of obsolete OGG placeholder files and OGG meta files."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Copied selected WAV source files to Stage 1 target audio folders and updated manifests/resource list to WAV."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "resource_manifest.json",
+        "audio_selection_manifest.json",
+        "design/06_RESOURCES_LIST.txt",
+        "reports/unity-validation/stage1_audio_wav_target_update_validation.json",
+        "phases/0-resource-inventory/step3.md"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/stage1_audio_wav_target_update_validation.json"
+      ],
+      "resume_prompt": "Step 3 has been approved and completed. Continue with the next single resource unit in design_review."
+    },
+    {
+      "step": 4,
+      "name": "item-study-safe-clue-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_study_safe_clue.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_study_safe_clue.png. resource_manifest.json marks this item icon as final.",
+      "next_action": "User reviews item_study_safe_clue.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "Opened the next single item icon resource unit after completing prior ready_for_review units."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as approved_for_implementation for item_study_safe_clue.png."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_study_safe_clue.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step4.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_study_safe_clue.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 4 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 5,
+      "name": "item-electric-part-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_electric_part.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_electric_part.png. The design item id fuse_holder is preserved; resource filename item_electric_part.png remains the icon filename.",
+      "next_action": "User reviews item_electric_part.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Resolved the fuse_holder / item_electric_part.png mismatch for this unit by preserving the design item id fuse_holder and using item_electric_part.png as its resource filename. No design id rename is performed."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_electric_part.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step5.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_electric_part.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 5 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 6,
+      "name": "item-fuse-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_fuse.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_fuse.png.",
+      "next_action": "User reviews item_fuse.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_fuse.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step6.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_fuse.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 6 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 7,
+      "name": "item-broken-hand-mirror-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_broken_hand_mirror.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_broken_hand_mirror.png.",
+      "next_action": "User reviews item_broken_hand_mirror.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_broken_hand_mirror.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step7.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_broken_hand_mirror.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 7 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 8,
+      "name": "item-small-doll-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_small_doll.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_small_doll.png.",
+      "next_action": "User reviews item_small_doll.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_small_doll.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step8.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_small_doll.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 8 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 9,
+      "name": "item-old-keychain-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_old_keychain.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_old_keychain.png.",
+      "next_action": "User reviews item_old_keychain.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_old_keychain.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step9.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_old_keychain.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 9 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 10,
+      "name": "item-old-necklace-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_old_necklace.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_old_necklace.png.",
+      "next_action": "User reviews item_old_necklace.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_old_necklace.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step10.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_old_necklace.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 10 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 11,
+      "name": "item-symbol-fragment-resource",
+      "status": "ready_for_review",
+      "unit_type": "resource",
+      "unit_id": "item_symbol_fragment.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_symbol_fragment.png.",
+      "next_action": "User reviews item_symbol_fragment.png. Do not start the next resource unit until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_symbol_fragment.png; preserved its existing Unity .meta file."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step11.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_symbol_fragment.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Review EscapeFromNightmares/Assets/Sprites/Items/item_symbol_fragment.png. If accepted, approve this step, then open the next single resource unit for item_front_door_key.png."
+    }
+  ]
+}

@@ -1,0 +1,905 @@
+﻿[
+    {
+        "required_filename":  "room_entrance.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_entrance.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_1f_hallway.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_1f_hallway.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_living_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_living_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_dining_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_dining_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_kitchen.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_kitchen.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_laundry_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_laundry_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_1f_bathroom.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_1f_bathroom.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_1f_storage.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_1f_storage.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_garage.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_garage.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_family_photo.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_family_photo.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_stairwell_1f.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_stairwell_1f.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_child_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_child_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_2f_hallway.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_2f_hallway.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_master_bedroom.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_master_bedroom.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_dressing_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_dressing_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_guest_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_guest_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_2f_bathroom.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_2f_bathroom.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_study.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_study.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_mirror_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_mirror_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_stairwell_2f.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_stairwell_2f.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_basement_entry.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_basement_entry.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_basement_main.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_basement_main.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_basement_storage.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_basement_storage.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_altar_room.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_altar_room.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_attic_main.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_attic_main.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_attic_toy_storage.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_attic_toy_storage.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "room_attic_album_storage.png",
+        "unity_target_path":  "Assets/Sprites/Rooms/room_attic_album_storage.png",
+        "category":  "room_background",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_torn_drawing_fragment.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_torn_drawing_fragment.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_study_safe_clue.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_study_safe_clue.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_electric_part.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_electric_part.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_fuse.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_fuse.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_broken_hand_mirror.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_broken_hand_mirror.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_small_doll.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_small_doll.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_old_keychain.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_old_keychain.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_old_necklace.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_old_necklace.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_symbol_fragment.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_symbol_fragment.png",
+        "category":  "item_icon",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "item_front_door_key.png",
+        "unity_target_path":  "Assets/Sprites/Items/item_front_door_key.png",
+        "category":  "item_icon",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_silhouette_window.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_silhouette_window.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_doorway_kitchen.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_doorway_kitchen.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_shadow_hallway.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_shadow_hallway.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_dark_corner.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_dark_corner.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_near_detection.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_near_detection.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_chase_overlay.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_chase_overlay.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_gameover_shadow.png",
+        "unity_target_path":  "Assets/Sprites/Monster/monster_gameover_shadow.png",
+        "category":  "monster_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_start.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_start.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_settings.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_settings.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_quit.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_quit.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_continue.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_continue.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_return_title.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_return_title.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_inventory.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_inventory.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_map.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_map.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_settings_small.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_button_settings_small.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_inventory_panel.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_inventory_panel.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_inventory_slot.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_inventory_slot.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_selected_item_frame.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_selected_item_frame.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_panel.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_map_panel.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_floor_1f.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_1f.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_floor_2f.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_2f.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_floor_basement.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_basement.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_floor_attic.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_attic.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_current_room_marker.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_map_current_room_marker.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_puzzle_panel.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_puzzle_panel.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_number_lock_digit.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_number_lock_digit.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_symbol_button.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_symbol_button.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_hiding_danger_gauge_bg.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_hiding_danger_gauge_bg.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_hiding_danger_gauge_fill.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_hiding_danger_gauge_fill.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_gameover_text.png",
+        "unity_target_path":  "Assets/Sprites/UI/ui_gameover_text.png",
+        "category":  "ui_image",
+        "status":  "placeholder",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "bgm_title.wav",
+        "unity_target_path":  "Assets/Audio/BGM/bgm_title.wav",
+        "category":  "audio_bgm",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "bgm_stage1_ambient.wav",
+        "unity_target_path":  "Assets/Audio/BGM/bgm_stage1_ambient.wav",
+        "category":  "audio_bgm",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "bgm_chase.wav",
+        "unity_target_path":  "Assets/Audio/BGM/bgm_chase.wav",
+        "category":  "audio_bgm",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "bgm_final_chase.wav",
+        "unity_target_path":  "Assets/Audio/BGM/bgm_final_chase.wav",
+        "category":  "audio_bgm",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "bgm_ending_hint.wav",
+        "unity_target_path":  "Assets/Audio/BGM/bgm_ending_hint.wav",
+        "category":  "audio_bgm",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_house_low_hum.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_house_low_hum.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_1f_hallway.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_1f_hallway.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_2f_hallway.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_2f_hallway.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_child_room.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_child_room.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_kitchen.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_kitchen.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_laundry_room.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_laundry_room.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_basement.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_basement.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_attic.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_attic.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_mirror_room.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_mirror_room.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "amb_altar_room.wav",
+        "unity_target_path":  "Assets/Audio/Ambience/amb_altar_room.wav",
+        "category":  "audio_ambience",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_click.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_click.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_item_pickup.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_item_pickup.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_inventory_open.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_inventory_open.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_inventory_close.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_inventory_close.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_item_use.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_item_use.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_item_combine.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_item_combine.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_door_open.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_door_open.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_door_locked.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_door_locked.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_drawer_open.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_drawer_open.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_box_open.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_box_open.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_puzzle_success.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_puzzle_success.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_puzzle_error.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_puzzle_error.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_object_shake.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_object_shake.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_number_lock_turn.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_number_lock_turn.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_safe_open.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_safe_open.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_symbol_click.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_symbol_click.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_fuse_insert.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_fuse_insert.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_breaker_switch.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_breaker_switch.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_electricity_restore.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_electricity_restore.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_electronic_lock_release.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_electronic_lock_release.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_mirror_crack.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_mirror_crack.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_altar_activate.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_altar_activate.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_key_appear.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_key_appear.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_front_door_unlock.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_front_door_unlock.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_toy_wrong_sound.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_toy_wrong_sound.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "sfx_toy_box_open.wav",
+        "unity_target_path":  "Assets/Audio/SFX/sfx_toy_box_open.wav",
+        "category":  "audio_sfx",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_footstep_far.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_footstep_far.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_footstep_mid.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_footstep_mid.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_footstep_near.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_footstep_near.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_breath_far.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_breath_far.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_breath_near.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_breath_near.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_low_growl.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_low_growl.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_searching.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_searching.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_detected.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_detected.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_chase_start.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_chase_start.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "monster_capture.wav",
+        "unity_target_path":  "Assets/Audio/Monster/monster_capture.wav",
+        "category":  "audio_monster",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_hover.wav",
+        "unity_target_path":  "Assets/Audio/UI/ui_button_hover.wav",
+        "category":  "audio_ui",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_button_click.wav",
+        "unity_target_path":  "Assets/Audio/UI/ui_button_click.wav",
+        "category":  "audio_ui",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_menu_open.wav",
+        "unity_target_path":  "Assets/Audio/UI/ui_menu_open.wav",
+        "category":  "audio_ui",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_menu_close.wav",
+        "unity_target_path":  "Assets/Audio/UI/ui_menu_close.wav",
+        "category":  "audio_ui",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_open.wav",
+        "unity_target_path":  "Assets/Audio/UI/ui_map_open.wav",
+        "category":  "audio_ui",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "ui_map_close.wav",
+        "unity_target_path":  "Assets/Audio/UI/ui_map_close.wav",
+        "category":  "audio_ui",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "event_gameover_bgm_cut.wav",
+        "unity_target_path":  "Assets/Audio/Events/event_gameover_bgm_cut.wav",
+        "category":  "audio_event",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "event_screen_rewind.wav",
+        "unity_target_path":  "Assets/Audio/Events/event_screen_rewind.wav",
+        "category":  "audio_event",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "event_window_silhouette.wav",
+        "unity_target_path":  "Assets/Audio/Events/event_window_silhouette.wav",
+        "category":  "audio_event",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "event_kitchen_first_appearance.wav",
+        "unity_target_path":  "Assets/Audio/Events/event_kitchen_first_appearance.wav",
+        "category":  "audio_event",
+        "status":  "final",
+        "referenced_by":  "pending"
+    },
+    {
+        "required_filename":  "event_final_chase_trigger.wav",
+        "unity_target_path":  "Assets/Audio/Events/event_final_chase_trigger.wav",
+        "category":  "audio_event",
+        "status":  "final",
+        "referenced_by":  "pending"
+    }
+]

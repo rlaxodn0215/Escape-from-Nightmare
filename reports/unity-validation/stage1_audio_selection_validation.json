@@ -1,0 +1,28 @@
+{
+  "validation_name": "Stage1AudioSelectionValidation",
+  "status": "passed_with_blockers",
+  "checked_paths": [
+    "audio_selection_manifest.json",
+    "EscapeFromNightmares/Assets/Audio/Gamemaster Audio - Pro Sound Collection",
+    "resource_manifest.json"
+  ],
+  "findings": [
+    {
+      "severity": "info",
+      "message": "Mapped all 62 required Stage 1 audio filenames to candidate source WAV files from Gamemaster Audio - Pro Sound Collection."
+    },
+    {
+      "severity": "blocked",
+      "message": "The selected sources are WAV files, while design target filenames remain OGG. Actual target replacement requires a later approved conversion or target-format decision."
+    },
+    {
+      "severity": "blocked",
+      "message": "Unity MCP tools were not callable, so Unity import validation was not performed."
+    },
+    {
+      "severity": "info",
+      "message": "No gameplay scripts, scenes, prefabs, ScriptableObjects, or existing audio placeholders were modified in this unit."
+    }
+  ],
+  "blocked_reason": "Unity-native import checks and OGG conversion/replacement were out of scope for stage1_audio_selection_manifest."
+}

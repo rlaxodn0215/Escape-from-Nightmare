@@ -67,6 +67,26 @@ Use Unity MCP for:
 
 If Unity MCP tools are not callable in the current session, record that limitation and use Unity BatchMode plus static YAML/project-file validation as the fallback. Do not claim a Unity MCP validation passed unless an MCP tool actually performed it.
 
+## Unity MCP Tooling Gap Policy
+
+Do not pass Unity validation just because Unity MCP tools are unavailable. If callable Unity MCP tools are missing or cannot inspect scenes, prefabs, missing components, serialized references, Build Settings, resources, or importability, create a `unity-validation-tooling` game unit in `design_review`.
+
+Validation tooling is also collaborative unit work:
+
+- `unit_type`: `system`
+- `unit_id`: `UnityValidationTools`
+- `requires_user_design_approval`: `true`
+
+Do not create validation scripts or Editor tools before `approved_for_implementation`.
+
+Approved validation tooling may live in:
+
+- `EscapeFromNightmares/Assets/Scripts/Editor/Validation`
+- `Tools/UnityValidation`
+- `reports/unity-validation/*.json`
+
+Minimum validation reports must include `validation_name`, `status`, `checked_paths`, `findings`, and `blocked_reason`.
+
 ## Scene Hierarchy Standard
 
 Playable Unity scenes must include these root objects before a step can be considered complete:
@@ -172,6 +192,24 @@ The resource inventory must produce `resource_manifest.json` or an equivalent re
 
 Block development if required images, audio, or prefabs are missing and no approved placeholder plan exists. Also block on zero-byte files, wrong extensions, Unity import failures, or design/resource naming mismatches such as an item ID not matching its expected icon filename.
 
+## Resume-Safe Recording Rule
+
+Every unit of work must be resumable from files alone. Before ending work or changing a step status, update the phase files.
+
+Required records:
+
+- `phases/{task-name}/index.json`
+- `phases/{task-name}/step{N}.md`
+- `User Decisions`
+- `Decision Log`
+- `Validation Results`
+- `Review Artifact`
+- `Current State`
+- `Resume Instructions`
+- `Next Action`
+
+Do not leave approvals, blocked reasons, validation findings, or next actions only in chat. User approvals must be copied into both `User Decisions` and `decision_log`. Blocked work must include `blocked_reason`, `decision_needed`, and a `resume_prompt`.
+
 ## Verification
 
 Prefer these checks when Unity is available:
@@ -195,4 +233,5 @@ Before any playable build step, also verify:
 - `PrefabReferenceValidation`
 - `ScriptableObjectReferenceValidation`
 - `BuildSettingsValidation`
+- `MissingComponentValidation`
 - `SampleScene` is not the only enabled Build Settings scene

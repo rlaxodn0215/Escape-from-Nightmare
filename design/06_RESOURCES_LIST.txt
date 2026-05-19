@@ -1,40 +1,40 @@
-파일명: 06_RESOURCES_LIST.txt
+﻿?뚯씪紐? 06_RESOURCES_LIST.txt
 
 Escape From Nightmares
-리소스 명세 문서
+由ъ냼??紐낆꽭 臾몄꽌
 
 ================================================================================
-01. 리소스 제작 기준
+01. 由ъ냼???쒖옉 湲곗?
 ================================================================================
 
-리소스 제작 기준:
-- 어두운 손그림풍 2D
-- 1280x720 기준
-- 배경, 오브젝트, 일부 전경/후경 레이어 분리
-- 클릭 가능 표시 없음
-- UI는 손그림 선 미니멀 스타일
-- 거의 흑백 + 약한 붉은 포인트
+由ъ냼???쒖옉 湲곗?:
+- ?대몢???먭렇由쇳뭾 2D
+- 1280x720 湲곗?
+- 諛곌꼍, ?ㅻ툕?앺듃, ?쇰? ?꾧꼍/?꾧꼍 ?덉씠??遺꾨━
+- ?대┃ 媛???쒖떆 ?놁쓬
+- UI???먭렇由???誘몃땲硫 ?ㅽ???
+- 嫄곗쓽 ?묐갚 + ?쏀븳 遺됱? ?ъ씤??
 
-리소스가 없을 경우:
-- 지정된 파일명 기준으로 더미 리소스를 생성한다.
-- 방 배경은 어두운 placeholder로 대체 가능.
-- 사운드는 무음 또는 더미 사운드로 대체 가능.
-- 구조는 최종 리소스로 교체 가능한 형태여야 한다.
+由ъ냼?ㅺ? ?놁쓣 寃쎌슦:
+- 吏?뺣맂 ?뚯씪紐?湲곗??쇰줈 ?붾? 由ъ냼?ㅻ? ?앹꽦?쒕떎.
+- 諛?諛곌꼍? ?대몢??placeholder濡??泥?媛??
+- ?ъ슫?쒕뒗 臾댁쓬 ?먮뒗 ?붾? ?ъ슫?쒕줈 ?泥?媛??
+- 援ъ“??理쒖쥌 由ъ냼?ㅻ줈 援먯껜 媛?ν븳 ?뺥깭?ъ빞 ?쒕떎.
 
-Unity 배치 기준:
-- 방 배경: Assets/Sprites/Rooms
-- 오브젝트/효과: Assets/Sprites/Objects, Assets/Sprites/Effects
-- 아이템 아이콘: Assets/Sprites/Items
-- 몬스터 이미지: Assets/Sprites/Monster
-- UI 이미지: Assets/Sprites/UI 또는 Assets/UI
-- 사운드: Assets/Audio/BGM, Assets/Audio/Ambience, Assets/Audio/SFX, Assets/Audio/Monster, Assets/Audio/UI, Assets/Audio/Events
-- 각 리소스는 ScriptableObject, Prefab, Scene에서 Sprite/AudioClip reference로 연결한다.
+Unity 諛곗튂 湲곗?:
+- 諛?諛곌꼍: Assets/Sprites/Rooms
+- ?ㅻ툕?앺듃/?④낵: Assets/Sprites/Objects, Assets/Sprites/Effects
+- ?꾩씠???꾩씠肄? Assets/Sprites/Items
+- 紐ъ뒪???대?吏: Assets/Sprites/Monster
+- UI ?대?吏: Assets/Sprites/UI ?먮뒗 Assets/UI
+- ?ъ슫?? Assets/Audio/BGM, Assets/Audio/Ambience, Assets/Audio/SFX, Assets/Audio/Monster, Assets/Audio/UI, Assets/Audio/Events
+- 媛?由ъ냼?ㅻ뒗 ScriptableObject, Prefab, Scene?먯꽌 Sprite/AudioClip reference濡??곌껐?쒕떎.
 
 ================================================================================
-02. 필수 방 배경
+02. ?꾩닔 諛?諛곌꼍
 ================================================================================
 
-1층:
+1痢?
 - room_entrance.png
 - room_1f_hallway.png
 - room_living_room.png
@@ -47,7 +47,7 @@ Unity 배치 기준:
 - room_family_photo.png
 - room_stairwell_1f.png
 
-2층:
+2痢?
 - room_child_room.png
 - room_2f_hallway.png
 - room_master_bedroom.png
@@ -58,19 +58,19 @@ Unity 배치 기준:
 - room_mirror_room.png
 - room_stairwell_2f.png
 
-지하실:
+吏?섏떎:
 - room_basement_entry.png
 - room_basement_main.png
 - room_basement_storage.png
 - room_altar_room.png
 
-다락방:
+?ㅻ씫諛?
 - room_attic_main.png
 - room_attic_toy_storage.png
 - room_attic_album_storage.png
 
 ================================================================================
-03. 필수 아이템 아이콘
+03. ?꾩닔 ?꾩씠???꾩씠肄?
 ================================================================================
 
 - item_torn_drawing_fragment.png
@@ -85,7 +85,7 @@ Unity 배치 기준:
 - item_front_door_key.png
 
 ================================================================================
-04. 몬스터 리소스
+04. 紐ъ뒪??由ъ냼??
 ================================================================================
 
 - monster_silhouette_window.png
@@ -97,7 +97,7 @@ Unity 배치 기준:
 - monster_gameover_shadow.png
 
 ================================================================================
-05. UI 리소스
+05. UI 由ъ냼??
 ================================================================================
 
 - ui_button_start.png
@@ -125,127 +125,127 @@ Unity 배치 기준:
 - ui_gameover_text.png
 
 ================================================================================
-06. 사운드 리소스
+06. ?ъ슫??由ъ냼??
 ================================================================================
 
 BGM:
-- bgm_title.ogg
-- bgm_stage1_ambient.ogg
-- bgm_chase.ogg
-- bgm_final_chase.ogg
-- bgm_ending_hint.ogg
+- bgm_title.wav
+- bgm_stage1_ambient.wav
+- bgm_chase.wav
+- bgm_final_chase.wav
+- bgm_ending_hint.wav
 
-환경음:
-- amb_house_low_hum.ogg
-- amb_1f_hallway.ogg
-- amb_2f_hallway.ogg
-- amb_child_room.ogg
-- amb_kitchen.ogg
-- amb_laundry_room.ogg
-- amb_basement.ogg
-- amb_attic.ogg
-- amb_mirror_room.ogg
-- amb_altar_room.ogg
+?섍꼍??
+- amb_house_low_hum.wav
+- amb_1f_hallway.wav
+- amb_2f_hallway.wav
+- amb_child_room.wav
+- amb_kitchen.wav
+- amb_laundry_room.wav
+- amb_basement.wav
+- amb_attic.wav
+- amb_mirror_room.wav
+- amb_altar_room.wav
 
-효과음:
-- sfx_click.ogg
-- sfx_item_pickup.ogg
-- sfx_inventory_open.ogg
-- sfx_inventory_close.ogg
-- sfx_item_use.ogg
-- sfx_item_combine.ogg
-- sfx_door_open.ogg
-- sfx_door_locked.ogg
-- sfx_drawer_open.ogg
-- sfx_box_open.ogg
-- sfx_puzzle_success.ogg
-- sfx_puzzle_error.ogg
-- sfx_object_shake.ogg
-- sfx_number_lock_turn.ogg
-- sfx_safe_open.ogg
-- sfx_symbol_click.ogg
-- sfx_fuse_insert.ogg
-- sfx_breaker_switch.ogg
-- sfx_electricity_restore.ogg
-- sfx_electronic_lock_release.ogg
-- sfx_mirror_crack.ogg
-- sfx_altar_activate.ogg
-- sfx_key_appear.ogg
-- sfx_front_door_unlock.ogg
-- sfx_toy_wrong_sound.ogg
-- sfx_toy_box_open.ogg
+?④낵??
+- sfx_click.wav
+- sfx_item_pickup.wav
+- sfx_inventory_open.wav
+- sfx_inventory_close.wav
+- sfx_item_use.wav
+- sfx_item_combine.wav
+- sfx_door_open.wav
+- sfx_door_locked.wav
+- sfx_drawer_open.wav
+- sfx_box_open.wav
+- sfx_puzzle_success.wav
+- sfx_puzzle_error.wav
+- sfx_object_shake.wav
+- sfx_number_lock_turn.wav
+- sfx_safe_open.wav
+- sfx_symbol_click.wav
+- sfx_fuse_insert.wav
+- sfx_breaker_switch.wav
+- sfx_electricity_restore.wav
+- sfx_electronic_lock_release.wav
+- sfx_mirror_crack.wav
+- sfx_altar_activate.wav
+- sfx_key_appear.wav
+- sfx_front_door_unlock.wav
+- sfx_toy_wrong_sound.wav
+- sfx_toy_box_open.wav
 
-몬스터음:
-- monster_footstep_far.ogg
-- monster_footstep_mid.ogg
-- monster_footstep_near.ogg
-- monster_breath_far.ogg
-- monster_breath_near.ogg
-- monster_low_growl.ogg
-- monster_searching.ogg
-- monster_detected.ogg
-- monster_chase_start.ogg
-- monster_capture.ogg
-
-================================================================================
-07. Unity Placeholder 규칙
-================================================================================
-
-이미지 placeholder:
-- Sprite import가 가능한 png 파일로 만든다.
-- 방 배경은 1280 x 720 기준 어두운 이미지로 만든다.
-- 개발용 방 이름 표시는 가능하지만, 클릭 오브젝트 위치를 하이라이트하지 않는다.
-
-오디오 placeholder:
-- AudioClip reference가 필요하면 무음 wav 또는 ogg를 사용한다.
-- AudioClip이 없어도 시스템이 예외 없이 재생을 생략할 수 있어야 한다.
-
-교체 규칙:
-- placeholder 파일명과 ScriptableObject reference는 최종 리소스 교체 시 유지 가능한 이름을 사용한다.
-- final art/audio가 들어와도 런타임 코드 수정 없이 교체 가능해야 한다.
+紐ъ뒪?곗쓬:
+- monster_footstep_far.wav
+- monster_footstep_mid.wav
+- monster_footstep_near.wav
+- monster_breath_far.wav
+- monster_breath_near.wav
+- monster_low_growl.wav
+- monster_searching.wav
+- monster_detected.wav
+- monster_chase_start.wav
+- monster_capture.wav
 
 ================================================================================
-08. Resource Inventory / Harness 검증 기준
+07. Unity Placeholder 洹쒖튃
 ================================================================================
 
-첫 Harness step:
-- 리소스 검증은 반드시 `resource-inventory` step에서 먼저 수행한다.
-- 이 step이 `ready_for_review`가 되고 사용자가 `approved`로 승인하기 전에는 C# 시스템, scene, prefab 개발을 시작하지 않는다.
+?대?吏 placeholder:
+- Sprite import媛 媛?ν븳 png ?뚯씪濡?留뚮뱺??
+- 諛?諛곌꼍? 1280 x 720 湲곗? ?대몢???대?吏濡?留뚮뱺??
+- 媛쒕컻??諛??대쫫 ?쒖떆??媛?ν븯吏留? ?대┃ ?ㅻ툕?앺듃 ?꾩튂瑜??섏씠?쇱씠?명븯吏 ?딅뒗??
 
-resource_manifest.json 필드:
+?ㅻ뵒??placeholder:
+- AudioClip reference媛 ?꾩슂?섎㈃ 臾댁쓬 wav ?먮뒗 ogg瑜??ъ슜?쒕떎.
+- AudioClip???놁뼱???쒖뒪?쒖씠 ?덉쇅 ?놁씠 ?ъ깮???앸왂?????덉뼱???쒕떎.
+
+援먯껜 洹쒖튃:
+- placeholder ?뚯씪紐낃낵 ScriptableObject reference??理쒖쥌 由ъ냼??援먯껜 ???좎? 媛?ν븳 ?대쫫???ъ슜?쒕떎.
+- final art/audio媛 ?ㅼ뼱????고???肄붾뱶 ?섏젙 ?놁씠 援먯껜 媛?ν빐???쒕떎.
+
+================================================================================
+08. Resource Inventory / Harness 寃利?湲곗?
+================================================================================
+
+泥?Harness step:
+- 由ъ냼??寃利앹? 諛섎뱶??`resource-inventory` step?먯꽌 癒쇱? ?섑뻾?쒕떎.
+- ??step??`ready_for_review`媛 ?섍퀬 ?ъ슜?먭? `approved`濡??뱀씤?섍린 ?꾩뿉??C# ?쒖뒪?? scene, prefab 媛쒕컻???쒖옉?섏? ?딅뒗??
+
+resource_manifest.json ?꾨뱶:
 - required_filename
 - unity_target_path
 - category
 - status: missing / placeholder / final
 - referenced_by: ScriptableObject / prefab / scene / pending
 
-필수 검증:
-- ResourceManifestValidation: 본 문서의 모든 필수 파일명이 manifest에 포함되어야 한다.
-- RequiredAssetPresenceValidation: Unity target path에 final 또는 placeholder asset이 있어야 한다.
-- ZeroByteAssetValidation: 0바이트 파일은 리소스로 인정하지 않는다.
-- UnityImportableAssetValidation: png, wav, ogg 등 Unity import 가능한 형식이어야 한다.
-- DesignResourceConsistencyValidation: 아이템, 퍼즐, 이벤트 설계 ID와 리소스 파일명이 충돌하지 않아야 한다.
+?꾩닔 寃利?
+- ResourceManifestValidation: 蹂?臾몄꽌??紐⑤뱺 ?꾩닔 ?뚯씪紐낆씠 manifest???ы븿?섏뼱???쒕떎.
+- RequiredAssetPresenceValidation: Unity target path??final ?먮뒗 placeholder asset???덉뼱???쒕떎.
+- ZeroByteAssetValidation: 0諛붿씠???뚯씪? 由ъ냼?ㅻ줈 ?몄젙?섏? ?딅뒗??
+- UnityImportableAssetValidation: png, wav, ogg ??Unity import 媛?ν븳 ?뺤떇?댁뼱???쒕떎.
+- DesignResourceConsistencyValidation: ?꾩씠?? ?쇱쫹, ?대깽???ㅺ퀎 ID? 由ъ냼???뚯씪紐낆씠 異⑸룎?섏? ?딆븘???쒕떎.
 
-현재 알려진 검토 대상:
-- 퍼즐/아이템 문서의 `fuse_holder`와 리소스 명세의 `item_electric_part.png` 명칭은 구현 전 사용자 검토가 필요하다.
-- 이름 불일치는 임의로 확정하지 않고 blocked_reason에 선택지를 제시한다.
+?꾩옱 ?뚮젮吏?寃?????
+- ?쇱쫹/?꾩씠??臾몄꽌??`fuse_holder`? 由ъ냼??紐낆꽭??`item_electric_part.png` 紐낆묶? 援ы쁽 ???ъ슜??寃?좉? ?꾩슂?섎떎.
+- ?대쫫 遺덉씪移섎뒗 ?꾩쓽濡??뺤젙?섏? ?딄퀬 blocked_reason???좏깮吏瑜??쒖떆?쒕떎.
 
-blocked 기준:
-- Assets/Sprites, Assets/Audio, Assets/UI에 필수 리소스가 없고 placeholder 계획도 승인되지 않은 경우.
-- 필수 prefab이 없거나 scene/manager/ScriptableObject에서 참조되지 않는 경우.
-- Build Settings가 SampleScene만 enabled인 경우.
+blocked 湲곗?:
+- Assets/Sprites, Assets/Audio, Assets/UI???꾩닔 由ъ냼?ㅺ? ?녾퀬 placeholder 怨꾪쉷???뱀씤?섏? ?딆? 寃쎌슦.
+- ?꾩닔 prefab???녾굅??scene/manager/ScriptableObject?먯꽌 李몄“?섏? ?딅뒗 寃쎌슦.
+- Build Settings媛 SampleScene留?enabled??寃쎌슦.
 
-UI음:
-- ui_button_hover.ogg
-- ui_button_click.ogg
-- ui_menu_open.ogg
-- ui_menu_close.ogg
-- ui_map_open.ogg
-- ui_map_close.ogg
+UI??
+- ui_button_hover.wav
+- ui_button_click.wav
+- ui_menu_open.wav
+- ui_menu_close.wav
+- ui_map_open.wav
+- ui_map_close.wav
 
-이벤트음:
-- event_gameover_bgm_cut.ogg
-- event_screen_rewind.ogg
-- event_window_silhouette.ogg
-- event_kitchen_first_appearance.ogg
-- event_final_chase_trigger.ogg
+?대깽?몄쓬:
+- event_gameover_bgm_cut.wav
+- event_screen_rewind.wav
+- event_window_silhouette.wav
+- event_kitchen_first_appearance.wav
+- event_final_chase_trigger.wav

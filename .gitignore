@@ -1,0 +1,29 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# IDE and local OS files
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Large local source asset packs; selected shipping targets are copied separately.
+EscapeFromNightmares/Assets/Audio/Gamemaster Audio - Pro Sound Collection/
+EscapeFromNightmares/Assets/Audio/Gamemaster Audio - Pro Sound Collection.meta
