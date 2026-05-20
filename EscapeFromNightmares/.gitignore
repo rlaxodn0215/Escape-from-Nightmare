@@ -26,6 +26,11 @@
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
+# Auto-generated Unity assets of transient nature.
+/Assets/NaninovelData/Transient*
+# Transient artifacts of the external tools.
+/Assets/NaninovelData/.nani/Transient*
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
