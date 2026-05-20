@@ -1,0 +1,45 @@
+{
+  "validation_name": "Stage1HotspotSceneInstancesValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/Scripts/Systems/RoomHotspotLayer.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1HotspotSceneInstanceSeeder.cs",
+    "EscapeFromNightmares/Assets/Prefabs/Interactables/InteractableHotspot.prefab",
+    "EscapeFromNightmares/Assets/Prefabs/Interactables/HideSpot.prefab",
+    "EscapeFromNightmares/Assets/Prefabs/Interactables/ScreenEdgeHotspot.prefab",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Interactables"
+  ],
+  "summary": {
+    "hotspot_scene_instances": 53,
+    "room_groups": 23,
+    "definition_references": 53,
+    "interaction_system_references": 53,
+    "room_hotspot_layer_components": 1,
+    "interactable_hotspot_prefab_instances": 48,
+    "hide_spot_prefab_instances": 5,
+    "screen_edge_hotspot_prefab_instances": 0
+  },
+  "findings": [],
+  "known_gaps": [
+    "Stage1 currently uses door-type interactables for navigation; no ScreenEdgeHotspot prefab instances are expected from the current interactable definitions.",
+    "Hit areas are coarse 1280x720 placeholders inherited from InteractableDefinition assets and still need art-accurate tuning.",
+    "Puzzle, event, monster, hiding, sound, and map runtime behavior are outside this unit."
+  ],
+  "unity_mcp": {
+    "used": true,
+    "checks": [
+      "refresh_unity compile request completed with editor ready_for_tools=true",
+      "execute_menu_item ran Escape From Nightmares/Seed Stage1 Hotspot Scene Instances",
+      "find_gameobjects by name found HotspotCanvas",
+      "find_gameobjects by component InteractableHotspot found 53 scene objects",
+      "HotspotCanvas component inspection found Canvas, CanvasScaler, GraphicRaycaster, and RoomHotspotLayer",
+      "read_console found no C# compiler errors after script refresh"
+    ],
+    "notes": [
+      "MCP client handler lifecycle logs were present and are unrelated to project compilation."
+    ]
+  },
+  "blocked_reason": "",
+  "next_action": "Implement a focused puzzle runtime system that can open PuzzleUI from puzzle interactables and validate PuzzleDefinition answers."
+}

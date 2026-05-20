@@ -1,0 +1,62 @@
+{
+  "phase": "30-sound-runtime-system",
+  "unit_type": "system",
+  "unit_id": "SoundRuntimeSystem",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/03_PUZZLES_ITEMS_EVENTS.txt",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt"
+  ],
+  "proposal": {
+    "summary": "Implement focused sound runtime routing for ambience, event audio, and puzzle feedback through SoundDefinition assets.",
+    "out_of_scope": [
+      "Final mix balancing",
+      "Dynamic monster proximity audio logic",
+      "Timeline/cinematic audio",
+      "Audio occlusion or spatial simulation",
+      "New audio resource generation"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Implement one Harness unit: SoundRuntimeSystem.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends SoundRuntimeSystem."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "SoundRuntimeSystemValidation",
+      "status": "passed",
+      "artifact": "reports/unity-validation/sound_runtime_system_validation.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/sound_runtime_system_validation.json",
+    "EscapeFromNightmares/Assets/Scripts/Systems/SoundRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1SoundRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Rooms",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Events"
+  ],
+  "current_state": "Completed. SoundRuntimeSystem routes ambience, event audio, puzzle feedback, item pickup, and door SFX through Stage1 SoundDefinition assets.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for HidingRuntimeSystem only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start HidingRuntimeSystem using HideSpot interactables and HidingGaugeUI."
+}

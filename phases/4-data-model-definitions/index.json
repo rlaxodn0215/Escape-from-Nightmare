@@ -1,0 +1,45 @@
+{
+  "project": "Escape From Nightmares",
+  "phase": "4-data-model-definitions",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 0,
+      "name": "data-model-definitions",
+      "status": "completed",
+      "unit_type": "system",
+      "unit_id": "DataModelDefinitions",
+      "requires_user_design_approval": true,
+      "last_known_state": "Data model scripts are created under Assets/Scripts/Data. Unity MCP imported the folder and all script diagnostics passed with 0 errors and 0 warnings.",
+      "next_action": "Open the next Harness unit for Stage1ContentSeedData or the first runtime system using these definitions.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to continue until the final result and said approvals can always be assumed."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Treat this as approved_for_implementation for the scoped DataModelDefinitions unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/4-data-model-definitions/step0.md",
+        "EscapeFromNightmares/Assets/Scripts/Data/StageEnums.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/DefinitionTypes.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/RoomDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/InteractableDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/ItemDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/PuzzleDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/EventDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/MonsterNodeDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/SoundDefinition.cs",
+        "EscapeFromNightmares/Assets/Scripts/Data/StageDefinition.cs",
+        "reports/unity-validation/data_model_definitions_validation.json"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/data_model_definitions_validation.json"
+      ],
+      "resume_prompt": "DataModelDefinitions is complete. Continue with the next Harness unit, recommended Stage1ContentSeedData."
+    }
+  ]
+}

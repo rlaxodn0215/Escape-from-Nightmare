@@ -1,0 +1,85 @@
+{
+  "validation_name": "Stage1HitAreaTuningPassValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1InteractableDefinitionSeeder.cs",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Interactables",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity"
+  ],
+  "changed_hit_areas": [
+    {
+      "interactable_id": "first_floor_hallway_to_entrance",
+      "old_rect": { "x": 1038, "y": 220, "width": 154, "height": 312 },
+      "new_rect": { "x": 1004, "y": 220, "width": 116, "height": 312 },
+      "reason": "Separate entrance and garage click zones in the first-floor hallway."
+    },
+    {
+      "interactable_id": "first_floor_hallway_to_garage",
+      "old_rect": { "x": 1138, "y": 254, "width": 112, "height": 246 },
+      "new_rect": { "x": 1160, "y": 254, "width": 90, "height": 246 },
+      "reason": "Separate entrance and garage click zones in the first-floor hallway."
+    },
+    {
+      "interactable_id": "living_room_to_first_floor_hallway",
+      "old_rect": { "x": 1024, "y": 238, "width": 150, "height": 292 },
+      "new_rect": { "x": 1088, "y": 238, "width": 112, "height": 292 },
+      "reason": "Separate the living-room exit from the curtain hiding spot."
+    },
+    {
+      "interactable_id": "living_room_curtain_hide",
+      "old_rect": { "x": 952, "y": 190, "width": 182, "height": 390 },
+      "new_rect": { "x": 924, "y": 190, "width": 128, "height": 390 },
+      "reason": "Separate the curtain hiding spot from the living-room exit."
+    },
+    {
+      "interactable_id": "basement_wall_symbols",
+      "old_rect": { "x": 448, "y": 176, "width": 266, "height": 162 },
+      "new_rect": { "x": 454, "y": 152, "width": 250, "height": 78 },
+      "reason": "Move the wall-symbol clue above the basement-storage door hit area."
+    },
+    {
+      "interactable_id": "front_door_key_on_altar",
+      "old_rect": { "x": 584, "y": 356, "width": 112, "height": 90 },
+      "new_rect": { "x": 608, "y": 494, "width": 72, "height": 54 },
+      "reason": "Separate the final key pickup from the basement altar puzzle hit area."
+    }
+  ],
+  "findings": [
+    {
+      "check": "SeederRectStaticAnalysis",
+      "status": "passed",
+      "details": "Parsed 53 Stage 1 interactable hit areas. 0 out-of-bounds rects, 0 undersized rects, 0 oversized rects. Same-room overlaps reduced from 5 to 1."
+    },
+    {
+      "check": "ResidualOverlap",
+      "status": "passed_with_note",
+      "details": "Only residual overlap is breaker_box/laundry_room_cabinet_hide at 296 pixels, 1.2 percent of the smaller rect; accepted as negligible until manual visual tuning."
+    },
+    {
+      "check": "UnityMcpSeederExecution",
+      "status": "passed",
+      "details": "Executed 'Escape From Nightmares/Seed Stage1 Interactable Definitions' and 'Escape From Nightmares/Seed Stage1 Hotspot Scene Instances'. Unity log reported 53 definitions and 53 hotspot scene instances across 23 room groups."
+    },
+    {
+      "check": "UnityConsole",
+      "status": "passed_with_note",
+      "details": "No C# compile errors were reported. Console contained only MCP client lifecycle entries and a non-blocking UDP port warning."
+    },
+    {
+      "check": "UnityMcpExecuteCode",
+      "status": "blocked_noncritical",
+      "details": "Ad hoc execute_code validation failed with a Windows path-length error from mono.exe. Static PowerShell validation and Unity MCP menu/test validation were used instead."
+    },
+    {
+      "check": "EditModeTests",
+      "status": "passed",
+      "details": "Unity MCP EditMode test job c9258644a1b94a5f8747db55f14c3c04 passed 6/6 tests."
+    },
+    {
+      "check": "PlayModeTests",
+      "status": "passed",
+      "details": "Unity MCP PlayMode test job f416964b986e41138174d5c15e904785 passed 7/7 tests."
+    }
+  ],
+  "blocked_reason": null
+}

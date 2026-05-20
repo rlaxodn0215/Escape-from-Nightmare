@@ -1,0 +1,59 @@
+{
+  "phase": "36-windows-player-build",
+  "unit_type": "system",
+  "unit_id": "WindowsPlayerBuild",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt"
+  ],
+  "proposal": {
+    "summary": "Run BuildScript.BuildWindows, verify the generated Windows player output, and record the build result.",
+    "out_of_scope": [
+      "Changing gameplay content",
+      "Adding new systems",
+      "Creating new prefabs or scenes",
+      "Packaging or uploading a release archive",
+      "Final playtest tuning"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Run one Harness unit: WindowsPlayerBuild.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends WindowsPlayerBuild."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "WindowsPlayerBuildValidation",
+      "status": "passed_with_warnings",
+      "artifact": "reports/unity-validation/windows_player_build_validation.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/windows_player_build_validation.json",
+    "EscapeFromNightmares/Build/Windows/EscapeFromNightmares.exe",
+    "EscapeFromNightmares/Build/Windows/EscapeFromNightmares_Data",
+    "EscapeFromNightmares/Build/Windows/UnityPlayer.dll"
+  ],
+  "current_state": "Completed. Windows player output exists under EscapeFromNightmares/Build/Windows. Unity MCP timed out on final console response, so success was verified from generated output files.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for GeneratedPlayerSmokeValidation only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start GeneratedPlayerSmokeValidation to launch or otherwise smoke-check the generated Windows player output."
+}

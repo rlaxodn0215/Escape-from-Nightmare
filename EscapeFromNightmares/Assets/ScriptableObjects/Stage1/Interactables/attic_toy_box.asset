@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c3448460acc964f9a59169d0fd9d9e, type: 3}
+  m_Name: attic_toy_box
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.InteractableDefinition
+  roomId: attic_toy_storage
+  interactableId: attic_toy_box
+  interactableType: 4
+  hitArea:
+    serializedVersion: 2
+    x: 594
+    y: 424
+    width: 230
+    height: 132
+  requirements: []
+  eventId: event_open_attic_toy_box
+  targetRoomId: 
+  itemReward: {fileID: 0}
+  puzzleDefinition: {fileID: 11400000, guid: bbd9187687c034347a306ac5bcfc8cfa, type: 2}

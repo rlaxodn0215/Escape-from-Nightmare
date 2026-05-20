@@ -1,0 +1,51 @@
+{
+  "validation_name": "PuzzleRuntimeSystemValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/PuzzleSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/UI/PuzzleUI.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1PuzzleRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Puzzles",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Interactables"
+  ],
+  "summary": {
+    "puzzle_definitions": 7,
+    "puzzle_backed_interactables": 7,
+    "puzzle_system_components_in_scene": 1,
+    "puzzle_ui_components_in_scene": 1,
+    "puzzle_ui_input_controls": [
+      "AnswerInput",
+      "SubmitButton",
+      "ClearButton",
+      "FeedbackLabel"
+    ]
+  },
+  "findings": [],
+  "known_gaps": [
+    "Puzzle success and failure event IDs are logged but full EventDefinition effect execution is outside this unit.",
+    "Puzzle-specific bespoke visual layouts are outside this unit; the current UI uses a shared answer input surface.",
+    "Monster danger changes from puzzle failure are outside this unit.",
+    "Final puzzle art and animation are outside this unit."
+  ],
+  "unity_mcp": {
+    "used": true,
+    "checks": [
+      "refresh_unity compile request completed with editor ready_for_tools=true",
+      "read_console found no C# compiler errors after full asset refresh",
+      "execute_menu_item ran Escape From Nightmares/Seed Stage1 Puzzle Runtime",
+      "find_gameobjects by component PuzzleSystem found one scene object",
+      "find_gameobjects by component PuzzleUI found one scene object",
+      "component inspection confirmed PuzzleSystem references PuzzleUI and InventorySystem",
+      "component inspection confirmed InteractionSystem references PuzzleSystem",
+      "component inspection confirmed PuzzleUI references AnswerInput, SubmitButton, ClearButton, and FeedbackLabel"
+    ],
+    "notes": [
+      "An initial compile pass reported InteractionSystem could not see PuzzleSystem before the Unity asset database imported the new file; a forced all-assets refresh resolved it.",
+      "MCP client handler lifecycle logs were present and are unrelated to project compilation."
+    ]
+  },
+  "blocked_reason": "",
+  "next_action": "Implement EventRuntimeSystem to execute logged puzzle, item, room, and escape EventDefinition effects."
+}

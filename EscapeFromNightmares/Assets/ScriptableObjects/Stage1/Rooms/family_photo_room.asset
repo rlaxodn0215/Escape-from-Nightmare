@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c696a2c8b5d44b83517a0587c1502, type: 3}
+  m_Name: family_photo_room
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.RoomDefinition
+  roomId: family_photo_room
+  floorId: 0
+  displayNameForDebug: Family Photo Room
+  backgroundSprite: {fileID: -4210896391835058181, guid: ed1db167e60a015499226271320752b7, type: 3}
+  ambienceAudio: {fileID: 0}
+  dangerModifier: 1
+  monsterCanEnter: 1
+  connectedRooms: []
+  interactableDefinitions:
+  - {fileID: 11400000, guid: b29ce1e72dc8e7c42bf53fa712b338c5, type: 2}

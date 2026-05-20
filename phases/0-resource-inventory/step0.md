@@ -25,7 +25,9 @@ Inventory every required Stage 1 resource from `design/06_RESOURCES_LIST.txt`, m
 
 - Resource strategy: placeholder-first.
 - Placeholder filenames must match final replacement filenames.
-- `fuse_holder` versus `item_electric_part.png` is recorded as a design-resource consistency finding and is not renamed during this unit.
+- `fuse_holder` versus `item_electric_part.png` was resolved by preserving design item ID `fuse_holder` and using `item_electric_part.png` as its icon filename.
+- Audio target files were changed from OGG placeholders to final WAV target assets.
+- User approved all remaining approval-gated resource work and requested completion without separate approvals.
 
 ## Out of Scope
 
@@ -38,17 +40,27 @@ Inventory every required Stage 1 resource from `design/06_RESOURCES_LIST.txt`, m
 ## Resource Inventory
 
 - Manifest artifact: `resource_manifest.json`.
-- Placeholder images are written under `EscapeFromNightmares/Assets/Sprites`.
-- Placeholder audio files are written under `EscapeFromNightmares/Assets/Audio`.
+- Final images are written under `EscapeFromNightmares/Assets/Sprites`.
+- Final audio target files are written under `EscapeFromNightmares/Assets/Audio`.
 - Validation reports are written under `reports/unity-validation`.
+- Final resource status: 129 / 129 `final`.
 
 ## Unity MCP Checks
 
-Unity MCP tools were not callable in this session. Scene hierarchy, prefab reference, missing component, serialized reference, and Build Settings checks were not claimed as passed.
+Unity MCP became callable during the resource completion pass.
+
+- Instance: `EscapeFromNightmares@c6f9dc4f`
+- Unity version: `6000.3.9f1`
+- Project root: `D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares`
+- PASS: `Assets/Sprites/Monster` reimported successfully.
+- PASS: `Assets/Sprites/UI` reimported successfully.
+- PASS: Unity MCP found 7 Texture2D assets under `Assets/Sprites/Monster`.
+- PASS: Unity MCP found 23 Texture2D assets under `Assets/Sprites/UI`.
+- PASS: Unity MCP found 67 Texture2D assets under `Assets/Sprites`, matching all room, item, monster, and UI image resources.
 
 ## Tooling Gap
 
-Because Unity MCP validation is unavailable, future scene/prefab/build validation should create a `unity-validation-tooling` system unit before relying on custom validation scripts.
+Unity MCP is now available for asset checks. Scene hierarchy, prefab reference, serialized reference, missing component, and Build Settings checks still belong to later scene/prefab/build validation units.
 
 ## Acceptance Criteria
 
@@ -62,14 +74,34 @@ Because Unity MCP validation is unavailable, future scene/prefab/build validatio
 
 - `resource_manifest.json`
 - `reports/unity-validation/resource_inventory_validation.json`
+- `reports/unity-validation/final_resource_inventory_validation.json`
+- `reports/unity-validation/remaining_visual_resources_validation.json`
 - `EscapeFromNightmares/Assets/Sprites/**`
 - `EscapeFromNightmares/Assets/Audio/**`
 
+## Validation Results
+
+- PASS: `ResourceManifestValidation` includes every required filename from `design/06_RESOURCES_LIST.txt`.
+- PASS: `RequiredAssetPresenceValidation` confirms files exist at all target paths.
+- PASS: `ZeroByteAssetValidation` confirms no target resource file is empty.
+- PASS: `UnityImportableAssetValidation` for sprites was checked through Unity MCP import/search.
+- PASS: `DesignResourceConsistencyValidation` records the `fuse_holder` / `item_electric_part.png` decision.
+- PASS: All required resources are `final`.
+
+## Current State
+
+- Status: `completed`.
+- Resource inventory is complete.
+- No resource placeholders remain.
+
+## Resume Instructions
+
+Read `phases/0-resource-inventory/handoff.md`, `phases/0-resource-inventory/index.json`, and `resource_manifest.json`. Continue with Unity validation/tooling or the next approved Harness unit.
+
+## Next Action
+
+Open the next Harness unit after resource inventory.
+
 ## Next Step Blocker
 
-Do not begin C# systems, scene, prefab, or ScriptableObject implementation until this resource-inventory unit is reviewed and approved.
-
-Current blocked reasons:
-
-- OGG placeholder files are non-zero review markers, but they are not encoded Vorbis audio because no local OGG encoder was available.
-- `design/03_PUZZLES_ITEMS_EVENTS.txt` uses `fuse_holder`, while `design/06_RESOURCES_LIST.txt` provides `item_electric_part.png`; this needs a user design decision before item/resource naming is normalized.
+Do not begin C# systems, scenes, prefabs, or ScriptableObjects unless the next Harness unit is opened and validation requirements are satisfied.

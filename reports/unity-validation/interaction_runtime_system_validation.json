@@ -1,0 +1,42 @@
+{
+  "validation_name": "InteractionRuntimeSystemValidation",
+  "status": "passed",
+  "checked_at": "2026-05-19",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractableHotspot.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1InteractionReferenceSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/Prefabs/Interactables/InteractableHotspot.prefab",
+    "EscapeFromNightmares/Assets/Prefabs/Interactables/ScreenEdgeHotspot.prefab",
+    "reports/unity-validation/interaction_runtime_setup_batchmode.log"
+  ],
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.Stage1InteractionReferenceSeeder.Seed",
+    "exit_code": 0,
+    "log_path": "reports/unity-validation/interaction_runtime_setup_batchmode.log"
+  },
+  "scene_checks": {
+    "Systems.InteractionSystem": "present",
+    "InteractionSystem.roomSystem": "assigned"
+  },
+  "prefab_checks": {
+    "InteractableHotspot.prefab": "present",
+    "ScreenEdgeHotspot.prefab": "present",
+    "transparent_image_raycast_target": "present"
+  },
+  "known_gaps": [
+    "Room-specific InteractableDefinition assets are not seeded yet.",
+    "Room-specific hotspot prefab instances are not placed yet.",
+    "Puzzle/item/hide/event handling is deferred to later units."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "system",
+    "unit_id": "InventoryRuntimeSystem",
+    "scope": "Create inventory runtime state and minimal item acquisition/use foundation."
+  }
+}

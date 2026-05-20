@@ -5,10 +5,36 @@
     {
       "step": 0,
       "name": "resource-inventory",
-      "status": "blocked",
+      "status": "completed",
       "unit_type": "resource",
       "unit_id": "stage1_required_assets",
-      "requires_user_design_approval": true
+      "requires_user_design_approval": true,
+      "last_known_state": "All required Stage 1 resources in resource_manifest.json are final. Unity MCP imported and found all sprite Texture2D assets under Assets/Sprites.",
+      "next_action": "Resource inventory is complete. Next Harness work should move to Unity validation/tooling or the next approved game unit.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "Resource inventory completed after all room, audio, item, monster, and UI resources were marked final."
+        }
+      ],
+      "review_artifacts": [
+        "resource_manifest.json",
+        "audio_selection_manifest.json",
+        "reports/unity-validation/resource_inventory_validation.json",
+        "reports/unity-validation/final_resource_inventory_validation.json",
+        "reports/unity-validation/stage1_audio_selection_validation.json",
+        "reports/unity-validation/stage1_audio_wav_target_update_validation.json",
+        "reports/unity-validation/remaining_visual_resources_validation.json",
+        "phases/0-resource-inventory/handoff.md"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/resource_inventory_validation.json",
+        "reports/unity-validation/final_resource_inventory_validation.json",
+        "reports/unity-validation/stage1_audio_selection_validation.json",
+        "reports/unity-validation/stage1_audio_wav_target_update_validation.json",
+        "reports/unity-validation/remaining_visual_resources_validation.json"
+      ],
+      "resume_prompt": "Resource inventory is complete. Continue with Unity validation/tooling or the next approved Harness unit."
     },
     {
       "step": 1,
@@ -353,7 +379,7 @@
     {
       "step": 11,
       "name": "item-symbol-fragment-resource",
-      "status": "ready_for_review",
+      "status": "completed",
       "unit_type": "resource",
       "unit_id": "item_symbol_fragment.png",
       "requires_user_design_approval": true,
@@ -367,6 +393,10 @@
         {
           "date": "2026-05-19",
           "decision": "Generated and replaced only item_symbol_fragment.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness; treated as review approval and completion for this ready_for_review unit."
         }
       ],
       "review_artifacts": [
@@ -377,7 +407,86 @@
       "validation_reports": [
         "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
       ],
-      "resume_prompt": "Review EscapeFromNightmares/Assets/Sprites/Items/item_symbol_fragment.png. If accepted, approve this step, then open the next single resource unit for item_front_door_key.png."
+      "resume_prompt": "Step 11 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 12,
+      "name": "item-front-door-key-resource",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "item_front_door_key.png",
+      "requires_user_design_approval": true,
+      "last_known_state": "Final 256x256 PNG generated and copied to EscapeFromNightmares/Assets/Sprites/Items/item_front_door_key.png. All item icons are now final.",
+      "next_action": "User reviews item_front_door_key.png. Do not start monster or UI resource units until this ready_for_review step is approved or revision instructions are provided.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all approval-gated work needed to proceed according to the Harness."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated and replaced only item_front_door_key.png; preserved its existing Unity .meta file."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all remaining approval-gated resource work and requested continuing without separate approval; treated as review approval and completion for this ready_for_review unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step12.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Items/item_front_door_key.png"
+      ],
+      "validation_reports": [
+        "Manual PNG validation: 256x256, non-zero byte, loadable via System.Drawing."
+      ],
+      "resume_prompt": "Step 12 has been approved and completed. Continue with the next active Harness step."
+    },
+    {
+      "step": 13,
+      "name": "remaining-visual-resources-batch",
+      "status": "completed",
+      "unit_type": "resource",
+      "unit_id": "remaining_monster_and_ui_images",
+      "requires_user_design_approval": true,
+      "last_known_state": "Generated remaining 7 monster images and 23 UI images. All resource_manifest.json entries are final. Unity MCP imported and found generated sprite assets.",
+      "next_action": "Resource inventory is complete. Next Harness work should move to Unity validation/tooling or the next approved game unit.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User approved all remaining approval-gated resource work and requested no separate approvals."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Approved exception to combine remaining monster and UI resource files into one batch resource unit to finish the resource inventory."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Unity MCP is active at EscapeFromNightmares@c6f9dc4f and should be used for Unity-side asset checks after file generation."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated 7 monster images with the built-in image generation path."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Generated 23 UI images locally as hand-drawn grayscale UI sprites."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Unity MCP imported Assets/Sprites/Monster and Assets/Sprites/UI and found the expected generated Texture2D assets."
+        }
+      ],
+      "review_artifacts": [
+        "phases/0-resource-inventory/step13.md",
+        "resource_manifest.json",
+        "EscapeFromNightmares/Assets/Sprites/Monster/*.png",
+        "EscapeFromNightmares/Assets/Sprites/UI/*.png"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/remaining_visual_resources_validation.json"
+      ],
+      "resume_prompt": "Step 13 is complete. All resources are final. Continue with Unity validation/tooling or the next approved Harness unit."
     }
   ]
 }

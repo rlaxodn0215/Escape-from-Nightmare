@@ -1,0 +1,43 @@
+{
+  "validation_name": "Stage1InteractableDefinitionsValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1InteractableDefinitionSeeder.cs",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Interactables",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Rooms",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Items",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Puzzles"
+  ],
+  "summary": {
+    "interactable_assets_created_or_updated": 53,
+    "room_assets_checked": 27,
+    "rooms_with_interactable_references": 23,
+    "doors": 30,
+    "item_pickups": 3,
+    "puzzle_objects": 7,
+    "clue_objects": 7,
+    "hide_spots": 5,
+    "escape_doors": 1
+  },
+  "findings": [],
+  "known_gaps": [
+    "Hit areas are coarse 1280x720 data placeholders and need room-art tuning during hotspot placement.",
+    "Four Stage 1 rooms intentionally remain without interactables in this unit: attic_main, attic_album_storage, basement_storage, first_floor_bathroom.",
+    "Room-specific Stage1 scene hotspot prefab instances are not part of this unit.",
+    "Puzzle, event, monster, and hiding runtime behavior are not part of this unit."
+  ],
+  "unity_mcp": {
+    "used": true,
+    "checks": [
+      "refresh_unity compile request completed with editor ready_for_tools=true",
+      "execute_menu_item ran Escape From Nightmares/Seed Stage1 Interactable Definitions",
+      "read_console found no C# compiler errors after script refresh"
+    ],
+    "notes": [
+      "A long execute_code validation attempt exceeded the MCP CodeDom command-line length limit; static YAML and AssetDatabase-generated asset counts were used for the review artifact instead.",
+      "MCP client handler lifecycle logs were present and are unrelated to project compilation."
+    ]
+  },
+  "blocked_reason": "",
+  "next_action": "Place room-specific interactable hotspot prefab instances from these definitions in Stage1.unity."
+}

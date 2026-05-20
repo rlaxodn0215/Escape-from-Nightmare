@@ -50,6 +50,7 @@ Resource requirements:
 - 2026-05-19: Started implementation for the approved single resource unit.
 - 2026-05-19: Used the built-in image generation path through the `imagegen` skill; no CLI fallback or API key was used.
 - 2026-05-19: Replaced only `item_symbol_fragment.png` and preserved the existing Unity `.meta` file.
+- 2026-05-19: User approved all approval-gated work needed to proceed according to the Harness; this ready-for-review step was treated as approved and completed.
 
 ## Out of Scope
 
@@ -92,18 +93,18 @@ Current item icon queue after this unit:
 
 ## Current State
 
-- Status: `ready_for_review`.
+- Status: `completed`.
 - The generated final icon has replaced the placeholder PNG at the Unity target path.
 - The existing `.meta` file remains unchanged.
 - This step did not create gameplay scripts, prefabs, ScriptableObjects, scenes, or UI wiring.
 
 ## Resume Instructions
 
-Read this file, `phases/0-resource-inventory/index.json`, and `resource_manifest.json`. If the user accepts the icon, mark this step approved/completed and begin the next single resource unit, `item_front_door_key.png`.
+Read this file, `phases/0-resource-inventory/index.json`, and `resource_manifest.json`. This step is complete; continue with the next active Harness step.
 
 ## Next Action
 
-User review is required for `item_symbol_fragment.png`. Do not start the next resource unit until this step is approved or revision instructions are provided.
+Continue with the next active Harness step.
 
 ## Next Step Blocker
 

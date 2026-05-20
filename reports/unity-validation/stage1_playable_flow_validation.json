@@ -1,0 +1,93 @@
+{
+  "validation_name": "Stage1PlayableFlowValidation",
+  "status": "passed_with_followups",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/ProjectSettings/EditorBuildSettings.asset",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1",
+    "EscapeFromNightmares/Assets/Prefabs",
+    "reports/unity-validation"
+  ],
+  "findings": [
+    {
+      "severity": "info",
+      "message": "Unity MCP refresh completed and no C# compiler errors were observed; console errors were limited to MCP client disposal/connection lifecycle messages."
+    },
+    {
+      "severity": "info",
+      "message": "Build Settings has Assets/Scenes/Stage1.unity enabled at build index 0, so SampleScene is not the only enabled build scene."
+    },
+    {
+      "severity": "info",
+      "message": "Active scene is Stage1 with 11 roots and required playable roots present: StageRoot, Systems, RoomView, InteractableLayer, MonsterLayer, AudioRoot, UICanvas, EventSystem, and DebugRoot."
+    },
+    {
+      "severity": "info",
+      "message": "Systems root contains GameStateManager, SceneFlowController, InputRouter, SaveManager, RoomSystem, InteractionSystem, InventorySystem, PuzzleSystem, EventRuntimeSystem, SoundRuntimeSystem, HidingRuntimeSystem, MonsterRuntimeSystem, and MapRuntimeSystem."
+    },
+    {
+      "severity": "info",
+      "message": "StageRoot references Assets/ScriptableObjects/Stage1/Stage1Definition.asset through GameBootstrap."
+    },
+    {
+      "severity": "info",
+      "message": "Unity MCP found one scene instance for each core UI surface: TitleUI, PauseUI, SettingsUI, InventoryUI, MapUI, PuzzleUI, HidingGaugeUI, and GameOverUI."
+    },
+    {
+      "severity": "info",
+      "message": "Unity MCP found one HUD button instance for inventory, map, and settings."
+    },
+    {
+      "severity": "info",
+      "message": "Unity MCP found RoomViewPresenter, MonsterOverlay, and six AudioEmitter instances."
+    },
+    {
+      "severity": "info",
+      "message": "Required UI prefabs exist under Assets/Prefabs/UI."
+    },
+    {
+      "severity": "info",
+      "message": "Required gameplay prefabs exist under Assets/Prefabs, Assets/Prefabs/Audio, Assets/Prefabs/Interactables, and Assets/Prefabs/Monster."
+    },
+    {
+      "severity": "info",
+      "message": "Stage1 ScriptableObject assets are present: 27 rooms, 53 interactables, 10 items, 7 puzzles, 23 events, 9 monster nodes, and sound definitions."
+    },
+    {
+      "severity": "info",
+      "message": "Static YAML scan found no missing script markers in Stage1.unity or prefabs."
+    },
+    {
+      "severity": "warning",
+      "message": "Unity EditMode and PlayMode test jobs succeeded, but each test assembly reported 0 concrete tests. This validates runner readiness, not gameplay behavior."
+    },
+    {
+      "severity": "warning",
+      "message": "No BuildScript.BuildWindows implementation was found. Windows player build work should create or configure a build entry point before batch build verification."
+    }
+  ],
+  "test_jobs": [
+    {
+      "mode": "EditMode",
+      "job_id": "565efa318ce249b79d39b68297a92d28",
+      "status": "succeeded",
+      "result_state": "Passed",
+      "total_tests": 0,
+      "failed_tests": 0
+    },
+    {
+      "mode": "PlayMode",
+      "job_id": "b7ad6426ba5b4899afd935a3707ec2e1",
+      "status": "succeeded",
+      "result_state": "Passed",
+      "total_tests": 0,
+      "failed_tests": 0
+    }
+  ],
+  "blocked_reason": null,
+  "followups": [
+    "Create a Windows build script or build profile entry point.",
+    "Add concrete EditMode or PlayMode smoke tests for Stage1 start, HUD buttons, room movement, and game-over restart flow.",
+    "Run final marker and hit-area tuning during playtest."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "validation_name": "SoundRuntimeSystemValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/SoundRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/EventRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/PuzzleSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1SoundRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Sounds",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Rooms",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Events"
+  ],
+  "summary": {
+    "sound_definition_assets": 62,
+    "room_ambience_references": 13,
+    "event_audio_cue_references": 15,
+    "sound_runtime_system_components_in_scene": 1,
+    "audio_channels": [
+      "BgmEmitter",
+      "AmbienceEmitter",
+      "SfxEmitter",
+      "EventEmitter",
+      "UiEmitter"
+    ],
+    "systems_referencing_sound_runtime": [
+      "InteractionSystem",
+      "PuzzleSystem",
+      "EventRuntimeSystem"
+    ]
+  },
+  "findings": [],
+  "known_gaps": [
+    "Final mix balancing is outside this unit.",
+    "Dynamic monster proximity audio is outside this unit.",
+    "Some rooms intentionally use fallback ambience IDs or no ambience where no matching SoundDefinition exists.",
+    "UI button click routing is available through SoundRuntimeSystem but individual UI surfaces are not all wired in this unit."
+  ],
+  "unity_mcp": {
+    "used": true,
+    "checks": [
+      "refresh_unity compile request completed with editor ready_for_tools=true",
+      "read_console found no C# compiler errors after forced all-assets refresh",
+      "execute_menu_item ran Escape From Nightmares/Seed Stage1 Sound Runtime",
+      "find_gameobjects by component SoundRuntimeSystem found one scene object",
+      "component inspection confirmed SoundRuntimeSystem references GameBootstrap, RoomSystem, and five AudioEmitter channels",
+      "component inspection confirmed InteractionSystem, PuzzleSystem, and EventRuntimeSystem reference SoundRuntimeSystem"
+    ],
+    "notes": [
+      "An initial compile pass reported existing systems could not see SoundRuntimeSystem before the Unity asset database imported the new file; a forced all-assets refresh resolved it.",
+      "MCP client handler lifecycle logs were present and are unrelated to project compilation."
+    ]
+  },
+  "blocked_reason": "",
+  "next_action": "Implement a focused HidingRuntimeSystem using HideSpot interactables and HidingGaugeUI."
+}

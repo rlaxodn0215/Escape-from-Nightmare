@@ -1,0 +1,38 @@
+{
+  "project": "Escape From Nightmares",
+  "phase": "8-inventory-runtime-system",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 0,
+      "name": "inventory-runtime-system",
+      "status": "completed",
+      "unit_type": "system",
+      "unit_id": "InventoryRuntimeSystem",
+      "requires_user_design_approval": true,
+      "last_known_state": "InventorySystem is implemented and attached to Systems in Stage1. InteractionSystem can award item pickups and check selected item requirements.",
+      "next_action": "Open the next Harness unit for InventoryUI.prefab or room-specific item pickup hotspot placement.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to continue until the final result and always approve Harness work."
+        },
+        {
+          "date": "2026-05-20",
+          "decision": "Standing approval applied as approved_for_implementation for the scoped InventoryRuntimeSystem unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/8-inventory-runtime-system/step0.md",
+        "EscapeFromNightmares/Assets/Scripts/Systems/InventorySystem.cs",
+        "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+        "EscapeFromNightmares/Assets/Scripts/Editor/Stage1InventoryReferenceSeeder.cs",
+        "reports/unity-validation/inventory_runtime_system_validation.json"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/inventory_runtime_system_validation.json"
+      ],
+      "resume_prompt": "InventoryRuntimeSystem is complete. Continue with InventoryUI.prefab or room-specific item pickup hotspot placement."
+    }
+  ]
+}

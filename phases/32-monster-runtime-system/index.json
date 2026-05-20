@@ -1,0 +1,61 @@
+{
+  "phase": "32-monster-runtime-system",
+  "unit_type": "system",
+  "unit_id": "MonsterRuntimeSystem",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/04_MONSTER_HIDING_AI.txt",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt"
+  ],
+  "proposal": {
+    "summary": "Implement a focused monster runtime system that drives monster states, capture pressure, sound cues, and MonsterOverlay presentation.",
+    "out_of_scope": [
+      "Full pathfinding or authored patrol routes",
+      "Final balance tuning",
+      "Bespoke monster cinematics",
+      "New monster art or audio assets",
+      "Map gameplay"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Implement one Harness unit: MonsterRuntimeSystem.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends MonsterRuntimeSystem."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "MonsterRuntimeSystemValidation",
+      "status": "passed",
+      "artifact": "reports/unity-validation/monster_runtime_system_validation.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/monster_runtime_system_validation.json",
+    "EscapeFromNightmares/Assets/Scripts/Systems/MonsterRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/EventRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1MonsterRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity"
+  ],
+  "current_state": "Completed. MonsterRuntimeSystem handles event-driven monster state changes, MonsterOverlay presentation, sound cues, and capture pressure through HidingRuntimeSystem.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for MapRuntimeSystem only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start MapRuntimeSystem to update MapUI current room and floor state from RoomSystem."
+}

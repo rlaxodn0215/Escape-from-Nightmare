@@ -1,0 +1,717 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/staging' branch; Version is '6000.3.9f1 (7a9955a4f2fa) revision 8034645'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) Core' Language: 'ko' Physical Memory: 65162 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-rlaxo" at "2026-05-19T14:42:50.3977515Z"
+System  architecture: x64
+Process architecture: x64
+Date: 2026-05-19T14:42:50Z
+
+COMMAND LINE ARGUMENTS:
+D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares
+-executeMethod
+EscapeFromNightmares.Editor.Stage1SoundDefinitionSeeder.Seed
+-logFile
+D:\Game\Project\Escape_from_Nightmares\reports\unity-validation\stage1_sound_seed_batchmode.log
+Successfully changed project path to: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares
+D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [40216]  Target information:
+
+Player connection [40216]  * "[IP] 210.105.80.240 [Port] 55504 [Flags] 2 [Guid] 2220927453 [EditorId] 2220927453 [Version] 1048832 [Id] WindowsEditor(7,rlaxodn0215) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [40216]  * "[IP] 172.30.80.1 [Port] 55504 [Flags] 2 [Guid] 2220927453 [EditorId] 2220927453 [Version] 1048832 [Id] WindowsEditor(7,rlaxodn0215) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [40216] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [40216] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-42024" after 0.2 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.4+4293ba1
+  Session Id:              e75f5dfd2945478f834d78d1573b52cb
+  Correlation Id:          6ef71368459d33a7e632c1f9bda63746
+  External correlation Id: 7237528684173719384
+  Machine Id:              heqerU0KLUYhmfMbQ/sN1pRvI3I=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-rlaxo" (connect: 0.00s, validation: 0.00s, handshake: 1.76s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-rlaxo-notifications" at "2026-05-19T14:42:52.1550787Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568547653354-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.76s
+[Licensing::Module] Licensing is initialized (took 0.98s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Artifact Garbage Collection - Removed 78 unused hashed content files
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.3.9f1 (7a9955a4f2fa)
+[Subsystems] Discovering subsystems at path D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 Laptop GPU (ID=0x28e0)
+    Vendor:   NVIDIA
+    VRAM:     7956 MB
+    Driver:   32.0.15.9174
+Initialize mono
+Mono path[0] = 'D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56024
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000949 seconds.
+- Loaded All Assemblies, in  0.339 seconds
+Native extension for WindowsStandalone target not found
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.362 seconds
+Domain Reload Profiling: 701ms
+	BeginReloadAssembly (111ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (7ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (148ms)
+		LoadAssemblies (104ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (145ms)
+			TypeCache.Refresh (144ms)
+				TypeCache.ScanAssembly (132ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (363ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (328ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (39ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (132ms)
+			ProcessInitializeOnLoadMethodAttributes (75ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+Package Manager log level set to [2]
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 67 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.2d.animation@13.0.4 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.animation@7396d8477ca9)
+    com.unity.2d.aseprite@3.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.aseprite@809e3a168ff7)
+    com.unity.2d.psdimporter@12.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.psdimporter@9abe0f7cac7e)
+    com.unity.2d.spriteshape@13.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.spriteshape@0738bab11647)
+    com.unity.2d.tilemap.extras@6.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.tilemap.extras@3dde84bf3867)
+    com.unity.2d.tooling@1.0.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.tooling@249995156768)
+    com.unity.collab-proxy@2.11.3 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.collab-proxy@e566cd3e7623)
+    com.unity.ide.rider@3.0.39 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ide.rider@4504839d03f7)
+    com.unity.ide.visualstudio@2.0.26 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.18.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.inputsystem@57d0e36f6123)
+    com.unity.timeline@1.8.10 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.timeline@7f8b2fb101b6)
+    com.unity.visualscripting@1.9.9 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.visualscripting@191c0d7e3b69)
+    com.unity.2d.common@12.0.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.common@800085e896ad)
+    com.unity.mathematics@1.3.3 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.mathematics@19a9377c4ffa)
+    com.unity.collections@2.6.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.collections@aea9d3bd5e19)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.4 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.28 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.burst@07790c2d06d9)
+    com.unity.nuget.mono-cecil@1.11.6 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.2.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.test-framework.performance@0840f58e4562)
+  Built-in packages:
+    com.unity.2d.sprite@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.sprite@d14b9d497a24)
+    com.unity.2d.tilemap@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.tilemap@f011712243ad)
+    com.unity.multiplayer.center@1.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.multiplayer.center@f01f4ba8d00a)
+    com.unity.render-pipelines.universal@17.3.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.render-pipelines.universal@7327e77c1cc2)
+    com.unity.test-framework@1.6.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d)
+    com.unity.ugui@2.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ugui@bb329a87fcdc)
+    com.unity.modules.accessibility@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.vr@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.vr)
+    com.unity.modules.wind@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.0.5 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ext.nunit@d8c07649098d)
+    com.unity.render-pipelines.core@17.3.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.render-pipelines.core@04ab0eefa0c3)
+    com.unity.shadergraph@17.3.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.shadergraph@f80b792d4861)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.coplaydev.unity-mcp@13fb3ee12774)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+Starting: D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aEDbg.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+DisplayProgressbar: Compiling Scripts
+ExitCode: 4 Duration: 2s481ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aEDbg-inputdata.json
+[ 824/1063  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[ 825/1063  2s] Csc Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp-Editor.dll (+2 others)
+*** Tundra requires additional run (2.45 seconds), 2 items updated, 823 evaluated
+Starting: D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\netcorerun\netcorerun.exe "D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1900b0aEDbg.dag.json" "Library/Bee/1900b0aEDbg-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+ExitCode: 0 Duration: 0s673ms
+Starting: D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aEDbg.dag" --continue-on-failure --dagfilejson="Library\Bee\1900b0aEDbg.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+ExitCode: 0 Duration: 0s951ms
+Finished compiling graph: 1067 nodes, 20565 flattened edges (16857 ToBuild, 170 ToUse), maximum node priority 1207
+[ 825/1063  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1060/1063  0s] ILPostProcess Library/Bee/artifacts/1900b0aEDbg.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp-Editor.dll, with 135 defines and 352 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[1061/1063  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[1062/1063  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (0.93 seconds), 4 items updated, 1063 evaluated
+AssetDatabase: script compilation time: 4.634911s
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.013 seconds
+Refreshing native plugins compatible for Editor in 1.43 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  5.503 seconds
+Domain Reload Profiling: 6516ms
+	BeginReloadAssembly (272ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (146ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (674ms)
+		LoadAssemblies (489ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (269ms)
+			TypeCache.Refresh (183ms)
+				TypeCache.ScanAssembly (169ms)
+			BuildScriptInfoCaches (73ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (5504ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (5338ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (215ms)
+			ProcessInitializeOnLoadAttributes (4955ms)
+			ProcessInitializeOnLoadMethodAttributes (143ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Start importing Packages/com.unity.render-pipelines.core/Tests/Editor/UnifiedRayTracing/TraceRays.urtshader using Guid(1142bbad8b9e8c44c83a9775ff120d37) (ScriptedImporter)Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+
+Compiling Ray Tracing Shader "TraceRays.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '711be5bd2aec212bc7f52fe41408d171') in 0.1708526 seconds
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGI/SurfaceCacheCore/RisEstimation.urtshader using Guid(713f6141bd66a134383b787f2eaa7c11) (ScriptedImporter)
+Compiling Ray Tracing Shader "RisEstimation.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '138b6ddd809598ee99efeedbba515d5d') in 0.1513611 seconds
+Start importing Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/RenderingLayerMask/TraceRenderingLayerMask.urtshader using Guid(94a070d33e408384bafc1dea4a565df9) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceRenderingLayerMask.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: 'ae9ed0d17c428fa5d475a19beb4b638b') in 0.0640835 seconds
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGI/SurfaceCacheCore/UniformEstimation.urtshader using Guid(94a39d12848d8d64ca962a72b74e7c50) (ScriptedImporter)
+Compiling Ray Tracing Shader "UniformEstimation.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: 'd3dc4aa72a88bdf174f365f7399c830a') in 0.0446874 seconds
+Start importing Packages/com.unity.render-pipelines.core/Tests/Editor/UnifiedRayTracing/TraceTransparentRays.urtshader using Guid(6513c3b892e933c4f8d00c19d5c47532) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceTransparentRays.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '134aed3489688c5d7443737a8b82ef4a') in 0.0233867 seconds
+Start importing Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/DynamicGI/DynamicGISkyOcclusion.urtshader using Guid(5a2a534753fbdb44e96c3c78b5a6999d) (ScriptedImporter)
+Compiling Ray Tracing Shader "DynamicGISkyOcclusion.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '461705bc7692729cfd2d2238848b6419') in 0.0274288 seconds
+Start importing Packages/com.unity.render-pipelines.core/Tests/Editor/UnifiedRayTracing/TraceRaysAndFetchAttributes.urtshader using Guid(fbc59f55df2416344b008dc23753cae2) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceRaysAndFetchAttributes.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '67e914a91375aed09bcd09d6732c8b3c') in 0.0270789 seconds
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGI/SurfaceCacheCore/RestirCandidateTemporal.urtshader using Guid(ad3a9f9982f8c4f4a839a78955e78458) (ScriptedImporter)
+Compiling Ray Tracing Shader "RestirCandidateTemporal.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '9c5f82b1bec7d1e113aa7d907a3587c5') in 0.0407563 seconds
+Start importing Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/VirtualOffset/TraceVirtualOffset.urtshader using Guid(ff2cbab5da58bf04d82c5f34037ed123) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceVirtualOffset.urtshader", keywords = <no keywords>
+    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '6a26cbc95662ba5a0a572b51348960cd') in 0.0523749 seconds
+Refreshing native plugins compatible for Editor in 1.38 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=37ee5b6a9e1c12346bba94631c04c331): Total: 13.366 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=7 ms, native=6837 ms
+		Asset DB Callback time: managed=683 ms, native=80 ms
+		Scripting: domain reloads=1, domain reload time=1013 ms, compile time=4636 ms, other=107 ms
+		Project Asset Count: scripts=1653, non-scripts=11413
+		Asset File Changes: new=0, changed=1, moved=0, deleted=1827
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.001ms
+	InvokePackagesCallback: 22.556ms
+	ApplyChangesToAssetFolders: 0.649ms
+	Scan: 244.468ms
+	OnSourceAssetsModified: 6.481ms
+	CategorizeAssetsWithTransientArtifact: 46.647ms
+	ProcessAssetsWithTransientArtifactChanges: 75.939ms
+	UnregisterDeletedAssets: 0.185ms
+	CategorizeAssets: 125.815ms
+	ImportOutOfDateAssets: 6140.637ms (861.920ms without children)
+		ImportManagerImport: 622.014ms (16.725ms without children)
+			ImportInProcess: 605.288ms
+		CompileScripts: 4636.213ms
+		ReloadNativeAssets: 0.075ms
+		UnloadImportedAssets: 1.090ms
+		ReloadImportedAssets: 14.578ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 3.178ms
+		InitializingProgressBar: 0.013ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.001ms
+		OnDemandSchedulerStart: 1.555ms
+	PostProcessAllAssets: 733.814ms
+	Hotreload: 5.061ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.002ms
+	UnloadStreamsBegin: 2.066ms
+	PersistCurrentRevisions: 3.685ms
+	UnloadStreamsEnd: 0.002ms
+	GenerateScriptTypeHashes: 3.994ms
+	Untracked: 5958.070ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 3.830ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-EscapeFromNightmares
+Unloading 25 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7212 unused Assets / (5.4 MB). Loaded Objects now: 8033.
+Memory consumption went from 241.4 MB to 236.0 MB.
+Total: 10.502100 ms (FindLiveObjects: 0.583100 ms CreateObjectMapping: 0.476600 ms MarkObjects: 7.473000 ms  DeleteObjects: 1.967900 ms)
+
+Start importing Assets/ScriptableObjects/Stage1/Sounds/BGM using Guid(801521be314879244935857612cbb3aa) (DefaultImporter) -> (artifact id: '8ffd27999ada60cdbdeb43bbf523577c') in 0.020393 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=fa1cd3907922cf94590600ff223fcba2): Total: 0.170 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.10 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=2e43ae21a6dd0fe45a93d4adafc364c2): Total: 0.053 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=af9470cb593eccc41a600d050defed23): Total: 0.052 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 0.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=1913999fbaf70bf4199b9487e031a1b9): Total: 0.038 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 0.98 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=bbecb702d2ac6da489b87976e63d8533): Total: 0.058 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience using Guid(56b8fba99567a074fa8e651b4c1a8782) (DefaultImporter) -> (artifact id: '73e80a4f30e3650fe8d5bea8ad9de77d') in 0.019034 seconds
+Refreshing native plugins compatible for Editor in 1.03 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=1bf99d1ecb9a2374a9a710605f6dd7b7): Total: 0.079 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.15 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=63fe5fb666f9b2149a967cc6533e51ba): Total: 0.052 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 0.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=182112710dcfccc46b752744ae5ca4b9): Total: 0.043 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.02 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=ab3215cfdf1ac2f45bfd6374b89586d9): Total: 0.054 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.29 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=889c6207aba16bf408214f02f07f3c70): Total: 0.037 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.02 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=efd764a843558e2479a6f1cbf6805455): Total: 0.037 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.15 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=0434cbd4b43c3b74191cee59a2ec1aa5): Total: 0.038 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 0.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=9efc3e8ca32a6af46878214c5e2339e2): Total: 0.037 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.16 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=91c39a33563652940a15a18454531017): Total: 0.038 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.09 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=f490283bff7b9ce4eb57cdba151a256f): Total: 0.055 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Events using Guid(7d9ea738d82e69e47a466b19b1138e7e) (DefaultImporter) -> (artifact id: '64cdfc378992c52a309946e9e930dc33') in 0.0216672 seconds
+Refreshing native plugins compatible for Editor in 1.01 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=224efb6d68f92864dadbbd23afdb07ba): Total: 0.074 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.39 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=4d828e13ce0daaf42823106852ff7397): Total: 0.067 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.32 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=b4c13bb94b46f594aa8fe93ef10e388f): Total: 0.051 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 1.08 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=0c8a550224e6ed442a5f62f327eb9e7b): Total: 0.051 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Refreshing native plugins compatible for Editor in 0.95 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=3c594000877a27f4c9cbef4becbd1e4e): Total: 0.046 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster using Guid(e1fcc067f94c7314eaf5296ae8865f09) (DefaultImporter) -> (artifact id: '5c9b2bea2df9b5563271c3f6b1ff5f25') in 0.0191238 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_breath_far.asset using Guid(dedaafd631a9cda4cbd2004a848e3826) (NativeFormatImporter) -> (artifact id: '0c061611d5aae39ccd6c75dc9ccb9367') in 0.001735 seconds
+Refreshing native plugins compatible for Editor in 0.93 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=0194aaf88546da04a9263553ccc95f03): Total: 0.078 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_breath_near.asset using Guid(cf457afe02f24f346b06f7ac5e0b7649) (NativeFormatImporter) -> (artifact id: '78621022532797194e56d8b4018634ff') in 0.0016636 seconds
+Refreshing native plugins compatible for Editor in 0.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=13d20d52ac66e52408b44270b55eaa65): Total: 0.051 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_capture.asset using Guid(ad606092c662c444fa5a80a863128b77) (NativeFormatImporter) -> (artifact id: '036a60213e58db660e2dcb371afa669d') in 0.0022866 seconds
+Refreshing native plugins compatible for Editor in 1.04 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=517f2e440689d6b4ba6867db9afd061a): Total: 0.056 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_chase_start.asset using Guid(2cc78f9ec30f311489e2842bcb637e96) (NativeFormatImporter) -> (artifact id: '1c36f439eb33adc0a381401cee47408b') in 0.0018178 seconds
+Refreshing native plugins compatible for Editor in 0.95 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=fc23c8987fc5d4c4692014fe23c3a6fe): Total: 0.052 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_detected.asset using Guid(c05d690f46132cd4eaf07ab57a2bc3b7) (NativeFormatImporter) -> (artifact id: '23f960790023d9d761f61d6a57967c38') in 0.0019708 seconds
+Refreshing native plugins compatible for Editor in 1.48 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=61c0c1f46086a364f90637b6f88316fb): Total: 0.063 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_footstep_far.asset using Guid(a9a14671fbda99d4a9b60c4093b98e00) (NativeFormatImporter) -> (artifact id: '40c6d679f08603d6ecf7b2046089cf6a') in 0.0017937 seconds
+Refreshing native plugins compatible for Editor in 1.09 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=6101ec59f4a75a44c9d4f4b6f4c818a1): Total: 0.052 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_footstep_mid.asset using Guid(d678454562d133e4998053cc842cb4bb) (NativeFormatImporter) -> (artifact id: 'f4f83dbb2739dcf65e2136b9c8a94037') in 0.0018717 seconds
+Refreshing native plugins compatible for Editor in 0.98 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=4e8ed057b256a0f41945d49b067bc7d9): Total: 0.054 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_footstep_near.asset using Guid(8fdcff3f8f976d549be0db5ad4ac26df) (NativeFormatImporter) -> (artifact id: '2bbd4a5fab79dd6322697daa4386ed24') in 0.0020927 seconds
+Refreshing native plugins compatible for Editor in 1.07 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=722d4185101025647b6d43378ab9718e): Total: 0.058 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_low_growl.asset using Guid(db83d995c9c45b54b9f352cd30f9d3a4) (NativeFormatImporter) -> (artifact id: 'b45597c31db1d646eb88a781c03f86cf') in 0.0021499 seconds
+Refreshing native plugins compatible for Editor in 1.35 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=488ada61ee7e3b64c8e9bba08e2caf10): Total: 0.056 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_searching.asset using Guid(6d36e9bb059205a4490f488ec9da9d09) (NativeFormatImporter) -> (artifact id: '98f66b5885d089b1a43a64ae84e30570') in 0.0016424 seconds
+Refreshing native plugins compatible for Editor in 1.05 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=b024d2760bd78cb4aa495f3e8e2477a3): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX using Guid(bc54f4b42254ec342bbd32451454b5af) (DefaultImporter) -> (artifact id: 'bded570901764a1cef0f44662ad74e23') in 0.0041629 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_altar_activate.asset using Guid(3e6058b0ef36641498d34b9ff5ae254c) (NativeFormatImporter) -> (artifact id: 'c56f91b3547ff76c97f7c94094628f01') in 0.0016307 seconds
+Refreshing native plugins compatible for Editor in 0.93 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=32bc709c2e1a0a842885d847425adb29): Total: 0.052 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_box_open.asset using Guid(29699f914d9f32247a97551cd96b3d25) (NativeFormatImporter) -> (artifact id: 'eddfadf443eab6dbeae7e6d0bce0ebe0') in 0.0024584 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=0a3714ddadef55e43a869c9fd5567e13): Total: 0.051 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_breaker_switch.asset using Guid(1a860606325d46146b3f46368a65a543) (NativeFormatImporter) -> (artifact id: '62230bd68fad2c62df0551fef268b301') in 0.0017312 seconds
+Refreshing native plugins compatible for Editor in 1.02 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=564d6ef2a29e7474b80e60db3690b886): Total: 0.055 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_click.asset using Guid(5f94e0e12adec5a40924e3ef6a784624) (NativeFormatImporter) -> (artifact id: 'b0ea7ba4bfb2d0bcd8322282c7a94507') in 0.0016839 seconds
+Refreshing native plugins compatible for Editor in 0.93 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=2abd94c82eb26e74ab78d4ca047dd192): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_door_locked.asset using Guid(3031aa86cd6ca0c40878c95293beb354) (NativeFormatImporter) -> (artifact id: 'edf87717ab8e80de51901e2d2a2cdf50') in 0.0019046 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=43924bec847917f47b4e74be55d34890): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_door_open.asset using Guid(316617d6ad6b51640a2debfbf836cac1) (NativeFormatImporter) -> (artifact id: '8702943222d5dc2aff8be2d9ce859d54') in 0.0024264 seconds
+Refreshing native plugins compatible for Editor in 1.01 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=3cb7d2565f5fc404b9e5c4514edbb6f5): Total: 0.054 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_drawer_open.asset using Guid(d4e4bf1357dedc74a8e80eb9eb4f8648) (NativeFormatImporter) -> (artifact id: '5949ff5b3bc4ecac8e956c7e3e962fd9') in 0.0016881 seconds
+Refreshing native plugins compatible for Editor in 1.02 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=722d3e5de1cedb34698e1b4222deacfd): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_electricity_restore.asset using Guid(c6fff956ef2546a4a8d8ea6d411d627e) (NativeFormatImporter) -> (artifact id: 'eebdde72bd04038b31d2d28a5494585f') in 0.0021416 seconds
+Refreshing native plugins compatible for Editor in 1.13 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=6096ded74ebe3ab4da201bb3e4b686b1): Total: 0.054 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_electronic_lock_release.asset using Guid(349c614722e1ee440a6c599341ce060c) (NativeFormatImporter) -> (artifact id: '98433cef16af986b8fe3e81b88cb7af6') in 0.0019351 seconds
+Refreshing native plugins compatible for Editor in 0.98 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=40ae0ffe6699a9440b9a41c17e1196ec): Total: 0.058 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_front_door_unlock.asset using Guid(fc5348f06fc9f8e428114901c75a586e) (NativeFormatImporter) -> (artifact id: '17c33f8cf65aa12eb81d57bd8934c9f3') in 0.0019811 seconds
+Refreshing native plugins compatible for Editor in 1.15 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=dadc2181a2929e0468815bc04f85b5cf): Total: 0.056 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_fuse_insert.asset using Guid(bdfa8e51bc78d6842901019740f9a370) (NativeFormatImporter) -> (artifact id: 'f2d29bfb5d2f9ec7f192834d51ba8cdc') in 0.0018477 seconds
+Refreshing native plugins compatible for Editor in 1.17 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=faaf387fd027f3f4eb61606c27c65f55): Total: 0.056 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_inventory_close.asset using Guid(ecf3c88be91a7d54c820349370b2c06f) (NativeFormatImporter) -> (artifact id: '2d0d8caeeee1eee81ab6f3465b038be6') in 0.0017561 seconds
+Refreshing native plugins compatible for Editor in 0.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=f4cb7543773458e4ea9080ce06bd39ef): Total: 0.059 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_inventory_open.asset using Guid(b67c8e033bab4ec42b491c2f7b81eac6) (NativeFormatImporter) -> (artifact id: '8d7d68dcff675ae09ac14a8ef5d4aab3') in 0.0022077 seconds
+Refreshing native plugins compatible for Editor in 1.03 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=c8ec33120cd6a254cae511a64d361781): Total: 0.061 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_item_combine.asset using Guid(f4dfac7c64d18f24c8bd55d97c96318b) (NativeFormatImporter) -> (artifact id: '1841a346bf29f79f5c78ad76afed677f') in 0.0019308 seconds
+Refreshing native plugins compatible for Editor in 1.01 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=795fcc67e050f9a4ca33678e1c8181b8): Total: 0.059 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_item_pickup.asset using Guid(8083dba2d4225904b994ff1d67745e15) (NativeFormatImporter) -> (artifact id: 'ed38468d09c6ae87a2815d0d9ffe7d28') in 0.0019831 seconds
+Refreshing native plugins compatible for Editor in 1.05 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=89c1a904792b1fc4a80e4888f17ab1f7): Total: 0.061 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_item_use.asset using Guid(d615b36307cf95449b5a07d849a5f97e) (NativeFormatImporter) -> (artifact id: '60f2de7f9a3a70efedae16650b8f4799') in 0.0017753 seconds
+Refreshing native plugins compatible for Editor in 1.13 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=5c6ac5a4110b9ae40a3327e7104c4caa): Total: 0.061 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_key_appear.asset using Guid(519a571c5be2c7a4aa5de16414a0af9b) (NativeFormatImporter) -> (artifact id: 'c09a02a31debf91c4ce4f2cc20114e5c') in 0.0023255 seconds
+Refreshing native plugins compatible for Editor in 1.24 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=df61ae0f8fe22bd4b88163238c8589f9): Total: 0.061 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_mirror_crack.asset using Guid(f7932155f9456664592ecbbe83ac91ca) (NativeFormatImporter) -> (artifact id: 'b96fbd85c55a9e1dc8c32e98f5a14930') in 0.0022275 seconds
+Refreshing native plugins compatible for Editor in 1.03 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=13e58876004ddbb47ba21d432d5c41a4): Total: 0.058 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_number_lock_turn.asset using Guid(ea651a35def99384d9cfa32b9afd2502) (NativeFormatImporter) -> (artifact id: 'ee2b16bc6997212d3277bb62a74b1f93') in 0.0018574 seconds
+Refreshing native plugins compatible for Editor in 1.03 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=a25f7e443da7dbc449c7b64c29496b63): Total: 0.059 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_object_shake.asset using Guid(bff4bd9d60f0dcb49b0e3d5272ee1025) (NativeFormatImporter) -> (artifact id: '1110ae3b3e79e29566ecde462e61770a') in 0.0019541 seconds
+Refreshing native plugins compatible for Editor in 1.23 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=8e613b802fa9d55429a3da214eb2182a): Total: 0.060 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_puzzle_error.asset using Guid(ac2f5e12e50973d4eb36121208850b47) (NativeFormatImporter) -> (artifact id: '7a1f89dd309c3739c1d1ffb421f8a725') in 0.0022685 seconds
+Refreshing native plugins compatible for Editor in 1.19 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=bd7dade7295a61e40997b5f12fedde59): Total: 0.055 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_puzzle_success.asset using Guid(dfc40c72ac63e7846a07a56977fdd97c) (NativeFormatImporter) -> (artifact id: 'b266abf074a740f840b2828ad0c47834') in 0.0018009 seconds
+Refreshing native plugins compatible for Editor in 1.09 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=d020c1a22f9cd0140a203691b0b9fd8d): Total: 0.058 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_safe_open.asset using Guid(590f063563370a64092d3647bc46fd07) (NativeFormatImporter) -> (artifact id: '97e48d5168267635480638540fa7262a') in 0.0019734 seconds
+Refreshing native plugins compatible for Editor in 1.10 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=d9e9a4f8343ec95469af2cae6b16448d): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_symbol_click.asset using Guid(b212d645865b442419937ee2763c5a05) (NativeFormatImporter) -> (artifact id: '932cbe01ef66a652b353d105867c5710') in 0.0018244 seconds
+Refreshing native plugins compatible for Editor in 0.98 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=bba36437e07b4f64d83c982dbb9ef5e5): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_toy_box_open.asset using Guid(d29c2b2d17bb26d45a68637f98ff8192) (NativeFormatImporter) -> (artifact id: 'bf17ae2abc70223ab1c839d34bb9d0aa') in 0.0020247 seconds
+Refreshing native plugins compatible for Editor in 1.16 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=097a95b3fd0bba94f951dbaecc676b46): Total: 0.052 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_toy_wrong_sound.asset using Guid(65b3081a79b3fc84493c9a0a0e77f24d) (NativeFormatImporter) -> (artifact id: '70c8caeb52d7e11c6c636d90e9c04955') in 0.002183 seconds
+Refreshing native plugins compatible for Editor in 1.19 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=0bcf950b51dadb44e9bcd3a9e3e72e91): Total: 0.065 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI using Guid(d08686c3d64ef484fb6b926292c2826c) (DefaultImporter) -> (artifact id: 'b92c9c65ad5807c62ad5079dd28fc11b') in 0.0178084 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_button_click.asset using Guid(9490cb1add399434bb2e8caabc62407f) (NativeFormatImporter) -> (artifact id: 'f718f712c8c9cda0e989d60dc8963de9') in 0.0018313 seconds
+Refreshing native plugins compatible for Editor in 2.13 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=ab1431145dea84447881df31a8c1d3c9): Total: 0.078 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_button_hover.asset using Guid(d4c9f713602034c49a1d27a354f696f5) (NativeFormatImporter) -> (artifact id: '5cd6a3343fdc1b59a4cdccff8aad0ec7') in 0.001812 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=c4bcab2ec523821469bcf826aa6f8b09): Total: 0.061 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_map_close.asset using Guid(2ac790fdd30bf484ebfac8c6c9b4005b) (NativeFormatImporter) -> (artifact id: '2b521485c81ea8c229c1c358bbf57dc6') in 0.0023271 seconds
+Refreshing native plugins compatible for Editor in 1.00 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=2fc4a41ad7df26344b1475764d92190d): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_map_open.asset using Guid(b40efaad0268deb46915298631f215fa) (NativeFormatImporter) -> (artifact id: '44e8df6f62be6fbdfbd8b2a52e602b3f') in 0.0021094 seconds
+Refreshing native plugins compatible for Editor in 0.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=412204605f1a4184caec1e2538f18829): Total: 0.055 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_menu_close.asset using Guid(b1d9c3dad00e6aa4492341a56fac4e41) (NativeFormatImporter) -> (artifact id: 'e7c37fe20852d51c66f3b369524bc329') in 0.0017938 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=edd7dbfc0d1c5d943a64ced9af66c6df): Total: 0.059 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_menu_open.asset using Guid(6c0f92f5705cc964ba930043e4df7da7) (NativeFormatImporter) -> (artifact id: '6024838a3fd9d25fdb40bfcf884961ba') in 0.0021764 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=4476f6450cd264d49a1f26fd8db88275): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_laundry_room.asset using Guid(004f804db3aa22a4facafd2305bb0a61) (NativeFormatImporter) -> (artifact id: 'f46454e91fccaf20bca97e7eb8d76c08') in 0.0022013 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_door_locked.asset using Guid(3031aa86cd6ca0c40878c95293beb354) (NativeFormatImporter) -> (artifact id: 'eff39ace50e3e2c2d80b082f44bbd5ff') in 0.0016226 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_item_pickup.asset using Guid(8083dba2d4225904b994ff1d67745e15) (NativeFormatImporter) -> (artifact id: 'e3e3f0b7197672258e15b979d245e3f1') in 0.0012009 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Events/event_final_chase_trigger.asset using Guid(80fb871e4ba8e4e49b6e04ed038a4b96) (NativeFormatImporter) -> (artifact id: 'bae29d3f9edbc57bd66fde02e75b675f') in 0.0016305 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_detected.asset using Guid(c05d690f46132cd4eaf07ab57a2bc3b7) (NativeFormatImporter) -> (artifact id: 'b88e7b0c47af413fab3a4b640296fc36') in 0.0017548 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_door_open.asset using Guid(316617d6ad6b51640a2debfbf836cac1) (NativeFormatImporter) -> (artifact id: '4716e3c4f81dc3d0a0a3bbeaa051bf19') in 0.0012132 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_attic.asset using Guid(415020fcf792a9340b99af6e18fcd9c7) (NativeFormatImporter) -> (artifact id: '6c22aa2442ac84116604e0939781bf85') in 0.0011163 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_key_appear.asset using Guid(519a571c5be2c7a4aa5de16414a0af9b) (NativeFormatImporter) -> (artifact id: '2dea8172c05cee130f4d0b47d2c164be') in 0.0010395 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_menu_close.asset using Guid(b1d9c3dad00e6aa4492341a56fac4e41) (NativeFormatImporter) -> (artifact id: '8d4dd92d8528156322baed48ed14ec4e') in 0.0011752 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Events/event_gameover_bgm_cut.asset using Guid(e1e826816f0f1e646bca30a961a786d0) (NativeFormatImporter) -> (artifact id: '50be02e22699462b2c01725a6ca1caae') in 0.0012866 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_altar_room.asset using Guid(72af7e8741c9a564c9c0b49169acb40a) (NativeFormatImporter) -> (artifact id: '521359b5f4cdb2e1d6c74c528da6ef43') in 0.0016215 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Events/event_screen_rewind.asset using Guid(829a5522f8694234485ad104b0e06cf9) (NativeFormatImporter) -> (artifact id: '769498ae3a7c608c663a7f3ec4273ac7') in 0.0011673 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_symbol_click.asset using Guid(b212d645865b442419937ee2763c5a05) (NativeFormatImporter) -> (artifact id: '39d799382fdfcb557eacefeee6ab67e0') in 0.0010541 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/BGM/bgm_stage1_ambient.asset using Guid(d242f8b804e5b8a4b93de84eb0d3b136) (NativeFormatImporter) -> (artifact id: 'ccf6b61fa74e2c71c53d9a8d82fb4133') in 0.0011075 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_toy_box_open.asset using Guid(d29c2b2d17bb26d45a68637f98ff8192) (NativeFormatImporter) -> (artifact id: 'ba091bd6b31afb2d77205c883ce79539') in 0.0013929 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_mirror_room.asset using Guid(835b6aac25b34a14aa8eb419187c95d3) (NativeFormatImporter) -> (artifact id: '2745ba203ad5cfae114d71fd82a27a49') in 0.0011913 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_child_room.asset using Guid(141dbe2d9ee297543a4b84c8d806ad41) (NativeFormatImporter) -> (artifact id: '1907ed51e45237022faf9f52d3dfbd26') in 0.0011649 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_electronic_lock_release.asset using Guid(349c614722e1ee440a6c599341ce060c) (NativeFormatImporter) -> (artifact id: '98e046bc5db8a8bf2345d0e76c9e950f') in 0.0012082 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_button_click.asset using Guid(9490cb1add399434bb2e8caabc62407f) (NativeFormatImporter) -> (artifact id: '99f25f56519ed28c3a74f69f31156c25') in 0.0012368 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_map_open.asset using Guid(b40efaad0268deb46915298631f215fa) (NativeFormatImporter) -> (artifact id: 'e20546c37fadff819a67c94997b5c051') in 0.0012469 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_kitchen.asset using Guid(c45ffa7837d6d984eadad3e934a8b40b) (NativeFormatImporter) -> (artifact id: 'd4982e6dc03fcfa64b9d3082e7a75b03') in 0.0013386 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_drawer_open.asset using Guid(d4e4bf1357dedc74a8e80eb9eb4f8648) (NativeFormatImporter) -> (artifact id: '9f22859760e9831cec4ca6766853c955') in 0.0013211 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_button_hover.asset using Guid(d4c9f713602034c49a1d27a354f696f5) (NativeFormatImporter) -> (artifact id: '07eaa4e7bf79e9ab6e0502e6f27d0baa') in 0.0011388 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_item_combine.asset using Guid(f4dfac7c64d18f24c8bd55d97c96318b) (NativeFormatImporter) -> (artifact id: 'ab8fdcb30075f1484e826e5b05330743') in 0.0011648 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_toy_wrong_sound.asset using Guid(65b3081a79b3fc84493c9a0a0e77f24d) (NativeFormatImporter) -> (artifact id: '899e0c9d7ab67e6b239b977ba4a92780') in 0.0010807 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/BGM/bgm_chase.asset using Guid(b5354ce51bfeef248a525ec61df9f032) (NativeFormatImporter) -> (artifact id: '198e63e8ba5f582ab4378bc34a91e460') in 0.001526 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/BGM/bgm_final_chase.asset using Guid(3650ce84a89f54741bdc15bf7b6afdb0) (NativeFormatImporter) -> (artifact id: 'c7a99f397372d0a7cbe5e8a0f97d637c') in 0.0013069 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_basement.asset using Guid(56410fa91640373479772150bd4d7f7c) (NativeFormatImporter) -> (artifact id: '3be631a3912e96f6673cc14aa7511ef4') in 0.0013402 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_house_low_hum.asset using Guid(b658355afa42ba545a96ebd7b5dc317d) (NativeFormatImporter) -> (artifact id: '0e7c40a0f8c8bdf747565ac1ba57558d') in 0.0016868 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_inventory_open.asset using Guid(b67c8e033bab4ec42b491c2f7b81eac6) (NativeFormatImporter) -> (artifact id: '7cb5e2f5b0dd711c8702cc854e6f578b') in 0.0012623 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_electricity_restore.asset using Guid(c6fff956ef2546a4a8d8ea6d411d627e) (NativeFormatImporter) -> (artifact id: '6bba8504555223d3cef731e3dfcbed64') in 0.0015795 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_item_use.asset using Guid(d615b36307cf95449b5a07d849a5f97e) (NativeFormatImporter) -> (artifact id: 'a440494370bb460ba625bdc343109625') in 0.0012061 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_footstep_mid.asset using Guid(d678454562d133e4998053cc842cb4bb) (NativeFormatImporter) -> (artifact id: '201d5db534ef60a4af16544bc5e7dddb') in 0.0012817 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/BGM/bgm_ending_hint.asset using Guid(276997eb5d2df33469eb776588b6d1e5) (NativeFormatImporter) -> (artifact id: '7672b888007a640af0cb45bd611c8817') in 0.001202 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/BGM/bgm_title.asset using Guid(57a5456a9fcb75443910d9c31e7b9d13) (NativeFormatImporter) -> (artifact id: 'cfe1a58c798e156a84fb35f7fa2297cd') in 0.0010607 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_mirror_crack.asset using Guid(f7932155f9456664592ecbbe83ac91ca) (NativeFormatImporter) -> (artifact id: '7e258e4b23260936a8c606b429beb21e') in 0.0014451 seconds
+Start importing Assets/ScriptableObjects/Stage1/Stage1Definition.asset using Guid(480e82f7ab1901547b8bfdd2e2738f1f) (NativeFormatImporter) -> (artifact id: 'ad082aa658cc617520d5d9c239a00d3d') in 0.0014647 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_box_open.asset using Guid(29699f914d9f32247a97551cd96b3d25) (NativeFormatImporter) -> (artifact id: 'e98175922f0c5432ff3f166d2b778725') in 0.0011355 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_safe_open.asset using Guid(590f063563370a64092d3647bc46fd07) (NativeFormatImporter) -> (artifact id: 'c61c8264f022a3472e3c13df8fb52539') in 0.0010745 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_footstep_far.asset using Guid(a9a14671fbda99d4a9b60c4093b98e00) (NativeFormatImporter) -> (artifact id: '692197f5b1475544a817baa6df67199f') in 0.0011122 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_breaker_switch.asset using Guid(1a860606325d46146b3f46368a65a543) (NativeFormatImporter) -> (artifact id: 'c5de009534e60258e71ba9620e7b98e3') in 0.0015053 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_map_close.asset using Guid(2ac790fdd30bf484ebfac8c6c9b4005b) (NativeFormatImporter) -> (artifact id: 'f4ebbc3bca84b3766a3bee99b4a4976f') in 0.0014421 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_number_lock_turn.asset using Guid(ea651a35def99384d9cfa32b9afd2502) (NativeFormatImporter) -> (artifact id: '322c00671cab5d7b4e50e5026f101ebd') in 0.0016689 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Events/event_window_silhouette.asset using Guid(4b96dd7761f56194b9ef0d4ad3ac21ef) (NativeFormatImporter) -> (artifact id: '1f54a4f88005858fd0ba301f51410620') in 0.001196 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_low_growl.asset using Guid(db83d995c9c45b54b9f352cd30f9d3a4) (NativeFormatImporter) -> (artifact id: 'd1511ad8d219dc03b8747c6e493b9fb7') in 0.001101 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_chase_start.asset using Guid(2cc78f9ec30f311489e2842bcb637e96) (NativeFormatImporter) -> (artifact id: '81947fa5960f0f8bbd66e27da027ce54') in 0.0013491 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/UI/ui_menu_open.asset using Guid(6c0f92f5705cc964ba930043e4df7da7) (NativeFormatImporter) -> (artifact id: 'f2db7e1a756e598a5d65439a78fc0eae') in 0.0014003 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_puzzle_error.asset using Guid(ac2f5e12e50973d4eb36121208850b47) (NativeFormatImporter) -> (artifact id: 'c2272378c63db8323dbdf293e63d6114') in 0.0012748 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_inventory_close.asset using Guid(ecf3c88be91a7d54c820349370b2c06f) (NativeFormatImporter) -> (artifact id: '789ecd1e56721cbc2a032a0c61ef435e') in 0.0012244 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_front_door_unlock.asset using Guid(fc5348f06fc9f8e428114901c75a586e) (NativeFormatImporter) -> (artifact id: '7e893508f6b8d92157faac70924415d5') in 0.0011864 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_searching.asset using Guid(6d36e9bb059205a4490f488ec9da9d09) (NativeFormatImporter) -> (artifact id: '302cb8c4caee765ea0979ee318ee9c58') in 0.0015499 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_capture.asset using Guid(ad606092c662c444fa5a80a863128b77) (NativeFormatImporter) -> (artifact id: 'fbd46be6258acb3136904e008e384402') in 0.0014194 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_fuse_insert.asset using Guid(bdfa8e51bc78d6842901019740f9a370) (NativeFormatImporter) -> (artifact id: '62fb6017c60f159a885a4afbd10142af') in 0.0013945 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Events/event_kitchen_first_appearance.asset using Guid(1eeb73c8ebe25454ea43f9765242031c) (NativeFormatImporter) -> (artifact id: 'e5b8773b9da44a1f8aa029c42ea0978c') in 0.0012301 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_1f_hallway.asset using Guid(2ea4e53973d732c49a979c8b824c47ae) (NativeFormatImporter) -> (artifact id: '50e22ce3b95116a62880b0f8f06c2379') in 0.0011055 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_altar_activate.asset using Guid(3e6058b0ef36641498d34b9ff5ae254c) (NativeFormatImporter) -> (artifact id: '451ea802ee5da57cf03c3236376b0a56') in 0.0011857 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Ambience/amb_2f_hallway.asset using Guid(aee1fba7f8da0984aa94d2b85ece0474) (NativeFormatImporter) -> (artifact id: 'd67f54d01fb65d698339792a36a7757e') in 0.0014992 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_breath_far.asset using Guid(dedaafd631a9cda4cbd2004a848e3826) (NativeFormatImporter) -> (artifact id: 'c8eab9a0adfea27427c5e9e6ac6a9a6c') in 0.0012497 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_click.asset using Guid(5f94e0e12adec5a40924e3ef6a784624) (NativeFormatImporter) -> (artifact id: 'e18ff0e7e4d81c0de811640402004f50') in 0.0011311 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_footstep_near.asset using Guid(8fdcff3f8f976d549be0db5ad4ac26df) (NativeFormatImporter) -> (artifact id: '9b43af7385dee34a075ba29aee04ce08') in 0.001126 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_object_shake.asset using Guid(bff4bd9d60f0dcb49b0e3d5272ee1025) (NativeFormatImporter) -> (artifact id: 'dfc5c03d86425284796901e5a46b1d17') in 0.001161 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/Monster/monster_breath_near.asset using Guid(cf457afe02f24f346b06f7ac5e0b7649) (NativeFormatImporter) -> (artifact id: 'be3065e32d00dc383d954253b0ca77bc') in 0.0015327 seconds
+Start importing Assets/ScriptableObjects/Stage1/Sounds/SFX/sfx_puzzle_success.asset using Guid(dfc40c72ac63e7846a07a56977fdd97c) (NativeFormatImporter) -> (artifact id: '18216c048641dd48e7ef38fa6d8ddad3') in 0.0013374 seconds
+Refreshing native plugins compatible for Editor in 0.98 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=88e442327b16abc4eaf6d4b01ecb5cb0): Total: 0.159 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=250acad2d43bb6b4e87535f8182226fd): Total: 0.011 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+Seeded 62 Stage 1 sound definitions.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+EscapeFromNightmares.Editor.Stage1SoundDefinitionSeeder:Seed () (at Assets/Scripts/Editor/Stage1SoundDefinitionSeeder.cs:96)
+
+(Filename: Assets/Scripts/Editor/Stage1SoundDefinitionSeeder.cs Line: 96)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-rlaxo-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-rlaxo channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0

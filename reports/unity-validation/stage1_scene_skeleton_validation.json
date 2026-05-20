@@ -1,0 +1,86 @@
+{
+  "validation_name": "Stage1SceneSkeletonValidation",
+  "status": "passed",
+  "checked_at": "2026-05-19",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/ProjectSettings/EditorBuildSettings.asset"
+  ],
+  "unity_mcp": {
+    "used": true,
+    "instance_id": "EscapeFromNightmares@c6f9dc4f",
+    "scene_create": {
+      "initial_template_attempt": "timeout_no_file_created",
+      "created_scene": "Assets/Scenes/Stage1.unity"
+    }
+  },
+  "active_scene": {
+    "name": "Stage1",
+    "path": "Assets/Scenes/Stage1.unity",
+    "buildIndex": 0,
+    "isDirty": false,
+    "rootCount": 11
+  },
+  "build_settings": [
+    {
+      "path": "Assets/Scenes/Stage1.unity",
+      "enabled": true,
+      "buildIndex": 0
+    }
+  ],
+  "required_roots": {
+    "StageRoot": "present",
+    "Systems": "present",
+    "RoomView": "present",
+    "InteractableLayer": "present",
+    "MonsterLayer": "present",
+    "AudioRoot": "present",
+    "UICanvas": "present",
+    "EventSystem": "present",
+    "DebugRoot": "present_inactive"
+  },
+  "support_roots": {
+    "Main Camera": {
+      "status": "present",
+      "components": [
+        "Transform",
+        "Camera",
+        "AudioListener",
+        "UniversalAdditionalCameraData"
+      ]
+    },
+    "Global Light 2D": {
+      "status": "present",
+      "components": [
+        "Transform",
+        "Light2D"
+      ]
+    }
+  },
+  "component_checks": {
+    "UICanvas": [
+      "RectTransform",
+      "Canvas",
+      "CanvasScaler",
+      "GraphicRaycaster"
+    ],
+    "EventSystem": [
+      "Transform",
+      "EventSystem",
+      "InputSystemUIInputModule"
+    ]
+  },
+  "scene_validation": {
+    "status": "clean",
+    "totalIssues": 0,
+    "missingScripts": 0,
+    "brokenPrefabs": 0
+  },
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "system",
+    "unit_id": "RuntimeFolderAndBootstrap",
+    "scope": "Create required project folders and minimal runtime bootstrap scripts/managers without gameplay systems."
+  }
+}

@@ -255,217 +255,217 @@
         "required_filename":  "item_front_door_key.png",
         "unity_target_path":  "Assets/Sprites/Items/item_front_door_key.png",
         "category":  "item_icon",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_silhouette_window.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_silhouette_window.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_doorway_kitchen.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_doorway_kitchen.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_shadow_hallway.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_shadow_hallway.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_dark_corner.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_dark_corner.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_near_detection.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_near_detection.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_chase_overlay.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_chase_overlay.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "monster_gameover_shadow.png",
         "unity_target_path":  "Assets/Sprites/Monster/monster_gameover_shadow.png",
         "category":  "monster_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_start.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_start.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_settings.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_settings.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_quit.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_quit.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_continue.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_continue.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_return_title.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_return_title.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_inventory.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_inventory.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_map.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_map.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_button_settings_small.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_button_settings_small.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_inventory_panel.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_inventory_panel.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_inventory_slot.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_inventory_slot.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_selected_item_frame.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_selected_item_frame.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_map_panel.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_map_panel.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_map_floor_1f.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_1f.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_map_floor_2f.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_2f.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_map_floor_basement.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_basement.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_map_floor_attic.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_map_floor_attic.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_map_current_room_marker.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_map_current_room_marker.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_puzzle_panel.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_puzzle_panel.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_number_lock_digit.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_number_lock_digit.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_symbol_button.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_symbol_button.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_hiding_danger_gauge_bg.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_hiding_danger_gauge_bg.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_hiding_danger_gauge_fill.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_hiding_danger_gauge_fill.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {
         "required_filename":  "ui_gameover_text.png",
         "unity_target_path":  "Assets/Sprites/UI/ui_gameover_text.png",
         "category":  "ui_image",
-        "status":  "placeholder",
+        "status":  "final",
         "referenced_by":  "pending"
     },
     {

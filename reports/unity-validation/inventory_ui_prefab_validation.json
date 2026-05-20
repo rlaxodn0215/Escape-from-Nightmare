@@ -1,0 +1,63 @@
+{
+  "validation_name": "InventoryUIPrefabValidation",
+  "status": "pass",
+  "checked_at": "2026-05-20",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/UI/InventoryUI.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/InventoryUIPrefabSeeder.cs",
+    "EscapeFromNightmares/Assets/Prefabs/UI/InventoryUI.prefab",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "reports/unity-validation/inventory_ui_prefab_setup_batchmode.log"
+  ],
+  "unity_mcp": {
+    "used": true,
+    "script_validation": {
+      "InventoryUI.cs": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "InventoryUIPrefabSeeder.cs": {
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "limitation": "Unity MCP disconnected during domain reload before prefab creation; Unity BatchMode was used as fallback for prefab generation."
+  },
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.InventoryUIPrefabSeeder.Seed",
+    "log_path": "reports/unity-validation/inventory_ui_prefab_setup_batchmode.log",
+    "log_confirmation": "Seeded InventoryUI prefab and Stage1 scene instance.",
+    "exit_confirmation": "Exiting without the bug reporter. Application will terminate with return code 0"
+  },
+  "prefab_checks": {
+    "InventoryUI.prefab": "present",
+    "InventoryUI component": "present",
+    "CanvasGroup": "present",
+    "CloseButton": "present",
+    "slot_count": 10,
+    "slot_icons": "assigned",
+    "selection_frames": "assigned",
+    "selected_item_label": "assigned",
+    "missing_script_references": "none found"
+  },
+  "scene_checks": {
+    "UICanvas.InventoryUI": "present",
+    "InventoryUI instance active_at_start": false,
+    "InventoryUI.inventorySystem": "assigned to Systems.InventorySystem"
+  },
+  "known_gaps": [
+    "HUD inventory button is not implemented yet.",
+    "Room-specific item pickup hotspots are not placed yet.",
+    "Item combination UI is deferred.",
+    "Other required UI prefabs are still not created."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "ui",
+    "unit_id": "HUDInventoryButton",
+    "scope": "Create or connect the in-game inventory button so it opens the existing InventoryUI prefab."
+  }
+}

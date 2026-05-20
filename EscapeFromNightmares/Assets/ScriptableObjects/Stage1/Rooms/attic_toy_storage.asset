@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c696a2c8b5d44b83517a0587c1502, type: 3}
+  m_Name: attic_toy_storage
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.RoomDefinition
+  roomId: attic_toy_storage
+  floorId: 3
+  displayNameForDebug: Attic Toy Storage
+  backgroundSprite: {fileID: -8526077038924027408, guid: 59e02c9130277574398126c0897f57bb, type: 3}
+  ambienceAudio: {fileID: 11400000, guid: 415020fcf792a9340b99af6e18fcd9c7, type: 2}
+  dangerModifier: 1.1
+  monsterCanEnter: 1
+  connectedRooms: []
+  interactableDefinitions:
+  - {fileID: 11400000, guid: e05d345fb29b567459a162f8cbda9c16, type: 2}

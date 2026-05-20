@@ -1,0 +1,56 @@
+{
+  "validation_name": "InventoryRuntimeSystemValidation",
+  "status": "pass",
+  "checked_at": "2026-05-20",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/InventorySystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1InventoryReferenceSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity"
+  ],
+  "unity_mcp": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "script_validation": {
+      "InventorySystem.cs": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "InteractionSystem.cs": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "Stage1InventoryReferenceSeeder.cs": {
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "scene_checks": {
+      "Stage1.Systems.InventorySystem": "present",
+      "Stage1.Systems.InteractionSystem.inventorySystem": "assigned",
+      "Stage1.Systems.required_roots": "present"
+    },
+    "menu_item_executed": "Escape From Nightmares/Seed Inventory Runtime"
+  },
+  "system_checks": {
+    "runtime_only_inventory_state": "present",
+    "item_add_by_item_definition": "present",
+    "item_selection_by_id": "present",
+    "selected_item_requirement_check": "present",
+    "optional_selected_item_consumption": "present",
+    "progress_save": "not implemented"
+  },
+  "known_gaps": [
+    "Inventory UI prefab is not created yet.",
+    "Room-specific item pickup hotspots are not placed yet.",
+    "Item combination UI and full puzzle/event execution are deferred to later units.",
+    "Flag requirement checks are logged as deferred until a focused event/flag runtime unit exists."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "ui",
+    "unit_id": "InventoryUI.prefab",
+    "scope": "Create the inventory UI prefab and connect it to InventorySystem without adding unrelated UI surfaces."
+  }
+}

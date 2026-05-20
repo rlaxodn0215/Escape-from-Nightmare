@@ -1,0 +1,59 @@
+{
+  "phase": "35-windows-build-script",
+  "unit_type": "system",
+  "unit_id": "WindowsBuildScript",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt"
+  ],
+  "proposal": {
+    "summary": "Add a batchmode-friendly BuildScript.BuildWindows entry point for Windows player builds without generating the final build in this unit.",
+    "out_of_scope": [
+      "Generating the final Windows player build",
+      "Changing gameplay content",
+      "Creating new UI or gameplay prefabs",
+      "Adding smoke tests",
+      "Changing build output tracking policy"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Implement one Harness unit: WindowsBuildScript.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends WindowsBuildScript."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "WindowsBuildScriptValidation",
+      "status": "passed",
+      "artifact": "reports/unity-validation/windows_build_script_validation.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/windows_build_script_validation.json",
+    "EscapeFromNightmares/Assets/Scripts/Editor/BuildScript.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/BuildScript.cs.meta",
+    "EscapeFromNightmares/ProjectSettings/EditorBuildSettings.asset"
+  ],
+  "current_state": "Completed. BuildScript.BuildWindows exists, validates with Unity MCP, targets Windows x64, uses enabled Build Settings scenes, and writes to a generated Build/Windows output path.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for WindowsPlayerBuild only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start WindowsPlayerBuild to run BuildScript.BuildWindows and verify the generated Windows player output."
+}

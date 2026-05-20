@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ddaa679be600948930a6471f1247a6, type: 3}
+  m_Name: broken_hand_mirror
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.ItemDefinition
+  itemId: broken_hand_mirror
+  displayName: Broken Hand Mirror
+  icon: {fileID: -8361799946742952229, guid: ca538c0ed532ba64e81e9b85f8293407, type: 3}
+  category: 2
+  acquiredFrom: mirror_room
+  usedIn:
+  - basement_altar
+  altarSymbol: cracked_circle
+  flagsOnAcquire:
+  - has_broken_hand_mirror

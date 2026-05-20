@@ -1,0 +1,58 @@
+{
+  "phase": "39-stage1-final-playtest-tuning-review",
+  "unit_type": "system",
+  "unit_id": "Stage1FinalPlaytestTuningReview",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt",
+    "reports/unity-validation/stage1_automated_smoke_tests_validation.json",
+    "reports/unity-validation/generated_player_smoke_validation.json"
+  ],
+  "proposal": {
+    "summary": "Review remaining Stage 1 playtest tuning gaps for hit areas, map markers, puzzle-chain confidence, game-over restart, stage-clear path, and monster/hiding balance before deciding whether work is complete.",
+    "out_of_scope": [
+      "Changing gameplay implementation",
+      "Editing hit-area or balance values",
+      "Running a full manual playthrough",
+      "Creating final production art/audio",
+      "Deleting the heartbeat automation"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Run one Harness unit: Stage1FinalPlaytestTuningReview.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends Stage1FinalPlaytestTuningReview."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "Stage1FinalPlaytestTuningReview",
+      "status": "completed_with_remaining_tuning",
+      "artifact": "reports/unity-validation/stage1_final_playtest_tuning_review.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/stage1_final_playtest_tuning_review.json"
+  ],
+  "current_state": "Completed. Review confirms build output and smoke tests exist, but all required work is not complete because deeper flow validation and final tuning remain.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for Stage1DeepFlowPlayModeTests only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start Stage1DeepFlowPlayModeTests to add deeper PlayMode coverage for game-over restart, final chase trigger, and stage-clear event flow before manual tuning."
+}

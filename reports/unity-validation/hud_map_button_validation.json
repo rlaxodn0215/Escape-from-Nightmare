@@ -1,0 +1,51 @@
+{
+  "validation_name": "HUDMapButtonValidation",
+  "status": "pass",
+  "checked_at": "2026-05-20",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/UI/HUDMapButton.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/HUDMapButtonSeeder.cs",
+    "EscapeFromNightmares/Assets/Prefabs/UI/HUDMapButton.prefab",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "reports/unity-validation/hud_map_button_setup_batchmode.log"
+  ],
+  "unity_mcp": {
+    "used": false,
+    "blocked_reason": "No Unity MCP editor instance was connected at the start of this heartbeat unit."
+  },
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.HUDMapButtonSeeder.Seed",
+    "log_path": "reports/unity-validation/hud_map_button_setup_batchmode.log",
+    "log_confirmation": "Seeded HUD map button prefab and Stage1 scene instance.",
+    "exit_confirmation": "Exiting without the bug reporter. Application will terminate with return code 0"
+  },
+  "prefab_checks": {
+    "HUDMapButton.prefab": "present",
+    "Button": "present",
+    "Image": "present",
+    "HUDMapButton component": "present",
+    "button reference": "assigned",
+    "map sprite": "assigned",
+    "missing_script_references": "none found"
+  },
+  "scene_checks": {
+    "UICanvas.HUDMapButton": "present",
+    "HUDMapButton instance active_at_start": true,
+    "HUDMapButton.mapUI": "assigned to UICanvas.MapUI"
+  },
+  "known_gaps": [
+    "SettingsUI prefab and HUD settings button are not implemented yet.",
+    "MapSystem runtime is not implemented yet.",
+    "Room-specific item pickup hotspots are not placed yet.",
+    "Puzzle, monster, hiding, and sound gameplay systems are still deferred."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "ui",
+    "unit_id": "SettingsUI.prefab",
+    "scope": "Create the settings UI prefab before wiring a HUD settings button."
+  }
+}

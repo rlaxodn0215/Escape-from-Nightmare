@@ -1,0 +1,58 @@
+{
+  "validation_name": "EventRuntimeSystemValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/EventRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/PuzzleSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1EventRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Events"
+  ],
+  "summary": {
+    "event_assets": 18,
+    "seeded_event_effects": 27,
+    "event_runtime_system_components_in_scene": 1,
+    "interaction_system_references_event_runtime_system": true,
+    "puzzle_system_references_event_runtime_system": true,
+    "supported_effect_types": [
+      "SetFlag",
+      "GiveItem",
+      "PlayAudio",
+      "ChangeRoom",
+      "GameOver",
+      "StageClear"
+    ],
+    "queued_effect_types": [
+      "SpawnInteractable",
+      "StartMonster",
+      "ChangeMonsterState",
+      "ShowUi"
+    ]
+  },
+  "findings": [],
+  "known_gaps": [
+    "Monster-facing event effects are logged and queued for a later monster runtime system.",
+    "SpawnInteractable and ShowUi effects are logged but do not yet mutate room presentation.",
+    "Full sound mixing and ambience routing are outside this unit.",
+    "Event-driven room art changes and bespoke horror cinematics are outside this unit."
+  ],
+  "unity_mcp": {
+    "used": true,
+    "checks": [
+      "refresh_unity compile request completed with editor ready_for_tools=true",
+      "read_console found no C# compiler errors after forced all-assets refresh",
+      "execute_menu_item ran Escape From Nightmares/Seed Stage1 Event Runtime",
+      "find_gameobjects by component EventRuntimeSystem found one scene object",
+      "component inspection confirmed EventRuntimeSystem references GameBootstrap, GameStateManager, SaveManager, RoomSystem, InventorySystem, and AudioEmitter",
+      "component inspection confirmed InteractionSystem references EventRuntimeSystem",
+      "component inspection confirmed PuzzleSystem references EventRuntimeSystem"
+    ],
+    "notes": [
+      "An initial compile pass reported InteractionSystem and PuzzleSystem could not see EventRuntimeSystem before the Unity asset database imported the new file; a forced all-assets refresh resolved it.",
+      "MCP client handler lifecycle logs were present and are unrelated to project compilation."
+    ]
+  },
+  "blocked_reason": "",
+  "next_action": "Implement a focused SoundRuntimeSystem for ambience, UI SFX, puzzle feedback, and event audio routing."
+}

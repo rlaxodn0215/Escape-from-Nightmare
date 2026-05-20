@@ -1,0 +1,41 @@
+{
+  "project": "Escape From Nightmares",
+  "phase": "3-runtime-folder-and-bootstrap",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 0,
+      "name": "runtime-folder-and-bootstrap",
+      "status": "completed",
+      "unit_type": "system",
+      "unit_id": "RuntimeFolderAndBootstrap",
+      "requires_user_design_approval": true,
+      "last_known_state": "Core folders and bootstrap scripts are created. Unity imported scripts, script diagnostics show 0 errors, and Stage1 scene has GameBootstrap on StageRoot plus Core managers on Systems.",
+      "next_action": "Open the next Harness unit for data model ScriptableObject classes or the first required prefab slice.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to proceed to the next Harness task."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Treat current user instruction as approved_for_implementation for the scoped RuntimeFolderAndBootstrap system unit."
+        }
+      ],
+      "review_artifacts": [
+        "phases/3-runtime-folder-and-bootstrap/step0.md",
+        "EscapeFromNightmares/Assets/Scripts/Core/GameBootstrap.cs",
+        "EscapeFromNightmares/Assets/Scripts/Core/GameStateManager.cs",
+        "EscapeFromNightmares/Assets/Scripts/Core/InputRouter.cs",
+        "EscapeFromNightmares/Assets/Scripts/Core/SaveManager.cs",
+        "EscapeFromNightmares/Assets/Scripts/Core/SceneFlowController.cs",
+        "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+        "reports/unity-validation/runtime_folder_and_bootstrap_validation.json"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/runtime_folder_and_bootstrap_validation.json"
+      ],
+      "resume_prompt": "RuntimeFolderAndBootstrap is complete. Continue with the next Harness unit, recommended DataModelDefinitions."
+    }
+  ]
+}

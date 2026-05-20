@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ddaa679be600948930a6471f1247a6, type: 3}
+  m_Name: torn_drawing_fragment
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.ItemDefinition
+  itemId: torn_drawing_fragment
+  displayName: Torn Drawing Fragment
+  icon: {fileID: 1486215473376498537, guid: f82bdfc078ba03f48bb8802dd468a27f, type: 3}
+  category: 0
+  acquiredFrom: child_room/child_desk_drawer
+  usedIn:
+  - attic_toy_sequence
+  altarSymbol: 
+  flagsOnAcquire:
+  - has_torn_drawing_fragment

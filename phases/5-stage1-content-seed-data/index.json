@@ -1,0 +1,43 @@
+{
+  "project": "Escape From Nightmares",
+  "phase": "5-stage1-content-seed-data",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 0,
+      "name": "stage1-content-seed-data",
+      "status": "completed",
+      "unit_type": "system",
+      "unit_id": "Stage1ContentSeedData",
+      "requires_user_design_approval": true,
+      "last_known_state": "Stage 1 ScriptableObject seed data is created. Stage1Definition references 27 rooms, 10 items, 7 puzzles, 18 events, 9 monster nodes, and 62 sound definitions.",
+      "next_action": "Open the next Harness unit for the first runtime system slice, recommended RoomRuntimeSystem.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to continue until the final result and said approvals can always be assumed."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Approved exception to seed multiple Stage 1 data assets in one system unit because the assets are tightly coupled and generated from the same validated data model."
+        }
+      ],
+      "review_artifacts": [
+        "phases/5-stage1-content-seed-data/step0.md",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Stage1Definition.asset",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Rooms/*.asset",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Items/*.asset",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Puzzles/*.asset",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Events/*.asset",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/MonsterNodes/*.asset",
+        "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Sounds/**/*.asset",
+        "reports/unity-validation/stage1_content_seed_data_validation.json"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/stage1_content_seed_data_validation.json",
+        "reports/unity-validation/stage1_sound_seed_batchmode.log"
+      ],
+      "resume_prompt": "Stage1ContentSeedData is complete. Continue with RoomRuntimeSystem or the next approved Harness unit."
+    }
+  ]
+}

@@ -3,11 +3,11 @@
 ## Pause State
 
 - Date: 2026-05-19
-- Current active step: `step11: item-symbol-fragment-resource`
-- Current active status: `ready_for_review`
-- Item icon status: 9 final / 1 placeholder
-- Remaining item icon: `item_front_door_key.png`
-- Unity MCP validation: not callable in this session
+- Current active step: resource inventory complete
+- Current active status: completed
+- Item icon status: 10 final / 0 placeholder
+- Remaining item icon: none
+- Unity MCP validation: callable and used for sprite asset import/search checks
 
 ## Completed Resource Work
 
@@ -23,6 +23,9 @@
   - `item_old_keychain.png`
   - `item_old_necklace.png`
   - `item_symbol_fragment.png`
+  - `item_front_door_key.png`
+- Monster images completed: 7 / 7 final
+- UI images completed: 23 / 23 final
 
 ## Important Decisions
 
@@ -33,17 +36,18 @@
 
 ## Validation State
 
-- Manual PNG validation passed for generated item icons: `256x256`, non-zero byte, loadable via `System.Drawing`.
+- Manual PNG validation passed for generated item, monster, and UI images.
 - JSON parse validation passed for `phases/0-resource-inventory/index.json`.
-- Unity import validation remains blocked because Unity MCP tools were not callable and no approved Unity validation tooling exists yet.
+- Unity MCP reimported `Assets/Sprites/Monster` and `Assets/Sprites/UI`.
+- Unity MCP found 67 Texture2D assets under `Assets/Sprites`, matching 27 room, 10 item, 7 monster, and 23 UI resources.
 
 ## Resume Instructions
 
 1. Read `AGENTS.md`, `docs/CODEX_HARNESS.md`, `phases/0-resource-inventory/index.json`, and this file.
-2. Treat `step11` as waiting for review approval.
-3. If the user approves continuing, mark `step11` completed and create the next single resource unit for `item_front_door_key.png`.
-4. Do not begin C# systems, scenes, prefabs, ScriptableObjects, or gameplay wiring until resource inventory is reviewed and the Unity validation tooling gap is handled according to `AGENTS.md`.
+2. Treat `0-resource-inventory` as completed.
+3. Continue with Unity validation/tooling or the next approved Harness unit.
+4. Do not begin C# systems, scenes, prefabs, ScriptableObjects, or gameplay wiring until the next Harness unit is opened and validation requirements are satisfied.
 
 ## Next Prompt
 
-`승인이 필요한 부분은 모두 승인하고 하네스 대로 다음 진행해`
+`하네스 대로 다음 진행해`

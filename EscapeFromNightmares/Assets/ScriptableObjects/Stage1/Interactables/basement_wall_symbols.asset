@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c3448460acc964f9a59169d0fd9d9e, type: 3}
+  m_Name: basement_wall_symbols
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.InteractableDefinition
+  roomId: basement_main
+  interactableId: basement_wall_symbols
+  interactableType: 5
+  hitArea:
+    serializedVersion: 2
+    x: 454
+    y: 152
+    width: 250
+    height: 78
+  requirements: []
+  eventId: 
+  targetRoomId: 
+  itemReward: {fileID: 0}
+  puzzleDefinition: {fileID: 0}

@@ -1,0 +1,72 @@
+{
+  "validation_name": "Stage1DeterministicGeneratedPlayerSmokeValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Core/GeneratedPlayerSmokeRunner.cs",
+    "EscapeFromNightmares/Assets/Tests/PlayMode/Stage1PlayModeSmokeTests.cs",
+    "EscapeFromNightmares/Build/Windows/EscapeFromNightmares.exe",
+    "reports/unity-validation/stage1_deterministic_generated_player_smoke.log"
+  ],
+  "findings": [
+    {
+      "severity": "info",
+      "message": "Generated player was rebuilt through the Unity MCP menu item Escape From Nightmares/Build Windows Player."
+    },
+    {
+      "severity": "info",
+      "message": "Generated player smoke run used -batchmode -nographics --stage1-smoke -logFile reports/unity-validation/stage1_deterministic_generated_player_smoke.log."
+    },
+    {
+      "severity": "info",
+      "message": "The generated player exited on its own with exit code 0."
+    },
+    {
+      "severity": "info",
+      "message": "The player log contains STAGE1_SMOKE_SUCCESS: Stage1 initialized in 'child_room' with required roots and systems present."
+    },
+    {
+      "severity": "warning",
+      "message": "The log contains Unity cloud configuration/telemetry curl failures because the validation environment has restricted network access; these are not Stage1 smoke validation failures."
+    }
+  ],
+  "process": {
+    "started": true,
+    "exited_within_timeout": true,
+    "timeout_seconds": 30,
+    "exit_code": 0,
+    "success_log_line": "STAGE1_SMOKE_SUCCESS"
+  },
+  "tests": [
+    {
+      "name": "Focused Stage1 deterministic smoke PlayMode tests",
+      "status": "passed",
+      "job_id": "caecb29bdef34f02bd3125cff428fa28",
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "name": "EditMode tests",
+      "status": "passed",
+      "job_id": "e9ae27d39c574441bde602fd94bb9479",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "name": "PlayMode tests",
+      "status": "passed",
+      "job_id": "9b1952e77a174a78ade4e76d65574c9f",
+      "passed": 14,
+      "failed": 0
+    }
+  ],
+  "log": {
+    "path": "reports/unity-validation/stage1_deterministic_generated_player_smoke.log",
+    "size_bytes": 2054,
+    "known_benign_network_lines": 2,
+    "stage1_smoke_failure_lines": 0
+  },
+  "blocked_reason": null,
+  "followups": [
+    "Run one final Harness completion readiness review before deleting the recurring heartbeat automation."
+  ]
+}

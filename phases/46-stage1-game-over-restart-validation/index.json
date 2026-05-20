@@ -1,0 +1,81 @@
+{
+  "phase": "46-stage1-game-over-restart-validation",
+  "unit_type": "system",
+  "unit_id": "Stage1GameOverRestartValidation",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/01_GAME_SYSTEMS_UI_RULES.txt",
+    "reports/unity-validation/stage1_manual_tuning_checklist.md"
+  ],
+  "proposal": {
+    "summary": "Validate button-driven game-over restart and runtime reset behavior without adding progress saves, checkpoints, or new UI surfaces.",
+    "out_of_scope": [
+      "New game-over UI surfaces",
+      "Progress saves",
+      "Checkpoints",
+      "Autosaves",
+      "Final generated-player smoke mode"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Implement one Harness unit: Stage1GameOverRestartValidation.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends Stage1GameOverRestartValidation."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "Stage1GameOverRestartValidation",
+      "status": "passed",
+      "artifact": "reports/unity-validation/stage1_game_over_restart_validation.json"
+    },
+    {
+      "name": "FocusedGameOverRestartButtonTest",
+      "status": "passed",
+      "details": "Unity MCP PlayMode job 2cc62fe241ff47d79345ec012bf677e0 passed the focused restart-button test."
+    },
+    {
+      "name": "EditModeTests",
+      "status": "passed",
+      "details": "Unity MCP job 9a7582ef08a44e66a6deb0710056c9be passed 6/6 tests."
+    },
+    {
+      "name": "PlayModeTests",
+      "status": "passed",
+      "details": "Unity MCP job 9fbe57b302d142f0bc14b1b128701751 passed 12/12 tests."
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/stage1_game_over_restart_validation.json",
+    "EscapeFromNightmares/Assets/Scripts/Core/GameStateManager.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/RoomSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InventorySystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/EventRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/PuzzleSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/HidingRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/MonsterRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/GameOverUIPrefabSeeder.cs",
+    "EscapeFromNightmares/Assets/Tests/PlayMode/Stage1DeepFlowPlayModeTests.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity"
+  ],
+  "current_state": "Completed. Button-driven GameOverUI restart now resets room, inventory, puzzle UI, event flags, monster state, hiding state, and capture gauge without creating progress saves.",
+  "resume_instructions": "This phase is complete. Start a new Harness unit only if phases/index.json has no in_progress or blocked phase. Recommended next unit: Stage1DeterministicGeneratedPlayerSmoke.",
+  "next_action": "Start Stage1DeterministicGeneratedPlayerSmoke as the next single Harness unit."
+}

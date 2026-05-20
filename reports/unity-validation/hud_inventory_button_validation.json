@@ -1,0 +1,51 @@
+{
+  "validation_name": "HUDInventoryButtonValidation",
+  "status": "pass",
+  "checked_at": "2026-05-20",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/UI/HUDInventoryButton.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/HUDInventoryButtonSeeder.cs",
+    "EscapeFromNightmares/Assets/Prefabs/UI/HUDInventoryButton.prefab",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "reports/unity-validation/hud_inventory_button_setup_batchmode.log"
+  ],
+  "unity_mcp": {
+    "used": false,
+    "blocked_reason": "No Unity MCP editor instance was connected at the start of this unit."
+  },
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.HUDInventoryButtonSeeder.Seed",
+    "log_path": "reports/unity-validation/hud_inventory_button_setup_batchmode.log",
+    "log_confirmation": "Seeded HUD inventory button prefab and Stage1 scene instance.",
+    "exit_confirmation": "Exiting without the bug reporter. Application will terminate with return code 0"
+  },
+  "prefab_checks": {
+    "HUDInventoryButton.prefab": "present",
+    "Button": "present",
+    "Image": "present",
+    "HUDInventoryButton component": "present",
+    "button reference": "assigned",
+    "inventory sprite": "assigned",
+    "missing_script_references": "none found"
+  },
+  "scene_checks": {
+    "UICanvas.HUDInventoryButton": "present",
+    "HUDInventoryButton instance active_at_start": true,
+    "HUDInventoryButton.inventoryUI": "assigned to UICanvas.InventoryUI"
+  },
+  "known_gaps": [
+    "Map and settings HUD buttons are not implemented yet.",
+    "MapUI and SettingsUI prefabs are not created yet.",
+    "Room-specific item pickup hotspots are not placed yet.",
+    "Puzzle, monster, hiding, sound, and map gameplay systems are still deferred."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "ui",
+    "unit_id": "MapUI.prefab",
+    "scope": "Create the map UI prefab before wiring a HUD map button."
+  }
+}

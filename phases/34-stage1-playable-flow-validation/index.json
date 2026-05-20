@@ -1,0 +1,58 @@
+{
+  "phase": "34-stage1-playable-flow-validation",
+  "unit_type": "system",
+  "unit_id": "Stage1PlayableFlowValidation",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt"
+  ],
+  "proposal": {
+    "summary": "Run a focused playable-flow validation for Stage 1 before build work, checking scene roots, runtime systems, UI surfaces, required prefabs, data references, Build Settings, and Unity compiler/test readiness.",
+    "out_of_scope": [
+      "New gameplay systems",
+      "New prefabs or scenes",
+      "Final balance tuning",
+      "Windows player build generation",
+      "Asset art/audio redesign"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Start one Harness unit: Stage1PlayableFlowValidation.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends Stage1PlayableFlowValidation."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "Stage1PlayableFlowValidation",
+      "status": "passed_with_followups",
+      "artifact": "reports/unity-validation/stage1_playable_flow_validation.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/stage1_playable_flow_validation.json",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/ProjectSettings/EditorBuildSettings.asset"
+  ],
+  "current_state": "Completed. Stage1 playable-flow validation passed with followups: concrete tests are not yet authored and no BuildScript.BuildWindows entry point exists.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for WindowsBuildScript only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start WindowsBuildScript to add a batchmode-friendly Windows player build entry point before the final build step."
+}

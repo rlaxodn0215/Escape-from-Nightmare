@@ -1,0 +1,53 @@
+{
+  "validation_name": "Stage1ContentSeedDataValidation",
+  "status": "passed_with_known_gaps",
+  "checked_at": "2026-05-19",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Stage1Definition.asset",
+    "reports/unity-validation/stage1_sound_seed_batchmode.log"
+  ],
+  "unity_mcp": {
+    "used": true,
+    "notes": [
+      "Unity MCP was used for item, room, puzzle, event, monster node, and StageDefinition creation.",
+      "Unity MCP became stale during sound seeding, so Unity BatchMode was used for sound definitions."
+    ]
+  },
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.Stage1SoundDefinitionSeeder.Seed",
+    "exit_code": 0,
+    "log_path": "reports/unity-validation/stage1_sound_seed_batchmode.log"
+  },
+  "asset_counts": {
+    "rooms": 27,
+    "items": 10,
+    "puzzles": 7,
+    "events": 18,
+    "monster_nodes": 9,
+    "sounds": 62,
+    "stage_definition": 1
+  },
+  "stage_definition_links": {
+    "rooms": "present",
+    "items": "present",
+    "puzzles": "present",
+    "events": "present",
+    "monster_nodes": "present",
+    "sounds": "present"
+  },
+  "known_gaps": [
+    "InteractableDefinition assets are deferred until the room/interaction unit because precise 1280x720 hit areas need focused implementation.",
+    "RoomDefinition background sprite references are deferred until the room runtime/asset binding unit.",
+    "ItemDefinition icon references are deferred until the inventory/item runtime unit."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "system",
+    "unit_id": "RoomRuntimeSystem",
+    "scope": "Implement the room runtime slice that loads StageDefinition, resolves rooms by id, displays the current room background, and exposes movement hooks."
+  }
+}

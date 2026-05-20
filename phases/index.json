@@ -2,7 +2,199 @@
   "phases": [
     {
       "dir": "0-resource-inventory",
-      "status": "blocked"
+      "status": "completed"
+    },
+    {
+      "dir": "1-unity-project-validation",
+      "status": "completed"
+    },
+    {
+      "dir": "2-stage1-scene-skeleton",
+      "status": "completed"
+    },
+    {
+      "dir": "3-runtime-folder-and-bootstrap",
+      "status": "completed"
+    },
+    {
+      "dir": "4-data-model-definitions",
+      "status": "completed"
+    },
+    {
+      "dir": "5-stage1-content-seed-data",
+      "status": "completed"
+    },
+    {
+      "dir": "6-room-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "7-interaction-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "8-inventory-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "9-inventory-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "10-hud-inventory-button",
+      "status": "completed"
+    },
+    {
+      "dir": "11-map-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "12-hud-map-button",
+      "status": "completed"
+    },
+    {
+      "dir": "13-settings-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "14-hud-settings-button",
+      "status": "completed"
+    },
+    {
+      "dir": "15-title-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "16-pause-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "17-game-over-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "18-puzzle-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "19-hiding-gauge-ui-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "20-room-view-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "21-interactable-hotspot-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "22-screen-edge-hotspot-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "23-hide-spot-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "24-monster-overlay-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "25-audio-emitter-prefab",
+      "status": "completed"
+    },
+    {
+      "dir": "26-stage1-interactable-definitions",
+      "status": "completed"
+    },
+    {
+      "dir": "27-stage1-hotspot-scene-instances",
+      "status": "completed"
+    },
+    {
+      "dir": "28-puzzle-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "29-event-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "30-sound-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "31-hiding-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "32-monster-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "33-map-runtime-system",
+      "status": "completed"
+    },
+    {
+      "dir": "34-stage1-playable-flow-validation",
+      "status": "completed"
+    },
+    {
+      "dir": "35-windows-build-script",
+      "status": "completed"
+    },
+    {
+      "dir": "36-windows-player-build",
+      "status": "completed"
+    },
+    {
+      "dir": "37-generated-player-smoke-validation",
+      "status": "completed"
+    },
+    {
+      "dir": "38-stage1-automated-smoke-tests",
+      "status": "completed"
+    },
+    {
+      "dir": "39-stage1-final-playtest-tuning-review",
+      "status": "completed"
+    },
+    {
+      "dir": "40-stage1-deep-flow-playmode-tests",
+      "status": "completed"
+    },
+    {
+      "dir": "41-stage1-manual-tuning-checklist",
+      "status": "completed"
+    },
+    {
+      "dir": "42-stage1-hit-area-tuning-pass",
+      "status": "completed"
+    },
+    {
+      "dir": "43-stage1-map-marker-tuning-pass",
+      "status": "completed"
+    },
+    {
+      "dir": "44-stage1-monster-hiding-balance-tuning-pass",
+      "status": "completed"
+    },
+    {
+      "dir": "45-stage1-puzzle-finale-walkthrough-validation",
+      "status": "completed"
+    },
+    {
+      "dir": "46-stage1-game-over-restart-validation",
+      "status": "completed"
+    },
+    {
+      "dir": "47-stage1-deterministic-generated-player-smoke",
+      "status": "completed"
+    },
+    {
+      "dir": "48-stage1-final-completion-readiness-review",
+      "status": "completed"
     }
   ]
 }

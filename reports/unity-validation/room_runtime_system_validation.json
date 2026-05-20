@@ -1,0 +1,38 @@
+{
+  "validation_name": "RoomRuntimeSystemValidation",
+  "status": "passed",
+  "checked_at": "2026-05-19",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/RoomSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/RoomViewPresenter.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1SceneReferenceSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Rooms",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Items",
+    "reports/unity-validation/room_runtime_setup_batchmode.log"
+  ],
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.Stage1SceneReferenceSeeder.Seed",
+    "exit_code": 0,
+    "log_path": "reports/unity-validation/room_runtime_setup_batchmode.log"
+  },
+  "scene_checks": {
+    "Systems.RoomSystem": "present",
+    "RoomView.RoomViewPresenter": "present",
+    "RoomView.SpriteRenderer": "present",
+    "GameBootstrap.stageDefinition": "assigned"
+  },
+  "asset_binding_checks": {
+    "room_background_sprite_sample": "child_room.backgroundSprite assigned",
+    "item_icon_sample": "front_door_key.icon assigned"
+  },
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "system",
+    "unit_id": "InteractionRuntimeSystem",
+    "scope": "Create click interaction runtime and hotspot prefab foundations for invisible 1280x720 hit areas."
+  }
+}

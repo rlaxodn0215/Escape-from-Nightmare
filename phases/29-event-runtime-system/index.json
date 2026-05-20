@@ -1,0 +1,63 @@
+{
+  "phase": "29-event-runtime-system",
+  "unit_type": "system",
+  "unit_id": "EventRuntimeSystem",
+  "requires_user_design_approval": true,
+  "status": "completed",
+  "created_at": "2026-05-20",
+  "updated_at": "2026-05-20",
+  "source_of_truth": [
+    "phases/index.json",
+    "NEXT_ACTION.md",
+    "AGENTS.md",
+    "docs/PRD.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ADR.md",
+    "docs/UI_GUIDE.md",
+    "design/03_PUZZLES_ITEMS_EVENTS.txt",
+    "design/07_CODEX_DEVELOPMENT_INSTRUCTION.txt",
+    "design/08_REMAINING_TASKS.txt"
+  ],
+  "proposal": {
+    "summary": "Implement a focused event runtime system that executes EventDefinition effects triggered by interactables and puzzles.",
+    "out_of_scope": [
+      "Full monster AI behavior",
+      "Full sound mixing and ambience system",
+      "Bespoke event cinematics",
+      "Room art mutation and spawned visual object presentation",
+      "Progress saves or checkpoints"
+    ]
+  },
+  "user_decisions": [
+    {
+      "decision": "Proceed through Harness steps automatically and treat the recurring next-step prompt as approval to continue approved-for-implementation units.",
+      "status": "approved_for_implementation"
+    }
+  ],
+  "decision_log": [
+    {
+      "date": "2026-05-20",
+      "decision": "Implement one Harness unit: EventRuntimeSystem.",
+      "reason": "phases/index.json has no active or blocked phase and NEXT_ACTION.md recommends EventRuntimeSystem."
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "EventRuntimeSystemValidation",
+      "status": "passed",
+      "artifact": "reports/unity-validation/event_runtime_system_validation.json"
+    }
+  ],
+  "review_artifacts": [
+    "reports/unity-validation/event_runtime_system_validation.json",
+    "EscapeFromNightmares/Assets/Scripts/Systems/EventRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1EventRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/InteractionSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/PuzzleSystem.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/Events"
+  ],
+  "current_state": "Completed. EventRuntimeSystem executes defined Stage 1 events from interactables and puzzles, with minimal event effects seeded.",
+  "resume_instructions": "This phase is complete. Next, start one new Harness unit for SoundRuntimeSystem only if phases/index.json has no in_progress or blocked phase.",
+  "next_action": "Start SoundRuntimeSystem for ambience, UI SFX, puzzle feedback, and event audio routing."
+}

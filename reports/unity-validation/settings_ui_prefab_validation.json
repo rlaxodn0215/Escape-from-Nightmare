@@ -1,0 +1,56 @@
+{
+  "validation_name": "SettingsUIPrefabValidation",
+  "status": "pass",
+  "checked_at": "2026-05-20",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/UI/SettingsUI.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/SettingsUIPrefabSeeder.cs",
+    "EscapeFromNightmares/Assets/Prefabs/UI/SettingsUI.prefab",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "reports/unity-validation/settings_ui_prefab_setup_batchmode.log"
+  ],
+  "unity_mcp": {
+    "used": false,
+    "blocked_reason": "No Unity MCP editor instance was connected at the start of this heartbeat unit."
+  },
+  "batchmode": {
+    "used": true,
+    "unity_version": "6000.3.9f1",
+    "execute_method": "EscapeFromNightmares.Editor.SettingsUIPrefabSeeder.Seed",
+    "log_path": "reports/unity-validation/settings_ui_prefab_setup_batchmode.log",
+    "log_confirmation": "Seeded SettingsUI prefab and Stage1 scene instance.",
+    "exit_confirmation": "Exiting without the bug reporter. Application will terminate with return code 0"
+  },
+  "prefab_checks": {
+    "SettingsUI.prefab": "present",
+    "SettingsUI component": "present",
+    "CanvasGroup": "present",
+    "CloseButton": "present",
+    "BGM slider": "assigned",
+    "SFX slider": "assigned",
+    "BGM value label": "assigned",
+    "SFX value label": "assigned",
+    "missing_script_references": "none found"
+  },
+  "scene_checks": {
+    "UICanvas.SettingsUI": "present",
+    "SettingsUI instance active_at_start": false,
+    "SettingsUI.saveManager": "assigned to Systems.SaveManager"
+  },
+  "save_scope_checks": {
+    "settings_save": "BGM and SFX only",
+    "progress_save": "not implemented"
+  },
+  "known_gaps": [
+    "HUD settings button is not implemented yet.",
+    "Audio mixer integration is not implemented yet.",
+    "Title, pause, puzzle, hiding, and game-over UI prefabs are still not created."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "ui",
+    "unit_id": "HUDSettingsButton",
+    "scope": "Create or connect the in-game settings button so it opens the existing SettingsUI prefab."
+  }
+}

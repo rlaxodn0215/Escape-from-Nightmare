@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c696a2c8b5d44b83517a0587c1502, type: 3}
+  m_Name: stairwell_1f
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.RoomDefinition
+  roomId: stairwell_1f
+  floorId: 0
+  displayNameForDebug: Stairwell 1F
+  backgroundSprite: {fileID: -5869913397885639190, guid: 1efc2fe5fe73ad24e9865f763d661543, type: 3}
+  ambienceAudio: {fileID: 0}
+  dangerModifier: 1.15
+  monsterCanEnter: 1
+  connectedRooms: []
+  interactableDefinitions:
+  - {fileID: 11400000, guid: 987444e97aa83a443a5aac8e73f54880, type: 2}
+  - {fileID: 11400000, guid: e0dcc87df79d911469a4cec64467c7f0, type: 2}

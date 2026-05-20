@@ -1,0 +1,40 @@
+{
+  "project": "Escape From Nightmares",
+  "phase": "6-room-runtime-system",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 0,
+      "name": "room-runtime-system",
+      "status": "completed",
+      "unit_type": "system",
+      "unit_id": "RoomRuntimeSystem",
+      "requires_user_design_approval": true,
+      "last_known_state": "RoomSystem and RoomViewPresenter are created. BatchMode seeded Stage1 scene references, room background sprites, and item icons successfully.",
+      "next_action": "Open the next Harness unit for InteractionRuntimeSystem or required hotspot prefabs.",
+      "decision_log": [
+        {
+          "date": "2026-05-19",
+          "decision": "User instructed Codex to continue until final result and always approve Harness work."
+        },
+        {
+          "date": "2026-05-19",
+          "decision": "Treat this as approved_for_implementation for RoomRuntimeSystem."
+        }
+      ],
+      "review_artifacts": [
+        "phases/6-room-runtime-system/step0.md",
+        "EscapeFromNightmares/Assets/Scripts/Systems/RoomSystem.cs",
+        "EscapeFromNightmares/Assets/Scripts/Systems/RoomViewPresenter.cs",
+        "EscapeFromNightmares/Assets/Scripts/Editor/Stage1SceneReferenceSeeder.cs",
+        "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+        "reports/unity-validation/room_runtime_system_validation.json"
+      ],
+      "validation_reports": [
+        "reports/unity-validation/room_runtime_system_validation.json",
+        "reports/unity-validation/room_runtime_setup_batchmode.log"
+      ],
+      "resume_prompt": "RoomRuntimeSystem is complete. Continue with InteractionRuntimeSystem or required hotspot prefab work."
+    }
+  ]
+}

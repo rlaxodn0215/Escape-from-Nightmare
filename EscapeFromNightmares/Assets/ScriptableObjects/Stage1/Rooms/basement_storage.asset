@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c696a2c8b5d44b83517a0587c1502, type: 3}
+  m_Name: basement_storage
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.RoomDefinition
+  roomId: basement_storage
+  floorId: 2
+  displayNameForDebug: Basement Storage
+  backgroundSprite: {fileID: -310885351219129203, guid: bc8d97c7aeb3489488098ef02d0ca1a5, type: 3}
+  ambienceAudio: {fileID: 11400000, guid: 56410fa91640373479772150bd4d7f7c, type: 2}
+  dangerModifier: 1.2
+  monsterCanEnter: 1
+  connectedRooms: []
+  interactableDefinitions: []

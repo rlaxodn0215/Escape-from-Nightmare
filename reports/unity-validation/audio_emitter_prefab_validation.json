@@ -1,0 +1,58 @@
+{
+  "validation_name": "AudioEmitterPrefabValidation",
+  "status": "pass",
+  "checked_at": "2026-05-20",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/AudioEmitter.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/AudioEmitterPrefabSeeder.cs",
+    "EscapeFromNightmares/Assets/Prefabs/Audio/AudioEmitter.prefab",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity"
+  ],
+  "unity_mcp": {
+    "used": true,
+    "notes": [
+      "refresh_unity was used with forced all-assets refresh and script compilation.",
+      "Executed menu item Escape From Nightmares/Seed Audio Emitter Prefab.",
+      "Unity console confirmed: Seeded AudioEmitter prefab and Stage1 scene instance.",
+      "Unity MCP prefab hierarchy inspection found one root object with Transform, AudioSource, and AudioEmitter components."
+    ]
+  },
+  "findings": [
+    {
+      "check": "PrefabPresence",
+      "status": "pass",
+      "detail": "Assets/Prefabs/Audio/AudioEmitter.prefab exists."
+    },
+    {
+      "check": "PrefabComponents",
+      "status": "pass",
+      "detail": "Prefab root has AudioSource and AudioEmitter components."
+    },
+    {
+      "check": "AudioSourceDefaults",
+      "status": "pass",
+      "detail": "AudioSource has playOnAwake disabled, loop disabled, and volume set to 1."
+    },
+    {
+      "check": "EmitterReference",
+      "status": "pass",
+      "detail": "AudioEmitter.audioSource references the prefab AudioSource."
+    },
+    {
+      "check": "ScenePlacement",
+      "status": "pass",
+      "detail": "Stage1.unity contains AudioRoot/AudioEmitter as an inactive prefab instance."
+    },
+    {
+      "check": "MissingScriptScan",
+      "status": "pass",
+      "detail": "Static scan found no missing script markers in AudioEmitter.prefab or Stage1.unity."
+    }
+  ],
+  "blocked_reason": null,
+  "known_gaps": [
+    "Sound manager implementation is not included in this unit.",
+    "Room ambience switching and event audio wiring are not implemented in this unit.",
+    "Stage1 room-specific hotspot placement is still incomplete."
+  ]
+}

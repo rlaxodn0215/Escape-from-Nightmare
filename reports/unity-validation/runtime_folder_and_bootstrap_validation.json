@@ -1,0 +1,93 @@
+{
+  "validation_name": "RuntimeFolderAndBootstrapValidation",
+  "status": "passed",
+  "checked_at": "2026-05-19",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Core",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects",
+    "EscapeFromNightmares/Assets/Prefabs",
+    "EscapeFromNightmares/Assets/Tests"
+  ],
+  "unity_mcp": {
+    "used": true,
+    "instance_id": "EscapeFromNightmares@c6f9dc4f",
+    "script_import": "Assets/Scripts",
+    "editor_ready_for_tools": true,
+    "is_compiling": false,
+    "domain_reload_pending": false
+  },
+  "folder_checks": {
+    "Assets/Scripts/Core": "present",
+    "Assets/Scripts/Systems": "present",
+    "Assets/Scripts/UI": "present",
+    "Assets/Scripts/AI": "present",
+    "Assets/Scripts/Data": "present",
+    "Assets/ScriptableObjects/Stage1/Rooms": "present",
+    "Assets/ScriptableObjects/Stage1/Interactables": "present",
+    "Assets/ScriptableObjects/Stage1/Items": "present",
+    "Assets/ScriptableObjects/Stage1/Puzzles": "present",
+    "Assets/ScriptableObjects/Stage1/Events": "present",
+    "Assets/ScriptableObjects/Stage1/MonsterNodes": "present",
+    "Assets/ScriptableObjects/Stage1/Sounds": "present",
+    "Assets/Prefabs/UI": "present",
+    "Assets/Prefabs/Interactables": "present",
+    "Assets/Prefabs/Rooms": "present",
+    "Assets/Prefabs/Monster": "present",
+    "Assets/UI/Fonts": "present",
+    "Assets/UI/Materials": "present",
+    "Assets/Tests/EditMode": "present",
+    "Assets/Tests/PlayMode": "present"
+  },
+  "script_diagnostics": {
+    "Assets/Scripts/Core/GameBootstrap.cs": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "Assets/Scripts/Core/GameStateManager.cs": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "Assets/Scripts/Core/InputRouter.cs": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "Assets/Scripts/Core/SaveManager.cs": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "Assets/Scripts/Core/SceneFlowController.cs": {
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "scene_component_checks": {
+    "StageRoot": [
+      "Transform",
+      "GameBootstrap"
+    ],
+    "Systems": [
+      "Transform",
+      "GameStateManager",
+      "SceneFlowController",
+      "InputRouter",
+      "SaveManager"
+    ]
+  },
+  "scene_validation": {
+    "status": "clean",
+    "totalIssues": 0,
+    "missingScripts": 0,
+    "brokenPrefabs": 0
+  },
+  "console_notes": [
+    "Recent console entries were Unity MCP client lifecycle logs, not C# script diagnostics."
+  ],
+  "findings": [],
+  "blocked_reason": null,
+  "recommended_next_unit": {
+    "unit_type": "system",
+    "unit_id": "DataModelDefinitions",
+    "scope": "Create ScriptableObject and serializable data classes for rooms, interactables, items, puzzles, events, monster nodes, sounds, and StageDefinition."
+  }
+}

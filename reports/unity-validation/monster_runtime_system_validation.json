@@ -1,0 +1,45 @@
+{
+  "validation_name": "MonsterRuntimeSystemValidation",
+  "status": "passed",
+  "checked_paths": [
+    "EscapeFromNightmares/Assets/Scripts/Systems/MonsterRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Systems/EventRuntimeSystem.cs",
+    "EscapeFromNightmares/Assets/Scripts/Editor/Stage1MonsterRuntimeSeeder.cs",
+    "EscapeFromNightmares/Assets/Scenes/Stage1.unity",
+    "EscapeFromNightmares/Assets/ScriptableObjects/Stage1/MonsterNodes"
+  ],
+  "summary": {
+    "monster_runtime_system_components_in_scene": 1,
+    "monster_node_assets": 9,
+    "event_runtime_references_monster_runtime": true,
+    "monster_overlay_connected": true,
+    "hiding_runtime_connected": true,
+    "sound_runtime_connected": true,
+    "near_capture_pressure_per_second": 0.08,
+    "chase_capture_pressure_per_second": 0.22
+  },
+  "findings": [],
+  "known_gaps": [
+    "Full authored pathfinding and patrol route selection is outside this unit.",
+    "Final monster timing and capture balance values are placeholders.",
+    "Bespoke monster cinematics are outside this unit.",
+    "Map gameplay is outside this unit."
+  ],
+  "unity_mcp": {
+    "used": true,
+    "checks": [
+      "refresh_unity compile request completed with editor ready_for_tools=true",
+      "read_console found no C# compiler errors after forced all-assets refresh",
+      "execute_menu_item ran Escape From Nightmares/Seed Stage1 Monster Runtime",
+      "find_gameobjects by component MonsterRuntimeSystem found one scene object",
+      "component inspection confirmed MonsterRuntimeSystem references GameBootstrap, RoomSystem, HidingRuntimeSystem, SoundRuntimeSystem, and MonsterOverlay",
+      "component inspection confirmed EventRuntimeSystem references MonsterRuntimeSystem"
+    ],
+    "notes": [
+      "An initial compile pass reported EventRuntimeSystem could not see MonsterRuntimeSystem before the Unity asset database imported the new file; a forced all-assets refresh resolved it.",
+      "MCP client handler lifecycle logs were present and are unrelated to project compilation."
+    ]
+  },
+  "blocked_reason": "",
+  "next_action": "Implement a focused MapRuntimeSystem that updates MapUI current room and floor state from RoomSystem."
+}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c696a2c8b5d44b83517a0587c1502, type: 3}
+  m_Name: garage
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.RoomDefinition
+  roomId: garage
+  floorId: 0
+  displayNameForDebug: Garage
+  backgroundSprite: {fileID: -2866227787890547056, guid: 37b034696faaf9247a5c1518fb93a9b8, type: 3}
+  ambienceAudio: {fileID: 0}
+  dangerModifier: 1.05
+  monsterCanEnter: 1
+  connectedRooms: []
+  interactableDefinitions:
+  - {fileID: 11400000, guid: 7ff86fba4f3b3c7498c459a353c3c526, type: 2}
+  - {fileID: 11400000, guid: 96f7a40d6f0595b49bf52dfe4bf2d299, type: 2}

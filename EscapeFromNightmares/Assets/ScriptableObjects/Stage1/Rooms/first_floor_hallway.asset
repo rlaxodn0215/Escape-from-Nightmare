@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904c696a2c8b5d44b83517a0587c1502, type: 3}
+  m_Name: first_floor_hallway
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeFromNightmares.Data.RoomDefinition
+  roomId: first_floor_hallway
+  floorId: 0
+  displayNameForDebug: First Floor Hallway
+  backgroundSprite: {fileID: 7350223132064844552, guid: 5309da52f45bc0c468ec45ab1e1dbebc, type: 3}
+  ambienceAudio: {fileID: 11400000, guid: 2ea4e53973d732c49a979c8b824c47ae, type: 2}
+  dangerModifier: 1.1
+  monsterCanEnter: 1
+  connectedRooms: []
+  interactableDefinitions:
+  - {fileID: 11400000, guid: 53fc192ca9fbe4f4ba5a8fef62e9f3d5, type: 2}
+  - {fileID: 11400000, guid: 8cb5e14abab16a449acd14ae91828eee, type: 2}
+  - {fileID: 11400000, guid: c2f419ca4d25e4d47914d5066c6b1d27, type: 2}
+  - {fileID: 11400000, guid: a15c124bc7b955a41ada816e5c9e462c, type: 2}
+  - {fileID: 11400000, guid: 795f739ea33dcfe42a99226d9c5a4ae4, type: 2}
+  - {fileID: 11400000, guid: f342df731631261449e8c852ea93d232, type: 2}
+  - {fileID: 11400000, guid: 4cb83ce61a990f5478207db6a1bfc613, type: 2}

@@ -1,0 +1,471 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/staging' branch; Version is '6000.3.9f1 (7a9955a4f2fa) revision 8034645'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) Core' Language: 'ko' Physical Memory: 65162 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-rlaxo" at "2026-05-19T14:51:19.1115349Z"
+System  architecture: x64
+Process architecture: x64
+Date: 2026-05-19T14:51:19Z
+
+COMMAND LINE ARGUMENTS:
+D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares
+-executeMethod
+EscapeFromNightmares.Editor.Stage1SceneReferenceSeeder.Seed
+-logFile
+D:\Game\Project\Escape_from_Nightmares\reports\unity-validation\room_runtime_setup_batchmode.log
+Successfully changed project path to: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares
+D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [33052]  Target information:
+
+Player connection [33052]  * "[IP] 210.105.80.240 [Port] 55504 [Flags] 2 [Guid] 3644473211 [EditorId] 3644473211 [Version] 1048832 [Id] WindowsEditor(7,rlaxodn0215) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [33052]  * "[IP] 172.30.80.1 [Port] 55504 [Flags] 2 [Guid] 3644473211 [EditorId] 3644473211 [Version] 1048832 [Id] WindowsEditor(7,rlaxodn0215) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [33052] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [33052] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-8892" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.4+4293ba1
+  Session Id:              630dfbe1accf424387382a6bb154d1c5
+  Correlation Id:          6ef71368459d33a7e632c1f9bda63746
+  External correlation Id: 2975780938437890706
+  Machine Id:              heqerU0KLUYhmfMbQ/sN1pRvI3I=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-rlaxo" (connect: 0.00s, validation: 0.00s, handshake: 1.82s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-rlaxo-notifications" at "2026-05-19T14:51:20.9321925Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14568547653354-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.82s
+[Licensing::Module] Licensing is initialized (took 1.20s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.3.9f1 (7a9955a4f2fa)
+[Subsystems] Discovering subsystems at path D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 Laptop GPU (ID=0x28e0)
+    Vendor:   NVIDIA
+    VRAM:     7956 MB
+    Driver:   32.0.15.9174
+Initialize mono
+Mono path[0] = 'D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56892
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Program Files/Unity/Hub/Editor/6000.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001108 seconds.
+- Loaded All Assemblies, in  0.363 seconds
+Native extension for WindowsStandalone target not found
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.356 seconds
+Domain Reload Profiling: 719ms
+	BeginReloadAssembly (130ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (20ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (153ms)
+		LoadAssemblies (109ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (150ms)
+			TypeCache.Refresh (148ms)
+				TypeCache.ScanAssembly (137ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (357ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (321ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (39ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (74ms)
+			ProcessInitializeOnLoadAttributes (131ms)
+			ProcessInitializeOnLoadMethodAttributes (72ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+Package Manager log level set to [2]
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 67 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.2d.animation@13.0.4 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.animation@7396d8477ca9)
+    com.unity.2d.aseprite@3.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.aseprite@809e3a168ff7)
+    com.unity.2d.psdimporter@12.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.psdimporter@9abe0f7cac7e)
+    com.unity.2d.spriteshape@13.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.spriteshape@0738bab11647)
+    com.unity.2d.tilemap.extras@6.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.tilemap.extras@3dde84bf3867)
+    com.unity.2d.tooling@1.0.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.tooling@249995156768)
+    com.unity.collab-proxy@2.11.3 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.collab-proxy@e566cd3e7623)
+    com.unity.ide.rider@3.0.39 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ide.rider@4504839d03f7)
+    com.unity.ide.visualstudio@2.0.26 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.18.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.inputsystem@57d0e36f6123)
+    com.unity.timeline@1.8.10 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.timeline@7f8b2fb101b6)
+    com.unity.visualscripting@1.9.9 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.visualscripting@191c0d7e3b69)
+    com.unity.2d.common@12.0.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.common@800085e896ad)
+    com.unity.mathematics@1.3.3 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.mathematics@19a9377c4ffa)
+    com.unity.collections@2.6.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.collections@aea9d3bd5e19)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.4 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.28 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.burst@07790c2d06d9)
+    com.unity.nuget.mono-cecil@1.11.6 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.2.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.test-framework.performance@0840f58e4562)
+  Built-in packages:
+    com.unity.2d.sprite@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.sprite@d14b9d497a24)
+    com.unity.2d.tilemap@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.2d.tilemap@f011712243ad)
+    com.unity.multiplayer.center@1.0.1 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.multiplayer.center@f01f4ba8d00a)
+    com.unity.render-pipelines.universal@17.3.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.render-pipelines.universal@7327e77c1cc2)
+    com.unity.test-framework@1.6.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d)
+    com.unity.ugui@2.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ugui@bb329a87fcdc)
+    com.unity.modules.accessibility@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.vr@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.vr)
+    com.unity.modules.wind@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.0.5 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.ext.nunit@d8c07649098d)
+    com.unity.render-pipelines.core@17.3.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.render-pipelines.core@04ab0eefa0c3)
+    com.unity.shadergraph@17.3.0 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.shadergraph@f80b792d4861)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main (location: D:\Game\Project\Escape_from_Nightmares\EscapeFromNightmares\Library\PackageCache\com.coplaydev.unity-mcp@13fb3ee12774)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+Starting: D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aEDbg.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+DisplayProgressbar: Compiling Scripts
+Starting: D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\netcorerun\netcorerun.exe "D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1900b0aEDbg.dag.json" "Library/Bee/1900b0aEDbg-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+ExitCode: 4 Duration: 0s288ms
+[ 824/1063  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aEDbg-inputdata.json
+[1059/1063  0s] Csc Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp-Editor.dll (+2 others)
+*** Tundra requires additional run (0.26 seconds), 2 items updated, 1058 evaluated
+ExitCode: 0 Duration: 0s695ms
+Starting: D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aEDbg.dag" --continue-on-failure --dagfilejson="Library\Bee\1900b0aEDbg.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: D:/Game/Project/Escape_from_Nightmares/EscapeFromNightmares
+ExitCode: 0 Duration: 0s816ms
+Finished compiling graph: 1067 nodes, 20565 flattened edges (16857 ToBuild, 170 ToUse), maximum node priority 1207
+[ 825/1063  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1060/1063  0s] ILPostProcess Library/Bee/artifacts/1900b0aEDbg.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp-Editor.dll, with 135 defines and 352 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[1061/1063  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[1062/1063  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (0.79 seconds), 4 items updated, 1063 evaluated
+AssetDatabase: script compilation time: 2.280285s
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.068 seconds
+Refreshing native plugins compatible for Editor in 1.10 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  5.703 seconds
+Domain Reload Profiling: 6771ms
+	BeginReloadAssembly (270ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (143ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (735ms)
+		LoadAssemblies (554ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (266ms)
+			TypeCache.Refresh (177ms)
+				TypeCache.ScanAssembly (163ms)
+			BuildScriptInfoCaches (74ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (5704ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (5536ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (18ms)
+			SetLoadedEditorAssemblies (7ms)
+			BeforeProcessingInitializeOnLoad (225ms)
+			ProcessInitializeOnLoadAttributes (5147ms)
+			ProcessInitializeOnLoadMethodAttributes (137ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Start importing Packages/com.unity.render-pipelines.core/Tests/Editor/UnifiedRayTracing/TraceRays.urtshader using Guid(1142bbad8b9e8c44c83a9775ff120d37) (ScriptedImporter)Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+
+Compiling Ray Tracing Shader "TraceRays.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '711be5bd2aec212bc7f52fe41408d171') in 0.0697116 seconds
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGI/SurfaceCacheCore/RisEstimation.urtshader using Guid(713f6141bd66a134383b787f2eaa7c11) (ScriptedImporter)
+Compiling Ray Tracing Shader "RisEstimation.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '138b6ddd809598ee99efeedbba515d5d') in 0.015293 seconds
+Start importing Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/RenderingLayerMask/TraceRenderingLayerMask.urtshader using Guid(94a070d33e408384bafc1dea4a565df9) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceRenderingLayerMask.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: 'ae9ed0d17c428fa5d475a19beb4b638b') in 0.0271778 seconds
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGI/SurfaceCacheCore/UniformEstimation.urtshader using Guid(94a39d12848d8d64ca962a72b74e7c50) (ScriptedImporter)
+Compiling Ray Tracing Shader "UniformEstimation.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: 'd3dc4aa72a88bdf174f365f7399c830a') in 0.0153789 seconds
+Start importing Packages/com.unity.render-pipelines.core/Tests/Editor/UnifiedRayTracing/TraceTransparentRays.urtshader using Guid(6513c3b892e933c4f8d00c19d5c47532) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceTransparentRays.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '134aed3489688c5d7443737a8b82ef4a') in 0.0075337 seconds
+Start importing Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/DynamicGI/DynamicGISkyOcclusion.urtshader using Guid(5a2a534753fbdb44e96c3c78b5a6999d) (ScriptedImporter)
+Compiling Ray Tracing Shader "DynamicGISkyOcclusion.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '461705bc7692729cfd2d2238848b6419') in 0.0143275 seconds
+Start importing Packages/com.unity.render-pipelines.core/Tests/Editor/UnifiedRayTracing/TraceRaysAndFetchAttributes.urtshader using Guid(fbc59f55df2416344b008dc23753cae2) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceRaysAndFetchAttributes.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '67e914a91375aed09bcd09d6732c8b3c') in 0.0118341 seconds
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGI/SurfaceCacheCore/RestirCandidateTemporal.urtshader using Guid(ad3a9f9982f8c4f4a839a78955e78458) (ScriptedImporter)
+Compiling Ray Tracing Shader "RestirCandidateTemporal.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '9c5f82b1bec7d1e113aa7d907a3587c5') in 0.0143769 seconds
+Start importing Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/VirtualOffset/TraceVirtualOffset.urtshader using Guid(ff2cbab5da58bf04d82c5f34037ed123) (ScriptedImporter)
+Compiling Ray Tracing Shader "TraceVirtualOffset.urtshader", keywords = <no keywords>
+    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
+ -> (artifact id: '6a26cbc95662ba5a0a572b51348960cd') in 0.0166829 seconds
+Refreshing native plugins compatible for Editor in 1.22 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=7e180acc765f60c4dac969319f42b9ef): Total: 10.825 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=6 ms, native=6630 ms
+		Asset DB Callback time: managed=587 ms, native=141 ms
+		Scripting: domain reloads=1, domain reload time=1068 ms, compile time=2282 ms, other=108 ms
+		Project Asset Count: scripts=1659, non-scripts=11475
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.001ms
+	InvokePackagesCallback: 18.893ms
+	ApplyChangesToAssetFolders: 0.570ms
+	Scan: 209.935ms
+	OnSourceAssetsModified: 0.758ms
+	CategorizeAssetsWithTransientArtifact: 43.995ms
+	ProcessAssetsWithTransientArtifactChanges: 76.818ms
+	CategorizeAssets: 163.516ms
+	ImportOutOfDateAssets: 5931.350ms (3434.366ms without children)
+		ImportManagerImport: 201.968ms (4.623ms without children)
+			ImportInProcess: 197.345ms
+		CompileScripts: 2281.726ms
+		ReloadNativeAssets: 0.100ms
+		UnloadImportedAssets: 1.100ms
+		ReloadImportedAssets: 1.756ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 7.180ms
+		InitializingProgressBar: 0.011ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.004ms
+		OnDemandSchedulerStart: 3.138ms
+	PostProcessAllAssets: 709.114ms
+	Hotreload: 2.607ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.002ms
+	UnloadStreamsBegin: 2.462ms
+	PersistCurrentRevisions: 1.499ms
+	UnloadStreamsEnd: 0.004ms
+	GenerateScriptTypeHashes: 4.241ms
+	Untracked: 3663.773ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 2.866ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-EscapeFromNightmares
+Unloading 25 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7215 unused Assets / (5.3 MB). Loaded Objects now: 8036.
+Memory consumption went from 240.7 MB to 235.4 MB.
+Total: 10.357400 ms (FindLiveObjects: 0.607800 ms CreateObjectMapping: 0.382100 ms MarkObjects: 6.624100 ms  DeleteObjects: 2.741700 ms)
+
+Opening scene 'Assets/Scenes/Stage1.unity'
+Unloading 235 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/Stage1.unity'
+	Deserialize:            6.953 ms
+	Integration:            213.737 ms
+	Integration of assets:  0.064 ms
+	Thread Wait Time:       0.020 ms
+	Total Operation Time:   220.774 ms
+Unloading 2 unused Assets / (83.9 KB). Loaded Objects now: 8356.
+Memory consumption went from 251.0 MB to 250.9 MB.
+Total: 7.374100 ms (FindLiveObjects: 0.324800 ms CreateObjectMapping: 0.252500 ms MarkObjects: 6.769900 ms  DeleteObjects: 0.025700 ms)
+
+Start importing Assets/ScriptableObjects/Stage1/Rooms/altar_room.asset using Guid(00c99ac6f3c2008419ee41b43b16e949) (NativeFormatImporter) -> (artifact id: '960858a82d2909dadb14c6ec29dc1b22') in 0.0022371 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/second_floor_hallway.asset using Guid(3048a2e4d4789a645a926a077bb76932) (NativeFormatImporter) -> (artifact id: '940e80ed9412acb666c95f9d59c99720') in 0.0014535 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/attic_main.asset using Guid(90429ff513507a34f83019c194b41506) (NativeFormatImporter) -> (artifact id: '75fc489229aa3af9509c9a27ba71a8fb') in 0.0016593 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/garage.asset using Guid(905e2a632ffa9944fa943357e9ee6261) (NativeFormatImporter) -> (artifact id: '1c0a8259d32b32d0b364c06e7cafdc7a') in 0.0019664 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/guest_room.asset using Guid(c00c9514a528aac479f7d7386d0b2c35) (NativeFormatImporter) -> (artifact id: 'c67dbee8ea7308ca99281d50e504eb4a') in 0.0014998 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/old_keychain.asset using Guid(a102e436192ec61458ad29844a10faa5) (NativeFormatImporter) -> (artifact id: '4104be351c382ae63372600e61624fba') in 0.0018467 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/study.asset using Guid(c15bf59429d0e814fbef459db78f9452) (NativeFormatImporter) -> (artifact id: '3fb75e1290400ab8d35c8832d6aa696a') in 0.0030123 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/small_doll.asset using Guid(423db295d29eff344b628f29958db2de) (NativeFormatImporter) -> (artifact id: '7de598f69391137aa75f3d0681b5a999') in 0.0019553 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/attic_album_storage.asset using Guid(33ee4a08636d6ec4f97dd24e2bfeec84) (NativeFormatImporter) -> (artifact id: 'c47e920f707cb7e53517c082c3cdbdd3') in 0.0015089 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/laundry_room.asset using Guid(6323112a32df01b4da24f86de2b27296) (NativeFormatImporter) -> (artifact id: '714d02c29a5d0145cb990259d7a65668') in 0.0015834 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/second_floor_bathroom.asset using Guid(73509e82bf06bea43a77fa31de7c6153) (NativeFormatImporter) -> (artifact id: '799acd710a0140c3bbdefcecd4859b5e') in 0.0017404 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/basement_main.asset using Guid(c30d5b592aad8b843a9ba2cd16c8fa12) (NativeFormatImporter) -> (artifact id: '67716832bf149a3fc0d054d048d79423') in 0.0017737 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/broken_hand_mirror.asset using Guid(b4d25874b48602f489823f53fa30a7cc) (NativeFormatImporter) -> (artifact id: '589a67adce7a6301afee66c03291f346') in 0.0019597 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/study_safe_clue.asset using Guid(87ab9167c1d24934cb09fff7b5a85017) (NativeFormatImporter) -> (artifact id: '5120ae12fb0f4b951045b232eab744c5') in 0.0019706 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/front_door_key.asset using Guid(d7a9fa85b1b41e64b8488c24bf86694f) (NativeFormatImporter) -> (artifact id: '2518414ee2692e4db6e613aa86369e5a') in 0.0016269 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/dressing_room.asset using Guid(68a664fbee930834bb744534f639739e) (NativeFormatImporter) -> (artifact id: '26622638c32d3f96aea862015f262501') in 0.0020243 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/kitchen.asset using Guid(390b8dfccb96fc742a928f8b769fa1c7) (NativeFormatImporter) -> (artifact id: 'ecc804f453e6118cde378500be319dcb') in 0.001354 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/old_necklace.asset using Guid(f9eb2a7cee63c9045b26ca7a4fa15c4e) (NativeFormatImporter) -> (artifact id: 'c18fc26176fa4addcd6c629e70ac659e') in 0.0014191 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/symbol_fragment.asset using Guid(3a0a8f555decb63479be87752193139b) (NativeFormatImporter) -> (artifact id: '40c4ee635b57f529c3250e3fb81b1358') in 0.002783 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/first_floor_bathroom.asset using Guid(4afa111c3f5ec594b8ae312de8a1bb93) (NativeFormatImporter) -> (artifact id: 'ee41c0caa8ed194f24f33bba40b0342d') in 0.001884 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/entrance.asset using Guid(aa87c0afc39acab4c9e05dace59d7e6d) (NativeFormatImporter) -> (artifact id: '143127045e1d1a80848b379fc4838caa') in 0.0023043 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/mirror_room.asset using Guid(3b132bc83aa2fe547a2b919364e301fa) (NativeFormatImporter) -> (artifact id: 'c0b730ba3ebb2240dc0453cc2a04526c') in 0.0023929 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/basement_entry.asset using Guid(bb75bb3239c15f848b42f2ce10a710be) (NativeFormatImporter) -> (artifact id: '728501147b61e79d2620c7a10f856b08') in 0.0025617 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/dining_room.asset using Guid(cb6de8c668e1cff4b8efd126ebdd3b9a) (NativeFormatImporter) -> (artifact id: '4d52f28f317baeab4e2a5e918744e600') in 0.0016874 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/first_floor_storage.asset using Guid(eb207c01fa22aef418ea263a72759f7d) (NativeFormatImporter) -> (artifact id: '595307273d3ecaa333e8069e77fc5186') in 0.0020926 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/fuse.asset using Guid(1cdc48819f5c56b4a94d579db885d739) (NativeFormatImporter) -> (artifact id: '5f067e62b4cc733478e9bed38b253f7c') in 0.0020004 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/torn_drawing_fragment.asset using Guid(2c53f4e6e8d39bd4386b24fa5471bd15) (NativeFormatImporter) -> (artifact id: 'adf6f55c4840d347de5aee74ad5d7df7') in 0.0013697 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/living_room.asset using Guid(3c6618930bc8f5e42a136d5ebf56e814) (NativeFormatImporter) -> (artifact id: '2b30efac6ab757f63dcfd4edd564fb0b') in 0.0018934 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/family_photo_room.asset using Guid(3c692bd046656664facd5389253e36b0) (NativeFormatImporter) -> (artifact id: 'a621907bb65a913b75d537beaafaf966') in 0.0018794 seconds
+Start importing Assets/ScriptableObjects/Stage1/Items/fuse_holder.asset using Guid(4d06c72b740e8f14e80ec9e00beccb6a) (NativeFormatImporter) -> (artifact id: '9dcf73f8b277075f9541ceb625e1f6a4') in 0.0018251 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/basement_storage.asset using Guid(5d63bc1e9e03efe4688a8aaf2b806414) (NativeFormatImporter) -> (artifact id: '2cb481b491098add00a1c333101d4e45') in 0.001545 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/stairwell_2f.asset using Guid(8e02a5500dfc64e4586e736699c9df72) (NativeFormatImporter) -> (artifact id: 'a84a43460e5206ecae80fc83401920e1') in 0.0013981 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/stairwell_1f.asset using Guid(8e566e3246068e347b095f7544acc914) (NativeFormatImporter) -> (artifact id: '9b9b373a5049e6a20ed5b606b1c4f47c') in 0.0021151 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/child_room.asset using Guid(bea2a6b8ec0f42d41b6df5c7e7d40272) (NativeFormatImporter) -> (artifact id: '92f1c81b57bd903fec538aa0bdefa1a8') in 0.0020829 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/master_bedroom.asset using Guid(0ff00bbbe8082894baac81b3769da78d) (NativeFormatImporter) -> (artifact id: '01fc48b3bf2f2d61fbc71f9d0191cca1') in 0.001398 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/attic_toy_storage.asset using Guid(8f02bcaccac27ba4ca7938f5bc9681bd) (NativeFormatImporter) -> (artifact id: 'bbfc964b54e87bd369ff19064e3a8fb4') in 0.0017734 seconds
+Start importing Assets/ScriptableObjects/Stage1/Rooms/first_floor_hallway.asset using Guid(afa4125f0b1180741af8abe8fc787ba5) (NativeFormatImporter) -> (artifact id: '8eee58cba27d03987d05bb025854efd0') in 0.0019278 seconds
+Refreshing native plugins compatible for Editor in 1.24 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=c4641699909631c498e89ded7f04e5b1): Total: 0.206 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/Scenes/Stage1.unity using Guid(9dddb92659d6ba54d9e9185e924fbf84) (DefaultImporter) -> (artifact id: '77a8cae382a27c4ee607ba5ecdc671dc') in 0.0015611 seconds
+Refreshing native plugins compatible for Editor in 1.13 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=5b1a1c748df8e9740bf546ee766ac7f7): Total: 0.055 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=94b652e71bf95bb4495eda2d2b3b489f): Total: 0.009 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+Seeded Stage1 scene room runtime references.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+EscapeFromNightmares.Editor.Stage1SceneReferenceSeeder:Seed () (at Assets/Scripts/Editor/Stage1SceneReferenceSeeder.cs:76)
+
+(Filename: Assets/Scripts/Editor/Stage1SceneReferenceSeeder.cs Line: 76)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-rlaxo-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-rlaxo channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0
