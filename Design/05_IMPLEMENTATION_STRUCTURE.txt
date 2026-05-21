@@ -1,0 +1,127 @@
+파일명: 05_IMPLEMENTATION_STRUCTURE.txt
+
+Escape From Nightmares
+Unity 구현 구조 / 데이터 설계 문서
+
+================================================================================
+01. Unity 프로젝트 폴더 구조
+================================================================================
+
+Assets/
+├─ Scenes/
+│  └─ SampleScene.unity
+├─ Settings/
+│  └─ URP 2D 설정
+└─ EscapeFromNightmares/
+   ├─ Scripts/
+   │  ├─ Bootstrap/
+   │  ├─ Data/
+   │  ├─ Runtime/
+   │  ├─ Services/
+   │  └─ UI/
+   ├─ Scenes/
+   ├─ Prefabs/
+   ├─ ScriptableObjects/
+   ├─ Sprites/
+   │  ├─ Rooms/
+   │  ├─ Objects/
+   │  ├─ Items/
+   │  ├─ UI/
+   │  ├─ Monster/
+   │  └─ Effects/
+   ├─ Audio/
+   │  ├─ BGM/
+   │  ├─ Ambience/
+   │  ├─ SFX/
+   │  ├─ Monster/
+   │  └─ UI/
+   ├─ UI/
+   └─ Tests/
+      └─ EditMode/
+
+금지:
+- main.lua, conf.lua, data/*.lua 구조를 사용하지 않는다.
+- Unity 생성물인 Library, Logs, UserSettings, *.csproj, *.slnx를 직접 수정하지 않는다.
+
+================================================================================
+02. 핵심 런타임 타입
+================================================================================
+
+GameDirector:
+- 게임 시작, 방 전환, UI 갱신, 스테이지 클리어, 게임오버를 조율한다.
+
+GameSession:
+- 현재 방, 인벤토리, 선택 아이템, 플래그, 몬스터 활성 여부를 가진다.
+- 진행 저장 대상이 아니다.
+
+RoomController:
+- 실제 씬/프리팹 단계에서 방 배경과 클릭 영역을 배치한다.
+- 현재 MVP는 GameDirector가 더미 UI로 방을 렌더링한다.
+
+InteractionSystem:
+- 클릭된 InteractableDefinition을 해석한다.
+- 문 이동, 아이템 획득, 퍼즐 실행, 은신, 이벤트를 분기한다.
+
+InventoryService:
+- 아이템 획득, 보유 여부, 선택 아이템을 관리한다.
+
+PuzzleService:
+- PuzzleDefinition의 정답 토큰, 필요 아이템, 보상 아이템, 성공 플래그를 처리한다.
+
+MonsterAIController:
+- Disabled, Normal, Approaching, Searching, NearDetection, Chase 상태를 가진다.
+
+DangerSystem:
+- danger_level, noise_level, stay_timer, capture_gauge를 관리한다.
+
+HidingSystem:
+- 은신 여부와 마우스 가속도 기반 hide_noise를 계산한다.
+
+SettingsSaveService:
+- Application.persistentDataPath에 settings.json과 clear_records.json만 저장한다.
+
+================================================================================
+03. ScriptableObject 데이터
+================================================================================
+
+StageDefinition:
+- stageId, startRoomId, clearFlag, rooms, items, puzzles, monsterNodeGraph, soundCatalog
+
+RoomDefinition:
+- roomId, displayName, floorName, backgroundResource, connectedRoomIds, interactables, hideSpotCount, dangerModifier
+
+InteractableDefinition:
+- interactableId, displayName, type, normalizedHitbox, requiredItemId, grantsItemId, targetRoomId, puzzleId, eventId
+
+ItemDefinition:
+- itemId, displayName, description, iconResource, itemType, altarSymbol
+
+PuzzleDefinition:
+- puzzleId, displayName, puzzleType, answerTokens, requiredItemIds, rewardItemIds, successFlag, failureDanger
+
+MonsterNodeGraph:
+- 방/노드 단위 몬스터 이동 그래프
+
+SoundCatalog:
+- BGM, ambience, SFX, monster, UI 사운드 경로
+
+================================================================================
+04. 구현 규칙
+================================================================================
+
+방 이동:
+- 문 오브젝트 클릭 또는 화면 가장자리 클릭으로 이동한다.
+- 현재 더미 구현은 상호작용 패널 버튼으로 검증한다.
+- 최종 구현에서는 normalizedHitbox를 사용해 실제 배경 위 클릭 판정을 처리한다.
+
+클릭 오브젝트:
+- 기본 하이라이트를 표시하지 않는다.
+- 실제 리소스가 없을 때만 개발 검증용 텍스트 목록을 허용한다.
+
+저장:
+- 진행 저장, 체크포인트, 자동 저장을 구현하지 않는다.
+- 설정과 클리어 기록만 JSON으로 저장한다.
+
+리소스 fallback:
+- Sprite가 없으면 더미 배경과 텍스트로 표시한다.
+- AudioClip이 없으면 재생을 생략한다.

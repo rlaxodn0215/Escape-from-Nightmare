@@ -1,0 +1,21 @@
+{
+    "name": "EscapeFromNightmares.EditModeTests",
+    "rootNamespace": "EscapeFromNightmares.Tests.EditMode",
+    "references": [
+        "EscapeFromNightmares"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "noEngineReferences": false
+}

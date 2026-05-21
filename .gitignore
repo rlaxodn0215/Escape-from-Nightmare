@@ -34,6 +34,17 @@
 # Jetbrains Rider personal-layer settings
 *.DotSettings.user
 
+node_modules/
+.next/
+out/
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# phase execution outputs
+phases/**/phase*-output.json
+phases/**/step*-output.json
+
+
 # Visual Studio cache directory
 .vs/
 
