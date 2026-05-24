@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Passed" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.2905497">
+  <test-suite type="TestSuite" id="1000" name="EscapeFromNightmares" fullname="EscapeFromNightmares" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.290550" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1027" name="EscapeFromNightmares.EditModeTests.dll" fullname="D:/Game/Project/Escape_from_Nightmares/Library/ScriptAssemblies/EscapeFromNightmares.EditModeTests.dll" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.282838" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29428" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1028" name="EscapeFromNightmares" fullname="EscapeFromNightmares" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.281826" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1029" name="Tests" fullname="EscapeFromNightmares.Tests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.281246" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1030" name="EditMode" fullname="EscapeFromNightmares.Tests.EditMode" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.280628" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="GameSessionTests" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.278769" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1018" name="EscapeActionResolver_OneShotUsedInteractableFails" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.EscapeActionResolver_OneShotUsedInteractableFails" methodname="EscapeActionResolver_OneShotUsedInteractableFails" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="137538985" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.028945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="EscapeActionResolver_OpenPuzzleDoesNotSolveImmediately" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.EscapeActionResolver_OpenPuzzleDoesNotSolveImmediately" methodname="EscapeActionResolver_OpenPuzzleDoesNotSolveImmediately" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="397409408" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.011926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1020" name="EscapeActionResolver_SoundIdAddsPlaySoundAction" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.EscapeActionResolver_SoundIdAddsPlaySoundAction" methodname="EscapeActionResolver_SoundIdAddsPlaySoundAction" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="561407881" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.013646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="FlagService_ConditionsMet_ChecksFlagsItemsAndSolvedPuzzles" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.FlagService_ConditionsMet_ChecksFlagsItemsAndSolvedPuzzles" methodname="FlagService_ConditionsMet_ChecksFlagsItemsAndSolvedPuzzles" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1428709417" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.010780" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="GameSession_RotateFaceWrapsAndMoveToResetsNorth" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.GameSession_RotateFaceWrapsAndMoveToResetsNorth" methodname="GameSession_RotateFaceWrapsAndMoveToResetsNorth" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1893651955" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.010080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1010" name="InteractionSystem_ConditionFailure_ReturnsNone" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.InteractionSystem_ConditionFailure_ReturnsNone" methodname="InteractionSystem_ConditionFailure_ReturnsNone" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="501746733" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.009911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="InteractionSystem_DoorInteraction_ReturnsMoveRoom" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.InteractionSystem_DoorInteraction_ReturnsMoveRoom" methodname="InteractionSystem_DoorInteraction_ReturnsMoveRoom" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="418610752" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.010375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="Inventory_AcquireItem_AddsItOnce" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Inventory_AcquireItem_AddsItOnce" methodname="Inventory_AcquireItem_AddsItOnce" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1672438062" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.008971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="Puzzle_TrySolve_GrantsRewardAndFlag" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Puzzle_TrySolve_GrantsRewardAndFlag" methodname="Puzzle_TrySolve_GrantsRewardAndFlag" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1093810208" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.009849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1013" name="Puzzle_TrySolve_TracksSolvedPuzzleAndBlocksOneShotRepeat" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Puzzle_TrySolve_TracksSolvedPuzzleAndBlocksOneShotRepeat" methodname="Puzzle_TrySolve_TracksSolvedPuzzleAndBlocksOneShotRepeat" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="815147324" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.008959" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1012" name="Puzzle_TrySolve_WrongTokensDoNotGrantRewardOrSolvedState" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Puzzle_TrySolve_WrongTokensDoNotGrantRewardOrSolvedState" methodname="Puzzle_TrySolve_WrongTokensDoNotGrantRewardOrSolvedState" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1024819047" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.009575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1023" name="ResourceManager_MissingSpritePath_ReturnsFallbackSprite" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.ResourceManager_MissingSpritePath_ReturnsFallbackSprite" methodname="ResourceManager_MissingSpritePath_ReturnsFallbackSprite" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="257273050" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.010857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1022" name="ResourcePathCatalog_CreateDefault_UsesExpectedResourcesPaths" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.ResourcePathCatalog_CreateDefault_UsesExpectedResourcesPaths" methodname="ResourcePathCatalog_CreateDefault_UsesExpectedResourcesPaths" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1547326930" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.000504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="SettingsSaveService_SavesSettingsAndClearRecordsOnly" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.SettingsSaveService_SavesSettingsAndClearRecordsOnly" methodname="SettingsSaveService_SavesSettingsAndClearRecordsOnly" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1079990357" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.013400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1019" name="SoundCatalog_TryFind_ReturnsEntryWithCategory" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.SoundCatalog_TryFind_ReturnsEntryWithCategory" methodname="SoundCatalog_TryFind_ReturnsEntryWithCategory" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="732756438" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.011164" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1025" name="SoundManager_ApplyVolumesWithoutMixer_UsesAudioSourceFallback" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.SoundManager_ApplyVolumesWithoutMixer_UsesAudioSourceFallback" methodname="SoundManager_ApplyVolumesWithoutMixer_UsesAudioSourceFallback" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="951836960" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.004184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="SoundManager_PlayMissingClip_DoesNotThrow" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.SoundManager_PlayMissingClip_DoesNotThrow" methodname="SoundManager_PlayMissingClip_DoesNotThrow" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="732164160" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.000745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1024" name="SoundManager_VolumeToDecibels_MapsRange" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.SoundManager_VolumeToDecibels_MapsRange" methodname="SoundManager_VolumeToDecibels_MapsRange" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="990403531" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.000376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="Stage1Data_AllRoomsHaveFourDirectionalFaces" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_AllRoomsHaveFourDirectionalFaces" methodname="Stage1Data_AllRoomsHaveFourDirectionalFaces" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="2104531358" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.014251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1004" name="Stage1Data_ChildRoomPlacesSampleInteractionsOnFourFaces" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_ChildRoomPlacesSampleInteractionsOnFourFaces" methodname="Stage1Data_ChildRoomPlacesSampleInteractionsOnFourFaces" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="368106260" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.012308" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="Stage1Data_ChildRoomUsesExpectedImageResourcesAndHitboxes" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_ChildRoomUsesExpectedImageResourcesAndHitboxes" methodname="Stage1Data_ChildRoomUsesExpectedImageResourcesAndHitboxes" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="2016417911" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.013974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="Stage1Data_FaceInteractablesPreserveRoomInteractables" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_FaceInteractablesPreserveRoomInteractables" methodname="Stage1Data_FaceInteractablesPreserveRoomInteractables" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1341119057" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.011362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1002" name="Stage1Data_HasStartRoomAndRequiredPuzzles" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_HasStartRoomAndRequiredPuzzles" methodname="Stage1Data_HasStartRoomAndRequiredPuzzles" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="597354732" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.009738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="Stage1Data_PuzzlesHaveCloseUpResourcePaths" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_PuzzlesHaveCloseUpResourcePaths" methodname="Stage1Data_PuzzlesHaveCloseUpResourcePaths" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="2069168030" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.010120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1006" name="Stage1Data_TornDrawingFragmentUsesProjectResourceIcon" fullname="EscapeFromNightmares.Tests.EditMode.GameSessionTests.Stage1Data_TornDrawingFragmentUsesProjectResourceIcon" methodname="Stage1Data_TornDrawingFragmentUsesProjectResourceIcon" classname="EscapeFromNightmares.Tests.EditMode.GameSessionTests" runstate="Runnable" seed="1624601771" result="Passed" start-time="2026-05-24 00:18:36Z" end-time="2026-05-24 00:18:36Z" duration="0.010356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/rlaxo/AppData/LocalLow/DefaultCompany/EscapeFromNightmares\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

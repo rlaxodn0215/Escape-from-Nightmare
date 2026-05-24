@@ -16,6 +16,7 @@ namespace EscapeFromNightmares.UI
         [SerializeField] private ResourcePathCatalog resourceCatalog;
         [SerializeField] private AudioMixer audioMixer;
         [SerializeField] private Image backgroundImage;
+        [SerializeField] private Image titleLogoImage;
         [SerializeField] private Button startButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button quitButton;
@@ -95,9 +96,24 @@ namespace EscapeFromNightmares.UI
             SettingsAudioPanel audioPanel,
             string targetSceneName)
         {
+            SetReferences(catalog, mixer, background, null, start, settingsButtonReference, quit, audioPanel, targetSceneName);
+        }
+
+        public void SetReferences(
+            ResourcePathCatalog catalog,
+            AudioMixer mixer,
+            Image background,
+            Image titleLogo,
+            Button start,
+            Button settingsButtonReference,
+            Button quit,
+            SettingsAudioPanel audioPanel,
+            string targetSceneName)
+        {
             resourceCatalog = catalog;
             audioMixer = mixer;
             backgroundImage = background;
+            titleLogoImage = titleLogo;
             startButton = start;
             settingsButton = settingsButtonReference;
             quitButton = quit;
@@ -109,8 +125,19 @@ namespace EscapeFromNightmares.UI
         {
             if (backgroundImage != null)
             {
-                backgroundImage.sprite = resourceManager.LoadSprite(resourceCatalog.titleBackgroundPath);
+                if (backgroundImage.sprite == null)
+                {
+                    backgroundImage.sprite = resourceManager.LoadSprite(resourceCatalog.titleBackgroundPath);
+                }
+
+                backgroundImage.color = Color.white;
             }
+
+            SetImageSprite(titleLogoImage, resourceCatalog.titleLogoPath);
+            SetButtonSprite(startButton, resourceCatalog.titleStartButtonPath);
+            SetButtonSprite(settingsButton, resourceCatalog.titleSettingsButtonPath);
+            SetButtonSprite(quitButton, resourceCatalog.titleQuitButtonPath);
+            settingsPanel?.ApplySprites(resourceManager, resourceCatalog);
         }
 
         private void BindButtons()
@@ -140,6 +167,31 @@ namespace EscapeFromNightmares.UI
 
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(callback);
+        }
+
+        private void SetButtonSprite(Button button, string path)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            SetImageSprite(button.GetComponent<Image>(), path);
+        }
+
+        private void SetImageSprite(Image image, string path)
+        {
+            if (image == null)
+            {
+                return;
+            }
+
+            if (image.sprite == null)
+            {
+                image.sprite = resourceManager.LoadSprite(path);
+            }
+
+            image.color = Color.white;
         }
     }
 }

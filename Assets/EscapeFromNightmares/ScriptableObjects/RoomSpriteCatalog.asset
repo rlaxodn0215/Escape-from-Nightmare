@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64d2e8611cc457baeefffc7220d2532, type: 3}
+  m_Name: RoomSpriteCatalog
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomSpriteCatalog
+  sprites:
+  - spriteId: child_room_north
+    sprite: {fileID: 21300000, guid: 5bc6b0ccb4944b10ae4dcd2008c40ff8, type: 3}
+  - spriteId: child_room_east
+    sprite: {fileID: 21300000, guid: b782b08d71fb43be96bc15ca0767000e, type: 3}
+  - spriteId: child_room_south
+    sprite: {fileID: 21300000, guid: ecef6c853d224730ad1a0a4548ce902c, type: 3}
+  - spriteId: child_room_west
+    sprite: {fileID: 21300000, guid: b598cff31baa41dd870aa1ef5178f436, type: 3}
+  - spriteId: second_floor_hallway_north
+    sprite: {fileID: 21300000, guid: a93f7b8e2c4f4a1e9b6c2d5f8a10c321, type: 3}
+  - spriteId: second_floor_hallway_south
+    sprite: {fileID: 21300000, guid: b41e9c7a0d2f4c8aa3156e92d70fb4c5, type: 3}
+  - spriteId: study_north
+    sprite: {fileID: 21300000, guid: 0213acf6d1c8433ba0994222d6b43118, type: 3}
+  - spriteId: study_east
+    sprite: {fileID: 21300000, guid: 6f95babe9c5b47649ad1c341f7bafce7, type: 3}
+  - spriteId: study_south
+    sprite: {fileID: 21300000, guid: e77bfd15482f4a209c5d33823d4756c9, type: 3}
+  - spriteId: study_west
+    sprite: {fileID: 21300000, guid: 90f6653f14f24ab69ac57778c2b913bb, type: 3}
+  - spriteId: child_room_north_drawer_empty
+    sprite: {fileID: 21300000, guid: a15da56bcb554f838d6bb7d934de46f5, type: 3}
+  - spriteId: study_north_safe_open
+    sprite: {fileID: 21300000, guid: ef75fa8dc4124f0ea9156815f5f59323, type: 3}
+  - spriteId: study_north_safe_open_with_item
+    sprite: {fileID: 21300000, guid: 0ed08b9047504bf28fac531982ebeae7, type: 3}
+  - spriteId: study_north_safe_open_empty
+    sprite: {fileID: 21300000, guid: 8b7a9df1970f4f6ab4b1d55f58540a59, type: 3}
+  - spriteId: study_safe
+    sprite: {fileID: 21300000, guid: 30e23556b5b44d5ab9f74bf3b5a59fe6, type: 3}
+  - spriteId: study_safe_digit_0
+    sprite: {fileID: 21300000, guid: 45b87f2d42384330a8892834207e33f0, type: 3}
+  - spriteId: study_safe_digit_1
+    sprite: {fileID: 21300000, guid: 46ab5dcbe2c94ef688f06555142810bf, type: 3}
+  - spriteId: study_safe_digit_2
+    sprite: {fileID: 21300000, guid: dfa5e8edc5ff44e899386076fda6dcd7, type: 3}
+  - spriteId: study_safe_digit_3
+    sprite: {fileID: 21300000, guid: ef5e570558ab4c8eb6a4f0da2126b023, type: 3}
+  - spriteId: study_safe_digit_4
+    sprite: {fileID: 21300000, guid: bab1895b755a4b1ebb817ca3a695abec, type: 3}
+  - spriteId: study_safe_digit_5
+    sprite: {fileID: 21300000, guid: 280ad4b6a88d4e12bb100179d2c7085e, type: 3}
+  - spriteId: study_safe_digit_6
+    sprite: {fileID: 21300000, guid: 355d859daf42435f819e09a351cc405c, type: 3}
+  - spriteId: study_safe_digit_7
+    sprite: {fileID: 21300000, guid: b8d072a32ca144128933f07925007fa6, type: 3}
+  - spriteId: study_safe_digit_8
+    sprite: {fileID: 21300000, guid: d57b0c87943f4b3e92f3936c84ebf99d, type: 3}
+  - spriteId: study_safe_digit_9
+    sprite: {fileID: 21300000, guid: 855d6c2f1b3546aeb45b39ef904f858f, type: 3}
+  - spriteId: child_desk_drawer
+    sprite: {fileID: 21300000, guid: abed0af4977f4bf68253ac91c38d9c6e, type: 3}
+  - spriteId: child_room_door
+    sprite: {fileID: 21300000, guid: 1f8788f487ba4a7d9b2d526520dca436, type: 3}
+  - spriteId: child_bed_hide
+    sprite: {fileID: 21300000, guid: f65585d690e343b989166c50edbe2f2a, type: 3}
+  - spriteId: child_window_silhouette
+    sprite: {fileID: 21300000, guid: 40e7cd891f5d4af99eb2a011b55274af, type: 3}
+  - spriteId: item_torn_drawing_fragment
+    sprite: {fileID: 21300000, guid: ebb886c211fc4137941608349c7bf800, type: 3}
+  - spriteId: item_fuse_holder
+    sprite: {fileID: 21300000, guid: 8cf54ba9f0d549d8bf254591841ab677, type: 3}
+  - spriteId: child_desk_drawer_closed
+    sprite: {fileID: 21300000, guid: 93b79f5ac7d041d394817bd226319474, type: 3}
+  - spriteId: child_desk_drawer_open_with_item
+    sprite: {fileID: 21300000, guid: 0afacd1638a94b8889d07405bf1dcc62, type: 3}
+  - spriteId: child_desk_drawer_open_empty
+    sprite: {fileID: 21300000, guid: 7d7d7169c8bf4ea4a1c9857a04c28ffb, type: 3}
+  - spriteId: study_safe_clue_note
+    sprite: {fileID: 21300000, guid: e9bf12ce410f480ba626dec41815f8de, type: 3}
+  - spriteId: study_safe_locked
+    sprite: {fileID: 21300000, guid: 23dbfc07978e4ef3963ae40a3792e801, type: 3}
+  - spriteId: study_safe_open_with_item
+    sprite: {fileID: 21300000, guid: 53eb92f8ba46457e8440cd26467fcb6f, type: 3}
+  - spriteId: study_safe_open_empty
+    sprite: {fileID: 21300000, guid: 8f8e0cb03e75449ab75350c7014925cc, type: 3}
+  - spriteId: child_desk_surface
+    sprite: {fileID: 21300000, guid: 83eb203a2ae6407a904662eb05cf7335, type: 3}
+  - spriteId: child_drawing_board
+    sprite: {fileID: 21300000, guid: 684347666f66448ab50fd9822e36e377, type: 3}
+  - spriteId: child_window_view
+    sprite: {fileID: 21300000, guid: 4862d2f03032491c8882f412652e59f0, type: 3}
+  - spriteId: study_safe_surrounding
+    sprite: {fileID: 21300000, guid: bdd6a1ffb0934efea189768343b006a2, type: 3}
+  - spriteId: study_desk_surface
+    sprite: {fileID: 21300000, guid: 00bb19f2e90d4251a393e111ca881cb1, type: 3}
+  - spriteId: study_clue_board
+    sprite: {fileID: 21300000, guid: 7b464709d9584c89a03368d266d06f27, type: 3}
+  - spriteId: study_portrait
+    sprite: {fileID: 21300000, guid: 15f107187b394515aab108abaf1e28c8, type: 3}
+  - spriteId: study_window_view
+    sprite: {fileID: 21300000, guid: 231aa8aef3e44097ad69f3957aa288ee, type: 3}
+  - spriteId: child_bed_under_view
+    sprite: {fileID: 21300000, guid: b3178e7417994f7d81aab7208b75bf71, type: 3}
+  - spriteId: inventory_panel_bg
+    sprite: {fileID: 21300000, guid: a22e0d9dac5c4f44b8618eeb0cda96d0, type: 3}
+  - spriteId: inventory_button
+    sprite: {fileID: 21300000, guid: 4685b8abfd3245eeb41bfe1e4f78a82e, type: 3}
+  - spriteId: inventory_close_button
+    sprite: {fileID: 21300000, guid: ce3a8abd004149bbba050acc95b5010b, type: 3}
+  - spriteId: inventory_slot_empty
+    sprite: {fileID: 21300000, guid: 67efafc15cfb478cb210eaf655187eed, type: 3}
+  - spriteId: inventory_slot_selected
+    sprite: {fileID: 21300000, guid: 78b4383e58134ab0a8d282942888e472, type: 3}
+  - spriteId: ui_rotate_left
+    sprite: {fileID: 21300000, guid: 7609cc6c54a04a158c7fbbd42d847a7e, type: 3}
+  - spriteId: ui_rotate_right
+    sprite: {fileID: 21300000, guid: eb413b1b91814901971611aee18d5063, type: 3}
+  - spriteId: ui_hide_exit
+    sprite: {fileID: 21300000, guid: 719223642fad40b39552ee9e390c2611, type: 3}
+  - spriteId: ui_back_arrow
+    sprite: {fileID: 21300000, guid: 3f9f4bc4deae4af3ae0bd24a153c9d25, type: 3}

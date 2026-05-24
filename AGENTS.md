@@ -35,3 +35,13 @@ Recent history uses short imperative commits such as `init project` and occasion
 ## Asset & Configuration Notes
 
 Keep `.meta` files with their assets so Unity GUID references remain stable. Manage dependencies through `Packages/manifest.json` and `Packages/packages-lock.json`; avoid committing local editor cache output from `Library/` or `Logs/`. Do not add progress saves; only `settings.json` and `clear_records.json` are allowed runtime save files.
+
+## Feature Deliverable Rules
+
+When a requirement, visual detail, puzzle rule, room layout, story beat, or harness behavior is unknown or ambiguous, do not invent a final answer. State the uncertainty and ask the user before locking it into a plan, asset, scene, prefab, or runtime rule. Temporary placeholders are allowed only when they are clearly labeled as placeholders and do not imply final lore, final art, or final gameplay rules.
+
+Classify every feature before implementation. Pure logic, save data, calculations, service classes, and tests may be `Script only`. Anything the player sees or clicks at runtime, including UI panels, buttons, interactable objects, repeated scene elements, hiding spots, and monster nodes, must include the required Prefab or Scene work, not just scripts. Independent entry screens or flows that need a camera, Canvas, EventSystem, or AudioListener must include Scene or scene-builder changes.
+
+When new images or audio are needed, load them through `ResourcePathCatalog` or another ScriptableObject path catalog rather than direct component references. If a feature needs repeatable generation or recovery of scenes, prefabs, or dummy resources, include an Editor builder menu item. Feature plans must explicitly state whether they require `Script only`, `Script + Prefab`, `Script + Scene`, `ScriptableObject asset`, `ResourceCatalog update`, or `Editor builder required`.
+
+Choose scene placement deliberately. Use direct Scene placement for one-off objects that belong only to a specific stage scene. Use an Editor builder when an entry screen, UI prefab, default scene infrastructure, or dummy resource set must be recreated safely by another developer. Do not rely on runtime-only generated UI as the final deliverable for visible gameplay or menu features.

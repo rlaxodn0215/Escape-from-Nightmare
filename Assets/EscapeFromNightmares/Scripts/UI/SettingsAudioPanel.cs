@@ -1,4 +1,5 @@
 using EscapeFromNightmares.Services;
+using EscapeFromNightmares.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,12 @@ namespace EscapeFromNightmares.UI
         [SerializeField] private Slider sfxSlider;
         [SerializeField] private Slider uiSlider;
         [SerializeField] private Button closeButton;
+        [SerializeField] private Image panelBackgroundImage;
+        [SerializeField] private Image headerImage;
+        [SerializeField] private Image masterLabelImage;
+        [SerializeField] private Image bgmLabelImage;
+        [SerializeField] private Image sfxLabelImage;
+        [SerializeField] private Image uiLabelImage;
 
         private SettingsSaveService settingsSaveService;
         private SoundManager soundManager;
@@ -43,6 +50,36 @@ namespace EscapeFromNightmares.UI
         {
             SetSliders(master, bgm, sfx, ui);
             closeButton = close;
+        }
+
+        public void SetVisuals(Image panelBackground, Image header, Image masterLabel, Image bgmLabel, Image sfxLabel, Image uiLabel)
+        {
+            panelBackgroundImage = panelBackground;
+            headerImage = header;
+            masterLabelImage = masterLabel;
+            bgmLabelImage = bgmLabel;
+            sfxLabelImage = sfxLabel;
+            uiLabelImage = uiLabel;
+        }
+
+        public void ApplySprites(ResourceManager resourceManager, ResourcePathCatalog catalog)
+        {
+            if (resourceManager == null || catalog == null)
+            {
+                return;
+            }
+
+            SetImageSprite(resourceManager, panelBackgroundImage, catalog.settingsPanelBackgroundPath);
+            SetImageSprite(resourceManager, headerImage, catalog.settingsHeaderPath);
+            SetImageSprite(resourceManager, masterLabelImage, catalog.settingsMasterLabelPath);
+            SetImageSprite(resourceManager, bgmLabelImage, catalog.settingsBgmLabelPath);
+            SetImageSprite(resourceManager, sfxLabelImage, catalog.settingsSfxLabelPath);
+            SetImageSprite(resourceManager, uiLabelImage, catalog.settingsUiLabelPath);
+            SetButtonSprite(resourceManager, closeButton, catalog.titleCloseButtonPath);
+            ApplySliderSprites(resourceManager, catalog, masterSlider);
+            ApplySliderSprites(resourceManager, catalog, bgmSlider);
+            ApplySliderSprites(resourceManager, catalog, sfxSlider);
+            ApplySliderSprites(resourceManager, catalog, uiSlider);
         }
 
         public void Close()
@@ -123,6 +160,48 @@ namespace EscapeFromNightmares.UI
             }
 
             return null;
+        }
+
+        private static void ApplySliderSprites(ResourceManager resourceManager, ResourcePathCatalog catalog, Slider slider)
+        {
+            if (slider == null)
+            {
+                return;
+            }
+
+            var trackImage = slider.transform.Find("Background")?.GetComponent<Image>();
+            SetImageSprite(resourceManager, trackImage, catalog.settingsSliderTrackPath);
+
+            var fillImage = slider.fillRect != null ? slider.fillRect.GetComponent<Image>() : null;
+            SetImageSprite(resourceManager, fillImage, catalog.settingsSliderFillPath);
+
+            var handleImage = slider.handleRect != null ? slider.handleRect.GetComponent<Image>() : null;
+            SetImageSprite(resourceManager, handleImage, catalog.settingsSliderHandlePath);
+        }
+
+        private static void SetButtonSprite(ResourceManager resourceManager, Button button, string path)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            SetImageSprite(resourceManager, button.GetComponent<Image>(), path);
+        }
+
+        private static void SetImageSprite(ResourceManager resourceManager, Image image, string path)
+        {
+            if (image == null)
+            {
+                return;
+            }
+
+            if (image.sprite == null)
+            {
+                image.sprite = resourceManager.LoadSprite(path);
+            }
+
+            image.color = Color.white;
         }
     }
 }

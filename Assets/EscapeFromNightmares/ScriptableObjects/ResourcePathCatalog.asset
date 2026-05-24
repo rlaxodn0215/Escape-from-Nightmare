@@ -13,6 +13,20 @@ MonoBehaviour:
   m_Name: ResourcePathCatalog
   m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.ResourcePathCatalog
   titleBackgroundPath: EscapeFromNightmares/Title/title_background
+  titleLogoPath: EscapeFromNightmares/Title/title_logo_escape_from_nightmare
+  titleStartButtonPath: EscapeFromNightmares/Title/UI/button_start
+  titleSettingsButtonPath: EscapeFromNightmares/Title/UI/button_settings
+  titleQuitButtonPath: EscapeFromNightmares/Title/UI/button_quit
+  titleCloseButtonPath: EscapeFromNightmares/Title/UI/button_close
+  settingsPanelBackgroundPath: EscapeFromNightmares/Title/UI/settings_panel_bg
+  settingsHeaderPath: EscapeFromNightmares/Title/UI/settings_header
+  settingsMasterLabelPath: EscapeFromNightmares/Title/UI/settings_label_master
+  settingsBgmLabelPath: EscapeFromNightmares/Title/UI/settings_label_bgm
+  settingsSfxLabelPath: EscapeFromNightmares/Title/UI/settings_label_sfx
+  settingsUiLabelPath: EscapeFromNightmares/Title/UI/settings_label_ui
+  settingsSliderTrackPath: EscapeFromNightmares/Title/UI/slider_track
+  settingsSliderFillPath: EscapeFromNightmares/Title/UI/slider_fill
+  settingsSliderHandlePath: EscapeFromNightmares/Title/UI/slider_handle
   titleBgmPath: EscapeFromNightmares/Audio/BGM/title_loop
   uiClickPath: EscapeFromNightmares/Audio/UI/ui_click
   confirmSfxPath: EscapeFromNightmares/Audio/SFX/sfx_confirm

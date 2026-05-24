@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EscapeFromNightmares.Data;
 using UnityEngine;
 
@@ -41,9 +41,11 @@ namespace EscapeFromNightmares.Runtime
 
         private static List<PuzzleDefinition> CreatePuzzles()
         {
+            var studySafe = Puzzle("study_safe", "Study Safe", PuzzleType.NumberLock, new[] {"3", "1", "4", "2"}, new[] {"fuse_holder"}, "study_safe_unlocked", null);
+            studySafe.deferSolvedUntilRewardPickup = true;
             return new List<PuzzleDefinition>
             {
-                Puzzle("study_safe", "서재 금고", PuzzleType.NumberLock, new[] {"3", "1", "4", "2"}, new[] {"fuse_holder"}, "puzzle_study_safe_clear", null),
+                studySafe,
                 Puzzle("laundry_storage_box", "세탁실 보관함", PuzzleType.NumberLock, new[] {"0", "9", "1", "5"}, new[] {"fuse"}, "puzzle_laundry_box_clear", null, 10f),
                 Puzzle("breaker_box", "차단기함", PuzzleType.ItemUse, new[] {"fuse_holder", "fuse"}, new[] {"old_keychain"}, "electricity_restored", new[] {"fuse_holder", "fuse"}),
                 Puzzle("mirror_symbol_panel", "거울 방 문양 패널", PuzzleType.SymbolSequence, new[] {"heart", "child_hand", "cracked_circle", "keyhole"}, new[] {"broken_hand_mirror"}, "mirror_destroyed", null),
@@ -58,9 +60,9 @@ namespace EscapeFromNightmares.Runtime
         {
             return new List<RoomDefinition>
             {
-                Room("child_room", "아이 방", "2F", new[] {"second_floor_hallway"}, 1, I("child_desk_drawer", "책상 서랍", InteractableType.ItemPickup, grantsItemId: "torn_drawing_fragment"), Door("child_room_door", "복도로 나가기", "second_floor_hallway"), Hide("child_bed_hide", "침대 밑")),
-                Room("second_floor_hallway", "2층 복도", "2F", new[] {"child_room", "study", "mirror_room", "master_bedroom", "dressing_room", "second_floor_bathroom", "stairwell_2f"}, 0, Doors("child_room", "study", "mirror_room", "master_bedroom", "dressing_room", "second_floor_bathroom", "stairwell_2f")),
-                Room("study", "서재", "2F", new[] {"second_floor_hallway"}, 1, PuzzleObject("study_safe_obj", "서재 금고", "study_safe"), Door("study_exit", "복도로 나가기", "second_floor_hallway")),
+                ChildRoom(),
+                SecondFloorHallway(),
+                Study(),
                 Room("mirror_room", "거울 방", "2F", new[] {"second_floor_hallway"}, 0, PuzzleObject("mirror_panel_obj", "문양 패널", "mirror_symbol_panel"), Door("mirror_exit", "복도로 나가기", "second_floor_hallway")),
                 Room("master_bedroom", "안방", "2F", new[] {"second_floor_hallway"}, 1, PuzzleObject("master_drawer_obj", "색상 서랍", "master_bedroom_drawer"), Hide("master_closet_hide", "옷장"), Door("master_exit", "복도로 나가기", "second_floor_hallway")),
                 Room("dressing_room", "드레스룸", "2F", new[] {"second_floor_hallway"}, 1, I("color_clue", "옷 색상 순서 단서", InteractableType.ClueObject, eventId: "clue_color_sequence"), Door("dressing_exit", "복도로 나가기", "second_floor_hallway")),
@@ -101,8 +103,17 @@ namespace EscapeFromNightmares.Runtime
         private static SoundCatalog CreateSoundCatalog()
         {
             var catalog = ScriptableObject.CreateInstance<SoundCatalog>();
-            catalog.entries.Add(new SoundEntry { soundId = "bgm_stage1_ambient", resourcePath = "Audio/BGM/bgm_stage1_ambient", loop = true });
-            catalog.entries.Add(new SoundEntry { soundId = "bgm_final_chase", resourcePath = "Audio/BGM/bgm_final_chase", loop = true });
+            catalog.entries.Add(new SoundEntry { soundId = "bgm_stage1_ambient", resourcePath = "EscapeFromNightmares/Audio/BGM/bgm_stage1_ambient", category = SoundCategory.Bgm, loop = true });
+            catalog.entries.Add(new SoundEntry { soundId = "bgm_final_chase", resourcePath = "EscapeFromNightmares/Audio/BGM/bgm_final_chase", category = SoundCategory.Bgm, loop = true });
+            catalog.entries.Add(new SoundEntry { soundId = "ui_click", resourcePath = "EscapeFromNightmares/Audio/UI/ui_click", category = SoundCategory.Ui });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_confirm", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_confirm", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_door", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_door", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_item_pickup", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_item_pickup", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_drawer_open", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_drawer_open", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_drawer_close", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_drawer_close", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_hide", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_hide", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_puzzle_success", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_puzzle_success", category = SoundCategory.Sfx });
+            catalog.entries.Add(new SoundEntry { soundId = "sfx_puzzle_failure", resourcePath = "EscapeFromNightmares/Audio/SFX/sfx_puzzle_failure", category = SoundCategory.Sfx });
             return catalog;
         }
 
@@ -113,7 +124,7 @@ namespace EscapeFromNightmares.Runtime
             item.displayName = name;
             item.itemType = type;
             item.altarSymbol = altarSymbol;
-            item.iconResource = "Sprites/Items/item_" + id;
+            item.iconResource = "EscapeFromNightmares/Items/item_" + id;
             return item;
         }
 
@@ -129,6 +140,9 @@ namespace EscapeFromNightmares.Runtime
             puzzle.successEventId = "event_" + id + "_success";
             puzzle.requiredItemIds = requiredItems ?? System.Array.Empty<string>();
             puzzle.failureDanger = failureDanger;
+            puzzle.successSoundId = "sfx_puzzle_success";
+            puzzle.failureSoundId = "sfx_puzzle_failure";
+            puzzle.closeUpResource = "EscapeFromNightmares/Puzzles/" + id;
             return puzzle;
         }
 
@@ -138,12 +152,234 @@ namespace EscapeFromNightmares.Runtime
             room.roomId = id;
             room.displayName = name;
             room.floorName = floor;
-            room.backgroundResource = "Sprites/Rooms/room_" + id;
+            room.backgroundResource = RoomFaceResource(id, RoomFaceDirection.North);
             room.connectedRoomIds = connected;
             room.hideSpotCount = hideSpotCount;
             room.interactables = interactables;
+            room.faces = CreateFaces(id, interactables);
             room.allowMonster = id != "child_room";
             return room;
+        }
+
+        private static RoomDefinition SecondFloorHallway()
+        {
+            var childRoomDoor = HallwayDoor("door_to_child_room", "Child Room", "child_room", new Rect(0.03f, 0.09f, 0.34f, 0.76f));
+            var studyDoor = HallwayDoor("door_to_study", "Study", "study", new Rect(0.78f, 0.12f, 0.2f, 0.72f));
+            var bathroomDoor = HallwayDoor("door_to_second_floor_bathroom", "Bathroom", "second_floor_bathroom", new Rect(0.68f, 0.2f, 0.08f, 0.42f));
+            var mirrorRoomDoor = HallwayDoor("door_to_mirror_room", "Mirror Room", "mirror_room", new Rect(0.53f, 0.24f, 0.07f, 0.36f));
+            var masterBedroomDoor = HallwayDoor("door_to_master_bedroom", "Master Bedroom", "master_bedroom", new Rect(0.27f, 0.1f, 0.18f, 0.72f));
+            var dressingRoomDoor = HallwayDoor("door_to_dressing_room", "Dressing Room", "dressing_room", new Rect(0.53f, 0.2f, 0.1f, 0.48f));
+            var stairwellDoor = HallwayDoor("door_to_stairwell_2f", "Stairwell", "stairwell_2f", new Rect(0.57f, 0.42f, 0.26f, 0.45f));
+
+            var room = Room(
+                "second_floor_hallway",
+                "2F Hallway",
+                "2F",
+                new[] { "child_room", "study", "mirror_room", "master_bedroom", "dressing_room", "second_floor_bathroom", "stairwell_2f" },
+                0,
+                childRoomDoor,
+                studyDoor,
+                mirrorRoomDoor,
+                masterBedroomDoor,
+                dressingRoomDoor,
+                bathroomDoor,
+                stairwellDoor);
+
+            room.faces = new[]
+            {
+                Face("second_floor_hallway", RoomFaceDirection.North, "Child Room End", new[] { childRoomDoor, studyDoor, bathroomDoor, mirrorRoomDoor }),
+                Face("second_floor_hallway", RoomFaceDirection.South, "Stairwell End", new[] { masterBedroomDoor, dressingRoomDoor, stairwellDoor })
+            };
+
+            return room;
+        }
+
+        private static InteractableDefinition HallwayDoor(string id, string name, string targetRoomId, Rect hitbox)
+        {
+            var door = Door(id, name, targetRoomId);
+            door.normalizedHitbox = hitbox;
+            door.showWorldImage = false;
+            return door;
+        }
+
+        private static RoomDefinition ChildRoom()
+        {
+            var drawer = I("child_desk_drawer", "Child Desk Drawer", InteractableType.ItemPickup, grantsItemId: "torn_drawing_fragment");
+            var deskSurface = Clue("child_desk_surface", "Child Desk Surface", "EscapeFromNightmares/CloseUps/child_desk_surface", new Rect(0.14f, 0.22f, 0.26f, 0.22f));
+            var drawingBoard = Clue("child_drawing_board", "Child Drawing Board", "EscapeFromNightmares/CloseUps/child_drawing_board", new Rect(0.45f, 0.35f, 0.2f, 0.28f));
+            var windowView = Clue("child_window_view", "Child Window View", "EscapeFromNightmares/CloseUps/child_window_view", new Rect(0.08f, 0.2f, 0.19f, 0.62f));
+            var door = Door("child_room_door", "Hallway", "second_floor_hallway");
+            var hide = Hide("child_bed_hide", "Child Bed");
+            var silhouette = I("child_window_silhouette", "Window Silhouette", InteractableType.EventTrigger, eventId: "event_window_silhouette");
+
+            var room = Room(
+                "child_room",
+                "Child Room",
+                "2F",
+                new[] {"second_floor_hallway"},
+                1,
+                drawer,
+                deskSurface,
+                drawingBoard,
+                door,
+                hide,
+                silhouette,
+                windowView);
+
+            room.faces = new[]
+            {
+                WithBackground(Face("child_room", RoomFaceDirection.North, "Desk Wall", new[] { drawer, deskSurface, drawingBoard }), "EscapeFromNightmares/Rooms/child_room_north_drawer_empty", new ConditionDefinition { requiredItemIds = new[] { "torn_drawing_fragment" } }),
+                Face("child_room", RoomFaceDirection.East, "Hallway Door", new[] { door }),
+                Face("child_room", RoomFaceDirection.South, "Bed", new[] { hide }),
+                Face("child_room", RoomFaceDirection.West, "Window", new[] { silhouette, windowView })
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition Study()
+        {
+            var safe = PuzzleObject("study_safe_obj", "Study Safe", "study_safe");
+            safe.normalizedHitbox = new Rect(0.49f, 0.14f, 0.28f, 0.72f);
+            safe.showWorldImage = false;
+            safe.closeUpClosedResource = "EscapeFromNightmares/CloseUps/study_safe_locked";
+            safe.closeUpOpenWithItemResource = "EscapeFromNightmares/CloseUps/study_safe_open_with_item";
+            safe.closeUpOpenEmptyResource = "EscapeFromNightmares/CloseUps/study_safe_open_empty";
+            safe.closeUpItemId = "fuse_holder";
+            safe.closeUpItemHitbox = new Rect(0.48f, 0.39f, 0.16f, 0.18f);
+            safe.closeUpOpenSoundId = "sfx_drawer_open";
+            safe.closeUpCloseSoundId = "sfx_drawer_close";
+
+            var clue = I("study_safe_clue_note", "Safe Clue Note", InteractableType.ClueObject, eventId: "clue_study_safe_note");
+            clue.clueViewResource = "EscapeFromNightmares/CloseUps/study_safe_clue_note";
+            clue.normalizedHitbox = new Rect(0.33f, 0.45f, 0.36f, 0.34f);
+            clue.showWorldImage = false;
+
+            var safeSurrounding = Clue("study_safe_surrounding", "Study Safe Surrounding", "EscapeFromNightmares/CloseUps/study_safe_surrounding", new Rect(0.43f, 0.16f, 0.36f, 0.68f));
+            var deskSurface = Clue("study_desk_surface", "Study Desk Surface", "EscapeFromNightmares/CloseUps/study_desk_surface", new Rect(0.2f, 0.2f, 0.56f, 0.38f));
+            var clueBoard = Clue("study_clue_board", "Study Clue Board", "EscapeFromNightmares/CloseUps/study_clue_board", new Rect(0.34f, 0.47f, 0.3f, 0.34f));
+            var portrait = Clue("study_portrait", "Study Portrait", "EscapeFromNightmares/CloseUps/study_portrait", new Rect(0.32f, 0.48f, 0.16f, 0.28f));
+            var windowView = Clue("study_window_view", "Study Window View", "EscapeFromNightmares/CloseUps/study_window_view", new Rect(0.03f, 0.21f, 0.22f, 0.58f));
+
+            var exit = Door("study_exit", "Back to Hallway", "second_floor_hallway");
+            exit.normalizedHitbox = new Rect(0.68f, 0.14f, 0.22f, 0.72f);
+            exit.showWorldImage = false;
+
+            var room = Room(
+                "study",
+                "Study",
+                "2F",
+                new[] { "second_floor_hallway" },
+                1,
+                safe,
+                safeSurrounding,
+                clue,
+                deskSurface,
+                clueBoard,
+                portrait,
+                windowView,
+                exit);
+
+            room.faces = new[]
+            {
+                WithBackground(
+                    Face("study", RoomFaceDirection.North, "Safe Wall", new[] { safeSurrounding, safe }),
+                    new[]
+                    {
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/study_north_safe_open_empty",
+                            conditions = new ConditionDefinition { requiredFlagIds = new[] { "study_safe_opened" }, requiredItemIds = new[] { "fuse_holder" } }
+                        },
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/study_north_safe_open_with_item",
+                            conditions = new ConditionDefinition { requiredFlagIds = new[] { "study_safe_opened" }, forbiddenFlagIds = new[] { "puzzle_study_safe_clear" } }
+                        },
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/study_north_safe_open",
+                            conditions = new ConditionDefinition { requiredFlagIds = new[] { "study_safe_opened" } }
+                        }
+                    }),
+                Face("study", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("study", RoomFaceDirection.South, "Desk Clue", new[] { clue, deskSurface, clueBoard }),
+                Face("study", RoomFaceDirection.West, "Moonlit Window", new[] { portrait, windowView })
+            };
+
+            return room;
+        }
+
+        private static RoomFaceDefinition[] CreateFaces(string roomId, InteractableDefinition[] interactables)
+        {
+            var buckets = new[]
+            {
+                new List<InteractableDefinition>(),
+                new List<InteractableDefinition>(),
+                new List<InteractableDefinition>(),
+                new List<InteractableDefinition>()
+            };
+
+            for (var index = 0; index < interactables.Length; index++)
+            {
+                buckets[FaceIndexFor(interactables[index], index)].Add(interactables[index]);
+            }
+
+            return new[]
+            {
+                Face(roomId, RoomFaceDirection.North, "북쪽 면", buckets[0].ToArray()),
+                Face(roomId, RoomFaceDirection.East, "동쪽 면", buckets[1].ToArray()),
+                Face(roomId, RoomFaceDirection.South, "남쪽 면", buckets[2].ToArray()),
+                Face(roomId, RoomFaceDirection.West, "서쪽 면", buckets[3].ToArray())
+            };
+        }
+
+        private static int FaceIndexFor(InteractableDefinition interactable, int index)
+        {
+            switch (interactable.interactableId)
+            {
+                case "child_desk_drawer":
+                    return 0;
+                case "child_room_door":
+                    return 1;
+                case "child_bed_hide":
+                    return 2;
+                case "child_window_silhouette":
+                    return 3;
+            }
+
+            switch (interactable.type)
+            {
+                case InteractableType.ItemPickup:
+                case InteractableType.PuzzleObject:
+                case InteractableType.ClueObject:
+                case InteractableType.EventTrigger:
+                    return 0;
+                case InteractableType.HideSpot:
+                    return 2;
+                case InteractableType.Door:
+                case InteractableType.LockedDoor:
+                case InteractableType.EscapeDoor:
+                    return index % 3 + 1;
+                default:
+                    return 0;
+            }
+        }
+
+        private static RoomFaceDefinition Face(string roomId, RoomFaceDirection direction, string name, InteractableDefinition[] interactables)
+        {
+            return new RoomFaceDefinition
+            {
+                direction = direction,
+                displayName = name,
+                backgroundResource = RoomFaceResource(roomId, direction),
+                interactables = interactables
+            };
+        }
+
+        private static string RoomFaceResource(string roomId, RoomFaceDirection direction)
+        {
+            return "EscapeFromNightmares/Rooms/" + roomId + "_" + direction.ToString().ToLowerInvariant();
         }
 
         private static InteractableDefinition[] Doors(params string[] roomIds)
@@ -190,9 +426,36 @@ namespace EscapeFromNightmares.Runtime
             return I(id, name, InteractableType.PuzzleObject, puzzleId: puzzleId);
         }
 
+        private static InteractableDefinition Clue(string id, string name, string clueViewResource, Rect hitbox)
+        {
+            var clue = I(id, name, InteractableType.ClueObject);
+            clue.clueViewResource = clueViewResource;
+            clue.normalizedHitbox = hitbox;
+            clue.showWorldImage = false;
+            return clue;
+        }
+
+        private static RoomFaceDefinition WithBackground(RoomFaceDefinition face, string backgroundResource, ConditionDefinition conditions)
+        {
+            return WithBackground(face, new[]
+            {
+                new ConditionalBackgroundDefinition
+                {
+                    backgroundResource = backgroundResource,
+                    conditions = conditions
+                }
+            });
+        }
+
+        private static RoomFaceDefinition WithBackground(RoomFaceDefinition face, ConditionalBackgroundDefinition[] conditionalBackgrounds)
+        {
+            face.conditionalBackgrounds = conditionalBackgrounds ?? System.Array.Empty<ConditionalBackgroundDefinition>();
+            return face;
+        }
+
         private static InteractableDefinition I(string id, string name, InteractableType type, string grantsItemId = "", string targetRoomId = "", string puzzleId = "", string eventId = "")
         {
-            return new InteractableDefinition
+            var interactable = new InteractableDefinition
             {
                 interactableId = id,
                 displayName = name,
@@ -200,8 +463,79 @@ namespace EscapeFromNightmares.Runtime
                 grantsItemId = grantsItemId,
                 targetRoomId = targetRoomId,
                 puzzleId = puzzleId,
-                eventId = eventId
+                eventId = eventId,
+                imageResource = "EscapeFromNightmares/Objects/" + id,
+                normalizedHitbox = HitboxFor(id),
+                soundId = SoundFor(type),
+                oneShot = type == InteractableType.ItemPickup,
+                showWorldImage = !IsChildRoomInteractable(id)
             };
+
+            if (id == "child_desk_drawer")
+            {
+                interactable.closeUpClosedResource = "EscapeFromNightmares/CloseUps/child_desk_drawer_closed";
+                interactable.closeUpOpenWithItemResource = "EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item";
+                interactable.closeUpOpenEmptyResource = "EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty";
+                interactable.closeUpItemId = "torn_drawing_fragment";
+                interactable.closeUpItemHitbox = new Rect(0.44f, 0.30f, 0.22f, 0.24f);
+                interactable.closeUpOpenSoundId = "sfx_drawer_open";
+                interactable.closeUpCloseSoundId = "sfx_drawer_close";
+                interactable.soundId = "ui_click";
+                interactable.oneShot = false;
+                interactable.disableRoomHitboxWhenUsed = true;
+            }
+            else if (id == "child_bed_hide")
+            {
+                interactable.hideViewResource = "EscapeFromNightmares/HideViews/child_bed_under_view";
+            }
+
+            return interactable;
+        }
+
+        private static bool IsChildRoomInteractable(string id)
+        {
+            return id == "child_desk_drawer"
+                || id == "child_room_door"
+                || id == "child_bed_hide"
+                || id == "child_window_silhouette";
+        }
+
+        private static Rect HitboxFor(string interactableId)
+        {
+            switch (interactableId)
+            {
+                case "child_desk_drawer":
+                    return new Rect(0.12f, 0.2f, 0.28f, 0.38f);
+                case "child_room_door":
+                    return new Rect(0.63f, 0.12f, 0.31f, 0.76f);
+                case "child_bed_hide":
+                    return new Rect(0.34f, 0.18f, 0.46f, 0.36f);
+                case "child_window_silhouette":
+                    return new Rect(0.18f, 0.3f, 0.32f, 0.54f);
+                default:
+                    return new Rect(0.4f, 0.4f, 0.2f, 0.2f);
+            }
+        }
+
+        private static string SoundFor(InteractableType type)
+        {
+            switch (type)
+            {
+                case InteractableType.Door:
+                case InteractableType.LockedDoor:
+                case InteractableType.EscapeDoor:
+                    return "sfx_door";
+                case InteractableType.ItemPickup:
+                    return "sfx_item_pickup";
+                case InteractableType.HideSpot:
+                    return "sfx_hide";
+                case InteractableType.PuzzleObject:
+                case InteractableType.ClueObject:
+                case InteractableType.EventTrigger:
+                    return "ui_click";
+                default:
+                    return string.Empty;
+            }
         }
     }
 }

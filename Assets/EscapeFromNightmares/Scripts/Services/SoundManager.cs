@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using EscapeFromNightmares.Data;
 
 namespace EscapeFromNightmares.Services
 {
@@ -83,6 +84,29 @@ namespace EscapeFromNightmares.Services
         {
             EnsureSources();
             PlayOneShot(uiSource, path);
+        }
+
+        public void Play(SoundEntry entry)
+        {
+            if (entry == null)
+            {
+                return;
+            }
+
+            switch (entry.category)
+            {
+                case SoundCategory.Bgm:
+                case SoundCategory.Ambience:
+                    PlayBgm(entry.resourcePath, entry.loop);
+                    break;
+                case SoundCategory.Ui:
+                    PlayUi(entry.resourcePath);
+                    break;
+                case SoundCategory.Sfx:
+                case SoundCategory.Monster:
+                    PlaySfx(entry.resourcePath);
+                    break;
+            }
         }
 
         public static float VolumeToDecibels(float normalizedVolume)

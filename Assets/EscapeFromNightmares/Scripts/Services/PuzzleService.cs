@@ -6,15 +6,32 @@ namespace EscapeFromNightmares.Services
     public sealed class PuzzleService
     {
         private readonly GameSession session;
+        private readonly FlagService flags;
 
         public PuzzleService(GameSession session)
+            : this(session, new FlagService(session))
+        {
+        }
+
+        public PuzzleService(GameSession session, FlagService flags)
         {
             this.session = session;
+            this.flags = flags;
         }
 
         public bool TrySolve(PuzzleDefinition puzzle, IReadOnlyList<string> inputTokens)
         {
             if (puzzle == null || inputTokens == null)
+            {
+                return false;
+            }
+
+            if (puzzle.oneShot && session.HasSolvedPuzzle(puzzle.puzzleId))
+            {
+                return false;
+            }
+
+            if (!flags.ConditionsMet(puzzle.conditions))
             {
                 return false;
             }
@@ -40,11 +57,27 @@ namespace EscapeFromNightmares.Services
                 }
             }
 
+            if (puzzle.deferSolvedUntilRewardPickup)
+            {
+                session.SetFlag(puzzle.successFlag);
+                session.SetFlag(puzzle.successEventId);
+                return true;
+            }
+
             foreach (var itemId in puzzle.rewardItemIds)
             {
                 session.AddItem(itemId);
             }
 
+            if (puzzle.consumeRequiredItems)
+            {
+                foreach (var itemId in puzzle.requiredItemIds)
+                {
+                    session.RemoveItem(itemId);
+                }
+            }
+
+            session.MarkPuzzleSolved(puzzle.puzzleId);
             session.SetFlag(puzzle.successFlag);
             session.SetFlag(puzzle.successEventId);
             return true;
