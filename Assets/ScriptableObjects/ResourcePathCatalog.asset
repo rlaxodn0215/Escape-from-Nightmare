@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e614ec41acd0c9842ad13ca1aa06d19f, type: 3}
+  m_Name: ResourcePathCatalog
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.ResourcePathCatalog
+  titleBackgroundPath: EscapeFromNightmares/Title/title_background
+  titleLogoPath: EscapeFromNightmares/Title/title_logo_escape_from_nightmare
+  titleStartButtonPath: EscapeFromNightmares/Title/UI/button_start
+  titleSettingsButtonPath: EscapeFromNightmares/Title/UI/button_settings
+  titleQuitButtonPath: EscapeFromNightmares/Title/UI/button_quit
+  titleCloseButtonPath: EscapeFromNightmares/Title/UI/button_close
+  settingsPanelBackgroundPath: EscapeFromNightmares/Title/UI/settings_panel_bg
+  settingsHeaderPath: EscapeFromNightmares/Title/UI/settings_header
+  settingsMasterLabelPath: EscapeFromNightmares/Title/UI/settings_label_master
+  settingsBgmLabelPath: EscapeFromNightmares/Title/UI/settings_label_bgm
+  settingsSfxLabelPath: EscapeFromNightmares/Title/UI/settings_label_sfx
+  settingsUiLabelPath: EscapeFromNightmares/Title/UI/settings_label_ui
+  settingsSliderTrackPath: EscapeFromNightmares/Title/UI/slider_track
+  settingsSliderFillPath: EscapeFromNightmares/Title/UI/slider_fill
+  settingsSliderHandlePath: EscapeFromNightmares/Title/UI/slider_handle
+  titleBgmPath: EscapeFromNightmares/Audio/BGM/title_loop
+  uiClickPath: EscapeFromNightmares/Audio/UI/ui_click
+  confirmSfxPath: EscapeFromNightmares/Audio/SFX/sfx_confirm
