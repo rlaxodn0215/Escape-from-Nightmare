@@ -25,6 +25,50 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: a93f7b8e2c4f4a1e9b6c2d5f8a10c321, type: 3}
   - spriteId: second_floor_hallway_south
     sprite: {fileID: 21300000, guid: b41e9c7a0d2f4c8aa3156e92d70fb4c5, type: 3}
+  - spriteId: first_floor_hallway_north
+    sprite: {fileID: 21300000, guid: 5bf28d097595724b3e67ed3f8c3a187f, type: 3}
+  - spriteId: first_floor_hallway_south
+    sprite: {fileID: 21300000, guid: c030c7def6e60f1367e1767c1808b5f1, type: 3}
+  - spriteId: entrance_north
+    sprite: {fileID: 21300000, guid: bf426926f2a0177dcfb1a556fe6207c8, type: 3}
+  - spriteId: entrance_east
+    sprite: {fileID: 21300000, guid: a5eb2bf78a7deaab035c2fbeae3eba45, type: 3}
+  - spriteId: entrance_south
+    sprite: {fileID: 21300000, guid: faec93cc4e57647247a5581f6d6b28de, type: 3}
+  - spriteId: entrance_west
+    sprite: {fileID: 21300000, guid: 29700881100a430d91297cac998dcc78, type: 3}
+  - spriteId: second_floor_bathroom_north
+    sprite: {fileID: 21300000, guid: c4f4e3a21b714ec998de6c552ccb0101, type: 3}
+  - spriteId: second_floor_bathroom_east
+    sprite: {fileID: 21300000, guid: c4f4e3a21b714ec998de6c552ccb0102, type: 3}
+  - spriteId: second_floor_bathroom_south
+    sprite: {fileID: 21300000, guid: c4f4e3a21b714ec998de6c552ccb0103, type: 3}
+  - spriteId: second_floor_bathroom_west
+    sprite: {fileID: 21300000, guid: c4f4e3a21b714ec998de6c552ccb0104, type: 3}
+  - spriteId: mirror_room_north
+    sprite: {fileID: 21300000, guid: f91a4d0c2b874130a9a2b7e600220001, type: 3}
+  - spriteId: mirror_room_east
+    sprite: {fileID: 21300000, guid: f91a4d0c2b874130a9a2b7e600220002, type: 3}
+  - spriteId: mirror_room_south
+    sprite: {fileID: 21300000, guid: f91a4d0c2b874130a9a2b7e600220003, type: 3}
+  - spriteId: mirror_room_west
+    sprite: {fileID: 21300000, guid: f91a4d0c2b874130a9a2b7e600220004, type: 3}
+  - spriteId: dressing_room_north
+    sprite: {fileID: 21300000, guid: 3bf69ecec6b89704c9e9eef66bca9d8a, type: 3}
+  - spriteId: dressing_room_east
+    sprite: {fileID: 21300000, guid: a22b4052d1a740d4c981add419156856, type: 3}
+  - spriteId: dressing_room_south
+    sprite: {fileID: 21300000, guid: 7ccfd98fe6b71524f821a3b3f9004b80, type: 3}
+  - spriteId: dressing_room_west
+    sprite: {fileID: 21300000, guid: ee7f74d106a13c1449ed654a52d303ca, type: 3}
+  - spriteId: master_bedroom_north
+    sprite: {fileID: 21300000, guid: a39c65d43b2f4ed49091a571db201101, type: 3}
+  - spriteId: master_bedroom_east
+    sprite: {fileID: 21300000, guid: a39c65d43b2f4ed49091a571db201102, type: 3}
+  - spriteId: master_bedroom_south
+    sprite: {fileID: 21300000, guid: a39c65d43b2f4ed49091a571db201103, type: 3}
+  - spriteId: master_bedroom_west
+    sprite: {fileID: 21300000, guid: a39c65d43b2f4ed49091a571db201104, type: 3}
   - spriteId: study_north
     sprite: {fileID: 21300000, guid: 0213acf6d1c8433ba0994222d6b43118, type: 3}
   - spriteId: study_east
@@ -33,6 +77,86 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: e77bfd15482f4a209c5d33823d4756c9, type: 3}
   - spriteId: study_west
     sprite: {fileID: 21300000, guid: 90f6653f14f24ab69ac57778c2b913bb, type: 3}
+  - spriteId: stairwell_2f_north
+    sprite: {fileID: 21300000, guid: 0592134801341a7c4604a25e58487c97, type: 3}
+  - spriteId: stairwell_2f_east
+    sprite: {fileID: 21300000, guid: e30c9cc320c4cc2dad398a8dc3f51e34, type: 3}
+  - spriteId: stairwell_2f_south
+    sprite: {fileID: 21300000, guid: 4b44ff34c340350168c52ba0ca62b735, type: 3}
+  - spriteId: stairwell_2f_west
+    sprite: {fileID: 21300000, guid: a512f12ef905e470a5db38b86342b41e, type: 3}
+  - spriteId: stairwell_1f_north
+    sprite: {fileID: 21300000, guid: b35adf9b3828407cd1e2552e1ac7cc3d, type: 3}
+  - spriteId: stairwell_1f_east
+    sprite: {fileID: 21300000, guid: 402f009162040a0ff42b2c64489a1f6a, type: 3}
+  - spriteId: stairwell_1f_south
+    sprite: {fileID: 21300000, guid: dfc76738e1cb998614d50c3d352c5151, type: 3}
+  - spriteId: stairwell_1f_west
+    sprite: {fileID: 21300000, guid: 6984677d5025a39d0337c74e4d6a8603, type: 3}
+  - spriteId: dining_room_north
+    sprite: {fileID: 21300000, guid: 8fa0209f41537496a803ba615aa8cfa4, type: 3}
+  - spriteId: dining_room_east
+    sprite: {fileID: 21300000, guid: 0119f2ce6a2efe80e8494e68734f6aad, type: 3}
+  - spriteId: dining_room_south
+    sprite: {fileID: 21300000, guid: bfab83fe40e584353a0db6fbe7c3d2d6, type: 3}
+  - spriteId: dining_room_west
+    sprite: {fileID: 21300000, guid: 0699376bea5ea7c963aa534b602bd5f0, type: 3}
+  - spriteId: kitchen_north
+    sprite: {fileID: 21300000, guid: 78eeeb70f8419390cdb03328164125e5, type: 3}
+  - spriteId: kitchen_east
+    sprite: {fileID: 21300000, guid: c0a773ceb3045fcfd31f9700ab053987, type: 3}
+  - spriteId: kitchen_south
+    sprite: {fileID: 21300000, guid: 7912b863aabb06d1bd9c04e499564a81, type: 3}
+  - spriteId: kitchen_west
+    sprite: {fileID: 21300000, guid: d64be4d754d201cf57c1547353a453cb, type: 3}
+  - spriteId: laundry_room_north
+    sprite: {fileID: 21300000, guid: 1d8d7e0b2dfb1d9bca458b934f58903b, type: 3}
+  - spriteId: laundry_room_east
+    sprite: {fileID: 21300000, guid: 57fa5ec662f7b4e51277aa08a1211c69, type: 3}
+  - spriteId: laundry_room_south
+    sprite: {fileID: 21300000, guid: dd51409562d84f147bdb0ac70c2890ce, type: 3}
+  - spriteId: laundry_room_west
+    sprite: {fileID: 21300000, guid: 84a07db595e05506bd9c926ce8528d3b, type: 3}
+  - spriteId: attic_main_north
+    sprite: {fileID: 21300000, guid: 8d7c6c5a39c22d564c898911460bb621, type: 3}
+  - spriteId: attic_main_east
+    sprite: {fileID: 21300000, guid: b25c03981cc0b0d6daffa3933683ddc7, type: 3}
+  - spriteId: attic_main_south
+    sprite: {fileID: 21300000, guid: 0261ac256c4dd113f7f43db3862df97c, type: 3}
+  - spriteId: attic_main_west
+    sprite: {fileID: 21300000, guid: b4009ec590a679f2f29bc80edcb4e1da, type: 3}
+  - spriteId: attic_toy_storage_north
+    sprite: {fileID: 21300000, guid: 20465dd95ac0951034cde2eab10cae80, type: 3}
+  - spriteId: attic_toy_storage_east
+    sprite: {fileID: 21300000, guid: 72dc48e0ca4c81655d9c2635fadc4d29, type: 3}
+  - spriteId: attic_toy_storage_south
+    sprite: {fileID: 21300000, guid: 85ebb61ff5ca06fe0118956115d610d0, type: 3}
+  - spriteId: attic_toy_storage_west
+    sprite: {fileID: 21300000, guid: d2fad0774b5ffc588dd4b3e0e1dc915e, type: 3}
+  - spriteId: basement_entry_north
+    sprite: {fileID: 21300000, guid: 05694868390d4259b749cc1a8dcbca16, type: 3}
+  - spriteId: basement_entry_east
+    sprite: {fileID: 21300000, guid: e39e1893114f40178151ed05c30f9531, type: 3}
+  - spriteId: basement_entry_south
+    sprite: {fileID: 21300000, guid: 92b6fbfef5d3495cb03876ad823e7799, type: 3}
+  - spriteId: basement_entry_west
+    sprite: {fileID: 21300000, guid: e9241019145e41129d670bcdf4962f82, type: 3}
+  - spriteId: basement_main_north
+    sprite: {fileID: 21300000, guid: 9b80eee6bafb47c0b0798123dee89575, type: 3}
+  - spriteId: basement_main_east
+    sprite: {fileID: 21300000, guid: aaf73d8b52554f3e8c5e145731c22dfb, type: 3}
+  - spriteId: basement_main_south
+    sprite: {fileID: 21300000, guid: 4d0120c750754192a6d0e7da2323e515, type: 3}
+  - spriteId: basement_main_west
+    sprite: {fileID: 21300000, guid: 33f3a01e0c904f54a7a7e6b6f6f8b695, type: 3}
+  - spriteId: altar_room_north
+    sprite: {fileID: 21300000, guid: c3ab3dc5c412452d8c2d09fe3942114b, type: 3}
+  - spriteId: altar_room_east
+    sprite: {fileID: 21300000, guid: 3118260174524ad68870e29cfce1217b, type: 3}
+  - spriteId: altar_room_south
+    sprite: {fileID: 21300000, guid: 069e5a2c9f9c4d18863fbc5f0d6e17d5, type: 3}
+  - spriteId: altar_room_west
+    sprite: {fileID: 21300000, guid: 16448a95b9b44ecc99ec618655e2805d, type: 3}
   - spriteId: child_room_north_drawer_empty
     sprite: {fileID: 21300000, guid: a15da56bcb554f838d6bb7d934de46f5, type: 3}
   - spriteId: study_north_safe_open
@@ -41,8 +165,30 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 0ed08b9047504bf28fac531982ebeae7, type: 3}
   - spriteId: study_north_safe_open_empty
     sprite: {fileID: 21300000, guid: 8b7a9df1970f4f6ab4b1d55f58540a59, type: 3}
+  - spriteId: altar_room_north_key_spawned
+    sprite: {fileID: 21300000, guid: 520f448061c540e8a54355badda4f3f8, type: 3}
+  - spriteId: altar_room_north_key_taken
+    sprite: {fileID: 21300000, guid: 27dd52a91beb4123bb3b94d48b227961, type: 3}
+  - spriteId: entrance_north_chase
+    sprite: {fileID: 21300000, guid: 57ca65d5c739722dd1838653aa26ca97, type: 3}
+  - spriteId: first_floor_hallway_south_chase
+    sprite: {fileID: 21300000, guid: 32ab295d43df1330831b62b8ff97a7b7, type: 3}
   - spriteId: study_safe
     sprite: {fileID: 21300000, guid: 30e23556b5b44d5ab9f74bf3b5a59fe6, type: 3}
+  - spriteId: laundry_storage_box
+    sprite: {fileID: 21300000, guid: b2128f04621a4f3c9cbf3089ee69f31b, type: 3}
+  - spriteId: breaker_box
+    sprite: {fileID: 21300000, guid: d88277a8685f41fdacd33e740808b943, type: 3}
+  - spriteId: mirror_symbol_panel
+    sprite: {fileID: 21300000, guid: 7f28c39ffdac46a8924a29e164005ac7, type: 3}
+  - spriteId: master_bedroom_drawer
+    sprite: {fileID: 21300000, guid: 622e0b30d3b44f8d8e7734985a02f6c0, type: 3}
+  - spriteId: attic_toy_sequence
+    sprite: {fileID: 21300000, guid: ecaefdbdb6c64d43b88c202212d6cdb7, type: 3}
+  - spriteId: basement_altar
+    sprite: {fileID: 21300000, guid: eb02fa9b44db496abb970ac7835b7a2e, type: 3}
+  - spriteId: front_door_escape
+    sprite: {fileID: 21300000, guid: 4d88da443d9d462e9411c600708d5181, type: 3}
   - spriteId: study_safe_digit_0
     sprite: {fileID: 21300000, guid: 45b87f2d42384330a8892834207e33f0, type: 3}
   - spriteId: study_safe_digit_1
@@ -75,6 +221,16 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: ebb886c211fc4137941608349c7bf800, type: 3}
   - spriteId: item_fuse_holder
     sprite: {fileID: 21300000, guid: 8cf54ba9f0d549d8bf254591841ab677, type: 3}
+  - spriteId: item_fuse
+    sprite: {fileID: 21300000, guid: 872e1db4ce5c43f8d1814203f04d4d8c, type: 3}
+  - spriteId: item_old_keychain
+    sprite: {fileID: 21300000, guid: 160a100b0170ee6d2bcbfbb8779ba4a7, type: 3}
+  - spriteId: item_small_doll
+    sprite: {fileID: 21300000, guid: 42335a6cc8d9b851049d79d6dd1c1f4f, type: 3}
+  - spriteId: item_symbol_fragment
+    sprite: {fileID: 21300000, guid: c5716239d3a58365db44b9789fbbac5d, type: 3}
+  - spriteId: item_front_door_key
+    sprite: {fileID: 21300000, guid: 7e65b7281299430fa732839b24eb1c9d, type: 3}
   - spriteId: child_desk_drawer_closed
     sprite: {fileID: 21300000, guid: 93b79f5ac7d041d394817bd226319474, type: 3}
   - spriteId: child_desk_drawer_open_with_item
@@ -83,6 +239,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 7d7d7169c8bf4ea4a1c9857a04c28ffb, type: 3}
   - spriteId: study_safe_clue_note
     sprite: {fileID: 21300000, guid: e9bf12ce410f480ba626dec41815f8de, type: 3}
+  - spriteId: bathroom_mirror_rule_clue
+    sprite: {fileID: 21300000, guid: c4f4e3a21b714ec998de6c552ccb0105, type: 3}
+  - spriteId: dressing_color_sequence_clue
+    sprite: {fileID: 21300000, guid: 3e0bb7f10aecc8c4dbadd23f231aa0d8, type: 3}
   - spriteId: study_safe_locked
     sprite: {fileID: 21300000, guid: 23dbfc07978e4ef3963ae40a3792e801, type: 3}
   - spriteId: study_safe_open_with_item
@@ -105,8 +265,22 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15f107187b394515aab108abaf1e28c8, type: 3}
   - spriteId: study_window_view
     sprite: {fileID: 21300000, guid: 231aa8aef3e44097ad69f3957aa288ee, type: 3}
+  - spriteId: attic_family_album_photo
+    sprite: {fileID: 21300000, guid: bd606be76a7713e9f61e2c67a9306884, type: 3}
+  - spriteId: dining_seat_order_clue
+    sprite: {fileID: 21300000, guid: 66e0001a953e2cf3e14def64de63f8d9, type: 3}
+  - spriteId: kitchen_clock_clue
+    sprite: {fileID: 21300000, guid: b5bb74a2529b9ee320bba55a90a8e562, type: 3}
+  - spriteId: basement_wall_symbols
+    sprite: {fileID: 21300000, guid: 996a81437dd24aaaacf107edc2f4a2b5, type: 3}
   - spriteId: child_bed_under_view
     sprite: {fileID: 21300000, guid: b3178e7417994f7d81aab7208b75bf71, type: 3}
+  - spriteId: kitchen_sink_hide_view
+    sprite: {fileID: 21300000, guid: ab4ab5d38ef82ddce879009947db9c2d, type: 3}
+  - spriteId: laundry_machine_hide_view
+    sprite: {fileID: 21300000, guid: dcf3ef50f93b7a6785c87a2a55b78782, type: 3}
+  - spriteId: basement_main_hide_view
+    sprite: {fileID: 21300000, guid: 1107e50bc34243a2803510b52f0b9edf, type: 3}
   - spriteId: inventory_panel_bg
     sprite: {fileID: 21300000, guid: a22e0d9dac5c4f44b8618eeb0cda96d0, type: 3}
   - spriteId: inventory_button
@@ -125,3 +299,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 719223642fad40b39552ee9e390c2611, type: 3}
   - spriteId: ui_back_arrow
     sprite: {fileID: 21300000, guid: 3f9f4bc4deae4af3ae0bd24a153c9d25, type: 3}
+  - spriteId: monster_shadow
+    sprite: {fileID: 21300000, guid: 94a5e1c5cdeb49f995c6a39a89de45e9, type: 3}
+  - spriteId: stage1_clear_background
+    sprite: {fileID: 21300000, guid: 7b2fd3aee80d0f303fe7ce372ad2bac6, type: 3}

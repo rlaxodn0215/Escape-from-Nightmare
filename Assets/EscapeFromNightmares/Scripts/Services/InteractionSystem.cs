@@ -97,6 +97,7 @@ namespace EscapeFromNightmares.Services
         ShowClue,
         PlaySound,
         EnterHideSpot,
+        MarkPuzzleSolved,
         CompleteStage
     }
 
@@ -163,6 +164,11 @@ namespace EscapeFromNightmares.Services
         public static EscapeAction EnterHideSpot(string hideSpotId)
         {
             return new EscapeAction(EscapeActionType.EnterHideSpot, hideSpotId);
+        }
+
+        public static EscapeAction MarkPuzzleSolved(string puzzleId)
+        {
+            return new EscapeAction(EscapeActionType.MarkPuzzleSolved, puzzleId);
         }
 
         public static EscapeAction CompleteStage(string stageId)
@@ -255,7 +261,13 @@ namespace EscapeFromNightmares.Services
                         return result.Add(EscapeAction.OpenCloseUp(interactable.interactableId));
                     }
 
-                    return result.Add(EscapeAction.AcquireItem(interactable.grantsItemId));
+                    result.Add(EscapeAction.AcquireItem(interactable.grantsItemId));
+                    if (!string.IsNullOrWhiteSpace(interactable.solvesPuzzleId))
+                    {
+                        result.Add(EscapeAction.MarkPuzzleSolved(interactable.solvesPuzzleId));
+                    }
+
+                    return result;
                 case InteractableType.PuzzleObject:
                 case InteractableType.EscapeDoor:
                     return result.Add(EscapeAction.OpenPuzzle(interactable.puzzleId));

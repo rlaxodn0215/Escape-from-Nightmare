@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EscapeFromNightmares.Data;
+using EscapeFromNightmares.Runtime;
 using EscapeFromNightmares.Services;
 using EscapeFromNightmares.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmares.Runtime
@@ -16,10 +18,12 @@ namespace EscapeFromNightmares.Runtime
     {
         [Header("Catalogs")]
         [SerializeField] private RoomSpriteCatalog spriteCatalog;
+        [SerializeField] private MonsterPlacementCatalog monsterPlacementCatalog;
 
         [Header("Room View")]
         [SerializeField] private Image roomFaceImage;
         [SerializeField] private RectTransform roomObjectLayer;
+        [SerializeField] private Image monsterImage;
         [SerializeField] private Button rotateLeftButton;
         [SerializeField] private Button rotateRightButton;
         [SerializeField] private Button inventoryButton;
@@ -52,6 +56,14 @@ namespace EscapeFromNightmares.Runtime
         [Header("Scene Transition")]
         [SerializeField] private CanvasGroup sceneTransitionOverlay;
 
+        [Header("Stage Clear")]
+        [SerializeField] private GameObject stageClearPanel;
+        [SerializeField] private Image stageClearBackgroundImage;
+        [SerializeField] private Button stageClearTitleButton;
+
+        [Header("Runtime QA")]
+        [SerializeField] private MonsterRuntimeQaPanel monsterQaPanel;
+
         private StageDefinition stage;
         private GameSession session;
         private InventoryService inventoryService;
@@ -79,6 +91,10 @@ namespace EscapeFromNightmares.Runtime
         private Coroutine sceneTransitionRoutine;
         private bool sceneTransitionInProgress;
         private bool studySafeSolvedInPanel;
+        private bool monsterQaPanelVisible;
+        public const string StageClearBackgroundResource = "EscapeFromNightmares/Endings/stage1_clear_background";
+        public const string MonsterShadowResource = "EscapeFromNightmares/Monster/monster_shadow";
+        public const string KitchenFirstAppearanceEventFlag = "event_kitchen_first_appearance";
         private const float ModalFadeDuration = 0.22f;
         private const float SceneFadeDuration = 0.24f;
         private const string StudySafePuzzleId = "study_safe";
@@ -97,8 +113,10 @@ namespace EscapeFromNightmares.Runtime
 
         public void SetSceneReferences(
             RoomSpriteCatalog roomSprites,
+            MonsterPlacementCatalog monsterPlacements,
             Image roomImage,
             RectTransform objectLayer,
+            Image monsterObjectImage,
             Button leftButton,
             Button rightButton,
             Button inventoryOpenButton,
@@ -121,11 +139,17 @@ namespace EscapeFromNightmares.Runtime
             Button commonPuzzleBackButton = null,
             Image[] safeDigitImages = null,
             Button[] safeDigitButtons = null,
-            CanvasGroup transitionOverlay = null)
+            CanvasGroup transitionOverlay = null,
+            GameObject clearPanel = null,
+            Image clearBackgroundImage = null,
+            Button clearTitleButton = null,
+            MonsterRuntimeQaPanel monsterRuntimeQaPanel = null)
         {
             spriteCatalog = roomSprites;
+            monsterPlacementCatalog = monsterPlacements;
             roomFaceImage = roomImage;
             roomObjectLayer = objectLayer;
+            monsterImage = monsterObjectImage;
             rotateLeftButton = leftButton;
             rotateRightButton = rightButton;
             inventoryButton = inventoryOpenButton;
@@ -149,6 +173,10 @@ namespace EscapeFromNightmares.Runtime
             studySafeDigitImages = NormalizeArray(safeDigitImages, StudySafeDigitCount);
             studySafeDigitButtons = NormalizeArray(safeDigitButtons, StudySafeDigitCount);
             sceneTransitionOverlay = transitionOverlay;
+            stageClearPanel = clearPanel;
+            stageClearBackgroundImage = clearBackgroundImage;
+            stageClearTitleButton = clearTitleButton;
+            monsterQaPanel = monsterRuntimeQaPanel;
         }
 
         private void Awake()
@@ -167,6 +195,11 @@ namespace EscapeFromNightmares.Runtime
             foreach (var puzzle in stage.puzzles)
             {
                 puzzles[puzzle.puzzleId] = puzzle;
+            }
+
+            if (monsterPlacementCatalog == null)
+            {
+                monsterPlacementCatalog = MonsterPlacementCatalog.CreateDefault(stage);
             }
 
             session = new GameSession();
@@ -202,6 +235,8 @@ namespace EscapeFromNightmares.Runtime
             hidingSystem.Tick(Time.deltaTime, MousePosition());
             dangerSystem.Tick(Time.deltaTime, room, monsterAI.State);
             monsterAI.Tick(dangerSystem, hidingSystem);
+            RenderMonster();
+            HandleMonsterQaInput();
 
             if (dangerSystem.CaptureGauge >= 100f)
             {
@@ -218,6 +253,7 @@ namespace EscapeFromNightmares.Runtime
             HideCloseUpPanelImmediate();
             HideHideViewImmediate();
             HidePuzzlePanelImmediate();
+            HideStageClearPanelImmediate();
             inventoryWindow?.Close();
             PlaySoundById("bgm_stage1_ambient");
             OpenRoomImmediate(session.CurrentRoomId);
@@ -259,6 +295,7 @@ namespace EscapeFromNightmares.Runtime
             }
 
             RenderRoomObjects(faceInteractables);
+            RenderMonster();
         }
 
         private void RenderRoomObjects(InteractableDefinition[] interactables)
@@ -268,10 +305,10 @@ namespace EscapeFromNightmares.Runtime
                 return;
             }
 
-            ClearChildren(roomObjectLayer);
+            ClearChildrenExcept(roomObjectLayer, monsterImage == null ? null : monsterImage.transform);
             foreach (var interactable in interactables)
             {
-                if (!ShouldRenderRoomHitbox(interactable, session))
+                if (!ShouldRenderRoomHitbox(interactable, session, flagService))
                 {
                     continue;
                 }
@@ -286,6 +323,164 @@ namespace EscapeFromNightmares.Runtime
                     : CreateTransparentButton(interactable.interactableId, roomObjectLayer, () => HandleInteractable(interactable));
                 Stretch(button.GetComponent<RectTransform>(), interactable.normalizedHitbox);
             }
+        }
+
+        private void RenderMonster()
+        {
+            if (session == null || string.IsNullOrWhiteSpace(session.CurrentRoomId))
+            {
+                HideMonsterImage();
+                return;
+            }
+
+            if (!TryResolveMonsterPlacement(monsterPlacementCatalog, session.CurrentRoomId, session.CurrentFaceDirection, monsterAI.State, out var placementRect))
+            {
+                HideMonsterImage();
+                return;
+            }
+
+            var image = EnsureMonsterImage();
+            if (image == null)
+            {
+                return;
+            }
+
+            image.sprite = ResolveSprite(MonsterShadowResource);
+            image.color = Color.white;
+            image.preserveAspect = true;
+            image.raycastTarget = false;
+            ApplyMonsterPlacement(image.rectTransform, placementRect);
+            image.transform.SetAsLastSibling();
+            image.gameObject.SetActive(true);
+        }
+
+        private Image EnsureMonsterImage()
+        {
+            if (monsterImage != null)
+            {
+                return monsterImage;
+            }
+
+            if (roomObjectLayer == null)
+            {
+                return null;
+            }
+
+            monsterImage = CreateImage("MonsterImage", roomObjectLayer, Color.white);
+            monsterImage.raycastTarget = false;
+            monsterImage.preserveAspect = true;
+            monsterImage.gameObject.SetActive(false);
+            return monsterImage;
+        }
+
+        private void HideMonsterImage()
+        {
+            if (monsterImage != null)
+            {
+                monsterImage.gameObject.SetActive(false);
+            }
+        }
+
+        [System.Diagnostics.Conditional("UNITY_EDITOR"), System.Diagnostics.Conditional("DEVELOPMENT_BUILD")]
+        private void HandleMonsterQaInput()
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard == null)
+            {
+                return;
+            }
+
+            if (keyboard.f9Key.wasPressedThisFrame)
+            {
+                monsterQaPanelVisible = !monsterQaPanelVisible;
+                EnsureMonsterQaPanel();
+                monsterQaPanel?.SetVisible(monsterQaPanelVisible);
+            }
+
+            if (keyboard.f10Key.wasPressedThisFrame)
+            {
+                monsterAI.ForceDebugState(NextMonsterQaState(monsterAI.State));
+                RenderMonster();
+            }
+
+            if (keyboard.f11Key.wasPressedThisFrame)
+            {
+                if (monsterAI.State == MonsterState.Disabled)
+                {
+                    monsterAI.ClearDebugState();
+                    monsterAI.Enable();
+                }
+                else
+                {
+                    monsterAI.Reset();
+                }
+
+                RenderMonster();
+            }
+
+            RefreshMonsterQaPanel();
+        }
+
+        private MonsterRuntimeQaPanel EnsureMonsterQaPanel()
+        {
+            if (monsterQaPanel != null)
+            {
+                return monsterQaPanel;
+            }
+
+            var root = ResolveUiRoot();
+            if (root == null)
+            {
+                return null;
+            }
+
+            monsterQaPanel = root.GetComponentInChildren<MonsterRuntimeQaPanel>(true);
+            if (monsterQaPanel != null)
+            {
+                monsterQaPanel.SetVisible(monsterQaPanelVisible);
+                return monsterQaPanel;
+            }
+
+            monsterQaPanel = MonsterRuntimeQaPanel.Create(root);
+            monsterQaPanel.SetVisible(monsterQaPanelVisible);
+            return monsterQaPanel;
+        }
+
+        private RectTransform ResolveUiRoot()
+        {
+            if (roomFaceImage != null && roomFaceImage.canvas != null)
+            {
+                return roomFaceImage.canvas.GetComponent<RectTransform>();
+            }
+
+            if (roomObjectLayer != null)
+            {
+                return roomObjectLayer.GetComponentInParent<Canvas>()?.GetComponent<RectTransform>();
+            }
+
+            return null;
+        }
+
+        private void RefreshMonsterQaPanel()
+        {
+            if (!monsterQaPanelVisible)
+            {
+                return;
+            }
+
+            var panel = EnsureMonsterQaPanel();
+            if (panel == null || session == null)
+            {
+                return;
+            }
+
+            var snapshot = CreateMonsterQaSnapshot(
+                monsterPlacementCatalog,
+                session.CurrentRoomId,
+                session.CurrentFaceDirection,
+                monsterAI.State,
+                monsterImage != null && monsterImage.gameObject.activeSelf);
+            panel.Refresh(snapshot);
         }
 
         private void HandleInteractable(InteractableDefinition interactable)
@@ -333,10 +528,9 @@ namespace EscapeFromNightmares.Runtime
             Debug.Log("Item acquired: " + ItemName(itemId));
             if (itemId == "front_door_key")
             {
-                monsterAI.Enable();
-                monsterAI.ForceChase();
+                ApplyFinalChaseStartState(session, monsterAI, flagService);
                 PlaySoundById("bgm_final_chase");
-                Debug.Log("Final chase started.");
+                Debug.Log("Front door key acquired; final chase started.");
             }
 
             RefreshInventoryWindowIfOpen();
@@ -630,13 +824,10 @@ namespace EscapeFromNightmares.Runtime
 
         private void CompleteStage()
         {
-            session.SetFlag(stage.clearFlag);
-            var records = saveService.LoadClearRecords();
-            records.stage1Clear = true;
-            saveService.SaveClearRecords(records);
-            monsterAI.Reset();
+            ApplyStageClearState(session, stage, saveService, monsterAI);
+            soundManager?.StopBgm();
+            ShowStageClearPanel();
             Debug.Log("Stage clear: " + stage.stageId);
-            RenderRoom();
         }
 
         private void GameOver()
@@ -646,6 +837,7 @@ namespace EscapeFromNightmares.Runtime
             dangerSystem.Reset();
             hidingSystem.Exit();
             monsterAI.Reset();
+            HideStageClearPanelImmediate();
             OpenRoom(stage.startRoomId);
         }
 
@@ -767,6 +959,9 @@ namespace EscapeFromNightmares.Runtime
                     break;
                 case EscapeActionType.EnterHideSpot:
                     OpenHideView(action.Value);
+                    break;
+                case EscapeActionType.MarkPuzzleSolved:
+                    session.MarkPuzzleSolved(action.Value);
                     break;
                 case EscapeActionType.CompleteStage:
                     CompleteStage();
@@ -903,14 +1098,11 @@ namespace EscapeFromNightmares.Runtime
 
             if (solvedPuzzleId == "laundry_storage_box")
             {
-                monsterAI.Enable();
-                dangerSystem.AddNoise(20f);
+                ApplyLaundryStorageBoxMonsterStartState(session, monsterAI, flagService, dangerSystem);
             }
             else if (solvedPuzzleId == "basement_altar")
             {
-                monsterAI.Enable();
-                monsterAI.ForceChase();
-                PlaySoundById("bgm_final_chase");
+                Debug.Log("Basement altar solved; front door key pickup spawned.");
             }
             else if (solvedPuzzleId == "front_door_escape")
             {
@@ -1054,6 +1246,151 @@ namespace EscapeFromNightmares.Runtime
             gameSession.SetFlag(StudySafeOpenedFlag);
         }
 
+        public static void ApplyFinalChaseStartState(GameSession gameSession, MonsterAIController monsterAIController, FlagService flags)
+        {
+            if (gameSession == null || monsterAIController == null || flags == null)
+            {
+                return;
+            }
+
+            monsterAIController.Enable();
+            monsterAIController.ForceChase();
+            flags.Set("final_chase_started");
+        }
+
+        public static void ApplyLaundryStorageBoxMonsterStartState(GameSession gameSession, MonsterAIController monsterAIController, FlagService flags, DangerSystem danger)
+        {
+            monsterAIController?.Enable();
+
+            if (gameSession != null && flags != null && !gameSession.HasFlag(KitchenFirstAppearanceEventFlag))
+            {
+                flags.Set(KitchenFirstAppearanceEventFlag);
+            }
+
+            danger?.AddNoise(20f);
+        }
+
+        public static void ApplyStageClearState(GameSession gameSession, StageDefinition stageDefinition, SettingsSaveService settingsSaveService, MonsterAIController monsterAIController)
+        {
+            if (gameSession == null || stageDefinition == null || settingsSaveService == null)
+            {
+                return;
+            }
+
+            gameSession.SetFlag(stageDefinition.clearFlag);
+            var records = settingsSaveService.LoadClearRecords();
+            records.stage1Clear = true;
+            settingsSaveService.SaveClearRecords(records);
+            monsterAIController?.Reset();
+        }
+
+        public static bool ShouldShowMonster(MonsterState state)
+        {
+            return state == MonsterState.Approaching
+                || state == MonsterState.Searching
+                || state == MonsterState.NearDetection
+                || state == MonsterState.Chase;
+        }
+
+        public static MonsterState NextMonsterQaState(MonsterState state)
+        {
+            switch (state)
+            {
+                case MonsterState.Approaching:
+                    return MonsterState.Searching;
+                case MonsterState.Searching:
+                    return MonsterState.NearDetection;
+                case MonsterState.NearDetection:
+                    return MonsterState.Chase;
+                case MonsterState.Chase:
+                    return MonsterState.Normal;
+                default:
+                    return MonsterState.Approaching;
+            }
+        }
+
+        public static bool TryResolveMonsterPlacement(MonsterPlacementCatalog catalog, string roomId, RoomFaceDirection faceDirection, MonsterState state, out Rect normalizedRect)
+        {
+            normalizedRect = Rect.zero;
+            if (!ShouldShowMonster(state) || catalog == null || string.IsNullOrWhiteSpace(roomId))
+            {
+                return false;
+            }
+
+            if (!catalog.TryFind(roomId, faceDirection, out var placement) || placement == null || !placement.enabled)
+            {
+                return false;
+            }
+
+            normalizedRect = placement.normalizedRect;
+            return normalizedRect.width > 0f && normalizedRect.height > 0f;
+        }
+
+        public static MonsterQaSnapshot CreateMonsterQaSnapshot(MonsterPlacementCatalog catalog, string roomId, RoomFaceDirection faceDirection, MonsterState state, bool monsterImageActive)
+        {
+            var snapshot = new MonsterQaSnapshot
+            {
+                RoomId = string.IsNullOrWhiteSpace(roomId) ? "(none)" : roomId,
+                FaceDirection = faceDirection,
+                State = state,
+                MonsterImageActive = monsterImageActive,
+                Status = MonsterQaStatus.PlacementReady,
+                StatusText = "placement ready"
+            };
+
+            if (!ShouldShowMonster(state))
+            {
+                snapshot.Status = MonsterQaStatus.StateHidden;
+                snapshot.StatusText = "state hidden";
+                return snapshot;
+            }
+
+            if (catalog == null)
+            {
+                snapshot.Status = MonsterQaStatus.CatalogMissing;
+                snapshot.StatusText = "catalog missing";
+                return snapshot;
+            }
+
+            if (!catalog.TryFind(roomId, faceDirection, out var placement) || placement == null)
+            {
+                snapshot.Status = MonsterQaStatus.PlacementMissing;
+                snapshot.StatusText = "placement missing";
+                return snapshot;
+            }
+
+            snapshot.HasPlacement = true;
+            snapshot.PlacementEnabled = placement.enabled;
+            snapshot.NormalizedRect = placement.normalizedRect;
+
+            if (!placement.enabled)
+            {
+                snapshot.Status = MonsterQaStatus.PlacementDisabled;
+                snapshot.StatusText = "placement disabled";
+                return snapshot;
+            }
+
+            if (placement.normalizedRect.width <= 0f || placement.normalizedRect.height <= 0f)
+            {
+                snapshot.Status = MonsterQaStatus.PlacementEmpty;
+                snapshot.StatusText = "placement empty";
+                return snapshot;
+            }
+
+            snapshot.ShouldShowMonster = true;
+            return snapshot;
+        }
+
+        public static void ApplyMonsterPlacement(RectTransform rectTransform, Rect normalizedRect)
+        {
+            if (rectTransform == null)
+            {
+                return;
+            }
+
+            Stretch(rectTransform, normalizedRect);
+        }
+
         public static bool StudySafeDigitsMatchAnswer(IReadOnlyList<int> digits, IReadOnlyList<string> answerTokens)
         {
             if (digits == null || answerTokens == null || digits.Count != StudySafeDigitCount || answerTokens.Count != StudySafeDigitCount)
@@ -1070,6 +1407,30 @@ namespace EscapeFromNightmares.Runtime
             }
 
             return true;
+        }
+
+        public enum MonsterQaStatus
+        {
+            StateHidden,
+            CatalogMissing,
+            PlacementMissing,
+            PlacementDisabled,
+            PlacementEmpty,
+            PlacementReady
+        }
+
+        public struct MonsterQaSnapshot
+        {
+            public string RoomId;
+            public RoomFaceDirection FaceDirection;
+            public MonsterState State;
+            public bool HasPlacement;
+            public bool PlacementEnabled;
+            public Rect NormalizedRect;
+            public bool ShouldShowMonster;
+            public bool MonsterImageActive;
+            public MonsterQaStatus Status;
+            public string StatusText;
         }
 
         public static string ResolveRoomFaceBackgroundResource(RoomFaceDefinition face, FlagService flags)
@@ -1155,7 +1516,13 @@ namespace EscapeFromNightmares.Runtime
 
         public static bool ShouldRenderRoomHitbox(InteractableDefinition interactable, GameSession currentSession)
         {
+            return ShouldRenderRoomHitbox(interactable, currentSession, currentSession != null ? new FlagService(currentSession) : null);
+        }
+
+        public static bool ShouldRenderRoomHitbox(InteractableDefinition interactable, GameSession currentSession, FlagService flags)
+        {
             return interactable != null
+                && (flags == null || flags.ConditionsMet(interactable.conditions))
                 && (!interactable.disableRoomHitboxWhenUsed
                     || currentSession == null
                     || !currentSession.HasUsedInteractable(interactable.interactableId));
@@ -1164,6 +1531,46 @@ namespace EscapeFromNightmares.Runtime
         private static bool IsRoomTransitionAction(EscapeAction action)
         {
             return action.Type == EscapeActionType.MoveRoom || action.Type == EscapeActionType.RotateFace;
+        }
+
+        private void ShowStageClearPanel()
+        {
+            if (stageClearPanel == null)
+            {
+                return;
+            }
+
+            if (stageClearBackgroundImage != null)
+            {
+                stageClearBackgroundImage.sprite = ResolveSprite(StageClearBackgroundResource);
+                stageClearBackgroundImage.color = Color.white;
+                stageClearBackgroundImage.preserveAspect = true;
+            }
+
+            stageClearPanel.SetActive(true);
+            var group = EnsureCanvasGroup(stageClearPanel);
+            group.alpha = 1f;
+            group.interactable = true;
+            group.blocksRaycasts = true;
+        }
+
+        private void HideStageClearPanelImmediate()
+        {
+            if (stageClearPanel == null)
+            {
+                return;
+            }
+
+            var group = EnsureCanvasGroup(stageClearPanel);
+            group.alpha = 0f;
+            group.interactable = false;
+            group.blocksRaycasts = false;
+            stageClearPanel.SetActive(false);
+        }
+
+        private static void ReturnToTitleScene()
+        {
+            SceneManager.LoadScene("TitleScene");
         }
 
         private void StartSceneTransition(System.Action applyChange)
@@ -1378,6 +1785,24 @@ namespace EscapeFromNightmares.Runtime
                 sceneTransitionOverlay = CreateSceneTransitionOverlay(root);
             }
 
+            if (stageClearPanel == null)
+            {
+                var stageClear = CreateStageClearPanel(root, null);
+                stageClearPanel = stageClear.panel;
+                stageClearBackgroundImage = stageClear.backgroundImage;
+                stageClearTitleButton = stageClear.titleButton;
+            }
+
+            if (monsterQaPanel == null)
+            {
+                monsterQaPanel = root.GetComponentInChildren<MonsterRuntimeQaPanel>(true);
+                if (monsterQaPanel == null)
+                {
+                    monsterQaPanel = MonsterRuntimeQaPanel.Create(root);
+                }
+            }
+
+            monsterQaPanel.SetVisible(false);
             NormalizeModalUi();
         }
 
@@ -1416,6 +1841,20 @@ namespace EscapeFromNightmares.Runtime
                 var group = EnsureCanvasGroup(puzzlePanel);
                 group.alpha = puzzlePanel.activeSelf ? 1f : 0f;
                 EnsureStudySafePuzzleUi();
+            }
+
+            if (stageClearPanel != null)
+            {
+                Stretch(stageClearPanel.GetComponent<RectTransform>(), new Rect(0f, 0f, 1f, 1f));
+                var group = EnsureCanvasGroup(stageClearPanel);
+                group.alpha = stageClearPanel.activeSelf ? 1f : 0f;
+                group.interactable = stageClearPanel.activeSelf;
+                group.blocksRaycasts = stageClearPanel.activeSelf;
+            }
+
+            if (stageClearBackgroundImage != null)
+            {
+                Stretch(stageClearBackgroundImage.rectTransform, new Rect(0f, 0f, 1f, 1f));
             }
 
             NormalizeSceneTransitionOverlay();
@@ -1475,6 +1914,7 @@ namespace EscapeFromNightmares.Runtime
             BindButton(closeUpCloseButton, CloseCloseUpPanel);
             BindButton(hideExitButton, CloseHideView);
             BindButton(puzzleBackButton, ClosePuzzlePanel);
+            BindButton(stageClearTitleButton, ReturnToTitleScene);
             BindStudySafeDigitButtons();
         }
 
@@ -1622,6 +2062,32 @@ namespace EscapeFromNightmares.Runtime
             return group;
         }
 
+        public static StageClearUi CreateStageClearPanel(RectTransform root, Sprite backgroundSprite)
+        {
+            var panel = CreatePanel("StageClearPanel", root, Color.black);
+            Stretch(panel.GetComponent<RectTransform>(), new Rect(0f, 0f, 1f, 1f));
+
+            var background = CreateImage("StageClearBackground", panel.transform, Color.white);
+            background.sprite = backgroundSprite;
+            background.preserveAspect = true;
+            Stretch(background.rectTransform, new Rect(0f, 0f, 1f, 1f));
+
+            var title = CreateText("StageClearTitle", panel.transform, 52, TextAnchor.MiddleCenter);
+            title.text = "Stage Clear";
+            title.color = new Color(0.96f, 0.92f, 0.78f, 1f);
+            Stretch(title.rectTransform, new Rect(0.24f, 0.64f, 0.52f, 0.14f));
+
+            var titleButton = CreateTextButton("StageClearTitleButton", panel.transform, "Title", ReturnToTitleScene);
+            Stretch(titleButton.GetComponent<RectTransform>(), new Rect(0.42f, 0.18f, 0.16f, 0.08f));
+
+            var group = EnsureCanvasGroup(panel);
+            group.alpha = 0f;
+            group.interactable = false;
+            group.blocksRaycasts = false;
+            panel.SetActive(false);
+            return new StageClearUi(panel, background, titleButton);
+        }
+
         private static GameObject CreatePanel(string name, Transform parent, Color color)
         {
             var panel = new GameObject(name, typeof(RectTransform), typeof(Image));
@@ -1691,6 +2157,20 @@ namespace EscapeFromNightmares.Runtime
             text.horizontalOverflow = HorizontalWrapMode.Wrap;
             text.verticalOverflow = VerticalWrapMode.Truncate;
             return text;
+        }
+
+        public readonly struct StageClearUi
+        {
+            public StageClearUi(GameObject panel, Image backgroundImage, Button titleButton)
+            {
+                this.panel = panel;
+                this.backgroundImage = backgroundImage;
+                this.titleButton = titleButton;
+            }
+
+            public readonly GameObject panel;
+            public readonly Image backgroundImage;
+            public readonly Button titleButton;
         }
 
         private static void AddPanelButton(Transform parent, string label, UnityEngine.Events.UnityAction action)
@@ -1795,6 +2275,25 @@ namespace EscapeFromNightmares.Runtime
             }
         }
 
+        private static void ClearChildrenExcept(Transform parent, Transform preservedChild)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+
+            for (var index = parent.childCount - 1; index >= 0; index--)
+            {
+                var child = parent.GetChild(index);
+                if (child == preservedChild)
+                {
+                    continue;
+                }
+
+                Destroy(child.gameObject);
+            }
+        }
+
         private static void Stretch(RectTransform rectTransform, Rect normalizedRect)
         {
             rectTransform.anchorMin = new Vector2(normalizedRect.xMin, normalizedRect.yMin);
@@ -1818,6 +2317,107 @@ namespace EscapeFromNightmares.Runtime
         private static Vector2 MousePosition()
         {
             return Mouse.current != null ? Mouse.current.position.ReadValue() : Vector2.zero;
+        }
+    }
+}
+
+namespace EscapeFromNightmares.UI
+{
+    public sealed class MonsterRuntimeQaPanel : MonoBehaviour
+    {
+        [SerializeField] private Text infoText;
+        [SerializeField] private CanvasGroup canvasGroup;
+
+        public Text InfoText => infoText;
+        public CanvasGroup CanvasGroup => canvasGroup;
+
+        public void SetVisible(bool visible)
+        {
+            EnsureReferences();
+            canvasGroup.alpha = visible ? 1f : 0f;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+            gameObject.SetActive(visible);
+        }
+
+        public void Refresh(GameDirector.MonsterQaSnapshot snapshot)
+        {
+            EnsureReferences();
+            infoText.text =
+                "Monster QA\n"
+                + "F9 toggle  F10 state  F11 reset\n"
+                + "room: " + snapshot.RoomId + "\n"
+                + "face: " + snapshot.FaceDirection + "\n"
+                + "state: " + snapshot.State + "\n"
+                + "entry: " + (snapshot.HasPlacement ? "found" : "missing") + "\n"
+                + "enabled: " + snapshot.PlacementEnabled + "\n"
+                + "rect: " + RectText(snapshot.NormalizedRect) + "\n"
+                + "target: " + snapshot.ShouldShowMonster + "\n"
+                + "image: " + snapshot.MonsterImageActive + "\n"
+                + "status: " + snapshot.StatusText;
+        }
+
+        public static MonsterRuntimeQaPanel Create(RectTransform root)
+        {
+            var panelObject = new GameObject("MonsterRuntimeQaPanel", typeof(RectTransform), typeof(Image), typeof(CanvasGroup), typeof(MonsterRuntimeQaPanel));
+            panelObject.transform.SetParent(root, false);
+            var rectTransform = panelObject.GetComponent<RectTransform>();
+            rectTransform.anchorMin = new Vector2(0.67f, 0.58f);
+            rectTransform.anchorMax = new Vector2(0.98f, 0.96f);
+            rectTransform.offsetMin = Vector2.zero;
+            rectTransform.offsetMax = Vector2.zero;
+
+            var background = panelObject.GetComponent<Image>();
+            background.color = new Color(0f, 0f, 0f, 0.78f);
+            background.raycastTarget = false;
+
+            var textObject = new GameObject("MonsterRuntimeQaText", typeof(RectTransform), typeof(Text));
+            textObject.transform.SetParent(panelObject.transform, false);
+            var textTransform = textObject.GetComponent<RectTransform>();
+            textTransform.anchorMin = new Vector2(0.04f, 0.04f);
+            textTransform.anchorMax = new Vector2(0.96f, 0.96f);
+            textTransform.offsetMin = Vector2.zero;
+            textTransform.offsetMax = Vector2.zero;
+
+            var text = textObject.GetComponent<Text>();
+            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.fontSize = 15;
+            text.color = new Color(0.88f, 0.95f, 0.86f, 1f);
+            text.alignment = TextAnchor.UpperLeft;
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
+            text.verticalOverflow = VerticalWrapMode.Truncate;
+            text.raycastTarget = false;
+
+            var panel = panelObject.GetComponent<MonsterRuntimeQaPanel>();
+            panel.infoText = text;
+            panel.canvasGroup = panelObject.GetComponent<CanvasGroup>();
+            panel.SetVisible(false);
+            return panel;
+        }
+
+        private void EnsureReferences()
+        {
+            if (canvasGroup == null)
+            {
+                canvasGroup = GetComponent<CanvasGroup>();
+                if (canvasGroup == null)
+                {
+                    canvasGroup = gameObject.AddComponent<CanvasGroup>();
+                }
+            }
+
+            if (infoText == null)
+            {
+                infoText = GetComponentInChildren<Text>(true);
+            }
+        }
+
+        private static string RectText(Rect rect)
+        {
+            return rect.x.ToString("0.###") + ", "
+                + rect.y.ToString("0.###") + ", "
+                + rect.width.ToString("0.###") + ", "
+                + rect.height.ToString("0.###");
         }
     }
 }

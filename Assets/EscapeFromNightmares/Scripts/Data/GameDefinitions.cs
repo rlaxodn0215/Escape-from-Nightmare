@@ -120,6 +120,7 @@ namespace EscapeFromNightmares.Data
         public string grantsItemId;
         public string targetRoomId;
         public string puzzleId;
+        public string solvesPuzzleId;
         public string eventId;
         public string imageResource;
         public string closeUpClosedResource;

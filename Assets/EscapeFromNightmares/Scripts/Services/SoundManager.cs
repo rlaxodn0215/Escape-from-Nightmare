@@ -74,6 +74,13 @@ namespace EscapeFromNightmares.Services
             bgmSource.Play();
         }
 
+        public void StopBgm()
+        {
+            EnsureSources();
+            bgmSource.Stop();
+            bgmSource.clip = null;
+        }
+
         public void PlaySfx(string path)
         {
             EnsureSources();

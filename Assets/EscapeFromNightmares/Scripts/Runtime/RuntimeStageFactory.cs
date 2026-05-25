@@ -43,15 +43,25 @@ namespace EscapeFromNightmares.Runtime
         {
             var studySafe = Puzzle("study_safe", "Study Safe", PuzzleType.NumberLock, new[] {"3", "1", "4", "2"}, new[] {"fuse_holder"}, "study_safe_unlocked", null);
             studySafe.deferSolvedUntilRewardPickup = true;
+            var laundryStorageBox = Puzzle("laundry_storage_box", "세탁실 보관함", PuzzleType.NumberLock, new[] {"0", "9", "1", "5"}, new[] {"fuse"}, "puzzle_laundry_box_clear", null, 10f);
+            laundryStorageBox.oneShot = true;
+            var breakerBox = Puzzle("breaker_box", "차단기함", PuzzleType.ItemUse, new[] {"fuse_holder", "fuse"}, new[] {"old_keychain"}, "electricity_restored", new[] {"fuse_holder", "fuse"});
+            breakerBox.oneShot = true;
+            var atticToySequence = Puzzle("attic_toy_sequence", "다락방 장난감 순서", PuzzleType.SilentSequence, new[] {"doll", "train", "block", "bell"}, new[] {"small_doll", "symbol_fragment"}, "attic_toy_box_opened", new[] {"torn_drawing_fragment"}, 15f);
+            atticToySequence.oneShot = true;
+            var basementAltar = Puzzle("basement_altar", "지하실 제단", PuzzleType.SymbolItemMatching, new[] {"broken_hand_mirror", "small_doll", "old_keychain", "old_necklace"}, System.Array.Empty<string>(), "front_door_key_spawned", new[] {"broken_hand_mirror", "small_doll", "old_keychain", "old_necklace"});
+            basementAltar.oneShot = true;
+            basementAltar.deferSolvedUntilRewardPickup = true;
+            basementAltar.conditions.forbiddenFlagIds = new[] { "front_door_key_spawned" };
             return new List<PuzzleDefinition>
             {
                 studySafe,
-                Puzzle("laundry_storage_box", "세탁실 보관함", PuzzleType.NumberLock, new[] {"0", "9", "1", "5"}, new[] {"fuse"}, "puzzle_laundry_box_clear", null, 10f),
-                Puzzle("breaker_box", "차단기함", PuzzleType.ItemUse, new[] {"fuse_holder", "fuse"}, new[] {"old_keychain"}, "electricity_restored", new[] {"fuse_holder", "fuse"}),
+                laundryStorageBox,
+                breakerBox,
                 Puzzle("mirror_symbol_panel", "거울 방 문양 패널", PuzzleType.SymbolSequence, new[] {"heart", "child_hand", "cracked_circle", "keyhole"}, new[] {"broken_hand_mirror"}, "mirror_destroyed", null),
                 Puzzle("master_bedroom_drawer", "안방 색상 서랍", PuzzleType.ColorSequence, new[] {"black", "white", "red", "gray"}, new[] {"old_necklace"}, "master_drawer_opened", null),
-                Puzzle("attic_toy_sequence", "다락방 장난감 순서", PuzzleType.SilentSequence, new[] {"doll", "train", "block", "bell"}, new[] {"small_doll", "symbol_fragment"}, "attic_toy_box_opened", new[] {"torn_drawing_fragment"}, 15f),
-                Puzzle("basement_altar", "지하실 제단", PuzzleType.SymbolItemMatching, new[] {"broken_hand_mirror", "small_doll", "old_keychain", "old_necklace"}, new[] {"front_door_key"}, "front_door_key_spawned", new[] {"broken_hand_mirror", "small_doll", "old_keychain", "old_necklace"}),
+                atticToySequence,
+                basementAltar,
                 Puzzle("front_door_escape", "현관문 탈출", PuzzleType.ItemUse, new[] {"front_door_key"}, System.Array.Empty<string>(), "stage1_clear", new[] {"front_door_key"})
             };
         }
@@ -63,24 +73,24 @@ namespace EscapeFromNightmares.Runtime
                 ChildRoom(),
                 SecondFloorHallway(),
                 Study(),
-                Room("mirror_room", "거울 방", "2F", new[] {"second_floor_hallway"}, 0, PuzzleObject("mirror_panel_obj", "문양 패널", "mirror_symbol_panel"), Door("mirror_exit", "복도로 나가기", "second_floor_hallway")),
-                Room("master_bedroom", "안방", "2F", new[] {"second_floor_hallway"}, 1, PuzzleObject("master_drawer_obj", "색상 서랍", "master_bedroom_drawer"), Hide("master_closet_hide", "옷장"), Door("master_exit", "복도로 나가기", "second_floor_hallway")),
-                Room("dressing_room", "드레스룸", "2F", new[] {"second_floor_hallway"}, 1, I("color_clue", "옷 색상 순서 단서", InteractableType.ClueObject, eventId: "clue_color_sequence"), Door("dressing_exit", "복도로 나가기", "second_floor_hallway")),
-                Room("second_floor_bathroom", "2층 욕실", "2F", new[] {"second_floor_hallway"}, 1, I("mirror_rule_clue", "반전 규칙 단서", InteractableType.ClueObject, eventId: "clue_mirror_rule"), Door("bathroom_exit", "복도로 나가기", "second_floor_hallway")),
-                Room("stairwell_2f", "2층 계단", "2F", new[] {"second_floor_hallway", "stairwell_1f", "attic_main"}, 0, Doors("second_floor_hallway", "stairwell_1f", "attic_main")),
-                Room("attic_main", "다락방", "Attic", new[] {"stairwell_2f", "attic_toy_storage"}, 1, Door("attic_toy_door", "장난감 보관실", "attic_toy_storage"), Door("attic_exit", "계단으로", "stairwell_2f")),
-                Room("attic_toy_storage", "다락 장난감 보관실", "Attic", new[] {"attic_main"}, 1, PuzzleObject("attic_toy_box", "장난감 상자", "attic_toy_sequence"), Door("attic_toy_exit", "다락방으로", "attic_main")),
-                Room("stairwell_1f", "1층 계단", "1F", new[] {"stairwell_2f", "first_floor_hallway"}, 0, Doors("stairwell_2f", "first_floor_hallway")),
-                Room("first_floor_hallway", "1층 복도", "1F", new[] {"stairwell_1f", "entrance", "living_room", "dining_room", "kitchen", "laundry_room", "family_photo_room"}, 1, Doors("stairwell_1f", "entrance", "living_room", "dining_room", "kitchen", "laundry_room", "family_photo_room")),
+                MirrorRoom(),
+                MasterBedroom(),
+                DressingRoom(),
+                SecondFloorBathroom(),
+                Stairwell2f(),
+                AtticMain(),
+                AtticToyStorage(),
+                Stairwell1f(),
+                FirstFloorHallway(),
                 Room("family_photo_room", "가족사진 방", "1F", new[] {"first_floor_hallway"}, 1, I("hidden_photo_drawer", "숨겨진 사진 서랍", InteractableType.ItemPickup, grantsItemId: "study_safe_clue"), Door("family_photo_exit", "복도로 나가기", "first_floor_hallway")),
-                Room("dining_room", "식당", "1F", new[] {"first_floor_hallway"}, 0, I("dining_clue", "식탁 좌석 순서", InteractableType.ClueObject, eventId: "clue_dining_order"), Door("dining_exit", "복도로 나가기", "first_floor_hallway")),
-                Room("kitchen", "부엌", "1F", new[] {"first_floor_hallway"}, 1, I("kitchen_clock", "부엌 시계", InteractableType.EventTrigger, eventId: "event_kitchen_first_appearance"), Hide("kitchen_hide", "싱크대 아래"), Door("kitchen_exit", "복도로 나가기", "first_floor_hallway")),
-                Room("laundry_room", "세탁실", "1F", new[] {"first_floor_hallway", "basement_entry"}, 1, PuzzleObject("laundry_box", "세탁실 보관함", "laundry_storage_box"), PuzzleObject("breaker_box_obj", "차단기함", "breaker_box"), Hide("laundry_hide", "세탁기 옆"), Door("laundry_exit", "복도로 나가기", "first_floor_hallway"), Door("basement_entry_door", "지하실 입구", "basement_entry")),
+                DiningRoom(),
+                Kitchen(),
+                LaundryRoom(),
                 Room("living_room", "거실", "1F", new[] {"first_floor_hallway", "entrance"}, 1, Combine(Hide("living_curtain_hide", "커튼 뒤"), Doors("first_floor_hallway", "entrance"))),
-                Room("entrance", "현관", "1F", new[] {"first_floor_hallway", "living_room"}, 0, Combine(PuzzleObject("front_door", "현관문", "front_door_escape"), Doors("first_floor_hallway", "living_room"))),
-                Room("basement_entry", "지하실 입구", "Basement", new[] {"laundry_room", "basement_main"}, 0, Doors("laundry_room", "basement_main")),
-                Room("basement_main", "지하실", "Basement", new[] {"basement_entry", "altar_room"}, 1, Door("altar_room_door", "제단 방", "altar_room"), Door("basement_exit", "지하실 입구", "basement_entry")),
-                Room("altar_room", "제단 방", "Basement", new[] {"basement_main"}, 0, PuzzleObject("altar", "제단", "basement_altar"), Door("altar_exit", "지하실로", "basement_main"))
+                Entrance(),
+                BasementEntry(),
+                BasementMain(),
+                AltarRoom()
             };
         }
 
@@ -158,6 +168,400 @@ namespace EscapeFromNightmares.Runtime
             room.interactables = interactables;
             room.faces = CreateFaces(id, interactables);
             room.allowMonster = id != "child_room";
+            return room;
+        }
+
+        private static RoomDefinition Stairwell2f()
+        {
+            var hallwayExit = TransparentDoor("stairwell_2f_to_hallway", "2F Hallway", "second_floor_hallway", new Rect(0.32f, 0.12f, 0.34f, 0.72f));
+            var atticExit = TransparentDoor("stairwell_2f_to_attic", "Attic", "attic_main", new Rect(0.42f, 0.08f, 0.28f, 0.74f));
+            var firstFloorExit = TransparentDoor("stairwell_2f_to_1f", "1F Stairwell", "stairwell_1f", new Rect(0.30f, 0.18f, 0.38f, 0.66f));
+
+            var room = Room(
+                "stairwell_2f",
+                "2F Stairwell",
+                "2F",
+                new[] { "second_floor_hallway", "stairwell_1f", "attic_main" },
+                0,
+                hallwayExit,
+                atticExit,
+                firstFloorExit);
+
+            room.faces = new[]
+            {
+                Face("stairwell_2f", RoomFaceDirection.North, "Hallway Landing", new[] { hallwayExit }),
+                Face("stairwell_2f", RoomFaceDirection.East, "Attic Stairs", new[] { atticExit }),
+                Face("stairwell_2f", RoomFaceDirection.South, "First Floor Stairs", new[] { firstFloorExit }),
+                Face("stairwell_2f", RoomFaceDirection.West, "Landing Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition AtticMain()
+        {
+            var albumClue = Clue("attic_family_album_photo", "Family Album Photo", "EscapeFromNightmares/CloseUps/attic_family_album_photo", new Rect(0.30f, 0.18f, 0.42f, 0.42f));
+            var toyStorageExit = TransparentDoor("attic_main_to_toy_storage", "Toy Storage", "attic_toy_storage", new Rect(0.58f, 0.13f, 0.28f, 0.70f));
+            var stairwellExit = TransparentDoor("attic_main_to_stairwell", "2F Stairwell", "stairwell_2f", new Rect(0.36f, 0.12f, 0.32f, 0.72f));
+
+            var room = Room(
+                "attic_main",
+                "Attic",
+                "Attic",
+                new[] { "stairwell_2f", "attic_toy_storage" },
+                0,
+                albumClue,
+                toyStorageExit,
+                stairwellExit);
+
+            room.faces = new[]
+            {
+                Face("attic_main", RoomFaceDirection.North, "Family Album", new[] { albumClue }),
+                Face("attic_main", RoomFaceDirection.East, "Toy Storage Door", new[] { toyStorageExit }),
+                Face("attic_main", RoomFaceDirection.South, "Stairwell Door", new[] { stairwellExit }),
+                Face("attic_main", RoomFaceDirection.West, "Attic Storage", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition AtticToyStorage()
+        {
+            var toyBox = PuzzleObject("attic_toy_box", "Toy Box", "attic_toy_sequence");
+            toyBox.normalizedHitbox = new Rect(0.34f, 0.28f, 0.34f, 0.38f);
+            toyBox.showWorldImage = false;
+
+            var atticExit = TransparentDoor("attic_toy_storage_exit", "Back to Attic", "attic_main", new Rect(0.58f, 0.12f, 0.28f, 0.74f));
+
+            var room = Room(
+                "attic_toy_storage",
+                "Attic Toy Storage",
+                "Attic",
+                new[] { "attic_main" },
+                0,
+                toyBox,
+                atticExit);
+
+            room.faces = new[]
+            {
+                Face("attic_toy_storage", RoomFaceDirection.North, "Toy Box", new[] { toyBox }),
+                Face("attic_toy_storage", RoomFaceDirection.East, "Attic Door", new[] { atticExit }),
+                Face("attic_toy_storage", RoomFaceDirection.South, "Toy Shelves", System.Array.Empty<InteractableDefinition>()),
+                Face("attic_toy_storage", RoomFaceDirection.West, "Storage Corner", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition Stairwell1f()
+        {
+            var secondFloorExit = TransparentDoor("stairwell_1f_to_2f", "2F Stairwell", "stairwell_2f", new Rect(0.34f, 0.14f, 0.30f, 0.70f));
+            var hallwayExit = TransparentDoor("stairwell_1f_to_hallway", "1F Hallway", "first_floor_hallway", new Rect(0.52f, 0.13f, 0.24f, 0.72f));
+
+            var room = Room(
+                "stairwell_1f",
+                "1F Stairwell",
+                "1F",
+                new[] { "stairwell_2f", "first_floor_hallway" },
+                0,
+                secondFloorExit,
+                hallwayExit);
+
+            room.faces = new[]
+            {
+                Face("stairwell_1f", RoomFaceDirection.North, "Second Floor Stairs", new[] { secondFloorExit }),
+                Face("stairwell_1f", RoomFaceDirection.East, "First Floor Hallway", new[] { hallwayExit }),
+                Face("stairwell_1f", RoomFaceDirection.South, "Lower Stair Wall", System.Array.Empty<InteractableDefinition>()),
+                Face("stairwell_1f", RoomFaceDirection.West, "Stairwell Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition FirstFloorHallway()
+        {
+            var stairwellExit = TransparentDoor("first_floor_hallway_to_stairwell", "1F Stairwell", "stairwell_1f", new Rect(0.06f, 0.12f, 0.20f, 0.74f));
+            var diningExit = TransparentDoor("first_floor_hallway_to_dining", "Dining Room", "dining_room", new Rect(0.28f, 0.13f, 0.18f, 0.72f));
+            var kitchenExit = TransparentDoor("first_floor_hallway_to_kitchen", "Kitchen", "kitchen", new Rect(0.51f, 0.13f, 0.18f, 0.72f));
+            var laundryExit = TransparentDoor("first_floor_hallway_to_laundry", "Laundry Room", "laundry_room", new Rect(0.74f, 0.14f, 0.18f, 0.70f));
+            var entranceExit = TransparentDoor("first_floor_hallway_to_entrance", "Entrance", "entrance", new Rect(0.08f, 0.12f, 0.24f, 0.74f));
+            var livingExit = TransparentDoor("first_floor_hallway_to_living", "Living Room", "living_room", new Rect(0.39f, 0.13f, 0.22f, 0.72f));
+            var familyPhotoExit = TransparentDoor("first_floor_hallway_to_family_photo", "Family Photo Room", "family_photo_room", new Rect(0.70f, 0.13f, 0.20f, 0.72f));
+
+            var room = Room(
+                "first_floor_hallway",
+                "1F Hallway",
+                "1F",
+                new[] { "stairwell_1f", "entrance", "living_room", "dining_room", "kitchen", "laundry_room", "family_photo_room" },
+                0,
+                stairwellExit,
+                diningExit,
+                kitchenExit,
+                laundryExit,
+                entranceExit,
+                livingExit,
+                familyPhotoExit);
+
+            room.faces = new[]
+            {
+                Face("first_floor_hallway", RoomFaceDirection.North, "Utility Hall", new[] { stairwellExit, diningExit, kitchenExit, laundryExit }),
+                WithBackground(
+                    Face("first_floor_hallway", RoomFaceDirection.South, "Front Hall", new[] { entranceExit, livingExit, familyPhotoExit }),
+                    new[]
+                    {
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/first_floor_hallway_south_chase",
+                            conditions = new ConditionDefinition { requiredFlagIds = new[] { "final_chase_started" } }
+                        }
+                    })
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition Entrance()
+        {
+            var frontDoor = PuzzleObject("front_door", "Front Door", "front_door_escape");
+            frontDoor.normalizedHitbox = new Rect(0.34f, 0.08f, 0.32f, 0.78f);
+            frontDoor.showWorldImage = false;
+
+            var hallwayExit = TransparentDoor("entrance_to_hallway", "1F Hallway", "first_floor_hallway", new Rect(0.58f, 0.12f, 0.28f, 0.74f));
+            var livingExit = TransparentDoor("entrance_to_living", "Living Room", "living_room", new Rect(0.18f, 0.14f, 0.30f, 0.72f));
+
+            var room = Room(
+                "entrance",
+                "Entrance",
+                "1F",
+                new[] { "first_floor_hallway", "living_room" },
+                0,
+                frontDoor,
+                hallwayExit,
+                livingExit);
+
+            room.faces = new[]
+            {
+                WithBackground(
+                    Face("entrance", RoomFaceDirection.North, "Front Door", new[] { frontDoor }),
+                    new[]
+                    {
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/entrance_north_chase",
+                            conditions = new ConditionDefinition { requiredFlagIds = new[] { "final_chase_started" } }
+                        }
+                    }),
+                Face("entrance", RoomFaceDirection.East, "Hallway Door", new[] { hallwayExit }),
+                Face("entrance", RoomFaceDirection.South, "Living Room Door", new[] { livingExit }),
+                Face("entrance", RoomFaceDirection.West, "Entry Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition DiningRoom()
+        {
+            var seatOrderClue = Clue("dining_seat_order_clue", "Dining Seat Order", "EscapeFromNightmares/CloseUps/dining_seat_order_clue", new Rect(0.24f, 0.20f, 0.52f, 0.52f));
+            var exit = TransparentDoor("dining_exit", "1F Hallway", "first_floor_hallway", new Rect(0.62f, 0.11f, 0.24f, 0.74f));
+
+            var room = Room(
+                "dining_room",
+                "Dining Room",
+                "1F",
+                new[] { "first_floor_hallway" },
+                0,
+                seatOrderClue,
+                exit);
+
+            room.faces = new[]
+            {
+                Face("dining_room", RoomFaceDirection.North, "Seat Order", new[] { seatOrderClue }),
+                Face("dining_room", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("dining_room", RoomFaceDirection.South, "Dining Cabinets", System.Array.Empty<InteractableDefinition>()),
+                Face("dining_room", RoomFaceDirection.West, "Dining Window", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition Kitchen()
+        {
+            var clockClue = Clue("kitchen_clock_clue", "Kitchen Clock", "EscapeFromNightmares/CloseUps/kitchen_clock_clue", new Rect(0.38f, 0.16f, 0.24f, 0.30f));
+            var exit = TransparentDoor("kitchen_exit", "1F Hallway", "first_floor_hallway", new Rect(0.62f, 0.12f, 0.24f, 0.74f));
+            var hide = Hide("kitchen_hide", "Kitchen Sink");
+            hide.normalizedHitbox = new Rect(0.30f, 0.42f, 0.40f, 0.30f);
+            hide.hideViewResource = "EscapeFromNightmares/HideViews/kitchen_sink_hide_view";
+            hide.showWorldImage = false;
+
+            var room = Room(
+                "kitchen",
+                "Kitchen",
+                "1F",
+                new[] { "first_floor_hallway" },
+                1,
+                clockClue,
+                exit,
+                hide);
+
+            room.faces = new[]
+            {
+                Face("kitchen", RoomFaceDirection.North, "Clock Clue", new[] { clockClue }),
+                Face("kitchen", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("kitchen", RoomFaceDirection.South, "Sink Hide Spot", new[] { hide }),
+                Face("kitchen", RoomFaceDirection.West, "Kitchen Stove", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition LaundryRoom()
+        {
+            var storageBox = PuzzleObject("laundry_box", "Laundry Storage Box", "laundry_storage_box");
+            storageBox.normalizedHitbox = new Rect(0.33f, 0.26f, 0.34f, 0.36f);
+            storageBox.showWorldImage = false;
+
+            var breakerBox = PuzzleObject("breaker_box_obj", "Breaker Box", "breaker_box");
+            breakerBox.normalizedHitbox = new Rect(0.14f, 0.20f, 0.26f, 0.44f);
+            breakerBox.showWorldImage = false;
+
+            var basementEntry = TransparentDoor("basement_entry_door", "Basement Entry", "basement_entry", new Rect(0.55f, 0.12f, 0.30f, 0.74f));
+            basementEntry.conditions.requiredFlagIds = new[] { "electricity_restored" };
+
+            var hide = Hide("laundry_hide", "Laundry Machine");
+            hide.normalizedHitbox = new Rect(0.28f, 0.30f, 0.46f, 0.42f);
+            hide.hideViewResource = "EscapeFromNightmares/HideViews/laundry_machine_hide_view";
+            hide.showWorldImage = false;
+
+            var exit = TransparentDoor("laundry_exit", "1F Hallway", "first_floor_hallway", new Rect(0.60f, 0.12f, 0.26f, 0.74f));
+
+            var room = Room(
+                "laundry_room",
+                "Laundry Room",
+                "1F",
+                new[] { "first_floor_hallway", "basement_entry" },
+                1,
+                storageBox,
+                breakerBox,
+                basementEntry,
+                hide,
+                exit);
+
+            room.faces = new[]
+            {
+                Face("laundry_room", RoomFaceDirection.North, "Storage Box", new[] { storageBox }),
+                Face("laundry_room", RoomFaceDirection.East, "Breaker Box And Basement Entry", new[] { breakerBox, basementEntry }),
+                Face("laundry_room", RoomFaceDirection.South, "Laundry Hide Spot", new[] { hide }),
+                Face("laundry_room", RoomFaceDirection.West, "Hallway Door", new[] { exit })
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition BasementEntry()
+        {
+            var laundryExit = TransparentDoor("basement_entry_to_laundry", "Laundry Room", "laundry_room", new Rect(0.28f, 0.10f, 0.36f, 0.76f));
+            var basementMainExit = TransparentDoor("basement_entry_to_main", "Basement Main", "basement_main", new Rect(0.55f, 0.12f, 0.30f, 0.74f));
+
+            var room = Room(
+                "basement_entry",
+                "Basement Entry",
+                "Basement",
+                new[] { "laundry_room", "basement_main" },
+                0,
+                laundryExit,
+                basementMainExit);
+
+            room.faces = new[]
+            {
+                Face("basement_entry", RoomFaceDirection.North, "Laundry Stairs", new[] { laundryExit }),
+                Face("basement_entry", RoomFaceDirection.East, "Main Basement Door", new[] { basementMainExit }),
+                Face("basement_entry", RoomFaceDirection.South, "Damp Wall", System.Array.Empty<InteractableDefinition>()),
+                Face("basement_entry", RoomFaceDirection.West, "Pipe Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition BasementMain()
+        {
+            var wallSymbols = Clue("basement_wall_symbols", "Basement Wall Symbols", "EscapeFromNightmares/CloseUps/basement_wall_symbols", new Rect(0.26f, 0.16f, 0.48f, 0.42f));
+            var altarExit = TransparentDoor("basement_main_to_altar", "Altar Room", "altar_room", new Rect(0.56f, 0.10f, 0.30f, 0.76f));
+            var entryExit = TransparentDoor("basement_main_to_entry", "Basement Entry", "basement_entry", new Rect(0.30f, 0.12f, 0.34f, 0.74f));
+            var hide = Hide("basement_main_hide", "Basement Cabinet");
+            hide.normalizedHitbox = new Rect(0.26f, 0.24f, 0.42f, 0.52f);
+            hide.hideViewResource = "EscapeFromNightmares/HideViews/basement_main_hide_view";
+            hide.showWorldImage = false;
+
+            var room = Room(
+                "basement_main",
+                "Basement",
+                "Basement",
+                new[] { "basement_entry", "altar_room" },
+                1,
+                wallSymbols,
+                altarExit,
+                entryExit,
+                hide);
+
+            room.faces = new[]
+            {
+                Face("basement_main", RoomFaceDirection.North, "Wall Symbols", new[] { wallSymbols }),
+                Face("basement_main", RoomFaceDirection.East, "Altar Door", new[] { altarExit }),
+                Face("basement_main", RoomFaceDirection.South, "Entry Stairs", new[] { entryExit }),
+                Face("basement_main", RoomFaceDirection.West, "Cabinet Hide Spot", new[] { hide })
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition AltarRoom()
+        {
+            var altar = PuzzleObject("altar", "Altar", "basement_altar");
+            altar.normalizedHitbox = new Rect(0.30f, 0.22f, 0.40f, 0.44f);
+            altar.showWorldImage = false;
+
+            var keyPickup = I("front_door_key_on_altar", "Front Door Key", InteractableType.ItemPickup, grantsItemId: "front_door_key");
+            keyPickup.conditions.requiredFlagIds = new[] { "front_door_key_spawned" };
+            keyPickup.normalizedHitbox = new Rect(0.46f, 0.36f, 0.12f, 0.16f);
+            keyPickup.showWorldImage = false;
+            keyPickup.disableRoomHitboxWhenUsed = true;
+            keyPickup.solvesPuzzleId = "basement_altar";
+            keyPickup.setFlagIds = new[] { "event_front_door_key_appears" };
+
+            var exit = TransparentDoor("altar_room_to_basement_main", "Basement Main", "basement_main", new Rect(0.30f, 0.12f, 0.34f, 0.74f));
+
+            var room = Room(
+                "altar_room",
+                "Altar Room",
+                "Basement",
+                new[] { "basement_main" },
+                0,
+                altar,
+                keyPickup,
+                exit);
+
+            room.faces = new[]
+            {
+                WithBackground(
+                    Face("altar_room", RoomFaceDirection.North, "Altar", new[] { altar, keyPickup }),
+                    new[]
+                    {
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/altar_room_north_key_taken",
+                            conditions = new ConditionDefinition { requiredItemIds = new[] { "front_door_key" } }
+                        },
+                        new ConditionalBackgroundDefinition
+                        {
+                            backgroundResource = "EscapeFromNightmares/Rooms/altar_room_north_key_spawned",
+                            conditions = new ConditionDefinition { requiredFlagIds = new[] { "front_door_key_spawned" } }
+                        }
+                    }),
+                Face("altar_room", RoomFaceDirection.East, "Ritual Wall", System.Array.Empty<InteractableDefinition>()),
+                Face("altar_room", RoomFaceDirection.South, "Basement Door", new[] { exit }),
+                Face("altar_room", RoomFaceDirection.West, "Candle Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
             return room;
         }
 
@@ -310,6 +714,120 @@ namespace EscapeFromNightmares.Runtime
             return room;
         }
 
+        private static RoomDefinition MirrorRoom()
+        {
+            var panel = PuzzleObject("mirror_panel_obj", "Mirror Symbol Panel", "mirror_symbol_panel");
+            panel.normalizedHitbox = new Rect(0.32f, 0.20f, 0.36f, 0.22f);
+            panel.showWorldImage = false;
+
+            var exit = Door("mirror_exit", "Back to Hallway", "second_floor_hallway");
+            exit.normalizedHitbox = new Rect(0.55f, 0.12f, 0.24f, 0.72f);
+            exit.showWorldImage = false;
+
+            var room = Room(
+                "mirror_room",
+                "Mirror Room",
+                "2F",
+                new[] { "second_floor_hallway" },
+                0,
+                panel,
+                exit);
+
+            room.faces = new[]
+            {
+                Face("mirror_room", RoomFaceDirection.North, "Symbol Mirror", new[] { panel }),
+                Face("mirror_room", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("mirror_room", RoomFaceDirection.South, "Distorted Reflection", System.Array.Empty<InteractableDefinition>()),
+                Face("mirror_room", RoomFaceDirection.West, "Broken Mirrors", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition SecondFloorBathroom()
+        {
+            var mirrorRuleClue = Clue("bathroom_mirror_rule_clue", "Mirror Reversal Rule", "EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue", new Rect(0.30f, 0.24f, 0.40f, 0.48f));
+            var exit = Door("bathroom_exit", "Back to Hallway", "second_floor_hallway");
+            exit.normalizedHitbox = new Rect(0.66f, 0.12f, 0.26f, 0.74f);
+            exit.showWorldImage = false;
+
+            var room = Room(
+                "second_floor_bathroom",
+                "2F Bathroom",
+                "2F",
+                new[] { "second_floor_hallway" },
+                0,
+                mirrorRuleClue,
+                exit);
+
+            room.faces = new[]
+            {
+                Face("second_floor_bathroom", RoomFaceDirection.North, "Mirror Rule", new[] { mirrorRuleClue }),
+                Face("second_floor_bathroom", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("second_floor_bathroom", RoomFaceDirection.South, "Bath Wall", System.Array.Empty<InteractableDefinition>()),
+                Face("second_floor_bathroom", RoomFaceDirection.West, "Storage Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition MasterBedroom()
+        {
+            var drawer = PuzzleObject("master_drawer_obj", "Master Bedroom Drawer", "master_bedroom_drawer");
+            drawer.normalizedHitbox = new Rect(0.44f, 0.20f, 0.32f, 0.48f);
+            drawer.showWorldImage = false;
+
+            var exit = Door("master_exit", "Back to Hallway", "second_floor_hallway");
+            exit.normalizedHitbox = new Rect(0.66f, 0.12f, 0.26f, 0.74f);
+            exit.showWorldImage = false;
+
+            var room = Room(
+                "master_bedroom",
+                "Master Bedroom",
+                "2F",
+                new[] { "second_floor_hallway" },
+                0,
+                drawer,
+                exit);
+
+            room.faces = new[]
+            {
+                Face("master_bedroom", RoomFaceDirection.North, "Color Drawer", new[] { drawer }),
+                Face("master_bedroom", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("master_bedroom", RoomFaceDirection.South, "Bed And Wardrobe", System.Array.Empty<InteractableDefinition>()),
+                Face("master_bedroom", RoomFaceDirection.West, "Moonlit Keepsakes", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
+        private static RoomDefinition DressingRoom()
+        {
+            var colorSequenceClue = Clue("dressing_color_sequence_clue", "Color Sequence Clue", "EscapeFromNightmares/CloseUps/dressing_color_sequence_clue", new Rect(0.24f, 0.18f, 0.52f, 0.56f));
+            var exit = Door("dressing_exit", "Back to Hallway", "second_floor_hallway");
+            exit.normalizedHitbox = new Rect(0.62f, 0.12f, 0.28f, 0.74f);
+            exit.showWorldImage = false;
+
+            var room = Room(
+                "dressing_room",
+                "Dressing Room",
+                "2F",
+                new[] { "second_floor_hallway" },
+                0,
+                colorSequenceClue,
+                exit);
+
+            room.faces = new[]
+            {
+                Face("dressing_room", RoomFaceDirection.North, "Color Sequence", new[] { colorSequenceClue }),
+                Face("dressing_room", RoomFaceDirection.East, "Hallway Door", new[] { exit }),
+                Face("dressing_room", RoomFaceDirection.South, "Mirror Wall", System.Array.Empty<InteractableDefinition>()),
+                Face("dressing_room", RoomFaceDirection.West, "Storage Wall", System.Array.Empty<InteractableDefinition>())
+            };
+
+            return room;
+        }
+
         private static RoomFaceDefinition[] CreateFaces(string roomId, InteractableDefinition[] interactables)
         {
             var buckets = new[]
@@ -414,6 +932,14 @@ namespace EscapeFromNightmares.Runtime
         private static InteractableDefinition Door(string id, string name, string targetRoomId)
         {
             return I(id, name, InteractableType.Door, targetRoomId: targetRoomId);
+        }
+
+        private static InteractableDefinition TransparentDoor(string id, string name, string targetRoomId, Rect hitbox)
+        {
+            var door = Door(id, name, targetRoomId);
+            door.normalizedHitbox = hitbox;
+            door.showWorldImage = false;
+            return door;
         }
 
         private static InteractableDefinition Hide(string id, string name)

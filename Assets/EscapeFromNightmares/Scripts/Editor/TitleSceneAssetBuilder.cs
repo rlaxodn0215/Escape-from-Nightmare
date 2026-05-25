@@ -28,6 +28,7 @@ namespace EscapeFromNightmares.Editor
         private const string ScenePath = Root + "/Scenes/TitleScene.unity";
         private const string MainScenePath = Root + "/Scenes/MainScene.unity";
         private const string RoomSpriteCatalogPath = Root + "/ScriptableObjects/RoomSpriteCatalog.asset";
+        private const string MonsterPlacementCatalogPath = Root + "/ScriptableObjects/MonsterPlacementCatalog.asset";
         private const string TitleBackgroundAssetPath = Root + "/Resources/EscapeFromNightmares/Title/title_background.png";
         private const string TitleLogoAssetPath = Root + "/Resources/EscapeFromNightmares/Title/title_logo_escape_from_nightmare.png";
         private const string StartButtonAssetPath = Root + "/Resources/EscapeFromNightmares/Title/UI/button_start.png";
@@ -59,8 +60,20 @@ namespace EscapeFromNightmares.Editor
         private const string DrawerOpenWithItemAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item.png";
         private const string DrawerOpenEmptyAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty.png";
         private const string StudySafeClueNoteAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/study_safe_clue_note.png";
+        private const string BathroomMirrorRuleClueAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue.png";
+        private const string DressingColorSequenceClueAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/dressing_color_sequence_clue.png";
+        private const string AtticFamilyAlbumPhotoAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/attic_family_album_photo.png";
+        private const string DiningSeatOrderClueAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/dining_seat_order_clue.png";
+        private const string KitchenClockClueAssetPath = Root + "/Resources/EscapeFromNightmares/CloseUps/kitchen_clock_clue.png";
         private const string ChildBedUnderViewAssetPath = Root + "/Resources/EscapeFromNightmares/HideViews/child_bed_under_view.png";
+        private const string KitchenSinkHideViewAssetPath = Root + "/Resources/EscapeFromNightmares/HideViews/kitchen_sink_hide_view.png";
+        private const string LaundryMachineHideViewAssetPath = Root + "/Resources/EscapeFromNightmares/HideViews/laundry_machine_hide_view.png";
         private const string FuseHolderIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_fuse_holder.png";
+        private const string FuseIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_fuse.png";
+        private const string OldKeychainIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_old_keychain.png";
+        private const string SmallDollIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_small_doll.png";
+        private const string SymbolFragmentIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_symbol_fragment.png";
+        private const string FrontDoorKeyIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_front_door_key.png";
         private const string InventoryPanelAssetPath = Root + "/Resources/EscapeFromNightmares/UI/inventory_panel_bg.png";
         private const string InventoryButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/inventory_button.png";
         private const string InventoryCloseButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/inventory_close_button.png";
@@ -70,6 +83,8 @@ namespace EscapeFromNightmares.Editor
         private const string RotateRightButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/ui_rotate_right.png";
         private const string HideExitButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/ui_hide_exit.png";
         private const string BackArrowButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/ui_back_arrow.png";
+        private const string StageClearBackgroundAssetPath = Root + "/Resources/EscapeFromNightmares/Endings/stage1_clear_background.png";
+        private const string MonsterShadowAssetPath = Root + "/Resources/EscapeFromNightmares/Monster/monster_shadow.png";
 
         private static readonly string[] ChildRoomFaceAssetPaths =
         {
@@ -85,6 +100,52 @@ namespace EscapeFromNightmares.Editor
             Root + "/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_south.png"
         };
 
+        private static readonly string[] FirstFloorHallwayFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south.png"
+        };
+
+        private static readonly string[] EntranceFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/entrance_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/entrance_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/entrance_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/entrance_west.png"
+        };
+
+        private static readonly string[] BathroomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_west.png"
+        };
+
+        private static readonly string[] MirrorRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/mirror_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/mirror_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/mirror_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/mirror_room_west.png"
+        };
+
+        private static readonly string[] DressingRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/dressing_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/dressing_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/dressing_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/dressing_room_west.png"
+        };
+
+        private static readonly string[] MasterBedroomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/master_bedroom_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/master_bedroom_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/master_bedroom_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/master_bedroom_west.png"
+        };
+
         private static readonly string[] StudyFaceAssetPaths =
         {
             Root + "/Resources/EscapeFromNightmares/Rooms/study_north.png",
@@ -93,12 +154,100 @@ namespace EscapeFromNightmares.Editor
             Root + "/Resources/EscapeFromNightmares/Rooms/study_west.png"
         };
 
+        private static readonly string[] Stairwell2fFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_2f_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_2f_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_2f_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_2f_west.png"
+        };
+
+        private static readonly string[] Stairwell1fFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_1f_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_1f_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_1f_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/stairwell_1f_west.png"
+        };
+
+        private static readonly string[] DiningRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/dining_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/dining_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/dining_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/dining_room_west.png"
+        };
+
+        private static readonly string[] KitchenFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/kitchen_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/kitchen_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/kitchen_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/kitchen_west.png"
+        };
+
+        private static readonly string[] LaundryRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/laundry_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/laundry_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/laundry_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/laundry_room_west.png"
+        };
+
+        private static readonly string[] AtticMainFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_main_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_main_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_main_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_main_west.png"
+        };
+
+        private static readonly string[] AtticToyStorageFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_west.png"
+        };
+
+        private static readonly string[] BasementEntryFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_entry_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_entry_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_entry_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_entry_west.png"
+        };
+
+        private static readonly string[] BasementMainFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_main_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_main_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_main_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/basement_main_west.png"
+        };
+
+        private static readonly string[] AltarRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/altar_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/altar_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/altar_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/altar_room_west.png"
+        };
+
         private static readonly string[] StateRoomAssetPaths =
         {
             Root + "/Resources/EscapeFromNightmares/Rooms/child_room_north_drawer_empty.png",
             Root + "/Resources/EscapeFromNightmares/Rooms/study_north_safe_open.png",
             Root + "/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_with_item.png",
-            Root + "/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_empty.png"
+            Root + "/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_empty.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_spawned.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_taken.png"
+        };
+
+        private static readonly string[] FinalChaseRoomAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/entrance_north_chase.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south_chase.png"
         };
 
         private static readonly string[] ChildRoomObjectAssetPaths =
@@ -108,6 +257,16 @@ namespace EscapeFromNightmares.Editor
             Root + "/Resources/EscapeFromNightmares/Objects/child_bed_hide.png",
             Root + "/Resources/EscapeFromNightmares/Objects/child_window_silhouette.png",
             Root + "/Resources/EscapeFromNightmares/Items/item_torn_drawing_fragment.png"
+        };
+
+        private static readonly string[] InventoryItemIconAssetPaths =
+        {
+            FuseHolderIconAssetPath,
+            FuseIconAssetPath,
+            OldKeychainIconAssetPath,
+            SmallDollIconAssetPath,
+            SymbolFragmentIconAssetPath,
+            FrontDoorKeyIconAssetPath
         };
 
         private static readonly string[] PuzzleSampleAssetPaths =
@@ -142,6 +301,8 @@ namespace EscapeFromNightmares.Editor
             DrawerOpenWithItemAssetPath,
             DrawerOpenEmptyAssetPath,
             StudySafeClueNoteAssetPath,
+            BathroomMirrorRuleClueAssetPath,
+            DressingColorSequenceClueAssetPath,
             Root + "/Resources/EscapeFromNightmares/CloseUps/study_safe_locked.png",
             Root + "/Resources/EscapeFromNightmares/CloseUps/study_safe_open_with_item.png",
             Root + "/Resources/EscapeFromNightmares/CloseUps/study_safe_open_empty.png",
@@ -152,12 +313,19 @@ namespace EscapeFromNightmares.Editor
             Root + "/Resources/EscapeFromNightmares/CloseUps/study_desk_surface.png",
             Root + "/Resources/EscapeFromNightmares/CloseUps/study_clue_board.png",
             Root + "/Resources/EscapeFromNightmares/CloseUps/study_portrait.png",
-            Root + "/Resources/EscapeFromNightmares/CloseUps/study_window_view.png"
+            Root + "/Resources/EscapeFromNightmares/CloseUps/study_window_view.png",
+            AtticFamilyAlbumPhotoAssetPath,
+            DiningSeatOrderClueAssetPath,
+            KitchenClockClueAssetPath,
+            Root + "/Resources/EscapeFromNightmares/CloseUps/basement_wall_symbols.png"
         };
 
         private static readonly string[] HideViewAssetPaths =
         {
-            ChildBedUnderViewAssetPath
+            ChildBedUnderViewAssetPath,
+            KitchenSinkHideViewAssetPath,
+            LaundryMachineHideViewAssetPath,
+            Root + "/Resources/EscapeFromNightmares/HideViews/basement_main_hide_view.png"
         };
 
         private static readonly string[] MainUiAssetPaths =
@@ -192,6 +360,14 @@ namespace EscapeFromNightmares.Editor
             SliderHandleAssetPath
         };
 
+        private static readonly StrictIdentityCloseUpCase[] StrictIdentityCloseUpCases =
+        {
+            new StrictIdentityCloseUpCase(BathroomFaceAssetPaths[0], BathroomMirrorRuleClueAssetPath, new Rect(0.26f, 0.24f, 0.48f, 0.48f)),
+            new StrictIdentityCloseUpCase(DressingRoomFaceAssetPaths[0], DressingColorSequenceClueAssetPath, new Rect(0.22f, 0.18f, 0.56f, 0.56f)),
+            new StrictIdentityCloseUpCase(MirrorRoomFaceAssetPaths[0], PuzzleSampleAssetPaths[3], new Rect(0.32f, 0.13f, 0.36f, 0.36f)),
+            new StrictIdentityCloseUpCase(MasterBedroomFaceAssetPaths[0], PuzzleSampleAssetPaths[4], new Rect(0.36f, 0.20f, 0.48f, 0.48f))
+        };
+
         [InitializeOnLoadMethod]
         private static void EnsureAssetsAfterLoad()
         {
@@ -211,6 +387,16 @@ namespace EscapeFromNightmares.Editor
             EnsureAssets(true);
         }
 
+        [MenuItem("Escape From Nightmares/Rebuild Strict Identity Closeups")]
+        public static void RebuildStrictIdentityCloseups()
+        {
+            EnsureFolders();
+            RebuildStrictIdentityCloseupsInternal();
+            ImportAll(StrictIdentityCloseUpCases.Select(item => item.destinationPath).ToArray());
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
         private static void EnsureMissingAssets()
         {
             EnsureAssets(false);
@@ -227,24 +413,60 @@ namespace EscapeFromNightmares.Editor
             AssetDatabase.ImportAsset(ConfirmSfxAssetPath);
             ImportAll(ChildRoomFaceAssetPaths);
             ImportAll(SecondFloorHallwayFaceAssetPaths);
+            ImportAll(FirstFloorHallwayFaceAssetPaths);
+            ImportAll(EntranceFaceAssetPaths);
+            ImportAll(BathroomFaceAssetPaths);
+            ImportAll(MirrorRoomFaceAssetPaths);
+            ImportAll(DressingRoomFaceAssetPaths);
+            ImportAll(MasterBedroomFaceAssetPaths);
             ImportAll(StudyFaceAssetPaths);
+            ImportAll(Stairwell2fFaceAssetPaths);
+            ImportAll(Stairwell1fFaceAssetPaths);
+            ImportAll(DiningRoomFaceAssetPaths);
+            ImportAll(KitchenFaceAssetPaths);
+            ImportAll(LaundryRoomFaceAssetPaths);
+            ImportAll(AtticMainFaceAssetPaths);
+            ImportAll(AtticToyStorageFaceAssetPaths);
+            ImportAll(BasementEntryFaceAssetPaths);
+            ImportAll(BasementMainFaceAssetPaths);
+            ImportAll(AltarRoomFaceAssetPaths);
             ImportAll(StateRoomAssetPaths);
+            ImportAll(FinalChaseRoomAssetPaths);
             ImportAll(ChildRoomObjectAssetPaths);
-            AssetDatabase.ImportAsset(FuseHolderIconAssetPath);
+            ImportAll(InventoryItemIconAssetPaths);
             ImportAll(PuzzleSampleAssetPaths);
             ImportAll(StudySafeDigitAssetPaths);
             ImportAll(CloseUpAssetPaths);
             ImportAll(HideViewAssetPaths);
             ImportAll(MainUiAssetPaths);
+            AssetDatabase.ImportAsset(MonsterShadowAssetPath);
+            ConfigureSpriteImporter(MonsterShadowAssetPath);
+            AssetDatabase.ImportAsset(StageClearBackgroundAssetPath);
             var roomSpriteCatalog = EnsureRoomSpriteCatalog();
+            var monsterPlacementCatalog = EnsureMonsterPlacementCatalog();
             var inventoryWindowPrefab = EnsureInventoryWindowPrefab(roomSpriteCatalog, rebuild);
             var mixer = EnsureAudioMixer(rebuild);
             var prefab = EnsureTitlePrefab(catalog, mixer, rebuild);
             EnsureTitleScene(prefab, rebuild);
-            EnsureMainScene(roomSpriteCatalog, inventoryWindowPrefab, rebuild);
+            EnsureMainScene(roomSpriteCatalog, monsterPlacementCatalog, inventoryWindowPrefab, rebuild);
             EnsureBuildSettings();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private static void RebuildStrictIdentityCloseupsInternal()
+        {
+            foreach (var entry in StrictIdentityCloseUpCases)
+            {
+                if (!File.Exists(entry.sourcePath))
+                {
+                    Debug.LogError("Strict identity close-up source missing: " + entry.sourcePath);
+                    continue;
+                }
+
+                File.WriteAllBytes(entry.destinationPath, CreateStrictIdentityCropPng(entry.sourcePath, entry.cropRect, 1280, 720));
+                Debug.Log("Rebuilt strict identity close-up: " + entry.destinationPath);
+            }
         }
 
         private static void EnsureFolders()
@@ -268,6 +490,7 @@ namespace EscapeFromNightmares.Editor
             CreateFolder(Root + "/Resources/EscapeFromNightmares/Puzzles");
             CreateFolder(Root + "/Resources/EscapeFromNightmares/CloseUps");
             CreateFolder(Root + "/Resources/EscapeFromNightmares/HideViews");
+            CreateFolder(Root + "/Resources/EscapeFromNightmares/Monster");
             CreateFolder(Root + "/Resources/EscapeFromNightmares/UI");
         }
 
@@ -354,12 +577,22 @@ namespace EscapeFromNightmares.Editor
             EnsureWav(PuzzleFailureSfxAssetPath, 95f, 0.18f, 0.16f);
             EnsureChildRoomImages();
             EnsureSecondFloorHallwayImages();
+            EnsureSecondFloorBathroomImages();
+            EnsureMirrorRoomImages();
+            EnsureDressingRoomImages();
+            EnsureMasterBedroomImages();
             EnsureStudyImages();
+            EnsureAtticImages();
+            EnsureBasementImages();
+            EnsureEntranceImages();
             EnsureStateRoomImages();
+            EnsureFinalChaseRoomImages();
             EnsurePuzzleImages();
             EnsureCloseUpImages();
             EnsureHideViewImages();
             EnsureMainUiImages(rebuild);
+            EnsurePng(StageClearBackgroundAssetPath, CreateStageClearBackgroundPng(), rebuild);
+            EnsurePng(MonsterShadowAssetPath, CreateMonsterShadowPng(), false);
         }
 
         private static AudioMixer EnsureAudioMixer(bool rebuild)
@@ -476,7 +709,7 @@ namespace EscapeFromNightmares.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
         }
 
-        private static void EnsureMainScene(RoomSpriteCatalog roomSpriteCatalog, GameObject inventoryWindowPrefab, bool rebuild)
+        private static void EnsureMainScene(RoomSpriteCatalog roomSpriteCatalog, MonsterPlacementCatalog monsterPlacementCatalog, GameObject inventoryWindowPrefab, bool rebuild)
         {
             if (File.Exists(MainScenePath) && !rebuild && MainSceneLooksCurrent())
             {
@@ -502,6 +735,13 @@ namespace EscapeFromNightmares.Editor
             roomObjectLayer.transform.SetParent(root, false);
             Stretch(roomObjectLayer.GetComponent<RectTransform>(), new Vector2(0f, 0f), new Vector2(1f, 1f));
 
+            var monsterImage = CreateImage("MonsterImage", roomObjectLayer.transform, Color.white);
+            monsterImage.sprite = LoadSprite(MonsterShadowAssetPath);
+            monsterImage.preserveAspect = true;
+            monsterImage.raycastTarget = false;
+            Stretch(monsterImage.rectTransform, new Vector2(0f, 0f), new Vector2(0f, 0f));
+            monsterImage.gameObject.SetActive(false);
+
             var rotateLeft = CreateImageButton("RotateLeftButton", root);
             rotateLeft.GetComponent<Image>().sprite = LoadSprite(RotateLeftButtonAssetPath);
             Stretch(rotateLeft.GetComponent<RectTransform>(), new Vector2(0.02f, 0.41f), new Vector2(0.1f, 0.59f));
@@ -517,7 +757,9 @@ namespace EscapeFromNightmares.Editor
             var closeUp = CreateCloseUpPanel(root);
             var hideView = CreateHideViewPanel(root);
             var puzzle = CreatePuzzlePanel(root);
+            var stageClear = GameDirector.CreateStageClearPanel(root, LoadSprite(StageClearBackgroundAssetPath));
             var transitionOverlay = CreateSceneTransitionOverlay(root);
+            var monsterQaPanel = MonsterRuntimeQaPanel.Create(root);
 
             var inventoryWindow = inventoryWindowPrefab != null
                 ? (GameObject)PrefabUtility.InstantiatePrefab(inventoryWindowPrefab, canvasObject.transform)
@@ -529,8 +771,10 @@ namespace EscapeFromNightmares.Editor
             var director = runtime.GetComponent<GameDirector>();
             director.SetSceneReferences(
                 roomSpriteCatalog,
+                monsterPlacementCatalog,
                 roomFace,
                 roomObjectLayer.GetComponent<RectTransform>(),
+                monsterImage,
                 rotateLeft,
                 rotateRight,
                 inventoryButton,
@@ -553,7 +797,11 @@ namespace EscapeFromNightmares.Editor
                 puzzle.backButton,
                 puzzle.safeDigitImages,
                 puzzle.safeDigitButtons,
-                transitionOverlay);
+                transitionOverlay,
+                stageClear.panel,
+                stageClear.backgroundImage,
+                stageClear.titleButton,
+                monsterQaPanel);
 
             new GameObject("Sound Manager", typeof(SoundManager)).transform.SetAsLastSibling();
             var eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
@@ -575,7 +823,10 @@ namespace EscapeFromNightmares.Editor
                 && sceneText.Contains("HideViewPanel")
                 && sceneText.Contains("PuzzleBackButton")
                 && sceneText.Contains("StudySafeDigitButton0")
-                && sceneText.Contains("SceneTransitionOverlay");
+                && sceneText.Contains("SceneTransitionOverlay")
+                && sceneText.Contains("StageClearPanel")
+                && sceneText.Contains("MonsterImage")
+                && sceneText.Contains("MonsterRuntimeQaPanel");
         }
 
         private readonly struct CloseUpUi
@@ -834,15 +1085,88 @@ namespace EscapeFromNightmares.Editor
                 Entry("child_room_west", ChildRoomFaceAssetPaths[3]),
                 Entry("second_floor_hallway_north", SecondFloorHallwayFaceAssetPaths[0]),
                 Entry("second_floor_hallway_south", SecondFloorHallwayFaceAssetPaths[1]),
+                Entry("first_floor_hallway_north", FirstFloorHallwayFaceAssetPaths[0]),
+                Entry("first_floor_hallway_south", FirstFloorHallwayFaceAssetPaths[1]),
+                Entry("entrance_north", EntranceFaceAssetPaths[0]),
+                Entry("entrance_east", EntranceFaceAssetPaths[1]),
+                Entry("entrance_south", EntranceFaceAssetPaths[2]),
+                Entry("entrance_west", EntranceFaceAssetPaths[3]),
+                Entry("second_floor_bathroom_north", BathroomFaceAssetPaths[0]),
+                Entry("second_floor_bathroom_east", BathroomFaceAssetPaths[1]),
+                Entry("second_floor_bathroom_south", BathroomFaceAssetPaths[2]),
+                Entry("second_floor_bathroom_west", BathroomFaceAssetPaths[3]),
+                Entry("mirror_room_north", MirrorRoomFaceAssetPaths[0]),
+                Entry("mirror_room_east", MirrorRoomFaceAssetPaths[1]),
+                Entry("mirror_room_south", MirrorRoomFaceAssetPaths[2]),
+                Entry("mirror_room_west", MirrorRoomFaceAssetPaths[3]),
+                Entry("dressing_room_north", DressingRoomFaceAssetPaths[0]),
+                Entry("dressing_room_east", DressingRoomFaceAssetPaths[1]),
+                Entry("dressing_room_south", DressingRoomFaceAssetPaths[2]),
+                Entry("dressing_room_west", DressingRoomFaceAssetPaths[3]),
+                Entry("master_bedroom_north", MasterBedroomFaceAssetPaths[0]),
+                Entry("master_bedroom_east", MasterBedroomFaceAssetPaths[1]),
+                Entry("master_bedroom_south", MasterBedroomFaceAssetPaths[2]),
+                Entry("master_bedroom_west", MasterBedroomFaceAssetPaths[3]),
                 Entry("study_north", StudyFaceAssetPaths[0]),
                 Entry("study_east", StudyFaceAssetPaths[1]),
                 Entry("study_south", StudyFaceAssetPaths[2]),
                 Entry("study_west", StudyFaceAssetPaths[3]),
+                Entry("stairwell_2f_north", Stairwell2fFaceAssetPaths[0]),
+                Entry("stairwell_2f_east", Stairwell2fFaceAssetPaths[1]),
+                Entry("stairwell_2f_south", Stairwell2fFaceAssetPaths[2]),
+                Entry("stairwell_2f_west", Stairwell2fFaceAssetPaths[3]),
+                Entry("stairwell_1f_north", Stairwell1fFaceAssetPaths[0]),
+                Entry("stairwell_1f_east", Stairwell1fFaceAssetPaths[1]),
+                Entry("stairwell_1f_south", Stairwell1fFaceAssetPaths[2]),
+                Entry("stairwell_1f_west", Stairwell1fFaceAssetPaths[3]),
+                Entry("dining_room_north", DiningRoomFaceAssetPaths[0]),
+                Entry("dining_room_east", DiningRoomFaceAssetPaths[1]),
+                Entry("dining_room_south", DiningRoomFaceAssetPaths[2]),
+                Entry("dining_room_west", DiningRoomFaceAssetPaths[3]),
+                Entry("kitchen_north", KitchenFaceAssetPaths[0]),
+                Entry("kitchen_east", KitchenFaceAssetPaths[1]),
+                Entry("kitchen_south", KitchenFaceAssetPaths[2]),
+                Entry("kitchen_west", KitchenFaceAssetPaths[3]),
+                Entry("laundry_room_north", LaundryRoomFaceAssetPaths[0]),
+                Entry("laundry_room_east", LaundryRoomFaceAssetPaths[1]),
+                Entry("laundry_room_south", LaundryRoomFaceAssetPaths[2]),
+                Entry("laundry_room_west", LaundryRoomFaceAssetPaths[3]),
+                Entry("attic_main_north", AtticMainFaceAssetPaths[0]),
+                Entry("attic_main_east", AtticMainFaceAssetPaths[1]),
+                Entry("attic_main_south", AtticMainFaceAssetPaths[2]),
+                Entry("attic_main_west", AtticMainFaceAssetPaths[3]),
+                Entry("attic_toy_storage_north", AtticToyStorageFaceAssetPaths[0]),
+                Entry("attic_toy_storage_east", AtticToyStorageFaceAssetPaths[1]),
+                Entry("attic_toy_storage_south", AtticToyStorageFaceAssetPaths[2]),
+                Entry("attic_toy_storage_west", AtticToyStorageFaceAssetPaths[3]),
+                Entry("basement_entry_north", BasementEntryFaceAssetPaths[0]),
+                Entry("basement_entry_east", BasementEntryFaceAssetPaths[1]),
+                Entry("basement_entry_south", BasementEntryFaceAssetPaths[2]),
+                Entry("basement_entry_west", BasementEntryFaceAssetPaths[3]),
+                Entry("basement_main_north", BasementMainFaceAssetPaths[0]),
+                Entry("basement_main_east", BasementMainFaceAssetPaths[1]),
+                Entry("basement_main_south", BasementMainFaceAssetPaths[2]),
+                Entry("basement_main_west", BasementMainFaceAssetPaths[3]),
+                Entry("altar_room_north", AltarRoomFaceAssetPaths[0]),
+                Entry("altar_room_east", AltarRoomFaceAssetPaths[1]),
+                Entry("altar_room_south", AltarRoomFaceAssetPaths[2]),
+                Entry("altar_room_west", AltarRoomFaceAssetPaths[3]),
                 Entry("child_room_north_drawer_empty", StateRoomAssetPaths[0]),
                 Entry("study_north_safe_open", StateRoomAssetPaths[1]),
                 Entry("study_north_safe_open_with_item", StateRoomAssetPaths[2]),
                 Entry("study_north_safe_open_empty", StateRoomAssetPaths[3]),
+                Entry("altar_room_north_key_spawned", StateRoomAssetPaths[4]),
+                Entry("altar_room_north_key_taken", StateRoomAssetPaths[5]),
+                Entry("entrance_north_chase", FinalChaseRoomAssetPaths[0]),
+                Entry("first_floor_hallway_south_chase", FinalChaseRoomAssetPaths[1]),
                 Entry("study_safe", PuzzleSampleAssetPaths[0]),
+                Entry("laundry_storage_box", PuzzleSampleAssetPaths[1]),
+                Entry("breaker_box", PuzzleSampleAssetPaths[2]),
+                Entry("mirror_symbol_panel", PuzzleSampleAssetPaths[3]),
+                Entry("master_bedroom_drawer", PuzzleSampleAssetPaths[4]),
+                Entry("attic_toy_sequence", PuzzleSampleAssetPaths[5]),
+                Entry("basement_altar", PuzzleSampleAssetPaths[6]),
+                Entry("front_door_escape", PuzzleSampleAssetPaths[7]),
                 Entry("study_safe_digit_0", StudySafeDigitAssetPaths[0]),
                 Entry("study_safe_digit_1", StudySafeDigitAssetPaths[1]),
                 Entry("study_safe_digit_2", StudySafeDigitAssetPaths[2]),
@@ -859,22 +1183,36 @@ namespace EscapeFromNightmares.Editor
                 Entry("child_window_silhouette", ChildRoomObjectAssetPaths[3]),
                 Entry("item_torn_drawing_fragment", ChildRoomObjectAssetPaths[4]),
                 Entry("item_fuse_holder", FuseHolderIconAssetPath),
+                Entry("item_fuse", FuseIconAssetPath),
+                Entry("item_old_keychain", OldKeychainIconAssetPath),
+                Entry("item_small_doll", SmallDollIconAssetPath),
+                Entry("item_symbol_fragment", SymbolFragmentIconAssetPath),
+                Entry("item_front_door_key", FrontDoorKeyIconAssetPath),
                 Entry("child_desk_drawer_closed", DrawerClosedAssetPath),
                 Entry("child_desk_drawer_open_with_item", DrawerOpenWithItemAssetPath),
                 Entry("child_desk_drawer_open_empty", DrawerOpenEmptyAssetPath),
                 Entry("study_safe_clue_note", StudySafeClueNoteAssetPath),
-                Entry("study_safe_locked", CloseUpAssetPaths[4]),
-                Entry("study_safe_open_with_item", CloseUpAssetPaths[5]),
-                Entry("study_safe_open_empty", CloseUpAssetPaths[6]),
-                Entry("child_desk_surface", CloseUpAssetPaths[7]),
-                Entry("child_drawing_board", CloseUpAssetPaths[8]),
-                Entry("child_window_view", CloseUpAssetPaths[9]),
-                Entry("study_safe_surrounding", CloseUpAssetPaths[10]),
-                Entry("study_desk_surface", CloseUpAssetPaths[11]),
-                Entry("study_clue_board", CloseUpAssetPaths[12]),
-                Entry("study_portrait", CloseUpAssetPaths[13]),
-                Entry("study_window_view", CloseUpAssetPaths[14]),
+                Entry("bathroom_mirror_rule_clue", BathroomMirrorRuleClueAssetPath),
+                Entry("dressing_color_sequence_clue", DressingColorSequenceClueAssetPath),
+                Entry("study_safe_locked", CloseUpAssetPaths[6]),
+                Entry("study_safe_open_with_item", CloseUpAssetPaths[7]),
+                Entry("study_safe_open_empty", CloseUpAssetPaths[8]),
+                Entry("child_desk_surface", CloseUpAssetPaths[9]),
+                Entry("child_drawing_board", CloseUpAssetPaths[10]),
+                Entry("child_window_view", CloseUpAssetPaths[11]),
+                Entry("study_safe_surrounding", CloseUpAssetPaths[12]),
+                Entry("study_desk_surface", CloseUpAssetPaths[13]),
+                Entry("study_clue_board", CloseUpAssetPaths[14]),
+                Entry("study_portrait", CloseUpAssetPaths[15]),
+                Entry("study_window_view", CloseUpAssetPaths[16]),
+                Entry("attic_family_album_photo", AtticFamilyAlbumPhotoAssetPath),
+                Entry("dining_seat_order_clue", DiningSeatOrderClueAssetPath),
+                Entry("kitchen_clock_clue", KitchenClockClueAssetPath),
+                Entry("basement_wall_symbols", CloseUpAssetPaths[20]),
                 Entry("child_bed_under_view", ChildBedUnderViewAssetPath),
+                Entry("kitchen_sink_hide_view", KitchenSinkHideViewAssetPath),
+                Entry("laundry_machine_hide_view", LaundryMachineHideViewAssetPath),
+                Entry("basement_main_hide_view", HideViewAssetPaths[3]),
                 Entry("inventory_panel_bg", InventoryPanelAssetPath),
                 Entry("inventory_button", InventoryButtonAssetPath),
                 Entry("inventory_close_button", InventoryCloseButtonAssetPath),
@@ -883,12 +1221,100 @@ namespace EscapeFromNightmares.Editor
                 Entry("ui_rotate_left", RotateLeftButtonAssetPath),
                 Entry("ui_rotate_right", RotateRightButtonAssetPath),
                 Entry("ui_hide_exit", HideExitButtonAssetPath),
-                Entry("ui_back_arrow", BackArrowButtonAssetPath)
+                Entry("ui_back_arrow", BackArrowButtonAssetPath),
+                Entry("monster_shadow", MonsterShadowAssetPath),
+                Entry("stage1_clear_background", StageClearBackgroundAssetPath)
             };
 
             catalog.SetSprites(entries);
             EditorUtility.SetDirty(catalog);
             return catalog;
+        }
+
+        private static MonsterPlacementCatalog EnsureMonsterPlacementCatalog()
+        {
+            var preservedEntries = ReadSerializedMonsterPlacementEntries(MonsterPlacementCatalogPath);
+            var catalog = AssetDatabase.LoadAssetAtPath<MonsterPlacementCatalog>(MonsterPlacementCatalogPath);
+            if (catalog == null)
+            {
+                if (File.Exists(MonsterPlacementCatalogPath))
+                {
+                    AssetDatabase.DeleteAsset(MonsterPlacementCatalogPath);
+                }
+
+                catalog = ScriptableObject.CreateInstance<MonsterPlacementCatalog>();
+                AssetDatabase.CreateAsset(catalog, MonsterPlacementCatalogPath);
+            }
+
+            preservedEntries.AddRange(catalog.Placements.Where(item => item != null));
+            var entries = MonsterPlacementCatalog.CreateMergedDefaultEntries(RuntimeStageFactory.CreateStage1(), preservedEntries).ToList();
+
+            catalog.SetPlacements(entries);
+            EditorUtility.SetDirty(catalog);
+            return catalog;
+        }
+
+        private static List<MonsterPlacementEntry> ReadSerializedMonsterPlacementEntries(string assetPath)
+        {
+            var entries = new List<MonsterPlacementEntry>();
+            if (!File.Exists(assetPath))
+            {
+                return entries;
+            }
+
+            var lines = File.ReadAllLines(assetPath);
+            for (var index = 0; index < lines.Length; index++)
+            {
+                var trimmed = lines[index].Trim();
+                if (!trimmed.StartsWith("- roomId:", StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                var entry = new MonsterPlacementEntry
+                {
+                    roomId = trimmed.Substring("- roomId:".Length).Trim()
+                };
+
+                for (index++; index < lines.Length; index++)
+                {
+                    trimmed = lines[index].Trim();
+                    if (trimmed.StartsWith("- roomId:", StringComparison.Ordinal))
+                    {
+                        index--;
+                        break;
+                    }
+
+                    if (trimmed.StartsWith("faceDirection:", StringComparison.Ordinal) && int.TryParse(trimmed.Substring("faceDirection:".Length).Trim(), out var faceDirection))
+                    {
+                        entry.faceDirection = (RoomFaceDirection)faceDirection;
+                    }
+                    else if (trimmed.StartsWith("enabled:", StringComparison.Ordinal) && int.TryParse(trimmed.Substring("enabled:".Length).Trim(), out var enabled))
+                    {
+                        entry.enabled = enabled != 0;
+                    }
+                    else if (trimmed.StartsWith("x:", StringComparison.Ordinal) && float.TryParse(trimmed.Substring("x:".Length).Trim(), out var x))
+                    {
+                        entry.normalizedRect.x = x;
+                    }
+                    else if (trimmed.StartsWith("y:", StringComparison.Ordinal) && float.TryParse(trimmed.Substring("y:".Length).Trim(), out var y))
+                    {
+                        entry.normalizedRect.y = y;
+                    }
+                    else if (trimmed.StartsWith("width:", StringComparison.Ordinal) && float.TryParse(trimmed.Substring("width:".Length).Trim(), out var width))
+                    {
+                        entry.normalizedRect.width = width;
+                    }
+                    else if (trimmed.StartsWith("height:", StringComparison.Ordinal) && float.TryParse(trimmed.Substring("height:".Length).Trim(), out var height))
+                    {
+                        entry.normalizedRect.height = height;
+                    }
+                }
+
+                entries.Add(entry);
+            }
+
+            return entries;
         }
 
         private static SpriteEntry Entry(string id, string assetPath)
@@ -1175,6 +1601,69 @@ namespace EscapeFromNightmares.Editor
             }
         }
 
+        private static void EnsureSecondFloorBathroomImages()
+        {
+            var faceNames = new[] { "BATH MIRROR", "BATH DOOR", "BATH TUB", "BATH STORAGE" };
+            var faceColors = new[]
+            {
+                new Color(0.038f, 0.052f, 0.064f, 1f),
+                new Color(0.034f, 0.046f, 0.056f, 1f),
+                new Color(0.041f, 0.048f, 0.052f, 1f),
+                new Color(0.032f, 0.04f, 0.05f, 1f)
+            };
+
+            for (var index = 0; index < BathroomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(BathroomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(BathroomFaceAssetPaths[index], CreateRoomFacePng(faceNames[index], faceColors[index], index + 16));
+                }
+            }
+
+            if (!File.Exists(BathroomMirrorRuleClueAssetPath))
+            {
+                File.WriteAllBytes(BathroomMirrorRuleClueAssetPath, CreateBathroomMirrorRuleCluePng());
+            }
+        }
+
+        private static void EnsureMirrorRoomImages()
+        {
+            for (var index = 0; index < MirrorRoomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(MirrorRoomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(MirrorRoomFaceAssetPaths[index], CreateMirrorRoomFacePng(index));
+                }
+            }
+        }
+
+        private static void EnsureDressingRoomImages()
+        {
+            for (var index = 0; index < DressingRoomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(DressingRoomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(DressingRoomFaceAssetPaths[index], CreateDressingRoomFacePng(index));
+                }
+            }
+
+            if (!File.Exists(DressingColorSequenceClueAssetPath))
+            {
+                File.WriteAllBytes(DressingColorSequenceClueAssetPath, CreateDressingColorSequenceCluePng());
+            }
+        }
+
+        private static void EnsureMasterBedroomImages()
+        {
+            for (var index = 0; index < MasterBedroomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(MasterBedroomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(MasterBedroomFaceAssetPaths[index], CreateMasterBedroomFacePng(index));
+                }
+            }
+        }
+
         private static void EnsureStudyImages()
         {
             var faceNames = new[] { "STUDY SAFE", "STUDY DOOR", "STUDY CLUE", "STUDY WINDOW" };
@@ -1202,6 +1691,107 @@ namespace EscapeFromNightmares.Editor
             EnsureObjectPng(FuseHolderIconAssetPath, new Color(0.35f, 0.28f, 0.18f, 1f), "FUSE");
         }
 
+        private static void EnsureAtticImages()
+        {
+            var stairwellNames = new[] { "2F HALL", "ATTIC UP", "1F DOWN", "LANDING" };
+            var atticNames = new[] { "ALBUM", "TOY ROOM", "STAIRS", "ATTIC WALL" };
+            var toyStorageNames = new[] { "TOY BOX", "ATTIC DOOR", "TOY SHELF", "TOY CORNER" };
+            var atticColor = new Color(0.042f, 0.040f, 0.052f, 1f);
+
+            for (var index = 0; index < Stairwell2fFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(Stairwell2fFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(Stairwell2fFaceAssetPaths[index], CreateRoomFacePng(stairwellNames[index], atticColor, index + 24));
+                }
+            }
+
+            for (var index = 0; index < AtticMainFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(AtticMainFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(AtticMainFaceAssetPaths[index], CreateRoomFacePng(atticNames[index], atticColor, index + 28));
+                }
+            }
+
+            for (var index = 0; index < AtticToyStorageFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(AtticToyStorageFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(AtticToyStorageFaceAssetPaths[index], CreateRoomFacePng(toyStorageNames[index], atticColor, index + 32));
+                }
+            }
+
+            if (!File.Exists(AtticFamilyAlbumPhotoAssetPath))
+            {
+                File.WriteAllBytes(AtticFamilyAlbumPhotoAssetPath, CreatePuzzlePng("ATTIC ALBUM", 8));
+            }
+
+            EnsureObjectPng(SmallDollIconAssetPath, new Color(0.36f, 0.28f, 0.23f, 1f), "DOLL");
+            EnsureObjectPng(SymbolFragmentIconAssetPath, new Color(0.25f, 0.26f, 0.28f, 1f), "MARK");
+        }
+
+        private static void EnsureBasementImages()
+        {
+            var entryNames = new[] { "LAUNDRY STAIRS", "BASEMENT DOOR", "DAMP WALL", "PIPES" };
+            var mainNames = new[] { "WALL SYMBOLS", "ALTAR DOOR", "ENTRY STAIRS", "CABINET" };
+            var altarNames = new[] { "ALTAR", "RITUAL WALL", "BASEMENT DOOR", "CANDLES" };
+            var basementColor = new Color(0.030f, 0.035f, 0.045f, 1f);
+
+            for (var index = 0; index < BasementEntryFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(BasementEntryFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(BasementEntryFaceAssetPaths[index], CreateRoomFacePng(entryNames[index], basementColor, index + 36));
+                }
+            }
+
+            for (var index = 0; index < BasementMainFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(BasementMainFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(BasementMainFaceAssetPaths[index], CreateRoomFacePng(mainNames[index], basementColor, index + 40));
+                }
+            }
+
+            for (var index = 0; index < AltarRoomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(AltarRoomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(AltarRoomFaceAssetPaths[index], CreateRoomFacePng(altarNames[index], basementColor, index + 44));
+                }
+            }
+
+            EnsureObjectPng(FrontDoorKeyIconAssetPath, new Color(0.62f, 0.50f, 0.30f, 1f), "KEY");
+        }
+
+        private static void EnsureEntranceImages()
+        {
+            var faceNames = new[] { "FRONT DOOR", "HALLWAY DOOR", "LIVING ROOM", "ENTRY WALL" };
+            var entranceColor = new Color(0.038f, 0.040f, 0.048f, 1f);
+
+            for (var index = 0; index < EntranceFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(EntranceFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(EntranceFaceAssetPaths[index], CreateRoomFacePng(faceNames[index], entranceColor, index + 48));
+                }
+            }
+        }
+
+        private static void EnsureFinalChaseRoomImages()
+        {
+            if (!File.Exists(FinalChaseRoomAssetPaths[0]) && File.Exists(EntranceFaceAssetPaths[0]))
+            {
+                File.WriteAllBytes(FinalChaseRoomAssetPaths[0], CreateStateRoomPng(EntranceFaceAssetPaths[0], new Rect(0.14f, 0.06f, 0.72f, 0.86f), true, false));
+            }
+
+            if (!File.Exists(FinalChaseRoomAssetPaths[1]) && File.Exists(FirstFloorHallwayFaceAssetPaths[1]))
+            {
+                File.WriteAllBytes(FinalChaseRoomAssetPaths[1], CreateStateRoomPng(FirstFloorHallwayFaceAssetPaths[1], new Rect(0.04f, 0.08f, 0.92f, 0.80f), true, false));
+            }
+        }
+
         private static void EnsureStateRoomImages()
         {
             if (!File.Exists(StateRoomAssetPaths[0]) && File.Exists(ChildRoomFaceAssetPaths[0]))
@@ -1223,6 +1813,16 @@ namespace EscapeFromNightmares.Editor
             {
                 File.WriteAllBytes(StateRoomAssetPaths[3], CreateStateRoomPng(StudyFaceAssetPaths[0], new Rect(0.49f, 0.20f, 0.33f, 0.52f), true, false));
             }
+
+            if (!File.Exists(StateRoomAssetPaths[4]) && File.Exists(AltarRoomFaceAssetPaths[0]))
+            {
+                File.WriteAllBytes(StateRoomAssetPaths[4], CreateStateRoomPng(AltarRoomFaceAssetPaths[0], new Rect(0.46f, 0.36f, 0.12f, 0.16f), true, true));
+            }
+
+            if (!File.Exists(StateRoomAssetPaths[5]) && File.Exists(AltarRoomFaceAssetPaths[0]))
+            {
+                File.WriteAllBytes(StateRoomAssetPaths[5], CreateStateRoomPng(AltarRoomFaceAssetPaths[0], new Rect(0.46f, 0.36f, 0.12f, 0.16f), true, false));
+            }
         }
 
         private static void EnsurePuzzleImages()
@@ -1231,8 +1831,15 @@ namespace EscapeFromNightmares.Editor
             {
                 if (!File.Exists(PuzzleSampleAssetPaths[index]))
                 {
-                    var name = Path.GetFileNameWithoutExtension(PuzzleSampleAssetPaths[index]).Replace('_', ' ').ToUpperInvariant();
-                    File.WriteAllBytes(PuzzleSampleAssetPaths[index], CreatePuzzlePng(name, index));
+                    if (Path.GetFileNameWithoutExtension(PuzzleSampleAssetPaths[index]) == "mirror_symbol_panel")
+                    {
+                        File.WriteAllBytes(PuzzleSampleAssetPaths[index], CreateMirrorSymbolPanelPng());
+                    }
+                    else
+                    {
+                        var name = Path.GetFileNameWithoutExtension(PuzzleSampleAssetPaths[index]).Replace('_', ' ').ToUpperInvariant();
+                        File.WriteAllBytes(PuzzleSampleAssetPaths[index], CreatePuzzlePng(name, index));
+                    }
                 }
             }
 
@@ -1262,17 +1869,18 @@ namespace EscapeFromNightmares.Editor
                 File.WriteAllBytes(DrawerOpenEmptyAssetPath, CreateDrawerCloseUpPng(true, false));
             }
 
-            EnsureDerivedCloseUp(CloseUpAssetPaths[4], PuzzleSampleAssetPaths[0], new Rect(0f, 0f, 1f, 1f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[5], PuzzleSampleAssetPaths[0], new Rect(0f, 0f, 1f, 1f), true, true);
-            EnsureDerivedCloseUp(CloseUpAssetPaths[6], PuzzleSampleAssetPaths[0], new Rect(0f, 0f, 1f, 1f), true, false);
-            EnsureDerivedCloseUp(CloseUpAssetPaths[7], ChildRoomFaceAssetPaths[0], new Rect(0.08f, 0.25f, 0.36f, 0.36f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[8], ChildRoomFaceAssetPaths[0], new Rect(0.38f, 0.34f, 0.34f, 0.36f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[9], ChildRoomFaceAssetPaths[3], new Rect(0.0f, 0.18f, 0.42f, 0.64f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[10], StudyFaceAssetPaths[0], new Rect(0.38f, 0.14f, 0.46f, 0.74f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[11], StudyFaceAssetPaths[2], new Rect(0.16f, 0.14f, 0.62f, 0.45f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[12], StudyFaceAssetPaths[2], new Rect(0.28f, 0.44f, 0.42f, 0.38f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[13], StudyFaceAssetPaths[3], new Rect(0.22f, 0.36f, 0.32f, 0.42f));
-            EnsureDerivedCloseUp(CloseUpAssetPaths[14], StudyFaceAssetPaths[3], new Rect(0f, 0.16f, 0.34f, 0.7f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[6], PuzzleSampleAssetPaths[0], new Rect(0f, 0f, 1f, 1f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[7], PuzzleSampleAssetPaths[0], new Rect(0f, 0f, 1f, 1f), true, true);
+            EnsureDerivedCloseUp(CloseUpAssetPaths[8], PuzzleSampleAssetPaths[0], new Rect(0f, 0f, 1f, 1f), true, false);
+            EnsureDerivedCloseUp(CloseUpAssetPaths[9], ChildRoomFaceAssetPaths[0], new Rect(0.08f, 0.25f, 0.36f, 0.36f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[10], ChildRoomFaceAssetPaths[0], new Rect(0.38f, 0.34f, 0.34f, 0.36f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[11], ChildRoomFaceAssetPaths[3], new Rect(0.0f, 0.18f, 0.42f, 0.64f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[12], StudyFaceAssetPaths[0], new Rect(0.38f, 0.14f, 0.46f, 0.74f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[13], StudyFaceAssetPaths[2], new Rect(0.16f, 0.14f, 0.62f, 0.45f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[14], StudyFaceAssetPaths[2], new Rect(0.28f, 0.44f, 0.42f, 0.38f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[15], StudyFaceAssetPaths[3], new Rect(0.22f, 0.36f, 0.32f, 0.42f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[16], StudyFaceAssetPaths[3], new Rect(0f, 0.16f, 0.34f, 0.7f));
+            EnsureDerivedCloseUp(CloseUpAssetPaths[20], BasementMainFaceAssetPaths[0], new Rect(0.22f, 0.12f, 0.56f, 0.50f));
         }
 
         private static void EnsureHideViewImages()
@@ -1280,6 +1888,11 @@ namespace EscapeFromNightmares.Editor
             if (!File.Exists(ChildBedUnderViewAssetPath))
             {
                 File.WriteAllBytes(ChildBedUnderViewAssetPath, CreateBedUnderViewPng());
+            }
+
+            if (!File.Exists(HideViewAssetPaths[3]))
+            {
+                File.WriteAllBytes(HideViewAssetPaths[3], CreateBedUnderViewPng());
             }
         }
 
@@ -1446,6 +2059,64 @@ namespace EscapeFromNightmares.Editor
                 DrawRect(texture, 120 + variant * 60, 205, 240, 220, new Color(0.08f, 0.07f, 0.08f, 1f));
                 DrawRect(texture, 900 - variant * 40, 180, 190, 300, new Color(0.04f, 0.035f, 0.045f, 1f));
             }
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateStageClearBackgroundPng()
+        {
+            var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
+            for (var y = 0; y < texture.height; y++)
+            {
+                for (var x = 0; x < texture.width; x++)
+                {
+                    var vertical = y / (float)texture.height;
+                    var doorwayGlow = Mathf.Clamp01(1f - Mathf.Abs(x - 640f) / 360f) * Mathf.Clamp01((y - 150f) / 420f);
+                    var baseColor = new Color(0.018f, 0.018f, 0.021f, 1f);
+                    var dawn = new Color(0.22f, 0.25f, 0.28f, 0f) * doorwayGlow;
+                    var floor = new Color(vertical * 0.045f, vertical * 0.035f, vertical * 0.025f, 0f);
+                    texture.SetPixel(x, y, baseColor + dawn + floor);
+                }
+            }
+
+            DrawRect(texture, 480, 118, 320, 470, new Color(0.60f, 0.66f, 0.69f, 1f));
+            DrawRect(texture, 500, 136, 280, 430, new Color(0.82f, 0.84f, 0.78f, 1f));
+            DrawRect(texture, 456, 100, 32, 508, new Color(0.09f, 0.065f, 0.045f, 1f));
+            DrawRect(texture, 792, 100, 32, 508, new Color(0.09f, 0.065f, 0.045f, 1f));
+            DrawRect(texture, 450, 592, 380, 34, new Color(0.12f, 0.085f, 0.055f, 1f));
+            DrawRect(texture, 790, 128, 118, 480, new Color(0.10f, 0.06f, 0.038f, 1f));
+            DrawRect(texture, 804, 150, 82, 190, new Color(0.15f, 0.09f, 0.055f, 1f));
+            DrawRect(texture, 804, 376, 82, 190, new Color(0.13f, 0.075f, 0.048f, 1f));
+            DrawRect(texture, 878, 344, 12, 18, new Color(0.64f, 0.52f, 0.34f, 1f));
+            DrawRect(texture, 0, 0, texture.width, 120, new Color(0.012f, 0.010f, 0.010f, 1f));
+            DrawRect(texture, 0, 590, texture.width, 130, new Color(0.009f, 0.009f, 0.011f, 1f));
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateMonsterShadowPng()
+        {
+            var texture = CreateTransparentTexture(768, 1024);
+            var body = new Color(0.005f, 0.006f, 0.008f, 0.96f);
+            var rim = new Color(0.02f, 0.24f, 0.34f, 0.44f);
+            var red = new Color(0.32f, 0.04f, 0.03f, 0.24f);
+
+            DrawRect(texture, 342, 760, 84, 142, body);
+            DrawRect(texture, 300, 512, 168, 300, body);
+            DrawRect(texture, 318, 220, 132, 330, body);
+            DrawRect(texture, 250, 455, 64, 280, body);
+            DrawRect(texture, 454, 455, 64, 280, body);
+            DrawRect(texture, 286, 104, 70, 190, body);
+            DrawRect(texture, 412, 104, 70, 190, body);
+            DrawRect(texture, 294, 792, 18, 86, rim);
+            DrawRect(texture, 456, 520, 12, 360, rim);
+            DrawRect(texture, 500, 410, 10, 330, red);
+            DrawRect(texture, 358, 910, 52, 12, rim);
 
             texture.Apply();
             var png = texture.EncodeToPNG();
@@ -1707,6 +2378,54 @@ namespace EscapeFromNightmares.Editor
             return png;
         }
 
+        private static byte[] CreateStrictIdentityCropPng(string sourcePath, Rect normalizedRect, int targetWidth, int targetHeight)
+        {
+            var source = LoadTextureFromPng(sourcePath);
+            if (source == null)
+            {
+                return CreateObjectPng(new Color(0.08f, 0.07f, 0.065f, 1f), string.Empty);
+            }
+
+            var texture = new Texture2D(targetWidth, targetHeight, TextureFormat.RGBA32, false);
+            var sourceX = normalizedRect.x * source.width;
+            var sourceY = normalizedRect.y * source.height;
+            var sourceWidth = normalizedRect.width * source.width;
+            var sourceHeight = normalizedRect.height * source.height;
+
+            for (var y = 0; y < targetHeight; y++)
+            {
+                for (var x = 0; x < targetWidth; x++)
+                {
+                    var u = (x + 0.5f) / targetWidth;
+                    var v = (y + 0.5f) / targetHeight;
+                    var sampleX = sourceX + u * sourceWidth - 0.5f;
+                    var sampleY = sourceY + v * sourceHeight - 0.5f;
+                    texture.SetPixel(x, y, SampleBilinear(source, sampleX, sampleY));
+                }
+            }
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            UnityEngine.Object.DestroyImmediate(source);
+            return png;
+        }
+
+        private static Color SampleBilinear(Texture2D texture, float x, float y)
+        {
+            x = Mathf.Clamp(x, 0f, texture.width - 1f);
+            y = Mathf.Clamp(y, 0f, texture.height - 1f);
+            var x0 = Mathf.FloorToInt(x);
+            var y0 = Mathf.FloorToInt(y);
+            var x1 = Mathf.Min(x0 + 1, texture.width - 1);
+            var y1 = Mathf.Min(y0 + 1, texture.height - 1);
+            var tx = x - x0;
+            var ty = y - y0;
+            var bottom = Color.Lerp(texture.GetPixel(x0, y0), texture.GetPixel(x1, y0), tx);
+            var top = Color.Lerp(texture.GetPixel(x0, y1), texture.GetPixel(x1, y1), tx);
+            return Color.Lerp(bottom, top, ty);
+        }
+
         private static void DrawOpenSafe(Texture2D texture, int x, int y, int width, int height, bool withItem)
         {
             DrawAgedMetalRect(texture, x, y, width, height, new Color(0.026f, 0.023f, 0.022f, 1f), 31);
@@ -1814,6 +2533,238 @@ namespace EscapeFromNightmares.Editor
                 DrawRect(texture, x, 150, 190, 380, new Color(0.58f, 0.52f, 0.42f, 1f));
                 DrawRect(texture, x + 14, 164, 162, 352, new Color(0.47f, 0.42f, 0.34f, 1f));
                 DrawText(texture, x + 72, 300, digits[index], new Color(0.12f, 0.09f, 0.07f, 1f), 8);
+            }
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateBathroomMirrorRuleCluePng()
+        {
+            var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
+            for (var y = 0; y < texture.height; y++)
+            {
+                for (var x = 0; x < texture.width; x++)
+                {
+                    var vertical = y / (float)texture.height;
+                    var noise = ((x * 17 + y * 41) % 97) / 97f * 0.02f;
+                    texture.SetPixel(x, y, new Color(0.032f + noise, 0.044f + vertical * 0.035f, 0.052f + vertical * 0.05f, 1f));
+                }
+            }
+
+            DrawRect(texture, 140, 58, 1000, 604, new Color(0.055f, 0.047f, 0.047f, 1f));
+            DrawRect(texture, 180, 98, 920, 524, new Color(0.13f, 0.145f, 0.15f, 1f));
+            DrawRect(texture, 202, 120, 876, 480, new Color(0.026f, 0.036f, 0.045f, 1f));
+            DrawRect(texture, 226, 148, 828, 424, new Color(0.075f, 0.092f, 0.105f, 1f));
+            DrawRect(texture, 248, 170, 784, 380, new Color(0.025f, 0.032f, 0.038f, 1f));
+
+            DrawRect(texture, 410, 436, 160, 18, new Color(0.72f, 0.66f, 0.48f, 1f));
+            DrawRect(texture, 410, 436, 28, 70, new Color(0.72f, 0.66f, 0.48f, 1f));
+            DrawRect(texture, 715, 436, 160, 18, new Color(0.72f, 0.66f, 0.48f, 1f));
+            DrawRect(texture, 847, 436, 28, 70, new Color(0.72f, 0.66f, 0.48f, 1f));
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateMirrorRoomFacePng(int faceIndex)
+        {
+            var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
+            for (var y = 0; y < texture.height; y++)
+            {
+                for (var x = 0; x < texture.width; x++)
+                {
+                    var vertical = y / (float)texture.height;
+                    var noise = ((x * 17 + y * 43 + faceIndex * 53) % 113) / 113f * 0.018f;
+                    texture.SetPixel(x, y, new Color(0.024f + noise, 0.03f + vertical * 0.028f, 0.04f + vertical * 0.052f, 1f));
+                }
+            }
+
+            DrawRect(texture, 0, 0, texture.width, 120, new Color(0.045f, 0.033f, 0.03f, 1f));
+            DrawRect(texture, 0, 610, texture.width, 110, new Color(0.015f, 0.014f, 0.018f, 1f));
+
+            if (faceIndex == 0)
+            {
+                DrawRect(texture, 425, 78, 430, 420, new Color(0.12f, 0.105f, 0.095f, 1f));
+                DrawRect(texture, 462, 116, 356, 330, new Color(0.025f, 0.036f, 0.048f, 1f));
+                DrawRect(texture, 410, 478, 460, 100, new Color(0.085f, 0.058f, 0.048f, 1f));
+                DrawRect(texture, 455, 500, 70, 52, new Color(0.22f, 0.17f, 0.12f, 1f));
+                DrawRect(texture, 552, 500, 70, 52, new Color(0.22f, 0.17f, 0.12f, 1f));
+                DrawRect(texture, 650, 500, 70, 52, new Color(0.22f, 0.17f, 0.12f, 1f));
+                DrawRect(texture, 747, 500, 70, 52, new Color(0.22f, 0.17f, 0.12f, 1f));
+            }
+            else if (faceIndex == 1)
+            {
+                DrawRect(texture, 740, 98, 270, 500, new Color(0.12f, 0.075f, 0.052f, 1f));
+                DrawRect(texture, 768, 130, 214, 438, new Color(0.078f, 0.052f, 0.043f, 1f));
+                DrawRect(texture, 930, 350, 22, 22, new Color(0.52f, 0.42f, 0.24f, 1f));
+                DrawRect(texture, 250, 170, 170, 270, new Color(0.025f, 0.035f, 0.046f, 1f));
+            }
+            else if (faceIndex == 2)
+            {
+                DrawRect(texture, 480, 110, 310, 440, new Color(0.03f, 0.04f, 0.05f, 1f));
+                DrawRect(texture, 525, 155, 220, 350, new Color(0.075f, 0.086f, 0.092f, 1f));
+                DrawRect(texture, 170, 270, 240, 150, new Color(0.075f, 0.052f, 0.045f, 1f));
+                DrawRect(texture, 860, 210, 180, 340, new Color(0.11f, 0.09f, 0.078f, 1f));
+            }
+            else
+            {
+                DrawRect(texture, 250, 150, 210, 280, new Color(0.025f, 0.034f, 0.044f, 1f));
+                DrawRect(texture, 660, 170, 240, 310, new Color(0.028f, 0.036f, 0.047f, 1f));
+                DrawRect(texture, 830, 360, 250, 120, new Color(0.08f, 0.067f, 0.06f, 1f));
+                DrawRect(texture, 185, 510, 210, 38, new Color(0.14f, 0.15f, 0.16f, 1f));
+                DrawRect(texture, 910, 510, 210, 38, new Color(0.14f, 0.15f, 0.16f, 1f));
+            }
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateMirrorSymbolPanelPng()
+        {
+            var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
+            for (var y = 0; y < texture.height; y++)
+            {
+                for (var x = 0; x < texture.width; x++)
+                {
+                    var noise = ((x * 29 + y * 31) % 127) / 127f * 0.016f;
+                    texture.SetPixel(x, y, new Color(0.024f + noise, 0.023f + noise, 0.025f + noise, 1f));
+                }
+            }
+
+            DrawRect(texture, 85, 108, 1110, 504, new Color(0.075f, 0.052f, 0.043f, 1f));
+            DrawRect(texture, 130, 155, 1020, 410, new Color(0.13f, 0.10f, 0.075f, 1f));
+
+            for (var index = 0; index < 4; index++)
+            {
+                var x = 175 + index * 235;
+                DrawRect(texture, x, 205, 180, 300, new Color(0.05f, 0.055f, 0.06f, 1f));
+                DrawRect(texture, x + 18, 224, 144, 262, new Color(0.16f, 0.125f, 0.085f, 1f));
+            }
+
+            DrawRect(texture, 232, 320, 66, 54, new Color(0.54f, 0.44f, 0.28f, 1f));
+            DrawRect(texture, 470, 280, 36, 112, new Color(0.54f, 0.44f, 0.28f, 1f));
+            DrawRect(texture, 682, 285, 92, 92, new Color(0.54f, 0.44f, 0.28f, 1f));
+            DrawRect(texture, 928, 290, 74, 150, new Color(0.54f, 0.44f, 0.28f, 1f));
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateDressingRoomFacePng(int faceIndex)
+        {
+            var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
+            for (var y = 0; y < texture.height; y++)
+            {
+                for (var x = 0; x < texture.width; x++)
+                {
+                    var vertical = y / (float)texture.height;
+                    var noise = ((x * 19 + y * 31 + faceIndex * 47) % 101) / 101f * 0.018f;
+                    texture.SetPixel(x, y, new Color(0.028f + noise, 0.034f + vertical * 0.026f, 0.043f + vertical * 0.045f, 1f));
+                }
+            }
+
+            DrawRect(texture, 0, 0, texture.width, 130, new Color(0.05f, 0.038f, 0.033f, 1f));
+            DrawRect(texture, 0, 600, texture.width, 120, new Color(0.018f, 0.018f, 0.024f, 1f));
+
+            if (faceIndex == 0)
+            {
+                DrawRect(texture, 120, 92, 1040, 510, new Color(0.085f, 0.062f, 0.052f, 1f));
+                var colors = new[]
+                {
+                    new Color(0.012f, 0.012f, 0.014f, 1f),
+                    new Color(0.78f, 0.75f, 0.68f, 1f),
+                    new Color(0.39f, 0.055f, 0.055f, 1f),
+                    new Color(0.33f, 0.34f, 0.34f, 1f)
+                };
+
+                for (var index = 0; index < colors.Length; index++)
+                {
+                    var x = 220 + index * 220;
+                    DrawRect(texture, x, 160, 110, 360, colors[index]);
+                    DrawRect(texture, x - 18, 495, 146, 32, new Color(0.035f, 0.028f, 0.026f, 1f));
+                }
+            }
+            else if (faceIndex == 1)
+            {
+                DrawRect(texture, 740, 98, 270, 500, new Color(0.13f, 0.08f, 0.055f, 1f));
+                DrawRect(texture, 768, 130, 214, 438, new Color(0.085f, 0.058f, 0.046f, 1f));
+                DrawRect(texture, 930, 350, 22, 22, new Color(0.52f, 0.42f, 0.24f, 1f));
+                DrawRect(texture, 170, 130, 380, 390, new Color(0.058f, 0.045f, 0.04f, 1f));
+            }
+            else if (faceIndex == 2)
+            {
+                DrawRect(texture, 470, 90, 260, 500, new Color(0.13f, 0.14f, 0.15f, 1f));
+                DrawRect(texture, 500, 120, 200, 440, new Color(0.03f, 0.04f, 0.052f, 1f));
+                DrawRect(texture, 210, 190, 120, 320, new Color(0.25f, 0.22f, 0.19f, 1f));
+                DrawRect(texture, 820, 170, 170, 360, new Color(0.16f, 0.12f, 0.1f, 1f));
+            }
+            else
+            {
+                DrawRect(texture, 150, 150, 340, 360, new Color(0.105f, 0.075f, 0.056f, 1f));
+                DrawRect(texture, 190, 210, 260, 50, new Color(0.045f, 0.035f, 0.032f, 1f));
+                DrawRect(texture, 190, 310, 260, 50, new Color(0.045f, 0.035f, 0.032f, 1f));
+                DrawRect(texture, 700, 145, 330, 420, new Color(0.045f, 0.04f, 0.046f, 1f));
+                DrawRect(texture, 760, 220, 210, 250, new Color(0.18f, 0.16f, 0.145f, 1f));
+            }
+
+            texture.Apply();
+            var png = texture.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(texture);
+            return png;
+        }
+
+        private static byte[] CreateMasterBedroomFacePng(int faceIndex)
+        {
+            var faceNames = new[] { "MASTER DRAWER", "MASTER DOOR", "MASTER BED", "MASTER WINDOW" };
+            var faceColors = new[]
+            {
+                new Color(0.034f, 0.039f, 0.052f, 1f),
+                new Color(0.032f, 0.036f, 0.048f, 1f),
+                new Color(0.031f, 0.034f, 0.045f, 1f),
+                new Color(0.029f, 0.036f, 0.052f, 1f)
+            };
+
+            return CreateRoomFacePng(faceNames[Mathf.Clamp(faceIndex, 0, faceNames.Length - 1)], faceColors[Mathf.Clamp(faceIndex, 0, faceColors.Length - 1)], faceIndex + 22);
+        }
+
+        private static byte[] CreateDressingColorSequenceCluePng()
+        {
+            var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
+            for (var y = 0; y < texture.height; y++)
+            {
+                for (var x = 0; x < texture.width; x++)
+                {
+                    var vertical = y / (float)texture.height;
+                    var noise = ((x * 23 + y * 37) % 109) / 109f * 0.018f;
+                    texture.SetPixel(x, y, new Color(0.03f + noise, 0.034f + vertical * 0.025f, 0.04f + vertical * 0.035f, 1f));
+                }
+            }
+
+            DrawRect(texture, 120, 120, 1040, 470, new Color(0.095f, 0.066f, 0.054f, 1f));
+            DrawRect(texture, 150, 150, 980, 410, new Color(0.055f, 0.044f, 0.042f, 1f));
+            var colors = new[]
+            {
+                new Color(0.008f, 0.008f, 0.01f, 1f),
+                new Color(0.82f, 0.79f, 0.72f, 1f),
+                new Color(0.38f, 0.045f, 0.045f, 1f),
+                new Color(0.34f, 0.35f, 0.35f, 1f)
+            };
+
+            for (var index = 0; index < colors.Length; index++)
+            {
+                var x = 225 + index * 215;
+                DrawRect(texture, x, 200, 130, 300, colors[index]);
+                DrawRect(texture, x + 20, 180, 90, 28, new Color(0.12f, 0.09f, 0.065f, 1f));
+                DrawRect(texture, x - 18, 482, 166, 34, new Color(0.025f, 0.022f, 0.024f, 1f));
             }
 
             texture.Apply();
@@ -2199,5 +3150,18 @@ namespace EscapeFromNightmares.Editor
             }
         }
 
+        private sealed class StrictIdentityCloseUpCase
+        {
+            public readonly string sourcePath;
+            public readonly string destinationPath;
+            public readonly Rect cropRect;
+
+            public StrictIdentityCloseUpCase(string sourcePath, string destinationPath, Rect cropRect)
+            {
+                this.sourcePath = sourcePath;
+                this.destinationPath = destinationPath;
+                this.cropRect = cropRect;
+            }
+        }
     }
 }
