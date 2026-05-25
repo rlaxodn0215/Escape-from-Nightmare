@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc337f25dc48f2a8fa0584e2c4dfe3, type: 3}
+  m_Name: basement_entry
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomDefinition
+  roomId: basement_entry
+  displayName: Basement Entry
+  floorName: Basement
+  backgroundResource: EscapeFromNightmares/Rooms/basement_entry_north
+  faces:
+  - direction: 0
+    displayName: Laundry Stairs
+    backgroundResource: EscapeFromNightmares/Rooms/basement_entry_north
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: basement_entry_to_laundry
+      displayName: Laundry Room
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.28
+        y: 0.1
+        width: 0.36
+        height: 0.76
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: laundry_room
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/basement_entry_to_laundry
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 1
+    displayName: Main Basement Door
+    backgroundResource: EscapeFromNightmares/Rooms/basement_entry_east
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: basement_entry_to_main
+      displayName: Basement Main
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.55
+        y: 0.12
+        width: 0.3
+        height: 0.74
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: basement_main
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/basement_entry_to_main
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 2
+    displayName: Damp Wall
+    backgroundResource: EscapeFromNightmares/Rooms/basement_entry_south
+    conditionalBackgrounds: []
+    interactables: []
+  - direction: 3
+    displayName: Pipe Wall
+    backgroundResource: EscapeFromNightmares/Rooms/basement_entry_west
+    conditionalBackgrounds: []
+    interactables: []
+  mapPosition: {x: 0, y: 0}
+  connectedRoomIds:
+  - laundry_room
+  - basement_main
+  interactables:
+  - interactableId: basement_entry_to_laundry
+    displayName: Laundry Room
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.28
+      y: 0.1
+      width: 0.36
+      height: 0.76
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: laundry_room
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/basement_entry_to_laundry
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: basement_entry_to_main
+    displayName: Basement Main
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.55
+      y: 0.12
+      width: 0.3
+      height: 0.74
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: basement_main
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/basement_entry_to_main
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  hideSpotCount: 0
+  dangerModifier: 1
+  allowMonster: 1

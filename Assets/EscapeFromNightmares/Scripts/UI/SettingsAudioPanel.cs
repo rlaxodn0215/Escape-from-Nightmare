@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmares.UI
 {
+    /// <summary>
+    /// 타이틀 설정 패널에서 오디오 슬라이더 값을 저장하고 SoundManager에 즉시 반영합니다.
+    /// </summary>
     public sealed class SettingsAudioPanel : MonoBehaviour
     {
         [SerializeField] private Slider masterSlider;
@@ -23,6 +26,9 @@ namespace EscapeFromNightmares.UI
         private SoundManager soundManager;
         private SettingsSaveService.SettingsData settings;
 
+        /// <summary>
+        /// 저장 서비스, 사운드 매니저, 현재 설정을 연결하고 슬라이더 이벤트를 바인딩합니다.
+        /// </summary>
         public void Initialize(SettingsSaveService saveService, SoundManager manager, SettingsSaveService.SettingsData initialSettings)
         {
             settingsSaveService = saveService;
@@ -38,6 +44,7 @@ namespace EscapeFromNightmares.UI
             ApplyAndSave();
         }
 
+        /// <summary>오디오 슬라이더 참조를 설정합니다.</summary>
         public void SetSliders(Slider master, Slider bgm, Slider sfx, Slider ui)
         {
             masterSlider = master;
@@ -46,12 +53,14 @@ namespace EscapeFromNightmares.UI
             uiSlider = ui;
         }
 
+        /// <summary>오디오 슬라이더와 닫기 버튼 참조를 설정합니다.</summary>
         public void SetControls(Slider master, Slider bgm, Slider sfx, Slider ui, Button close)
         {
             SetSliders(master, bgm, sfx, ui);
             closeButton = close;
         }
 
+        /// <summary>설정 패널에 사용할 배경, 헤더, 라벨 이미지 참조를 설정합니다.</summary>
         public void SetVisuals(Image panelBackground, Image header, Image masterLabel, Image bgmLabel, Image sfxLabel, Image uiLabel)
         {
             panelBackgroundImage = panelBackground;
@@ -62,6 +71,9 @@ namespace EscapeFromNightmares.UI
             uiLabelImage = uiLabel;
         }
 
+        /// <summary>
+        /// ResourcePathCatalog의 경로를 사용해 패널 이미지와 슬라이더 이미지를 적용합니다.
+        /// </summary>
         public void ApplySprites(ResourceManager resourceManager, ResourcePathCatalog catalog)
         {
             if (resourceManager == null || catalog == null)
@@ -82,6 +94,7 @@ namespace EscapeFromNightmares.UI
             ApplySliderSprites(resourceManager, catalog, uiSlider);
         }
 
+        /// <summary>설정 패널을 닫습니다.</summary>
         public void Close()
         {
             gameObject.SetActive(false);

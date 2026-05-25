@@ -1,0 +1,305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc337f25dc48f2a8fa0584e2c4dfe3, type: 3}
+  m_Name: living_room
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomDefinition
+  roomId: living_room
+  displayName: "\uAC70\uC2E4"
+  floorName: 1F
+  backgroundResource: EscapeFromNightmares/Rooms/living_room_north
+  faces:
+  - direction: 0
+    displayName: "\uBD81\uCABD \uBA74"
+    backgroundResource: EscapeFromNightmares/Rooms/living_room_north
+    conditionalBackgrounds: []
+    interactables: []
+  - direction: 1
+    displayName: "\uB3D9\uCABD \uBA74"
+    backgroundResource: EscapeFromNightmares/Rooms/living_room_east
+    conditionalBackgrounds: []
+    interactables: []
+  - direction: 2
+    displayName: "\uB0A8\uCABD \uBA74"
+    backgroundResource: EscapeFromNightmares/Rooms/living_room_south
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: living_curtain_hide
+      displayName: "\uCEE4\uD2BC \uB4A4"
+      type: 3
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.4
+        y: 0.4
+        width: 0.2
+        height: 0.2
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: 
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/living_curtain_hide
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_hide
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 1
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: door_to_first_floor_hallway
+      displayName: "first_floor_hallway\uB85C \uC774\uB3D9"
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.4
+        y: 0.4
+        width: 0.2
+        height: 0.2
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: first_floor_hallway
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_first_floor_hallway
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 1
+      disableRoomHitboxWhenUsed: 0
+  - direction: 3
+    displayName: "\uC11C\uCABD \uBA74"
+    backgroundResource: EscapeFromNightmares/Rooms/living_room_west
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: door_to_entrance
+      displayName: "entrance\uB85C \uC774\uB3D9"
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.4
+        y: 0.4
+        width: 0.2
+        height: 0.2
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: entrance
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_entrance
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 1
+      disableRoomHitboxWhenUsed: 0
+  mapPosition: {x: 0, y: 0}
+  connectedRoomIds:
+  - first_floor_hallway
+  - entrance
+  interactables:
+  - interactableId: living_curtain_hide
+    displayName: "\uCEE4\uD2BC \uB4A4"
+    type: 3
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.4
+      y: 0.4
+      width: 0.2
+      height: 0.2
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: 
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/living_curtain_hide
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_hide
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 1
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_first_floor_hallway
+    displayName: "first_floor_hallway\uB85C \uC774\uB3D9"
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.4
+      y: 0.4
+      width: 0.2
+      height: 0.2
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: first_floor_hallway
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_first_floor_hallway
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 1
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_entrance
+    displayName: "entrance\uB85C \uC774\uB3D9"
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.4
+      y: 0.4
+      width: 0.2
+      height: 0.2
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: entrance
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_entrance
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 1
+    disableRoomHitboxWhenUsed: 0
+  hideSpotCount: 1
+  dangerModifier: 1
+  allowMonster: 1

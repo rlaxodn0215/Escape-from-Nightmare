@@ -1,0 +1,305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc337f25dc48f2a8fa0584e2c4dfe3, type: 3}
+  m_Name: attic_main
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomDefinition
+  roomId: attic_main
+  displayName: Attic
+  floorName: Attic
+  backgroundResource: EscapeFromNightmares/Rooms/attic_main_north
+  faces:
+  - direction: 0
+    displayName: Family Album
+    backgroundResource: EscapeFromNightmares/Rooms/attic_main_north
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: attic_family_album_photo
+      displayName: Family Album Photo
+      type: 6
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.3
+        y: 0.18
+        width: 0.42
+        height: 0.42
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: 
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/attic_family_album_photo
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: EscapeFromNightmares/CloseUps/attic_family_album_photo
+      setFlagIds: []
+      soundId: ui_click
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 1
+    displayName: Toy Storage Door
+    backgroundResource: EscapeFromNightmares/Rooms/attic_main_east
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: attic_main_to_toy_storage
+      displayName: Toy Storage
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.58
+        y: 0.13
+        width: 0.28
+        height: 0.7
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: attic_toy_storage
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/attic_main_to_toy_storage
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 2
+    displayName: Stairwell Door
+    backgroundResource: EscapeFromNightmares/Rooms/attic_main_south
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: attic_main_to_stairwell
+      displayName: 2F Stairwell
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.36
+        y: 0.12
+        width: 0.32
+        height: 0.72
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: stairwell_2f
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/attic_main_to_stairwell
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 3
+    displayName: Attic Storage
+    backgroundResource: EscapeFromNightmares/Rooms/attic_main_west
+    conditionalBackgrounds: []
+    interactables: []
+  mapPosition: {x: 0, y: 0}
+  connectedRoomIds:
+  - stairwell_2f
+  - attic_toy_storage
+  interactables:
+  - interactableId: attic_family_album_photo
+    displayName: Family Album Photo
+    type: 6
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.3
+      y: 0.18
+      width: 0.42
+      height: 0.42
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: 
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/attic_family_album_photo
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: EscapeFromNightmares/CloseUps/attic_family_album_photo
+    setFlagIds: []
+    soundId: ui_click
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: attic_main_to_toy_storage
+    displayName: Toy Storage
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.58
+      y: 0.13
+      width: 0.28
+      height: 0.7
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: attic_toy_storage
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/attic_main_to_toy_storage
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: attic_main_to_stairwell
+    displayName: 2F Stairwell
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.36
+      y: 0.12
+      width: 0.32
+      height: 0.72
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: stairwell_2f
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/attic_main_to_stairwell
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  hideSpotCount: 0
+  dangerModifier: 1
+  allowMonster: 1

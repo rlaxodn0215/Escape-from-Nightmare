@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Escape from Nightmares Project Handoff</title>
+  <style>
+    @page { size: A4; margin: 15mm 15mm 16mm 15mm; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Malgun Gothic", "Noto Sans KR", sans-serif;
+      color: #20262c;
+      font-size: 10.1px;
+      line-height: 1.58;
+      margin: 0;
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .cover {
+      text-align: center;
+      padding: 31mm 8mm 15mm;
+      border-bottom: 2px solid #c4493d;
+      margin-bottom: 8mm;
+    }
+    .cover .eyebrow {
+      color: #3d7c8c;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    .cover h1 {
+      font-size: 34px;
+      line-height: 1.15;
+      color: #26323f;
+      margin: 8px 0 8px;
+    }
+    .cover p {
+      font-size: 15px;
+      color: #56616b;
+      margin: 0 0 12px;
+    }
+    .cover .meta {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid #d7d2c8;
+      background: #f8f6f1;
+      border-radius: 4px;
+      color: #4d5761;
+    }
+    h1 {
+      color: #26323f;
+      font-size: 19px;
+      line-height: 1.28;
+      margin: 0 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #d7d2c8;
+      break-after: avoid;
+    }
+    h2 {
+      color: #3d7c8c;
+      font-size: 13px;
+      margin: 12px 0 6px;
+      break-after: avoid;
+    }
+    p { margin: 0 0 7px; }
+    section { break-inside: auto; margin: 0 0 9mm; }
+    ul { margin: 4px 0 8px 17px; padding: 0; }
+    li { margin: 0 0 3px; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 5px 0 9px;
+      padding: 8px 9px;
+      background: #f7f7f5;
+      border: 1px solid #dedbd3;
+      border-left: 4px solid #3d7c8c;
+      font-family: Consolas, "Malgun Gothic", monospace;
+      font-size: 8.4px;
+      line-height: 1.48;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 11px;
+      break-inside: auto;
+    }
+    tr { break-inside: avoid; }
+    th {
+      background: #26323f;
+      color: white;
+      font-weight: 700;
+      text-align: left;
+      padding: 6px 7px;
+      border: 1px solid #26323f;
+    }
+    td {
+      vertical-align: top;
+      padding: 5px 7px;
+      border: 1px solid #d7d2c8;
+      word-break: break-word;
+    }
+    tbody tr:nth-child(even) td { background: #fbfaf7; }
+    .callout, .warning {
+      margin: 7px 0 10px;
+      padding: 8px 10px;
+      border: 1px solid #3d7c8c;
+      border-left: 5px solid #3d7c8c;
+      background: #f5fafb;
+      break-inside: avoid;
+    }
+    .warning {
+      border-color: #c4493d;
+      border-left-color: #c4493d;
+      background: #fff7f6;
+    }
+    .pagebreak { break-after: page; height: 0; }
+  </style>
+</head>
+<body>
+  <header class="cover">
+    <div class="eyebrow">Project Handoff Guide</div>
+    <h1>Escape from Nightmares</h1>
+    <p>스크립트 구조, 데이터 흐름, 유지보수 가이드</p>
+    <div class="meta">Unity 6000.3.9f1 - URP 2D - uGUI - Unity Input System - 2026-05-25</div>
+  </header>
+
+  <div class="callout">
+    <b>문서 목적</b><br>
+    새 담당자가 Unity 프로젝트를 열고 Stage 1 데이터와 런타임 흐름을 이해한 뒤, 방/아이템/퍼즐/UI/몬스터 규칙을 어디서 수정해야 하는지 빠르게 찾도록 만든 인수인계용 PDF입니다.
+  </div>
+
+  <table>
+    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>프로젝트</td><td>Escape_from_Nightmares</td></tr>
+      <tr><td>주요 경로</td><td>Assets/EscapeFromNightmares</td></tr>
+      <tr><td>현재 Stage 1 데이터</td><td>ScriptableObject asset 기준. 코드 factory는 Editor builder seed로만 사용</td></tr>
+      <tr><td>저장 정책</td><td>settings.json, clear_records.json만 허용</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagebreak"></div>
+
+  <section>
+    <h1>1. 한눈에 보는 현재 구조</h1>
+    <p>게임 코드는 기능별로 Scripts 하위 폴더에 분리되어 있고, Stage 1의 최종 런타임 데이터는 ScriptableObject asset으로 관리합니다. GameDirector는 씬 lifecycle과 서비스 조립을 담당하고, 실제 규칙/표시/액션 실행은 작은 helper와 service로 나뉩니다.</p>
+<pre><code>Assets/EscapeFromNightmares/
+  Audio/                 - AudioMixer 등 Unity 오디오 asset
+  Prefabs/UI/            - 타이틀, 인벤토리 등 UI prefab
+  Resources/EscapeFromNightmares/
+    Audio, CloseUps, Data, Endings, HideViews, Items, Monster, Objects, Puzzles, Rooms, Title, UI
+  Scenes/                - TitleScene.unity, MainScene.unity
+  ScriptableObjects/     - ResourcePathCatalog, RoomSpriteCatalog, MonsterPlacementCatalog, Stage1/
+  Scripts/
+    Bootstrap/ Data/ Editor/ Runtime/ Services/ UI/
+  Tests/EditMode/        - Unity Test Framework EditMode tests</code></pre>
+    <h2>핵심 유지보수 기준</h2>
+    <ul>
+      <li>플레이 규칙, 방/아이템/퍼즐 ID, 플래그, 리소스 경로는 ScriptableObject asset과 테스트가 기준입니다.</li>
+      <li>RuntimeStageFactory는 Editor 폴더에 있는 seed입니다. 런타임 코드에서 호출하지 않습니다.</li>
+      <li>보이는 UI나 scene object를 추가할 때는 script만으로 끝내지 말고 prefab/scene/editor builder 반영 여부를 같이 판단합니다.</li>
+      <li>저장 파일은 settings.json과 clear_records.json만 허용합니다. 진행 저장 파일을 새로 만들지 않습니다.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>2. Stage 1 데이터와 로딩 흐름</h1>
+    <p>Stage 1은 다음 asset 묶음으로 구성됩니다. 빌더는 기존 asset을 삭제하지 않고 필드 갱신 위주로 동작해 GUID와 scene reference를 보존하도록 설계되어 있습니다.</p>
+    <table>
+      <thead><tr><th>구성</th><th>경로 / 개수</th><th>역할</th></tr></thead>
+      <tbody>
+        <tr><td>StageCatalog</td><td>Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Data/StageCatalog.asset</td><td>Resources.Load 진입점. stage1 참조 보관.</td></tr>
+        <tr><td>Stage1 root</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Stage1.asset 외 root asset 3개</td><td>StageDefinition, MonsterNodeGraph, SoundCatalog.</td></tr>
+        <tr><td>Items</td><td>Stage1/Items - 10개</td><td>인벤토리 아이템 정의.</td></tr>
+        <tr><td>Puzzles</td><td>Stage1/Puzzles - 8개</td><td>퍼즐 타입, 정답, 보상, 플래그, 사운드.</td></tr>
+        <tr><td>Rooms</td><td>Stage1/Rooms - 21개</td><td>방 face, 연결 그래프, interactable.</td></tr>
+        <tr><td>MainScene 참조</td><td>MainScene.unity의 GameDirector.stageDefinition</td><td>serialized Stage 1 asset을 우선 사용.</td></tr>
+      </tbody>
+    </table>
+    <h2>런타임 로딩 우선순위</h2>
+<pre><code>GameDirector.Awake()
+  -&gt; StageRepository.LoadStage1(stageDefinition)
+      1. GameDirector에 serialized StageDefinition이 있으면 사용
+      2. 없으면 Resources/EscapeFromNightmares/Data/StageCatalog.asset 로드
+      3. catalog.stage1 반환
+  -&gt; StageLookup 생성
+  -&gt; GameSession / services / presenters / UI bind</code></pre>
+    <div class="warning">
+      <b>중요</b><br>
+      Stage 1 데이터를 수정할 때 RuntimeStageFactory.CreateStage1()를 런타임에서 다시 쓰면 안 됩니다. 새 runtime/test 코드는 StageRepository.LoadStage1() 또는 StageTestData.LoadStage1()을 사용하세요.
+    </div>
+  </section>
+
+  <section>
+    <h1>3. 런타임 실행 흐름</h1>
+    <p>게임 시작 후 MainScene의 GameDirector가 Stage 데이터와 서비스들을 조립합니다. 플레이어 입력은 상호작용 정의를 액션 목록으로 변환하고, Executor가 UI/세션/오디오 경계에 실제 호출을 분배합니다.</p>
+<pre><code>TitleSceneController.StartGame()
+  -&gt; SceneManager.LoadScene(MainScene)
+  -&gt; GameDirector.Awake()
+      Stage load, lookup, services, UI reference bind
+  -&gt; GameDirector.Start()
+      session.Start(stage), ambient BGM, first room render
+
+Player click interactable
+  -&gt; EscapeActionResolver.ResolveInteractable(interactable)
+  -&gt; EscapeActionExecutor.Execute(action)
+      MoveRoom / AcquireItem / OpenCloseUp / OpenPuzzle / EnterHideSpot / CompleteStage
+  -&gt; RenderRoom(), presenters, services update</code></pre>
+    <table>
+      <thead><tr><th>영역</th><th>담당 타입</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>방 표시</td><td>RoomPresenter</td><td>face 배경 리소스 선택, hitbox 표시 조건, 방향 회전 helper.</td></tr>
+        <tr><td>액션 실행</td><td>EscapeActionExecutor</td><td>resolver 결과를 실제 방 이동, 아이템 획득, UI 열기, 오디오 재생 등으로 실행.</td></tr>
+        <tr><td>Close-up</td><td>CloseUpPresenter</td><td>close-up 상태와 버튼/이미지 표시 적용.</td></tr>
+        <tr><td>퍼즐 UI</td><td>PuzzlePresenter, StudySafePuzzleRules</td><td>퍼즐 헤더, 토큰 옵션, 서재 금고 숫자 규칙.</td></tr>
+        <tr><td>은신</td><td>HideViewPresenter</td><td>hide view 이미지 적용과 열 수 있는지 판단.</td></tr>
+        <tr><td>몬스터</td><td>MonsterPresenter</td><td>몬스터 표시 여부, 배치 rect, QA snapshot.</td></tr>
+        <tr><td>클리어</td><td>StageClearPresenter</td><td>클리어 패널 생성.</td></tr>
+        <tr><td>fade</td><td>PanelFader</td><td>CanvasGroup 기반 panel fade.</td></tr>
+        <tr><td>특수 진행</td><td>ProgressionFlow</td><td>서재 금고, 세탁실 몬스터 시작, 최종 추격, Stage 1 클리어 기록.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="pagebreak"></div>
+
+  <section>
+    <h1>4. 스크립트 카탈로그</h1>
+    <p>새 담당자가 파일을 찾기 쉽게, 폴더별 주요 스크립트와 책임을 정리했습니다. 이름은 .cs 파일명 기준입니다.</p>
+    <h2>Data</h2>
+    <table>
+      <thead><tr><th>스크립트</th><th>책임</th></tr></thead>
+      <tbody>
+        <tr><td>GameDefinitions</td><td>enum과 직렬화 보조 타입. InteractableType, PuzzleType, ConditionDefinition, RoomFaceDefinition 등 공통 값 객체.</td></tr>
+        <tr><td>StageDefinition</td><td>스테이지 루트 데이터. rooms/items/puzzles/monsterNodeGraph/soundCatalog 참조.</td></tr>
+        <tr><td>RoomDefinition</td><td>방 ID, 표시명, 층, face 배열, 연결 방, 상호작용 목록.</td></tr>
+        <tr><td>ItemDefinition</td><td>인벤토리 아이템 ID, 표시명, 설명, 아이콘 경로, 제단 심볼.</td></tr>
+        <tr><td>PuzzleDefinition</td><td>퍼즐 타입, 정답 토큰, 필요 아이템, 보상, 성공/실패 사운드, 플래그.</td></tr>
+        <tr><td>StageCatalog</td><td>Resources에서 로드되는 Stage 진입점. 현재 stage1 참조 보관.</td></tr>
+        <tr><td>RoomSpriteCatalog</td><td>spriteId와 Sprite 직접 참조 매핑. 런타임 Resources fallback보다 우선.</td></tr>
+        <tr><td>MonsterPlacementCatalog</td><td>방/방향별 몬스터 이미지 표시 rect와 enabled 값.</td></tr>
+        <tr><td>ResourcePathCatalog</td><td>타이틀/공통 UI 리소스 경로 카탈로그.</td></tr>
+        <tr><td>SoundCatalog</td><td>soundId -&gt; Resources 오디오 경로, 카테고리, loop 설정.</td></tr>
+        <tr><td>MonsterNodeGraph</td><td>몬스터 이동 노드 그래프. roomId와 연결 노드 보관.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Runtime</h2>
+    <table>
+      <thead><tr><th>스크립트</th><th>책임</th></tr></thead>
+      <tbody>
+        <tr><td>GameDirector</td><td>Unity lifecycle, 서비스 조립, 입력 바인딩, 상위 흐름을 담당하는 facade.</td></tr>
+        <tr><td>StageRepository</td><td>serialized stage 우선, 없으면 Resources StageCatalog에서 stage1 로드.</td></tr>
+        <tr><td>StageLookup</td><td>로드된 StageDefinition을 ID 기반 room/item/puzzle/interactable lookup으로 구성.</td></tr>
+        <tr><td>EscapeActionExecutor</td><td>EscapeActionResult가 낸 액션을 실제 UI/세션/오디오 호출로 실행.</td></tr>
+        <tr><td>RoomPresenter</td><td>face 배경 조건 선택, hitbox 표시 조건, 방향 회전 helper.</td></tr>
+        <tr><td>CloseUpPresenter</td><td>close-up 상태 계산, 이미지/버튼 표시 적용.</td></tr>
+        <tr><td>PuzzlePresenter</td><td>퍼즐 헤더, 입력 표시, 토큰 옵션 제공.</td></tr>
+        <tr><td>HideViewPresenter</td><td>은신 화면 리소스 적용.</td></tr>
+        <tr><td>MonsterPresenter</td><td>몬스터 표시 여부, 배치 rect, QA snapshot 계산.</td></tr>
+        <tr><td>StageClearPresenter</td><td>스테이지 클리어 패널 생성과 title 버튼 연결.</td></tr>
+        <tr><td>PanelFader</td><td>CanvasGroup 기반 panel fade.</td></tr>
+        <tr><td>ProgressionFlow</td><td>서재 금고, 세탁실 몬스터 시작, 최종 추격, Stage 1 클리어 기록.</td></tr>
+        <tr><td>StudySafePuzzleRules</td><td>서재 금고 숫자 UI와 정답 비교 helper.</td></tr>
+        <tr><td>RoomController</td><td>방 단위 상호작용 MonoBehaviour.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Services</h2>
+    <table>
+      <thead><tr><th>스크립트</th><th>책임</th></tr></thead>
+      <tbody>
+        <tr><td>GameSession</td><td>현재 방, 방향, 인벤토리, 플래그, 푼 퍼즐, 사용한 interactable을 메모리에 저장.</td></tr>
+        <tr><td>FlagService</td><td>ConditionDefinition 평가와 flag set/clear wrapper.</td></tr>
+        <tr><td>InteractionSystem</td><td>InteractableDefinition을 기본 상호작용 결과로 해석.</td></tr>
+        <tr><td>EscapeActionResolver</td><td>상호작용/퍼즐/스테이지 클리어 결과를 EscapeAction 목록으로 변환.</td></tr>
+        <tr><td>PuzzleService</td><td>퍼즐 조건과 입력 토큰을 검증하고 보상/소모/플래그 적용.</td></tr>
+        <tr><td>InventoryService</td><td>아이템 획득, 사용 가능 여부, 선택 상태를 GameSession에 반영.</td></tr>
+        <tr><td>DangerSystem</td><td>소음과 위험도 누적/감쇠.</td></tr>
+        <tr><td>HidingSystem</td><td>은신 상태와 은신 소음 관리.</td></tr>
+        <tr><td>MonsterAIController</td><td>DangerSystem/HidingSystem 값을 바탕으로 MonsterState 갱신.</td></tr>
+        <tr><td>ResourceManager</td><td>ResourcePathCatalog와 Resources.Load를 통해 Sprite/AudioClip 로드.</td></tr>
+        <tr><td>SoundManager</td><td>BGM/SFX/UI 오디오 재생과 AudioMixer 볼륨 적용.</td></tr>
+        <tr><td>SettingsSaveService</td><td>settings.json, clear_records.json만 읽고 씀.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Editor / UI / Tests</h2>
+    <table>
+      <thead><tr><th>스크립트</th><th>책임</th></tr></thead>
+      <tbody>
+        <tr><td>Stage1DataAssetBuilder</td><td>Stage 1 ScriptableObject 자산을 deterministic path로 생성/갱신하고 MainScene 참조 연결.</td></tr>
+        <tr><td>RuntimeStageFactory</td><td>Editor 전용 seed. 런타임에서는 호출 금지.</td></tr>
+        <tr><td>TitleSceneAssetBuilder</td><td>타이틀/메인 샘플 UI, 카탈로그, placeholder 리소스, scene reference 재생성.</td></tr>
+        <tr><td>TitleSceneController</td><td>타이틀 화면 시작/설정/종료 흐름과 오디오 설정 저장.</td></tr>
+        <tr><td>InventoryWindow / InventorySlotView</td><td>인벤토리 패널과 슬롯 표시/선택.</td></tr>
+        <tr><td>SettingsAudioPanel</td><td>슬라이더로 master/bgm/sfx/ui 볼륨 설정.</td></tr>
+        <tr><td>StageAssetCatalogTests</td><td>StageCatalog, room graph, ID 중복, 리소스 로딩 검증.</td></tr>
+        <tr><td>StageTestData</td><td>테스트용 Stage 1 로더. RuntimeStageFactory 직접 호출 방지.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h1>5. 기능 수정 시 작업 위치</h1>
+    <table>
+      <thead><tr><th>작업</th><th>주로 수정할 곳</th><th>주의할 점</th></tr></thead>
+      <tbody>
+        <tr><td>방 추가/연결 수정</td><td>Stage1/Rooms/*.asset, Stage1.asset, 필요 시 Stage1DataAssetBuilder seed</td><td>roomId와 connectedRoomIds, Door targetRoomId가 서로 맞아야 합니다.</td></tr>
+        <tr><td>아이템 추가</td><td>Stage1/Items/*.asset, 아이콘 Resources, Room interactable grant</td><td>itemId는 중복 금지. iconResource가 실제 Sprite로 로드되어야 합니다.</td></tr>
+        <tr><td>퍼즐 추가</td><td>Stage1/Puzzles/*.asset, PuzzleDefinition, PuzzlePresenter token options 필요 시 확장</td><td>answerTokens, successFlag, rewardItemIds, requiredItemIds를 테스트로 검증하세요.</td></tr>
+        <tr><td>상호작용 추가</td><td>RoomDefinition.faces[].interactables</td><td>visible/clickable이면 scene/prefab/builder 반영 여부를 함께 판단합니다.</td></tr>
+        <tr><td>몬스터 배치 조정</td><td>MonsterPlacementCatalog.asset</td><td>enabled와 normalizedRect를 조정합니다. child_room은 기본 배치 제외.</td></tr>
+        <tr><td>특수 진행 규칙</td><td>ProgressionFlow</td><td>Stage 1 고유 플래그 전환과 몬스터 시작/추격 시작 로직을 여기에 둡니다.</td></tr>
+        <tr><td>UI 외형 변경</td><td>Prefabs/UI, TitleSceneAssetBuilder, GameDirector scene references</td><td>런타임 fallback UI는 최종 deliverable로 보지 말고 builder/prefab/scene 반영을 우선합니다.</td></tr>
+        <tr><td>오디오 변경</td><td>Stage1SoundCatalog.asset, Resources/EscapeFromNightmares/Audio</td><td>soundId는 stable key로 유지하고 SoundCatalog로 참조합니다.</td></tr>
+        <tr><td>저장 정책 변경</td><td>SettingsSaveService</td><td>settings.json, clear_records.json 외 파일 추가는 금지된 정책입니다.</td></tr>
+      </tbody>
+    </table>
+    <h2>빌더 메뉴</h2>
+<pre><code>Unity Editor Menu
+  Escape From Nightmares/Rebuild Stage 1 Data Assets
+  Escape From Nightmares/Rebuild Title Scene Assets
+  Escape From Nightmares/Rebuild Main Sample Assets
+  Escape From Nightmares/Rebuild Strict Identity Closeups</code></pre>
+    <div class="callout">
+      <b>Builder 사용 규칙</b><br>
+      Stage1DataAssetBuilder는 deterministic path에 asset을 만들고 기존 asset은 필드만 갱신합니다. 사라진 ID asset은 자동 삭제하지 않고 경고만 남깁니다.
+    </div>
+  </section>
+
+  <section>
+    <h1>6. 테스트와 검증</h1>
+    <p>EditMode 테스트는 빠른 규칙 검증과 asset 참조 검증에 집중합니다. Stage 1 테스트 데이터는 StageTestData.LoadStage1()를 통해 로드해 런타임 로딩 경로와 같은 규칙을 탑니다.</p>
+<pre><code>Unity.exe -batchmode -projectPath . -runTests -testPlatform EditMode -testResults TestResults/EditMode.xml
+
+# 현재 작업 환경에서 실제 결과 XML을 생성한 명령 형태
+Unity.exe -batchmode -nographics -projectPath . -runTests -testPlatform EditMode -testResults TestResults/EditMode_refactor_final4.xml</code></pre>
+    <table>
+      <thead><tr><th>검증 항목</th><th>현재 상태</th></tr></thead>
+      <tbody>
+        <tr><td>StageCatalog.stage1</td><td>null 아님. stageId == stage1.</td></tr>
+        <tr><td>중복 ID</td><td>roomId, itemId, puzzleId, interactableId 중복 검증.</td></tr>
+        <tr><td>Room graph</td><td>connectedRoomIds와 door targetRoomId 유효성 검증.</td></tr>
+        <tr><td>리소스</td><td>room, close-up, hide view, puzzle, item icon, sound resource 로딩 검증.</td></tr>
+        <tr><td>MainScene</td><td>GameDirector가 Stage1.asset을 serialized reference로 보유.</td></tr>
+        <tr><td>최종 테스트 결과</td><td>105 total, 103 passed, 0 failed, 2 ignored. ignored 2개는 현재 worktree에 docs/ROOM_IMAGE_HARNESS.md가 없어서 문서 검증만 skip.</td></tr>
+      </tbody>
+    </table>
+    <h2>수동 smoke test 체크리스트</h2>
+    <ul>
+      <li>TitleScene에서 Start 버튼으로 MainScene 진입.</li>
+      <li>방 회전과 이동: child_room, hallway, study, laundry, basement 흐름 확인.</li>
+      <li>인벤토리: 아이템 획득, 선택, 아이콘 표시 확인.</li>
+      <li>퍼즐: study_safe, laundry_storage_box, breaker_box, basement_altar, front_door_escape 확인.</li>
+      <li>은신: hide spot 진입/종료와 danger/noise 변화 확인.</li>
+      <li>몬스터 QA 패널: 배치 상태와 enabled rect 확인.</li>
+      <li>Stage clear: front door escape 후 clear_records.json 기록과 title 이동 확인.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>7. 인수인계 주의사항</h1>
+    <ul>
+      <li>현재 일부 기존 C# XML summary comment가 문자 인코딩 문제로 깨져 보입니다. 실제 동작 이해는 본 PDF, 테스트, 타입/메서드 이름을 기준으로 보세요.</li>
+      <li>docs/ 및 Design/ 문서 파일들이 현재 git status에서 삭제 상태입니다. 문서 기반 테스트 2개는 이 상태 때문에 ignored 처리되어 있습니다.</li>
+      <li>GameDirector 안에는 아직 fallback UI 생성 코드가 남아 있습니다. 최종 화면 deliverable은 prefab/scene/editor builder를 우선하세요.</li>
+      <li>RoomSpriteCatalog와 ResourcePathCatalog는 직접 Sprite 참조/리소스 경로를 유지하는 핵심 catalog입니다.</li>
+      <li>RuntimeStageFactory는 Editor 폴더로 이동했습니다. 새 runtime/test 코드에서 직접 호출하지 말고 StageRepository 또는 StageTestData를 사용하세요.</li>
+      <li>씬 참조를 잃었을 때는 Rebuild Stage 1 Data Assets와 Rebuild Main Sample Assets를 순서대로 실행해 복구합니다.</li>
+    </ul>
+    <h2>빠른 온보딩 순서</h2>
+<pre><code>1. Unity 6000.3.9f1로 프로젝트 열기
+2. Assets/EscapeFromNightmares/Scenes/TitleScene.unity 실행
+3. Assets/EscapeFromNightmares/Scenes/MainScene.unity에서 GameDirector.stageDefinition 확인
+4. StageCatalog.asset과 Stage1.asset 구조 확인
+5. EditMode tests 실행
+6. 기능 변경 전 관련 ScriptableObject asset과 Tests/EditMode를 먼저 읽기</code></pre>
+  </section>
+
+  <section>
+    <h1>부록 A. 주요 asset 경로</h1>
+    <table>
+      <thead><tr><th>구분</th><th>경로</th></tr></thead>
+      <tbody>
+        <tr><td>StageCatalog</td><td>Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Data/StageCatalog.asset</td></tr>
+        <tr><td>Stage1</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Stage1.asset</td></tr>
+        <tr><td>Stage1 Items</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Items</td></tr>
+        <tr><td>Stage1 Puzzles</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Puzzles</td></tr>
+        <tr><td>Stage1 Rooms</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Rooms</td></tr>
+        <tr><td>Monster Graph</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Stage1MonsterNodeGraph.asset</td></tr>
+        <tr><td>Sound Catalog</td><td>Assets/EscapeFromNightmares/ScriptableObjects/Stage1/Stage1SoundCatalog.asset</td></tr>
+        <tr><td>Room Sprite Catalog</td><td>Assets/EscapeFromNightmares/ScriptableObjects/RoomSpriteCatalog.asset</td></tr>
+        <tr><td>Monster Placement Catalog</td><td>Assets/EscapeFromNightmares/ScriptableObjects/MonsterPlacementCatalog.asset</td></tr>
+        <tr><td>Resource Path Catalog</td><td>Assets/EscapeFromNightmares/ScriptableObjects/ResourcePathCatalog.asset</td></tr>
+        <tr><td>MainScene</td><td>Assets/EscapeFromNightmares/Scenes/MainScene.unity</td></tr>
+        <tr><td>TitleScene</td><td>Assets/EscapeFromNightmares/Scenes/TitleScene.unity</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h1>부록 B. 용어</h1>
+    <table>
+      <thead><tr><th>용어</th><th>의미</th></tr></thead>
+      <tbody>
+        <tr><td>StageDefinition</td><td>스테이지 하나의 전체 데이터 root.</td></tr>
+        <tr><td>RoomFaceDefinition</td><td>방 안에서 플레이어가 바라보는 방향 하나. 배경과 interactable 목록 보유.</td></tr>
+        <tr><td>InteractableDefinition</td><td>문, 아이템, 퍼즐 오브젝트, 은신처, 단서 등 클릭 가능한 대상.</td></tr>
+        <tr><td>ConditionDefinition</td><td>필요 아이템, 필요/금지/선택 플래그, 해결한 퍼즐 조건.</td></tr>
+        <tr><td>EscapeAction</td><td>resolver가 만든 실행 단위. Executor가 실제 동작으로 변환.</td></tr>
+        <tr><td>Flag</td><td>퍼즐 성공, 이벤트 발생, 배경 전환, 진행 상태를 표현하는 문자열 key.</td></tr>
+        <tr><td>Resource path</td><td>Resources.Load 기준 확장자 없는 경로. 예: EscapeFromNightmares/Rooms/child_room_north.</td></tr>
+      </tbody>
+    </table>
+  </section>
+</body>
+</html>

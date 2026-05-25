@@ -18,6 +18,9 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmares.Editor
 {
+    /// <summary>
+    /// 타이틀/메인 씬, UI 프리팹, 카탈로그, 임시 리소스를 재생성하는 에디터 전용 빌더입니다.
+    /// </summary>
     public static class TitleSceneAssetBuilder
     {
         private const string Root = "Assets/EscapeFromNightmares";
@@ -74,6 +77,9 @@ namespace EscapeFromNightmares.Editor
         private const string SmallDollIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_small_doll.png";
         private const string SymbolFragmentIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_symbol_fragment.png";
         private const string FrontDoorKeyIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_front_door_key.png";
+        private const string BrokenHandMirrorIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_broken_hand_mirror.png";
+        private const string OldNecklaceIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_old_necklace.png";
+        private const string StudySafeClueIconAssetPath = Root + "/Resources/EscapeFromNightmares/Items/item_study_safe_clue.png";
         private const string InventoryPanelAssetPath = Root + "/Resources/EscapeFromNightmares/UI/inventory_panel_bg.png";
         private const string InventoryButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/inventory_button.png";
         private const string InventoryCloseButtonAssetPath = Root + "/Resources/EscapeFromNightmares/UI/inventory_close_button.png";
@@ -104,6 +110,22 @@ namespace EscapeFromNightmares.Editor
         {
             Root + "/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_north.png",
             Root + "/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south.png"
+        };
+
+        private static readonly string[] FamilyPhotoRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/family_photo_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/family_photo_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/family_photo_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/family_photo_room_west.png"
+        };
+
+        private static readonly string[] LivingRoomFaceAssetPaths =
+        {
+            Root + "/Resources/EscapeFromNightmares/Rooms/living_room_north.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/living_room_east.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/living_room_south.png",
+            Root + "/Resources/EscapeFromNightmares/Rooms/living_room_west.png"
         };
 
         private static readonly string[] EntranceFaceAssetPaths =
@@ -266,7 +288,10 @@ namespace EscapeFromNightmares.Editor
             OldKeychainIconAssetPath,
             SmallDollIconAssetPath,
             SymbolFragmentIconAssetPath,
-            FrontDoorKeyIconAssetPath
+            FrontDoorKeyIconAssetPath,
+            BrokenHandMirrorIconAssetPath,
+            OldNecklaceIconAssetPath,
+            StudySafeClueIconAssetPath
         };
 
         private static readonly string[] PuzzleSampleAssetPaths =
@@ -371,22 +396,32 @@ namespace EscapeFromNightmares.Editor
         [InitializeOnLoadMethod]
         private static void EnsureAssetsAfterLoad()
         {
+            // Unity 에디터 로드 직후 바로 자산을 만지지 않고 delayCall로 넘겨 에셋 데이터베이스 초기화를 기다린다.
             EditorApplication.delayCall -= EnsureMissingAssets;
             EditorApplication.delayCall += EnsureMissingAssets;
         }
 
+        /// <summary>
+        /// 타이틀 씬, 메인 씬, 프리팹, 카탈로그, 더미 리소스를 강제로 다시 생성합니다.
+        /// </summary>
         [MenuItem("Escape From Nightmares/Rebuild Title Scene Assets")]
         public static void RebuildAssets()
         {
             EnsureAssets(true);
         }
 
+        /// <summary>
+        /// 메인 샘플 씬에 필요한 런타임 UI와 리소스 묶음을 강제로 다시 생성합니다.
+        /// </summary>
         [MenuItem("Escape From Nightmares/Rebuild Main Sample Assets")]
         public static void RebuildMainSampleAssets()
         {
             EnsureAssets(true);
         }
 
+        /// <summary>
+        /// 특정 클로즈업 리소스를 원본 방 이미지의 엄격한 crop으로 다시 생성합니다.
+        /// </summary>
         [MenuItem("Escape From Nightmares/Rebuild Strict Identity Closeups")]
         public static void RebuildStrictIdentityCloseups()
         {
@@ -404,6 +439,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsureAssets(bool rebuild)
         {
+            // 빌더의 핵심 파이프라인: 폴더와 원본 리소스 생성 후 카탈로그, 프리팹, 씬, 빌드 설정을 동기화한다.
             EnsureFolders();
             var catalog = EnsureCatalog();
             EnsureDummyResources(rebuild);
@@ -414,6 +450,8 @@ namespace EscapeFromNightmares.Editor
             ImportAll(ChildRoomFaceAssetPaths);
             ImportAll(SecondFloorHallwayFaceAssetPaths);
             ImportAll(FirstFloorHallwayFaceAssetPaths);
+            ImportAll(FamilyPhotoRoomFaceAssetPaths);
+            ImportAll(LivingRoomFaceAssetPaths);
             ImportAll(EntranceFaceAssetPaths);
             ImportAll(BathroomFaceAssetPaths);
             ImportAll(MirrorRoomFaceAssetPaths);
@@ -442,13 +480,14 @@ namespace EscapeFromNightmares.Editor
             AssetDatabase.ImportAsset(MonsterShadowAssetPath);
             ConfigureSpriteImporter(MonsterShadowAssetPath);
             AssetDatabase.ImportAsset(StageClearBackgroundAssetPath);
+            var stage1 = Stage1DataAssetBuilder.EnsureStage1Assets();
             var roomSpriteCatalog = EnsureRoomSpriteCatalog();
-            var monsterPlacementCatalog = EnsureMonsterPlacementCatalog();
+            var monsterPlacementCatalog = EnsureMonsterPlacementCatalog(stage1);
             var inventoryWindowPrefab = EnsureInventoryWindowPrefab(roomSpriteCatalog, rebuild);
             var mixer = EnsureAudioMixer(rebuild);
             var prefab = EnsureTitlePrefab(catalog, mixer, rebuild);
             EnsureTitleScene(prefab, rebuild);
-            EnsureMainScene(roomSpriteCatalog, monsterPlacementCatalog, inventoryWindowPrefab, rebuild);
+            EnsureMainScene(stage1, roomSpriteCatalog, monsterPlacementCatalog, inventoryWindowPrefab, rebuild);
             EnsureBuildSettings();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -456,6 +495,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void RebuildStrictIdentityCloseupsInternal()
         {
+            // strict identity close-up은 테스트에서 원본 crop 관계를 검증하므로 생성 로직을 별도로 유지한다.
             foreach (var entry in StrictIdentityCloseUpCases)
             {
                 if (!File.Exists(entry.sourcePath))
@@ -471,6 +511,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsureFolders()
         {
+            // AssetDatabase.CreateFolder는 부모가 필요하므로 상위에서 하위 순서로 만든다.
             CreateFolder(Root + "/ScriptableObjects");
             CreateFolder(Root + "/Audio");
             CreateFolder(Root + "/Prefabs");
@@ -503,6 +544,7 @@ namespace EscapeFromNightmares.Editor
                 AssetDatabase.CreateAsset(catalog, CatalogPath);
             }
 
+            // ResourcePathCatalog는 런타임 TitleSceneController가 직접 읽는 계약이므로 항상 기본 경로로 정렬한다.
             catalog.titleBackgroundPath = "EscapeFromNightmares/Title/title_background";
             catalog.titleLogoPath = "EscapeFromNightmares/Title/title_logo_escape_from_nightmare";
             catalog.titleStartButtonPath = "EscapeFromNightmares/Title/UI/button_start";
@@ -527,6 +569,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsureDummyResources(bool rebuild)
         {
+            // 실제 아트가 없을 때도 씬/프리팹/테스트가 깨지지 않도록 최소 PNG/WAV 리소스를 보장한다.
             EnsurePng(TitleBackgroundAssetPath, CreateTitleBackgroundPng(), rebuild);
             EnsurePng(TitleLogoAssetPath, CreateTitleLogoPng(), rebuild);
             EnsurePng(StartButtonAssetPath, CreateButtonPng("START", 360, 96), rebuild);
@@ -585,6 +628,8 @@ namespace EscapeFromNightmares.Editor
             EnsureAtticImages();
             EnsureBasementImages();
             EnsureEntranceImages();
+            EnsureFamilyPhotoRoomImages();
+            EnsureLivingRoomImages();
             EnsureStateRoomImages();
             EnsureFinalChaseRoomImages();
             EnsurePuzzleImages();
@@ -609,6 +654,7 @@ namespace EscapeFromNightmares.Editor
                 AssetDatabase.DeleteAsset(MixerPath);
             }
 
+            // AudioMixerController 생성 API는 Editor 내부 타입이라 reflection으로 접근한다.
             var controllerType = Type.GetType("UnityEditor.Audio.AudioMixerController, UnityEditor");
             var createMethod = controllerType?.GetMethod("CreateMixerControllerAtPath", BindingFlags.Public | BindingFlags.Static);
             if (createMethod == null)
@@ -636,6 +682,7 @@ namespace EscapeFromNightmares.Editor
                 return existing;
             }
 
+            // TitleSceneController가 런타임에 필요한 참조를 모두 직렬화해 씬 생성 후 바로 사용할 수 있게 한다.
             var root = new GameObject("TitleCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster), typeof(TitleSceneController));
             var canvas = root.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -701,6 +748,7 @@ namespace EscapeFromNightmares.Editor
                 return;
             }
 
+            // 타이틀 씬은 프리팹 인스턴스와 EventSystem만 가진 재생성 가능한 진입 씬이다.
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             CreateMainCamera();
             PrefabUtility.InstantiatePrefab(prefab);
@@ -709,13 +757,14 @@ namespace EscapeFromNightmares.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
         }
 
-        private static void EnsureMainScene(RoomSpriteCatalog roomSpriteCatalog, MonsterPlacementCatalog monsterPlacementCatalog, GameObject inventoryWindowPrefab, bool rebuild)
+        private static void EnsureMainScene(StageDefinition stage1, RoomSpriteCatalog roomSpriteCatalog, MonsterPlacementCatalog monsterPlacementCatalog, GameObject inventoryWindowPrefab, bool rebuild)
         {
             if (File.Exists(MainScenePath) && !rebuild && MainSceneLooksCurrent())
             {
                 return;
             }
 
+            // 메인 씬은 GameDirector가 참조를 받는 방식이라 Canvas 아래 모든 UI 요소를 명시적으로 배치한다.
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             CreateMainCamera();
             var canvasObject = new GameObject("MainCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -769,6 +818,7 @@ namespace EscapeFromNightmares.Editor
 
             var runtime = new GameObject("Escape From Nightmares Runtime", typeof(GameDirector));
             var director = runtime.GetComponent<GameDirector>();
+            // 씬에 배치된 UI 참조를 한 번에 연결해 런타임 생성 fallback보다 안정적인 플레이 화면을 만든다.
             director.SetSceneReferences(
                 roomSpriteCatalog,
                 monsterPlacementCatalog,
@@ -801,7 +851,8 @@ namespace EscapeFromNightmares.Editor
                 stageClear.panel,
                 stageClear.backgroundImage,
                 stageClear.titleButton,
-                monsterQaPanel);
+                monsterQaPanel,
+                stage1);
 
             new GameObject("Sound Manager", typeof(SoundManager)).transform.SetAsLastSibling();
             var eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
@@ -829,6 +880,9 @@ namespace EscapeFromNightmares.Editor
                 && sceneText.Contains("MonsterRuntimeQaPanel");
         }
 
+        /// <summary>
+        /// GameDirector.SetSceneReferences에 전달할 클로즈업 패널 구성 요소 묶음입니다.
+        /// </summary>
         private readonly struct CloseUpUi
         {
             public readonly GameObject panel;
@@ -849,6 +903,9 @@ namespace EscapeFromNightmares.Editor
             }
         }
 
+        /// <summary>
+        /// 일반 퍼즐 패널과 서재 금고 전용 숫자 UI 참조를 함께 보관합니다.
+        /// </summary>
         private readonly struct PuzzleUi
         {
             public readonly GameObject panel;
@@ -875,6 +932,9 @@ namespace EscapeFromNightmares.Editor
             }
         }
 
+        /// <summary>
+        /// 은신 화면 패널을 GameDirector에 전달하기 위한 참조 묶음입니다.
+        /// </summary>
         private readonly struct HideViewUi
         {
             public readonly GameObject panel;
@@ -891,6 +951,7 @@ namespace EscapeFromNightmares.Editor
 
         private static CloseUpUi CreateCloseUpPanel(RectTransform root)
         {
+            // 클로즈업 패널은 서랍/단서/획득 버튼을 한 화면에서 재사용하도록 공통 구성으로 만든다.
             var panel = new GameObject("DrawerCloseUpPanel", typeof(RectTransform), typeof(Image));
             panel.transform.SetParent(root, false);
             panel.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.92f);
@@ -918,6 +979,7 @@ namespace EscapeFromNightmares.Editor
 
         private static HideViewUi CreateHideViewPanel(RectTransform root)
         {
+            // 은신 화면은 배경 이미지와 탈출 버튼만 필요하므로 GameDirector가 이미지 리소스를 교체한다.
             var panel = new GameObject("HideViewPanel", typeof(RectTransform), typeof(Image));
             panel.transform.SetParent(root, false);
             panel.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.96f);
@@ -938,6 +1000,7 @@ namespace EscapeFromNightmares.Editor
 
         private static PuzzleUi CreatePuzzlePanel(RectTransform root)
         {
+            // 일반 퍼즐 입력 UI 위에 study_safe 전용 숫자 버튼을 숨긴 상태로 같이 배치한다.
             var panel = new GameObject("PuzzleCloseUpPanel", typeof(RectTransform), typeof(Image));
             panel.transform.SetParent(root, false);
             panel.GetComponent<Image>().color = new Color(0.012f, 0.01f, 0.012f, 0.96f);
@@ -1024,6 +1087,7 @@ namespace EscapeFromNightmares.Editor
 
         private static GameObject CreateInventoryWindowPrefab(RoomSpriteCatalog catalog)
         {
+            // InventoryWindow는 런타임에서 아이템 목록만 바꿔 끼우므로 슬롯 8개를 고정된 프리팹 구조로 만든다.
             var root = new GameObject("InventoryWindow", typeof(RectTransform), typeof(Image), typeof(InventoryWindow));
             var rootImage = root.GetComponent<Image>();
             rootImage.sprite = LoadSprite(InventoryPanelAssetPath);
@@ -1077,6 +1141,7 @@ namespace EscapeFromNightmares.Editor
                 AssetDatabase.CreateAsset(catalog, RoomSpriteCatalogPath);
             }
 
+            // 런타임 ResolveSprite가 사용할 spriteId는 Resources 파일명과 맞춰 사람이 추적하기 쉽게 유지한다.
             var entries = new List<SpriteEntry>
             {
                 Entry("child_room_north", ChildRoomFaceAssetPaths[0]),
@@ -1087,6 +1152,14 @@ namespace EscapeFromNightmares.Editor
                 Entry("second_floor_hallway_south", SecondFloorHallwayFaceAssetPaths[1]),
                 Entry("first_floor_hallway_north", FirstFloorHallwayFaceAssetPaths[0]),
                 Entry("first_floor_hallway_south", FirstFloorHallwayFaceAssetPaths[1]),
+                Entry("family_photo_room_north", FamilyPhotoRoomFaceAssetPaths[0]),
+                Entry("family_photo_room_east", FamilyPhotoRoomFaceAssetPaths[1]),
+                Entry("family_photo_room_south", FamilyPhotoRoomFaceAssetPaths[2]),
+                Entry("family_photo_room_west", FamilyPhotoRoomFaceAssetPaths[3]),
+                Entry("living_room_north", LivingRoomFaceAssetPaths[0]),
+                Entry("living_room_east", LivingRoomFaceAssetPaths[1]),
+                Entry("living_room_south", LivingRoomFaceAssetPaths[2]),
+                Entry("living_room_west", LivingRoomFaceAssetPaths[3]),
                 Entry("entrance_north", EntranceFaceAssetPaths[0]),
                 Entry("entrance_east", EntranceFaceAssetPaths[1]),
                 Entry("entrance_south", EntranceFaceAssetPaths[2]),
@@ -1188,6 +1261,9 @@ namespace EscapeFromNightmares.Editor
                 Entry("item_small_doll", SmallDollIconAssetPath),
                 Entry("item_symbol_fragment", SymbolFragmentIconAssetPath),
                 Entry("item_front_door_key", FrontDoorKeyIconAssetPath),
+                Entry("item_broken_hand_mirror", BrokenHandMirrorIconAssetPath),
+                Entry("item_old_necklace", OldNecklaceIconAssetPath),
+                Entry("item_study_safe_clue", StudySafeClueIconAssetPath),
                 Entry("child_desk_drawer_closed", DrawerClosedAssetPath),
                 Entry("child_desk_drawer_open_with_item", DrawerOpenWithItemAssetPath),
                 Entry("child_desk_drawer_open_empty", DrawerOpenEmptyAssetPath),
@@ -1231,8 +1307,9 @@ namespace EscapeFromNightmares.Editor
             return catalog;
         }
 
-        private static MonsterPlacementCatalog EnsureMonsterPlacementCatalog()
+        private static MonsterPlacementCatalog EnsureMonsterPlacementCatalog(StageDefinition stage1)
         {
+            // 배치 카탈로그는 아티스트가 조정한 rect/enabled 값을 잃지 않도록 기존 직렬화 값을 먼저 읽는다.
             var preservedEntries = ReadSerializedMonsterPlacementEntries(MonsterPlacementCatalogPath);
             var catalog = AssetDatabase.LoadAssetAtPath<MonsterPlacementCatalog>(MonsterPlacementCatalogPath);
             if (catalog == null)
@@ -1247,7 +1324,7 @@ namespace EscapeFromNightmares.Editor
             }
 
             preservedEntries.AddRange(catalog.Placements.Where(item => item != null));
-            var entries = MonsterPlacementCatalog.CreateMergedDefaultEntries(RuntimeStageFactory.CreateStage1(), preservedEntries).ToList();
+            var entries = MonsterPlacementCatalog.CreateMergedDefaultEntries(stage1, preservedEntries).ToList();
 
             catalog.SetPlacements(entries);
             EditorUtility.SetDirty(catalog);
@@ -1256,6 +1333,7 @@ namespace EscapeFromNightmares.Editor
 
         private static List<MonsterPlacementEntry> ReadSerializedMonsterPlacementEntries(string assetPath)
         {
+            // Unity YAML을 가볍게 훑어 기존 MonsterPlacementEntry 값을 보존한다.
             var entries = new List<MonsterPlacementEntry>();
             if (!File.Exists(assetPath))
             {
@@ -1357,6 +1435,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsureBuildSettings()
         {
+            // 타이틀 씬을 0번, 메인 씬을 1번으로 고정해 StartGame의 씬 전환과 빌드 설정을 맞춘다.
             var scenes = EditorBuildSettings.scenes.ToList();
             AddBuildScene(scenes, ScenePath, 0);
             AddBuildScene(scenes, MainScenePath, 1);
@@ -1532,6 +1611,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void ConfigureSpriteImporter(string path)
         {
+            // 생성된 PNG는 UI Image와 SpriteRenderer 양쪽에서 바로 쓸 수 있도록 Sprite로 재임포트한다.
             var importer = AssetImporter.GetAtPath(path) as TextureImporter;
             if (importer == null)
             {
@@ -1546,6 +1626,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsurePng(string path, byte[] content, bool rebuild)
         {
+            // rebuild가 아니면 사람이 교체한 임시 아트를 덮어쓰지 않는다.
             if (!rebuild && File.Exists(path))
             {
                 return;
@@ -1564,6 +1645,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsureChildRoomImages()
         {
+            // 이하 Ensure*Images 메서드는 프로토타입 진행에 필요한 방/단서/퍼즐 placeholder 이미지를 보장한다.
             var faceNames = new[] { "NORTH WALL", "EAST WALL", "SOUTH WALL", "WEST WALL" };
             var faceColors = new[]
             {
@@ -1635,6 +1717,8 @@ namespace EscapeFromNightmares.Editor
                     File.WriteAllBytes(MirrorRoomFaceAssetPaths[index], CreateMirrorRoomFacePng(index));
                 }
             }
+
+            EnsureObjectPng(BrokenHandMirrorIconAssetPath, new Color(0.20f, 0.22f, 0.26f, 1f), "MIRROR");
         }
 
         private static void EnsureDressingRoomImages()
@@ -1651,6 +1735,8 @@ namespace EscapeFromNightmares.Editor
             {
                 File.WriteAllBytes(DressingColorSequenceClueAssetPath, CreateDressingColorSequenceCluePng());
             }
+
+            EnsureObjectPng(OldNecklaceIconAssetPath, new Color(0.47f, 0.38f, 0.24f, 1f), "LOCKET");
         }
 
         private static void EnsureMasterBedroomImages()
@@ -1775,6 +1861,48 @@ namespace EscapeFromNightmares.Editor
                 if (!File.Exists(EntranceFaceAssetPaths[index]))
                 {
                     File.WriteAllBytes(EntranceFaceAssetPaths[index], CreateRoomFacePng(faceNames[index], entranceColor, index + 48));
+                }
+            }
+        }
+
+        private static void EnsureFamilyPhotoRoomImages()
+        {
+            var faceNames = new[] { "PHOTO DRAWER", "FRAME WALL", "HALLWAY DOOR", "ALBUM WALL" };
+            var faceColors = new[]
+            {
+                new Color(0.046f, 0.040f, 0.050f, 1f),
+                new Color(0.042f, 0.036f, 0.046f, 1f),
+                new Color(0.038f, 0.034f, 0.042f, 1f),
+                new Color(0.044f, 0.038f, 0.044f, 1f)
+            };
+
+            for (var index = 0; index < FamilyPhotoRoomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(FamilyPhotoRoomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(FamilyPhotoRoomFaceAssetPaths[index], CreateRoomFacePng(faceNames[index], faceColors[index], index + 52));
+                }
+            }
+
+            EnsureObjectPng(StudySafeClueIconAssetPath, new Color(0.56f, 0.50f, 0.36f, 1f), "CLUE");
+        }
+
+        private static void EnsureLivingRoomImages()
+        {
+            var faceNames = new[] { "CURTAIN", "ENTRY DOOR", "HALLWAY DOOR", "QUIET WALL" };
+            var faceColors = new[]
+            {
+                new Color(0.040f, 0.036f, 0.048f, 1f),
+                new Color(0.044f, 0.038f, 0.045f, 1f),
+                new Color(0.038f, 0.035f, 0.042f, 1f),
+                new Color(0.035f, 0.032f, 0.040f, 1f)
+            };
+
+            for (var index = 0; index < LivingRoomFaceAssetPaths.Length; index++)
+            {
+                if (!File.Exists(LivingRoomFaceAssetPaths[index]))
+                {
+                    File.WriteAllBytes(LivingRoomFaceAssetPaths[index], CreateRoomFacePng(faceNames[index], faceColors[index], index + 56));
                 }
             }
         }
@@ -2021,6 +2149,7 @@ namespace EscapeFromNightmares.Editor
 
         private static byte[] CreateRoomFacePng(string label, Color baseColor, int variant)
         {
+            // 방 배경 placeholder는 같은 생성기를 쓰되 variant로 노이즈와 장식 위치를 달리한다.
             var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
             for (var y = 0; y < texture.height; y++)
             {
@@ -2126,6 +2255,7 @@ namespace EscapeFromNightmares.Editor
 
         private static byte[] CreateSecondFloorHallwayPng(bool childRoomEnd)
         {
+            // 2층 복도는 네 방향 대신 두 perspective face만 사용하므로 전용 구도로 생성한다.
             var texture = new Texture2D(1280, 720, TextureFormat.RGBA32, false);
             for (var y = 0; y < texture.height; y++)
             {
@@ -2220,6 +2350,7 @@ namespace EscapeFromNightmares.Editor
 
         private static byte[] CreatePuzzlePng(string label, int variant)
         {
+            // 퍼즐 이미지는 실제 입력 UI 뒤에 깔리는 단일 배경 역할을 한다.
             var texture = new Texture2D(900, 620, TextureFormat.RGBA32, false);
             var baseColor = new Color(0.035f + variant * 0.004f, 0.03f, 0.034f, 1f);
             for (var y = 0; y < texture.height; y++)
@@ -2304,6 +2435,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void EnsureDerivedCloseUp(string destinationPath, string sourcePath, Rect sourceRect, bool safeOpen = false, bool withItem = false)
         {
+            // 방 배경에서 확대 이미지를 파생해 위치 관계가 유지되도록 한다.
             if (File.Exists(destinationPath) || !File.Exists(sourcePath))
             {
                 return;
@@ -2380,6 +2512,7 @@ namespace EscapeFromNightmares.Editor
 
         private static byte[] CreateStrictIdentityCropPng(string sourcePath, Rect normalizedRect, int targetWidth, int targetHeight)
         {
+            // strict identity crop은 추가 연출 없이 원본 픽셀 crop만 수행해 테스트에서 동일성을 검증할 수 있게 한다.
             var source = LoadTextureFromPng(sourcePath);
             if (source == null)
             {
@@ -2413,6 +2546,7 @@ namespace EscapeFromNightmares.Editor
 
         private static Color SampleBilinear(Texture2D texture, float x, float y)
         {
+            // 크롭 리사이즈 시 계단 현상을 줄이기 위한 간단한 bilinear 샘플러다.
             x = Mathf.Clamp(x, 0f, texture.width - 1f);
             y = Mathf.Clamp(y, 0f, texture.height - 1f);
             var x0 = Mathf.FloorToInt(x);
@@ -2504,6 +2638,7 @@ namespace EscapeFromNightmares.Editor
 
         private static Texture2D LoadTextureFromPng(string path)
         {
+            // Texture2D는 호출자가 DestroyImmediate로 정리할 수 있도록 새 인스턴스로 로드한다.
             if (!File.Exists(path))
             {
                 return null;
@@ -2990,6 +3125,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void DrawPixelText(Texture2D texture, int x, int y, string text, Color color, int scale)
         {
+            // 외부 폰트 의존 없이 에디터 생성 PNG에 라벨을 새기기 위한 픽셀 글꼴 렌더러다.
             for (var index = 0; index < text.Length; index++)
             {
                 DrawGlyph(texture, x + index * 6 * scale, y, char.ToUpperInvariant(text[index]), color, scale);
@@ -3066,6 +3202,7 @@ namespace EscapeFromNightmares.Editor
 
         private static byte[] CreateWav(float frequency, float duration, float amplitude)
         {
+            // 사운드 placeholder는 짧은 sine wave WAV로 만들어 오디오 경로와 믹서 흐름을 테스트한다.
             const int sampleRate = 44100;
             var sampleCount = Mathf.CeilToInt(sampleRate * duration);
             var dataSize = sampleCount * 2;
@@ -3098,6 +3235,7 @@ namespace EscapeFromNightmares.Editor
 
         private static void TryRepairMixer(AudioMixer mixer)
         {
+            // Unity 버전에 따라 자동 생성된 mixer의 그룹 구성이 비어 있을 수 있어 가능한 범위에서 복구한다.
             TryCreateMixerGroups(mixer);
             EditorUtility.SetDirty(mixer);
         }
@@ -3150,6 +3288,9 @@ namespace EscapeFromNightmares.Editor
             }
         }
 
+        /// <summary>
+        /// 원본 방 이미지에서 단순 crop으로 유지해야 하는 클로즈업 생성 케이스입니다.
+        /// </summary>
         private sealed class StrictIdentityCloseUpCase
         {
             public readonly string sourcePath;

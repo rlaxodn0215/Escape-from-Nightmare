@@ -14,9 +14,13 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmares.Runtime
 {
+    /// <summary>
+    /// 메인 게임 씬의 화면 구성, 입력 바인딩, 방 이동, 퍼즐, 인벤토리, 몬스터 상태를 총괄합니다.
+    /// </summary>
     public sealed class GameDirector : MonoBehaviour
     {
         [Header("Catalogs")]
+        [SerializeField] private StageDefinition stageDefinition;
         [SerializeField] private RoomSpriteCatalog spriteCatalog;
         [SerializeField] private MonsterPlacementCatalog monsterPlacementCatalog;
 
@@ -76,6 +80,8 @@ namespace EscapeFromNightmares.Runtime
         private SettingsSaveService saveService;
         private ResourceManager resourceManager;
         private SoundManager soundManager;
+        private StageLookup stageLookup;
+        private EscapeActionExecutor actionExecutor;
 
         private readonly Dictionary<string, RoomDefinition> rooms = new Dictionary<string, RoomDefinition>();
         private readonly Dictionary<string, ItemDefinition> items = new Dictionary<string, ItemDefinition>();
@@ -92,8 +98,11 @@ namespace EscapeFromNightmares.Runtime
         private bool sceneTransitionInProgress;
         private bool studySafeSolvedInPanel;
         private bool monsterQaPanelVisible;
+        /// <summary>스테이지 클리어 화면 배경으로 사용하는 Resources 경로입니다.</summary>
         public const string StageClearBackgroundResource = "EscapeFromNightmares/Endings/stage1_clear_background";
+        /// <summary>몬스터 그림자 스프라이트로 사용하는 Resources 경로입니다.</summary>
         public const string MonsterShadowResource = "EscapeFromNightmares/Monster/monster_shadow";
+        /// <summary>부엌 첫 등장 연출을 한 번만 처리하기 위한 이벤트 플래그입니다.</summary>
         public const string KitchenFirstAppearanceEventFlag = "event_kitchen_first_appearance";
         private const float ModalFadeDuration = 0.22f;
         private const float SceneFadeDuration = 0.24f;
@@ -111,6 +120,9 @@ namespace EscapeFromNightmares.Runtime
             new Rect(0.566f, 0.282f, 0.047f, 0.104f)
         };
 
+        /// <summary>
+        /// 에디터 빌더가 만든 씬 UI와 카탈로그 참조를 런타임 컨트롤러에 주입합니다.
+        /// </summary>
         public void SetSceneReferences(
             RoomSpriteCatalog roomSprites,
             MonsterPlacementCatalog monsterPlacements,
@@ -143,8 +155,10 @@ namespace EscapeFromNightmares.Runtime
             GameObject clearPanel = null,
             Image clearBackgroundImage = null,
             Button clearTitleButton = null,
-            MonsterRuntimeQaPanel monsterRuntimeQaPanel = null)
+            MonsterRuntimeQaPanel monsterRuntimeQaPanel = null,
+            StageDefinition mainStage = null)
         {
+            stageDefinition = mainStage;
             spriteCatalog = roomSprites;
             monsterPlacementCatalog = monsterPlacements;
             roomFaceImage = roomImage;
@@ -181,7 +195,18 @@ namespace EscapeFromNightmares.Runtime
 
         private void Awake()
         {
-            stage = RuntimeStageFactory.CreateStage1();
+            // 현재 프로토타입은 ScriptableObject 에셋 대신 코드 팩토리에서 Stage 1 데이터를 조립한다.
+            stage = StageRepository.LoadStage1(stageDefinition);
+            if (stage == null)
+            {
+                enabled = false;
+                return;
+            }
+
+            stageLookup = new StageLookup(stage);
+            rooms.Clear();
+            items.Clear();
+            puzzles.Clear();
             foreach (var room in stage.rooms)
             {
                 rooms[room.roomId] = room;
@@ -202,6 +227,7 @@ namespace EscapeFromNightmares.Runtime
                 monsterPlacementCatalog = MonsterPlacementCatalog.CreateDefault(stage);
             }
 
+            // 서비스 계층은 순수 상태/규칙을 담당하고, GameDirector는 Unity UI와 실행 순서를 연결한다.
             session = new GameSession();
             flagService = new FlagService(session);
             inventoryService = new InventoryService(session);
@@ -217,6 +243,18 @@ namespace EscapeFromNightmares.Runtime
             EnsureSoundManager();
             EnsureUi();
             BindUi();
+            actionExecutor = new EscapeActionExecutor(
+                OpenRoom,
+                RotateFace,
+                itemId => AcquireItem(itemId),
+                OpenCloseUp,
+                SolvePuzzle,
+                flagService,
+                TriggerEvent,
+                soundManager,
+                OpenHideView,
+                session,
+                CompleteStage);
         }
 
         private void Start()
@@ -246,6 +284,7 @@ namespace EscapeFromNightmares.Runtime
 
         private void StartGame()
         {
+            // 새 게임 시작 시 화면 모달, 위험도, 몬스터, 인벤토리 선택 상태를 모두 초기 상태로 맞춘다.
             session.Start(stage);
             dangerSystem.Reset();
             hidingSystem.Exit();
@@ -267,7 +306,7 @@ namespace EscapeFromNightmares.Runtime
 
         private void OpenRoomImmediate(string roomId)
         {
-            if (!rooms.ContainsKey(roomId))
+            if (stageLookup == null || !stageLookup.TryGetRoom(roomId, out _))
             {
                 Debug.LogWarning("Room not found: " + roomId);
                 return;
@@ -283,6 +322,7 @@ namespace EscapeFromNightmares.Runtime
 
         private void RenderRoom()
         {
+            // 현재 방/방향 데이터가 화면의 배경 이미지와 클릭 가능한 상호작용 레이어의 원천이다.
             var room = CurrentRoom();
             var face = CurrentFace(room);
             var faceInteractables = face.interactables ?? new InteractableDefinition[0];
@@ -306,6 +346,7 @@ namespace EscapeFromNightmares.Runtime
             }
 
             ClearChildrenExcept(roomObjectLayer, monsterImage == null ? null : monsterImage.transform);
+            // 조건을 만족하는 상호작용만 버튼으로 만들고, 이미지가 없는 항목은 투명 히트박스로 처리한다.
             foreach (var interactable in interactables)
             {
                 if (!ShouldRenderRoomHitbox(interactable, session, flagService))
@@ -339,6 +380,7 @@ namespace EscapeFromNightmares.Runtime
                 return;
             }
 
+            // 몬스터는 방 오브젝트 레이어의 가장 위에 배치해 상호작용 이미지와 겹쳐도 항상 보이게 한다.
             var image = EnsureMonsterImage();
             if (image == null)
             {
@@ -485,6 +527,7 @@ namespace EscapeFromNightmares.Runtime
 
         private void HandleInteractable(InteractableDefinition interactable)
         {
+            // 서재 금고는 퍼즐 성공 후 보상 획득 전후 이미지가 달라 별도 상태 전환을 먼저 처리한다.
             if (ShouldOpenUnlockedStudySafe(interactable))
             {
                 session.SetFlag(StudySafeOpenedFlag);
@@ -528,6 +571,7 @@ namespace EscapeFromNightmares.Runtime
             Debug.Log("Item acquired: " + ItemName(itemId));
             if (itemId == "front_door_key")
             {
+                // 최종 열쇠 획득은 즉시 추격 상태와 배경 전환 플래그를 켜는 진행 분기점이다.
                 ApplyFinalChaseStartState(session, monsterAI, flagService);
                 PlaySoundById("bgm_final_chase");
                 Debug.Log("Front door key acquired; final chase started.");
@@ -605,57 +649,21 @@ namespace EscapeFromNightmares.Runtime
 
         private CloseUpState GetCloseUpState(InteractableDefinition interactable)
         {
-            if (!string.IsNullOrWhiteSpace(interactable.clueViewResource))
-            {
-                return CloseUpState.Closed;
-            }
-
-            if (interactable.puzzleId == StudySafePuzzleId && session.HasFlag(StudySafeOpenedFlag))
-            {
-                return session.HasItem(interactable.closeUpItemId) || session.HasUsedInteractable(interactable.interactableId)
-                    ? CloseUpState.OpenEmpty
-                    : CloseUpState.OpenWithItem;
-            }
-
-            return session.HasItem(interactable.closeUpItemId) || session.HasUsedInteractable(interactable.interactableId)
-                ? CloseUpState.OpenEmpty
-                : CloseUpState.Closed;
+            return CloseUpPresenter.ResolveState(interactable, session, StudySafePuzzleId, StudySafeOpenedFlag);
         }
 
         private void ApplyCloseUpState(CloseUpState state)
         {
-            if (activeCloseUpInteractable == null)
-            {
-                return;
-            }
-
-            if (!string.IsNullOrWhiteSpace(activeCloseUpInteractable.clueViewResource))
-            {
-                if (closeUpImage != null)
-                {
-                    closeUpImage.sprite = ResolveSprite(activeCloseUpInteractable.clueViewResource);
-                    closeUpImage.color = Color.white;
-                    closeUpImage.preserveAspect = true;
-                }
-
-                SetButtonVisible(closeUpActionButton, false);
-                SetButtonVisible(closeUpItemButton, false);
-                return;
-            }
-
-            if (closeUpImage != null)
-            {
-                closeUpImage.sprite = ResolveSprite(CloseUpSpriteResource(activeCloseUpInteractable, state));
-                closeUpImage.color = Color.white;
-                closeUpImage.preserveAspect = true;
-            }
-
-            SetButtonVisible(closeUpActionButton, state == CloseUpState.Closed);
-            SetButtonVisible(closeUpItemButton, state == CloseUpState.OpenWithItem);
-            if (closeUpItemHitbox != null)
-            {
-                Stretch(closeUpItemHitbox, activeCloseUpInteractable.closeUpItemHitbox);
-            }
+            CloseUpPresenter.ApplyState(
+                activeCloseUpInteractable,
+                state,
+                closeUpImage,
+                closeUpActionButton,
+                closeUpItemButton,
+                closeUpItemHitbox,
+                ResolveSprite,
+                SetButtonVisible,
+                Stretch);
         }
 
         private void CloseCloseUpPanel()
@@ -707,7 +715,7 @@ namespace EscapeFromNightmares.Runtime
 
         private void SolvePuzzle(string puzzleId)
         {
-            if (!puzzles.TryGetValue(puzzleId, out var puzzle))
+            if (stageLookup == null || !stageLookup.TryGetPuzzle(puzzleId, out var puzzle))
             {
                 Debug.LogWarning("Puzzle not found: " + puzzleId);
                 return;
@@ -770,7 +778,7 @@ namespace EscapeFromNightmares.Runtime
         private void OpenHideView(string interactableId)
         {
             var interactable = FindInteractable(interactableId);
-            if (interactable == null || string.IsNullOrWhiteSpace(interactable.hideViewResource))
+            if (!HideViewPresenter.CanOpen(interactable))
             {
                 ToggleHiding();
                 return;
@@ -778,12 +786,7 @@ namespace EscapeFromNightmares.Runtime
 
             hidingSystem.Enter(MousePosition());
             dangerSystem.AddNoise(-5f);
-            if (hideViewImage != null)
-            {
-                hideViewImage.sprite = ResolveSprite(interactable.hideViewResource);
-                hideViewImage.color = Color.white;
-                hideViewImage.preserveAspect = true;
-            }
+            HideViewPresenter.Apply(interactable, hideViewImage, ResolveSprite);
 
             if (hideViewPanel != null)
             {
@@ -843,7 +846,7 @@ namespace EscapeFromNightmares.Runtime
 
         private RoomDefinition CurrentRoom()
         {
-            return rooms[session.CurrentRoomId];
+            return stageLookup.RequireRoom(session.CurrentRoomId);
         }
 
         private RoomFaceDefinition CurrentFace(RoomDefinition room)
@@ -870,37 +873,17 @@ namespace EscapeFromNightmares.Runtime
             return room.faces[0];
         }
 
+        /// <summary>
+        /// 현재 방이 가진 방향 목록 안에서 offset만큼 회전한 다음 방향을 계산합니다.
+        /// </summary>
         public static RoomFaceDirection NextFaceDirection(RoomDefinition room, RoomFaceDirection currentDirection, int offset)
         {
-            if (room == null || room.faces == null || room.faces.Length == 0)
-            {
-                return (RoomFaceDirection)(((int)currentDirection + offset + 4) % 4);
-            }
-
-            var currentIndex = 0;
-            for (var index = 0; index < room.faces.Length; index++)
-            {
-                if (room.faces[index].direction == currentDirection)
-                {
-                    currentIndex = index;
-                    break;
-                }
-            }
-
-            var nextIndex = (currentIndex + offset) % room.faces.Length;
-            if (nextIndex < 0)
-            {
-                nextIndex += room.faces.Length;
-            }
-
-            return room.faces[nextIndex].direction;
+            return RoomPresenter.NextFaceDirection(room, currentDirection, offset);
         }
 
         private InteractableDefinition FindInteractable(string interactableId)
         {
-            return CurrentRoom().faces
-                .SelectMany(face => face.interactables ?? new InteractableDefinition[0])
-                .FirstOrDefault(interactable => interactable.interactableId == interactableId);
+            return stageLookup.FindInteractable(interactableId);
         }
 
         private void RotateFace(int offset)
@@ -915,11 +898,12 @@ namespace EscapeFromNightmares.Runtime
 
         private string ItemName(string itemId)
         {
-            return items.TryGetValue(itemId, out var item) ? item.displayName : itemId;
+            return stageLookup != null && stageLookup.TryGetItem(itemId, out var item) ? item.displayName : itemId;
         }
 
         private void ExecuteActions(IReadOnlyList<EscapeAction> actions)
         {
+            // Resolver는 의도만 반환하므로 실제 세션 변경, UI 열기, 사운드 재생은 이곳에서 순서대로 실행한다.
             foreach (var action in actions)
             {
                 ExecuteAction(action);
@@ -928,45 +912,7 @@ namespace EscapeFromNightmares.Runtime
 
         private void ExecuteAction(EscapeAction action)
         {
-            switch (action.Type)
-            {
-                case EscapeActionType.MoveRoom:
-                    OpenRoom(action.Value);
-                    break;
-                case EscapeActionType.RotateFace:
-                    RotateFace(action.IntValue);
-                    break;
-                case EscapeActionType.AcquireItem:
-                    AcquireItem(action.Value);
-                    break;
-                case EscapeActionType.OpenCloseUp:
-                    OpenCloseUp(action.Value);
-                    break;
-                case EscapeActionType.OpenPuzzle:
-                    SolvePuzzle(action.Value);
-                    break;
-                case EscapeActionType.SetFlag:
-                    flagService.Set(action.Value);
-                    break;
-                case EscapeActionType.ClearFlag:
-                    flagService.Clear(action.Value);
-                    break;
-                case EscapeActionType.ShowClue:
-                    TriggerEvent(action.Value);
-                    break;
-                case EscapeActionType.PlaySound:
-                    soundManager.Play(action.SoundEntry);
-                    break;
-                case EscapeActionType.EnterHideSpot:
-                    OpenHideView(action.Value);
-                    break;
-                case EscapeActionType.MarkPuzzleSolved:
-                    session.MarkPuzzleSolved(action.Value);
-                    break;
-                case EscapeActionType.CompleteStage:
-                    CompleteStage();
-                    break;
-            }
+            actionExecutor.Execute(action);
         }
 
         private void OpenPuzzlePanel(PuzzleDefinition puzzle)
@@ -975,20 +921,11 @@ namespace EscapeFromNightmares.Runtime
             puzzleInputTokens.Clear();
             studySafeSolvedInPanel = false;
 
-            if (puzzleTitleText != null)
-            {
-                puzzleTitleText.text = puzzle.displayName + " / " + puzzle.puzzleType;
-            }
-
-            if (puzzleCloseUpImage != null)
-            {
-                puzzleCloseUpImage.sprite = ResolveSprite(puzzle.closeUpResource);
-                puzzleCloseUpImage.color = Color.white;
-                puzzleCloseUpImage.preserveAspect = true;
-            }
+            PuzzlePresenter.ApplyHeader(puzzle, puzzleTitleText, puzzleInputText, puzzleLogText, puzzleCloseUpImage, ResolveSprite);
 
             if (IsStudySafePuzzle(puzzle))
             {
+                // 금고 퍼즐은 숫자 이미지와 버튼을 실제 금고 위치에 겹쳐야 하므로 전용 UI 상태를 준비한다.
                 OpenStudySafePuzzlePanel();
                 return;
             }
@@ -1145,7 +1082,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static bool IsStudySafePuzzle(PuzzleDefinition puzzle)
         {
-            return puzzle != null && puzzle.puzzleId == StudySafePuzzleId;
+            return PuzzlePresenter.IsStudySafePuzzle(puzzle, StudySafePuzzleId);
         }
 
         private bool ShouldOpenUnlockedStudySafe(InteractableDefinition interactable)
@@ -1199,42 +1136,38 @@ namespace EscapeFromNightmares.Runtime
         {
             if (puzzleInputText != null)
             {
-                puzzleInputText.text = puzzleInputTokens.Count == 0 ? "Input: -" : "Input: " + string.Join(" ", puzzleInputTokens);
+                puzzleInputText.text = puzzleInputTokens.Count == 0 ? "Input: -" : "Input: " + PuzzlePresenter.FormatInput(puzzleInputTokens);
             }
         }
 
         private static IEnumerable<string> TokenOptions(PuzzleDefinition puzzle)
         {
-            switch (puzzle.puzzleType)
-            {
-                case PuzzleType.NumberLock:
-                    return new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-                case PuzzleType.ColorSequence:
-                    return new[] { "black", "white", "red", "gray", "blue", "green" };
-                case PuzzleType.SymbolSequence:
-                    return new[] { "heart", "child_hand", "cracked_circle", "keyhole" };
-                case PuzzleType.SilentSequence:
-                    return new[] { "doll", "train", "block", "bell" };
-                default:
-                    return puzzle.answerTokens;
-            }
+            return PuzzlePresenter.TokenOptions(puzzle);
         }
 
+        /// <summary>서재 금고 숫자를 0~9 범위에서 다음 값으로 순환시킵니다.</summary>
         public static int NextStudySafeDigitValue(int currentValue)
         {
-            return currentValue < 0 || currentValue >= 9 ? 0 : currentValue + 1;
+            return StudySafePuzzleRules.NextDigitValue(currentValue);
         }
 
+        /// <summary>서재 금고 숫자 이미지의 Resources 경로를 반환합니다.</summary>
         public static string StudySafeDigitResource(int digit)
         {
-            return "EscapeFromNightmares/Puzzles/study_safe_digit_" + Mathf.Clamp(digit, 0, 9);
+            return StudySafePuzzleRules.DigitResource(Mathf.Clamp(digit, 0, 9));
         }
 
+        /// <summary>
+        /// 씬에 이미 배치된 금고 숫자 UI의 레이아웃을 코드가 덮어쓰지 않아야 하는지 판단합니다.
+        /// </summary>
         public static bool ShouldPreserveStudySafeDigitLayout(bool hasSerializedReference, bool foundSceneObject)
         {
-            return hasSerializedReference || foundSceneObject;
+            return StudySafePuzzleRules.ShouldPreserveDigitLayout(hasSerializedReference, foundSceneObject);
         }
 
+        /// <summary>
+        /// 서재 금고 퍼즐 성공 후 금고가 열려 있고 보상 회수 단계로 들어갔음을 세션에 기록합니다.
+        /// </summary>
         public static void ApplyStudySafeUnlockAndOpenState(GameSession gameSession)
         {
             if (gameSession == null)
@@ -1242,10 +1175,12 @@ namespace EscapeFromNightmares.Runtime
                 return;
             }
 
-            gameSession.SetFlag(StudySafeUnlockedFlag);
-            gameSession.SetFlag(StudySafeOpenedFlag);
+            ProgressionFlow.ApplyStudySafeUnlockAndOpenState(gameSession);
         }
 
+        /// <summary>
+        /// 현관 열쇠 획득 후 최종 추격 상태와 관련 플래그를 적용합니다.
+        /// </summary>
         public static void ApplyFinalChaseStartState(GameSession gameSession, MonsterAIController monsterAIController, FlagService flags)
         {
             if (gameSession == null || monsterAIController == null || flags == null)
@@ -1253,23 +1188,25 @@ namespace EscapeFromNightmares.Runtime
                 return;
             }
 
-            monsterAIController.Enable();
-            monsterAIController.ForceChase();
-            flags.Set("final_chase_started");
+            ProgressionFlow.ApplyFinalChaseStartState(gameSession, monsterAIController, flags);
         }
 
+        /// <summary>
+        /// 세탁실 보관함 퍼즐 성공 후 몬스터 시스템을 켜고 첫 등장 압박을 부여합니다.
+        /// </summary>
         public static void ApplyLaundryStorageBoxMonsterStartState(GameSession gameSession, MonsterAIController monsterAIController, FlagService flags, DangerSystem danger)
         {
-            monsterAIController?.Enable();
-
-            if (gameSession != null && flags != null && !gameSession.HasFlag(KitchenFirstAppearanceEventFlag))
+            if (gameSession == null || monsterAIController == null || flags == null || danger == null)
             {
-                flags.Set(KitchenFirstAppearanceEventFlag);
+                return;
             }
 
-            danger?.AddNoise(20f);
+            ProgressionFlow.ApplyLaundryStorageBoxMonsterStartState(gameSession, monsterAIController, flags, danger);
         }
 
+        /// <summary>
+        /// 스테이지 클리어 플래그, 클리어 기록 저장, 몬스터 정지를 한 번에 적용합니다.
+        /// </summary>
         public static void ApplyStageClearState(GameSession gameSession, StageDefinition stageDefinition, SettingsSaveService settingsSaveService, MonsterAIController monsterAIController)
         {
             if (gameSession == null || stageDefinition == null || settingsSaveService == null)
@@ -1277,138 +1214,60 @@ namespace EscapeFromNightmares.Runtime
                 return;
             }
 
-            gameSession.SetFlag(stageDefinition.clearFlag);
-            var records = settingsSaveService.LoadClearRecords();
-            records.stage1Clear = true;
-            settingsSaveService.SaveClearRecords(records);
-            monsterAIController?.Reset();
+            ProgressionFlow.ApplyStageClearState(gameSession, stageDefinition, settingsSaveService, monsterAIController);
         }
 
+        /// <summary>
+        /// 현재 몬스터 상태에서 화면에 몬스터 그림자를 표시해야 하는지 판단합니다.
+        /// </summary>
         public static bool ShouldShowMonster(MonsterState state)
         {
-            return state == MonsterState.Approaching
-                || state == MonsterState.Searching
-                || state == MonsterState.NearDetection
-                || state == MonsterState.Chase;
+            return MonsterPresenter.ShouldShowMonster(state);
         }
 
+        /// <summary>
+        /// QA 단축키로 순환할 다음 몬스터 상태를 반환합니다.
+        /// </summary>
         public static MonsterState NextMonsterQaState(MonsterState state)
         {
-            switch (state)
-            {
-                case MonsterState.Approaching:
-                    return MonsterState.Searching;
-                case MonsterState.Searching:
-                    return MonsterState.NearDetection;
-                case MonsterState.NearDetection:
-                    return MonsterState.Chase;
-                case MonsterState.Chase:
-                    return MonsterState.Normal;
-                default:
-                    return MonsterState.Approaching;
-            }
+            return MonsterPresenter.NextQaState(state);
         }
 
+        /// <summary>
+        /// 몬스터 상태와 배치 카탈로그를 확인해 현재 방/방향에서 사용할 표시 영역을 구합니다.
+        /// </summary>
         public static bool TryResolveMonsterPlacement(MonsterPlacementCatalog catalog, string roomId, RoomFaceDirection faceDirection, MonsterState state, out Rect normalizedRect)
         {
-            normalizedRect = Rect.zero;
-            if (!ShouldShowMonster(state) || catalog == null || string.IsNullOrWhiteSpace(roomId))
-            {
-                return false;
-            }
-
-            if (!catalog.TryFind(roomId, faceDirection, out var placement) || placement == null || !placement.enabled)
-            {
-                return false;
-            }
-
-            normalizedRect = placement.normalizedRect;
-            return normalizedRect.width > 0f && normalizedRect.height > 0f;
+            return MonsterPresenter.TryResolvePlacement(catalog, roomId, faceDirection, state, out normalizedRect);
         }
 
+        /// <summary>
+        /// 런타임 QA 패널에 표시할 몬스터 배치/상태 진단 정보를 생성합니다.
+        /// </summary>
         public static MonsterQaSnapshot CreateMonsterQaSnapshot(MonsterPlacementCatalog catalog, string roomId, RoomFaceDirection faceDirection, MonsterState state, bool monsterImageActive)
         {
-            var snapshot = new MonsterQaSnapshot
-            {
-                RoomId = string.IsNullOrWhiteSpace(roomId) ? "(none)" : roomId,
-                FaceDirection = faceDirection,
-                State = state,
-                MonsterImageActive = monsterImageActive,
-                Status = MonsterQaStatus.PlacementReady,
-                StatusText = "placement ready"
-            };
-
-            if (!ShouldShowMonster(state))
-            {
-                snapshot.Status = MonsterQaStatus.StateHidden;
-                snapshot.StatusText = "state hidden";
-                return snapshot;
-            }
-
-            if (catalog == null)
-            {
-                snapshot.Status = MonsterQaStatus.CatalogMissing;
-                snapshot.StatusText = "catalog missing";
-                return snapshot;
-            }
-
-            if (!catalog.TryFind(roomId, faceDirection, out var placement) || placement == null)
-            {
-                snapshot.Status = MonsterQaStatus.PlacementMissing;
-                snapshot.StatusText = "placement missing";
-                return snapshot;
-            }
-
-            snapshot.HasPlacement = true;
-            snapshot.PlacementEnabled = placement.enabled;
-            snapshot.NormalizedRect = placement.normalizedRect;
-
-            if (!placement.enabled)
-            {
-                snapshot.Status = MonsterQaStatus.PlacementDisabled;
-                snapshot.StatusText = "placement disabled";
-                return snapshot;
-            }
-
-            if (placement.normalizedRect.width <= 0f || placement.normalizedRect.height <= 0f)
-            {
-                snapshot.Status = MonsterQaStatus.PlacementEmpty;
-                snapshot.StatusText = "placement empty";
-                return snapshot;
-            }
-
-            snapshot.ShouldShowMonster = true;
-            return snapshot;
+            return MonsterPresenter.CreateQaSnapshot(catalog, roomId, faceDirection, state, monsterImageActive);
         }
 
+        /// <summary>
+        /// 정규화된 Rect를 UI 앵커 값으로 변환해 몬스터 이미지 위치를 적용합니다.
+        /// </summary>
         public static void ApplyMonsterPlacement(RectTransform rectTransform, Rect normalizedRect)
         {
-            if (rectTransform == null)
-            {
-                return;
-            }
-
-            Stretch(rectTransform, normalizedRect);
+            MonsterPresenter.ApplyPlacement(rectTransform, normalizedRect);
         }
 
+        /// <summary>
+        /// 서재 금고 UI 숫자 배열이 퍼즐 정답 토큰과 일치하는지 확인합니다.
+        /// </summary>
         public static bool StudySafeDigitsMatchAnswer(IReadOnlyList<int> digits, IReadOnlyList<string> answerTokens)
         {
-            if (digits == null || answerTokens == null || digits.Count != StudySafeDigitCount || answerTokens.Count != StudySafeDigitCount)
-            {
-                return false;
-            }
-
-            for (var index = 0; index < StudySafeDigitCount; index++)
-            {
-                if (!int.TryParse(answerTokens[index], out var answerDigit) || digits[index] != answerDigit)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return StudySafePuzzleRules.DigitsMatchAnswer(digits, answerTokens);
         }
 
+        /// <summary>
+        /// 몬스터 QA 패널에서 배치가 보이지 않는 이유를 분류합니다.
+        /// </summary>
         public enum MonsterQaStatus
         {
             StateHidden,
@@ -1419,6 +1278,9 @@ namespace EscapeFromNightmares.Runtime
             PlacementReady
         }
 
+        /// <summary>
+        /// 런타임 QA 패널에 표시할 현재 몬스터 배치 진단값입니다.
+        /// </summary>
         public struct MonsterQaSnapshot
         {
             public string RoomId;
@@ -1433,27 +1295,12 @@ namespace EscapeFromNightmares.Runtime
             public string StatusText;
         }
 
+        /// <summary>
+        /// 조건부 배경 중 현재 플래그 조건을 만족하는 리소스를 우선 반환합니다.
+        /// </summary>
         public static string ResolveRoomFaceBackgroundResource(RoomFaceDefinition face, FlagService flags)
         {
-            if (face == null)
-            {
-                return string.Empty;
-            }
-
-            if (face.conditionalBackgrounds != null && flags != null)
-            {
-                foreach (var candidate in face.conditionalBackgrounds)
-                {
-                    if (candidate != null
-                        && !string.IsNullOrWhiteSpace(candidate.backgroundResource)
-                        && flags.ConditionsMet(candidate.conditions))
-                    {
-                        return candidate.backgroundResource;
-                    }
-                }
-            }
-
-            return face.backgroundResource;
+            return RoomPresenter.ResolveRoomFaceBackgroundResource(face, flags);
         }
 
         private void PlaySoundById(string soundId)
@@ -1482,7 +1329,7 @@ namespace EscapeFromNightmares.Runtime
                 return null;
             }
 
-            if (items.TryGetValue(itemId, out var item))
+            if (stageLookup != null && stageLookup.TryGetItem(itemId, out var item))
             {
                 return ResolveSprite(item.iconResource);
             }
@@ -1492,15 +1339,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static string CloseUpSpriteResource(InteractableDefinition interactable, CloseUpState state)
         {
-            switch (state)
-            {
-                case CloseUpState.OpenWithItem:
-                    return interactable.closeUpOpenWithItemResource;
-                case CloseUpState.OpenEmpty:
-                    return interactable.closeUpOpenEmptyResource;
-                default:
-                    return interactable.closeUpClosedResource;
-            }
+            return CloseUpPresenter.ResolveSpriteResource(interactable, state);
         }
 
         private static string SpriteId(string resourcePathOrId)
@@ -1514,18 +1353,20 @@ namespace EscapeFromNightmares.Runtime
             return slashIndex >= 0 ? resourcePathOrId.Substring(slashIndex + 1) : resourcePathOrId;
         }
 
+        /// <summary>
+        /// 현재 세션 기준으로 상호작용 히트박스를 표시할지 판단합니다.
+        /// </summary>
         public static bool ShouldRenderRoomHitbox(InteractableDefinition interactable, GameSession currentSession)
         {
-            return ShouldRenderRoomHitbox(interactable, currentSession, currentSession != null ? new FlagService(currentSession) : null);
+            return RoomPresenter.ShouldRenderRoomHitbox(interactable, currentSession);
         }
 
+        /// <summary>
+        /// 조건 판정 서비스까지 주입해 상호작용 히트박스 표시 여부를 판단합니다.
+        /// </summary>
         public static bool ShouldRenderRoomHitbox(InteractableDefinition interactable, GameSession currentSession, FlagService flags)
         {
-            return interactable != null
-                && (flags == null || flags.ConditionsMet(interactable.conditions))
-                && (!interactable.disableRoomHitboxWhenUsed
-                    || currentSession == null
-                    || !currentSession.HasUsedInteractable(interactable.interactableId));
+            return RoomPresenter.ShouldRenderRoomHitbox(interactable, currentSession, flags);
         }
 
         private static bool IsRoomTransitionAction(EscapeAction action)
@@ -1621,16 +1462,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static IEnumerator FadeCanvasGroup(CanvasGroup group, float targetAlpha, float duration)
         {
-            var start = group.alpha;
-            var elapsed = 0f;
-            while (elapsed < duration)
-            {
-                elapsed += Time.unscaledDeltaTime;
-                group.alpha = Mathf.Lerp(start, targetAlpha, Mathf.Clamp01(elapsed / duration));
-                yield return null;
-            }
-
-            group.alpha = targetAlpha;
+            return PanelFader.FadeCanvasGroup(group, targetAlpha, duration);
         }
 
         private void StartPanelFade(GameObject panel, bool visible, ref Coroutine routine, System.Action onComplete = null)
@@ -1671,38 +1503,12 @@ namespace EscapeFromNightmares.Runtime
 
         private IEnumerator FadePanel(GameObject panel, bool visible, System.Action onComplete)
         {
-            var group = EnsureCanvasGroup(panel);
-            if (visible)
-            {
-                panel.SetActive(true);
-                group.alpha = 0f;
-            }
-
-            group.interactable = false;
-            group.blocksRaycasts = true;
-
-            var end = visible ? 1f : 0f;
-            yield return FadeCanvasGroup(group, end, ModalFadeDuration);
-
-            group.interactable = visible;
-            group.blocksRaycasts = visible;
-            if (!visible)
-            {
-                panel.SetActive(false);
-            }
-
-            onComplete?.Invoke();
+            return PanelFader.FadePanel(panel, visible, ModalFadeDuration, onComplete);
         }
 
         private static CanvasGroup EnsureCanvasGroup(GameObject panel)
         {
-            var group = panel.GetComponent<CanvasGroup>();
-            if (group == null)
-            {
-                group = panel.AddComponent<CanvasGroup>();
-            }
-
-            return group;
+            return PanelFader.EnsureCanvasGroup(panel);
         }
 
         private void EnsureSoundManager()
@@ -2062,30 +1868,12 @@ namespace EscapeFromNightmares.Runtime
             return group;
         }
 
+        /// <summary>
+        /// 씬에 클리어 패널이 없을 때 사용할 기본 Stage Clear UI를 런타임으로 생성합니다.
+        /// </summary>
         public static StageClearUi CreateStageClearPanel(RectTransform root, Sprite backgroundSprite)
         {
-            var panel = CreatePanel("StageClearPanel", root, Color.black);
-            Stretch(panel.GetComponent<RectTransform>(), new Rect(0f, 0f, 1f, 1f));
-
-            var background = CreateImage("StageClearBackground", panel.transform, Color.white);
-            background.sprite = backgroundSprite;
-            background.preserveAspect = true;
-            Stretch(background.rectTransform, new Rect(0f, 0f, 1f, 1f));
-
-            var title = CreateText("StageClearTitle", panel.transform, 52, TextAnchor.MiddleCenter);
-            title.text = "Stage Clear";
-            title.color = new Color(0.96f, 0.92f, 0.78f, 1f);
-            Stretch(title.rectTransform, new Rect(0.24f, 0.64f, 0.52f, 0.14f));
-
-            var titleButton = CreateTextButton("StageClearTitleButton", panel.transform, "Title", ReturnToTitleScene);
-            Stretch(titleButton.GetComponent<RectTransform>(), new Rect(0.42f, 0.18f, 0.16f, 0.08f));
-
-            var group = EnsureCanvasGroup(panel);
-            group.alpha = 0f;
-            group.interactable = false;
-            group.blocksRaycasts = false;
-            panel.SetActive(false);
-            return new StageClearUi(panel, background, titleButton);
+            return StageClearPresenter.CreatePanel(root, backgroundSprite, ReturnToTitleScene);
         }
 
         private static GameObject CreatePanel(string name, Transform parent, Color color)
@@ -2159,8 +1947,12 @@ namespace EscapeFromNightmares.Runtime
             return text;
         }
 
+        /// <summary>
+        /// 런타임으로 만든 Stage Clear 패널과 핵심 UI 참조를 묶습니다.
+        /// </summary>
         public readonly struct StageClearUi
         {
+            /// <summary>Stage Clear UI 참조 묶음을 생성합니다.</summary>
             public StageClearUi(GameObject panel, Image backgroundImage, Button titleButton)
             {
                 this.panel = panel;
@@ -2323,14 +2115,22 @@ namespace EscapeFromNightmares.Runtime
 
 namespace EscapeFromNightmares.UI
 {
+    /// <summary>
+    /// 개발 빌드와 에디터에서 몬스터 상태/배치 문제를 빠르게 확인하기 위한 런타임 QA 패널입니다.
+    /// </summary>
     public sealed class MonsterRuntimeQaPanel : MonoBehaviour
     {
         [SerializeField] private Text infoText;
         [SerializeField] private CanvasGroup canvasGroup;
 
+        /// <summary>QA 정보를 표시하는 텍스트 컴포넌트입니다.</summary>
         public Text InfoText => infoText;
+        /// <summary>패널 표시 상태를 제어하는 CanvasGroup입니다.</summary>
         public CanvasGroup CanvasGroup => canvasGroup;
 
+        /// <summary>
+        /// 패널 표시 여부를 바꾸되 게임 입력을 가로막지 않도록 raycast 차단은 끕니다.
+        /// </summary>
         public void SetVisible(bool visible)
         {
             EnsureReferences();
@@ -2340,6 +2140,9 @@ namespace EscapeFromNightmares.UI
             gameObject.SetActive(visible);
         }
 
+        /// <summary>
+        /// 최신 몬스터 QA 스냅샷을 사람이 읽을 수 있는 텍스트로 갱신합니다.
+        /// </summary>
         public void Refresh(GameDirector.MonsterQaSnapshot snapshot)
         {
             EnsureReferences();
@@ -2357,6 +2160,9 @@ namespace EscapeFromNightmares.UI
                 + "status: " + snapshot.StatusText;
         }
 
+        /// <summary>
+        /// 별도 프리팹 없이 현재 Canvas 아래에 기본 QA 패널을 생성합니다.
+        /// </summary>
         public static MonsterRuntimeQaPanel Create(RectTransform root)
         {
             var panelObject = new GameObject("MonsterRuntimeQaPanel", typeof(RectTransform), typeof(Image), typeof(CanvasGroup), typeof(MonsterRuntimeQaPanel));

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4631f4dbae9c4094b888b9204aa8ff23, type: 3}
+  m_Name: Stage1
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.StageDefinition
+  stageId: stage1
+  displayName: Stage 1 - Nightmare House
+  startRoomId: child_room
+  clearFlag: stage1_clear
+  rooms:
+  - {fileID: 11400000, guid: 641f1d65833d79d4494b1e35ba3aeab3, type: 2}
+  - {fileID: 11400000, guid: 092f86abfacae3c469e514ae080ec5a1, type: 2}
+  - {fileID: 11400000, guid: 00bde11de81d53f4e8816ae94213ba0a, type: 2}
+  - {fileID: 11400000, guid: 469c7fc65fc9b0e4c8dac9ae9a38ae9f, type: 2}
+  - {fileID: 11400000, guid: 214617888d889ee4d835efbe5cfbe3f7, type: 2}
+  - {fileID: 11400000, guid: 4044da274133a78418e9aa56f3e55894, type: 2}
+  - {fileID: 11400000, guid: 7265f988ba1e87247975d563cba87447, type: 2}
+  - {fileID: 11400000, guid: 8af7872422ee1f041bd31ed8af9212e1, type: 2}
+  - {fileID: 11400000, guid: 9ce46d64285012b409d27309271d1e35, type: 2}
+  - {fileID: 11400000, guid: 5fd7d56da005f4c438038206e3ac0031, type: 2}
+  - {fileID: 11400000, guid: c4571c1186a1df64e95c2c2f7217f82a, type: 2}
+  - {fileID: 11400000, guid: 94dfed079f37fe0479624ee3b4c7a3ab, type: 2}
+  - {fileID: 11400000, guid: 1c7cfcde4d999d64eb81358686d1c78e, type: 2}
+  - {fileID: 11400000, guid: e06fb28211e432544a9dcff70b67e6d5, type: 2}
+  - {fileID: 11400000, guid: 5dbb149664f84d04590e714fd6f3a145, type: 2}
+  - {fileID: 11400000, guid: 1cd5c70bc0294b84eae61f91c6f15f77, type: 2}
+  - {fileID: 11400000, guid: 3bf36aa7bd0ab7344ab5d03a1d5ade48, type: 2}
+  - {fileID: 11400000, guid: fdda1db51921abf498dbc2efdf78925f, type: 2}
+  - {fileID: 11400000, guid: b061a83372ae6144d8ca515a2d0b4202, type: 2}
+  - {fileID: 11400000, guid: af9fa27ef39fb934188bd3dbbaaba7e3, type: 2}
+  - {fileID: 11400000, guid: 68d941f1e469779479e22e0b8418e4b1, type: 2}
+  items:
+  - {fileID: 11400000, guid: 461ab1e78907f6b4e85dd1f1f287eed8, type: 2}
+  - {fileID: 11400000, guid: ee8313061ff3f4343934411312861d16, type: 2}
+  - {fileID: 11400000, guid: 431bc9f3dd23ce04084f0773599d6282, type: 2}
+  - {fileID: 11400000, guid: bc4a9a4526075d440af34bbae88c2188, type: 2}
+  - {fileID: 11400000, guid: 0cc644656908cd545aa1385801c96842, type: 2}
+  - {fileID: 11400000, guid: d1b854863b4723f45bce4be6f48e422a, type: 2}
+  - {fileID: 11400000, guid: cf8a9d67135017041a997cee6fad2852, type: 2}
+  - {fileID: 11400000, guid: a799a0dc511582c4db47f9e17f525f14, type: 2}
+  - {fileID: 11400000, guid: 95792667226551540aa01d0d58aea039, type: 2}
+  - {fileID: 11400000, guid: 3bd1523375e270145bd583c8edbbbc77, type: 2}
+  puzzles:
+  - {fileID: 11400000, guid: aaae17d1d57df39439d953744ebceffa, type: 2}
+  - {fileID: 11400000, guid: ae1973f7e45306b4194c3ae32f557c3d, type: 2}
+  - {fileID: 11400000, guid: 1a96c6e04ce0c1643ab8948e9b97639a, type: 2}
+  - {fileID: 11400000, guid: 99a6619f0ee96b54f93a81d8848b377b, type: 2}
+  - {fileID: 11400000, guid: ca2e8e8680635d5468a25b2a6a267869, type: 2}
+  - {fileID: 11400000, guid: 11b9c4889faa09949b79572c8db00718, type: 2}
+  - {fileID: 11400000, guid: 2b6f031ecf35ce7468f437abff8e55db, type: 2}
+  - {fileID: 11400000, guid: 2cc5dcb05f8e542498f2158e528cc2ec, type: 2}
+  monsterNodeGraph: {fileID: 11400000, guid: 0207461b9383efe40a8af806bf3dc48e, type: 2}
+  soundCatalog: {fileID: 11400000, guid: d4abe41f81096304d893b0c2f5cde223, type: 2}

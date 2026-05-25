@@ -1,0 +1,324 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc337f25dc48f2a8fa0584e2c4dfe3, type: 3}
+  m_Name: altar_room
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomDefinition
+  roomId: altar_room
+  displayName: Altar Room
+  floorName: Basement
+  backgroundResource: EscapeFromNightmares/Rooms/altar_room_north
+  faces:
+  - direction: 0
+    displayName: Altar
+    backgroundResource: EscapeFromNightmares/Rooms/altar_room_north
+    conditionalBackgrounds:
+    - backgroundResource: EscapeFromNightmares/Rooms/altar_room_north_key_taken
+      conditions:
+        requiredItemIds:
+        - front_door_key
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+    - backgroundResource: EscapeFromNightmares/Rooms/altar_room_north_key_spawned
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds:
+        - front_door_key_spawned
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+    interactables:
+    - interactableId: altar
+      displayName: Altar
+      type: 2
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.3
+        y: 0.22
+        width: 0.4
+        height: 0.44
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: 
+      puzzleId: basement_altar
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/altar
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: ui_click
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: front_door_key_on_altar
+      displayName: Front Door Key
+      type: 1
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.46
+        y: 0.36
+        width: 0.12
+        height: 0.16
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds:
+        - front_door_key_spawned
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: front_door_key
+      targetRoomId: 
+      puzzleId: 
+      solvesPuzzleId: basement_altar
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/front_door_key_on_altar
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds:
+      - event_front_door_key_appears
+      soundId: sfx_item_pickup
+      consumeOnUse: 0
+      oneShot: 1
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 1
+  - direction: 1
+    displayName: Ritual Wall
+    backgroundResource: EscapeFromNightmares/Rooms/altar_room_east
+    conditionalBackgrounds: []
+    interactables: []
+  - direction: 2
+    displayName: Basement Door
+    backgroundResource: EscapeFromNightmares/Rooms/altar_room_south
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: altar_room_to_basement_main
+      displayName: Basement Main
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.3
+        y: 0.12
+        width: 0.34
+        height: 0.74
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: basement_main
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/altar_room_to_basement_main
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 3
+    displayName: Candle Wall
+    backgroundResource: EscapeFromNightmares/Rooms/altar_room_west
+    conditionalBackgrounds: []
+    interactables: []
+  mapPosition: {x: 0, y: 0}
+  connectedRoomIds:
+  - basement_main
+  interactables:
+  - interactableId: altar
+    displayName: Altar
+    type: 2
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.3
+      y: 0.22
+      width: 0.4
+      height: 0.44
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: 
+    puzzleId: basement_altar
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/altar
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: ui_click
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: front_door_key_on_altar
+    displayName: Front Door Key
+    type: 1
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.46
+      y: 0.36
+      width: 0.12
+      height: 0.16
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds:
+      - front_door_key_spawned
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: front_door_key
+    targetRoomId: 
+    puzzleId: 
+    solvesPuzzleId: basement_altar
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/front_door_key_on_altar
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds:
+    - event_front_door_key_appears
+    soundId: sfx_item_pickup
+    consumeOnUse: 0
+    oneShot: 1
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 1
+  - interactableId: altar_room_to_basement_main
+    displayName: Basement Main
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.3
+      y: 0.12
+      width: 0.34
+      height: 0.74
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: basement_main
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/altar_room_to_basement_main
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  hideSpotCount: 0
+  dangerModifier: 1
+  allowMonster: 1

@@ -1,0 +1,644 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc337f25dc48f2a8fa0584e2c4dfe3, type: 3}
+  m_Name: second_floor_hallway
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomDefinition
+  roomId: second_floor_hallway
+  displayName: 2F Hallway
+  floorName: 2F
+  backgroundResource: EscapeFromNightmares/Rooms/second_floor_hallway_north
+  faces:
+  - direction: 0
+    displayName: Child Room End
+    backgroundResource: EscapeFromNightmares/Rooms/second_floor_hallway_north
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: door_to_child_room
+      displayName: Child Room
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.03
+        y: 0.09
+        width: 0.34
+        height: 0.76
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: child_room
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_child_room
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: door_to_study
+      displayName: Study
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.78
+        y: 0.12
+        width: 0.2
+        height: 0.72
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: study
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_study
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: door_to_second_floor_bathroom
+      displayName: Bathroom
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.68
+        y: 0.2
+        width: 0.08
+        height: 0.42
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: second_floor_bathroom
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_second_floor_bathroom
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: door_to_mirror_room
+      displayName: Mirror Room
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.53
+        y: 0.24
+        width: 0.07
+        height: 0.36
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: mirror_room
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_mirror_room
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 2
+    displayName: Stairwell End
+    backgroundResource: EscapeFromNightmares/Rooms/second_floor_hallway_south
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: door_to_master_bedroom
+      displayName: Master Bedroom
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.27
+        y: 0.1
+        width: 0.18
+        height: 0.72
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: master_bedroom
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_master_bedroom
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: door_to_dressing_room
+      displayName: Dressing Room
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.53
+        y: 0.2
+        width: 0.1
+        height: 0.48
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: dressing_room
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_dressing_room
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+    - interactableId: door_to_stairwell_2f
+      displayName: Stairwell
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.57
+        y: 0.42
+        width: 0.26
+        height: 0.45
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: stairwell_2f
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/door_to_stairwell_2f
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  mapPosition: {x: 0, y: 0}
+  connectedRoomIds:
+  - child_room
+  - study
+  - mirror_room
+  - master_bedroom
+  - dressing_room
+  - second_floor_bathroom
+  - stairwell_2f
+  interactables:
+  - interactableId: door_to_child_room
+    displayName: Child Room
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.03
+      y: 0.09
+      width: 0.34
+      height: 0.76
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: child_room
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_child_room
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_study
+    displayName: Study
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.78
+      y: 0.12
+      width: 0.2
+      height: 0.72
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: study
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_study
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_mirror_room
+    displayName: Mirror Room
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.53
+      y: 0.24
+      width: 0.07
+      height: 0.36
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: mirror_room
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_mirror_room
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_master_bedroom
+    displayName: Master Bedroom
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.27
+      y: 0.1
+      width: 0.18
+      height: 0.72
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: master_bedroom
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_master_bedroom
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_dressing_room
+    displayName: Dressing Room
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.53
+      y: 0.2
+      width: 0.1
+      height: 0.48
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: dressing_room
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_dressing_room
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_second_floor_bathroom
+    displayName: Bathroom
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.68
+      y: 0.2
+      width: 0.08
+      height: 0.42
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: second_floor_bathroom
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_second_floor_bathroom
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: door_to_stairwell_2f
+    displayName: Stairwell
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.57
+      y: 0.42
+      width: 0.26
+      height: 0.45
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: stairwell_2f
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/door_to_stairwell_2f
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  hideSpotCount: 0
+  dangerModifier: 1
+  allowMonster: 1

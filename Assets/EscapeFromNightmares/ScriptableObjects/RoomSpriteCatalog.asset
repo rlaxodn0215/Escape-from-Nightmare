@@ -29,6 +29,22 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 5bf28d097595724b3e67ed3f8c3a187f, type: 3}
   - spriteId: first_floor_hallway_south
     sprite: {fileID: 21300000, guid: c030c7def6e60f1367e1767c1808b5f1, type: 3}
+  - spriteId: family_photo_room_north
+    sprite: {fileID: 21300000, guid: 6b1e53836804016488b6c432548e7305, type: 3}
+  - spriteId: family_photo_room_east
+    sprite: {fileID: 21300000, guid: 514a3822815b6f84aa5215bb27049c93, type: 3}
+  - spriteId: family_photo_room_south
+    sprite: {fileID: 21300000, guid: f3acabd06ce81ce49a4f1367d092d241, type: 3}
+  - spriteId: family_photo_room_west
+    sprite: {fileID: 21300000, guid: d07814459aa2dd449837ff355bd08518, type: 3}
+  - spriteId: living_room_north
+    sprite: {fileID: 21300000, guid: 467b5f80cd73edb4a8b7248e4f2314bd, type: 3}
+  - spriteId: living_room_east
+    sprite: {fileID: 21300000, guid: ea1c9783b38f75c41aca2c21a64a527b, type: 3}
+  - spriteId: living_room_south
+    sprite: {fileID: 21300000, guid: d65c5cca048db314ba15c0a7f60560a8, type: 3}
+  - spriteId: living_room_west
+    sprite: {fileID: 21300000, guid: ffa265fb90994824083a94ceb6359ad5, type: 3}
   - spriteId: entrance_north
     sprite: {fileID: 21300000, guid: bf426926f2a0177dcfb1a556fe6207c8, type: 3}
   - spriteId: entrance_east
@@ -231,6 +247,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: c5716239d3a58365db44b9789fbbac5d, type: 3}
   - spriteId: item_front_door_key
     sprite: {fileID: 21300000, guid: 7e65b7281299430fa732839b24eb1c9d, type: 3}
+  - spriteId: item_broken_hand_mirror
+    sprite: {fileID: 21300000, guid: 150cfc49d60e141448fba33e21d29fe3, type: 3}
+  - spriteId: item_old_necklace
+    sprite: {fileID: 21300000, guid: 8c8a87620f21ca9418252f9d0d059c02, type: 3}
+  - spriteId: item_study_safe_clue
+    sprite: {fileID: 21300000, guid: e9add743e16d5a44c918e7c37b68f667, type: 3}
   - spriteId: child_desk_drawer_closed
     sprite: {fileID: 21300000, guid: 93b79f5ac7d041d394817bd226319474, type: 3}
   - spriteId: child_desk_drawer_open_with_item

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340fd61087b64c2dbaf7809900ccf4c9, type: 3}
+  m_Name: master_bedroom_drawer
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.PuzzleDefinition
+  puzzleId: master_bedroom_drawer
+  displayName: "\uC548\uBC29 \uC0C9\uC0C1 \uC11C\uB78D"
+  puzzleType: 2
+  answerTokens:
+  - black
+  - white
+  - red
+  - gray
+  requiredItemIds: []
+  rewardItemIds:
+  - old_necklace
+  conditions:
+    requiredItemIds: []
+    requiredFlagIds: []
+    anyFlagIds: []
+    forbiddenFlagIds: []
+    solvedPuzzleIds: []
+  successFlag: master_drawer_opened
+  successEventId: event_master_bedroom_drawer_success
+  successSoundId: sfx_puzzle_success
+  failureSoundId: sfx_puzzle_failure
+  closeUpResource: EscapeFromNightmares/Puzzles/master_bedroom_drawer
+  failureDanger: 8
+  consumeRequiredItems: 0
+  oneShot: 0
+  deferSolvedUntilRewardPickup: 0

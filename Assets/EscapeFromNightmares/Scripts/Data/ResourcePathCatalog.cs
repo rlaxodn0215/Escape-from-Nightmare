@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace EscapeFromNightmares.Data
 {
+    /// <summary>
+    /// Resources 폴더에서 타이틀 UI와 공통 UI 사운드를 찾기 위한 기본 경로 목록입니다.
+    /// </summary>
     [CreateAssetMenu(menuName = "Escape From Nightmares/Resource Path Catalog")]
     public sealed class ResourcePathCatalog : ScriptableObject
     {
@@ -27,6 +30,9 @@ namespace EscapeFromNightmares.Data
         public string uiClickPath = "EscapeFromNightmares/Audio/UI/ui_click";
         public string confirmSfxPath = "EscapeFromNightmares/Audio/SFX/sfx_confirm";
 
+        /// <summary>
+        /// 카탈로그 에셋이 없을 때 코드에서 동일한 기본 경로를 사용하기 위한 런타임 기본값을 만듭니다.
+        /// </summary>
         public static ResourcePathCatalog CreateDefault()
         {
             return CreateInstance<ResourcePathCatalog>();

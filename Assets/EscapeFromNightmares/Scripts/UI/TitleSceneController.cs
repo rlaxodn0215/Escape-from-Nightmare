@@ -11,6 +11,9 @@ using UnityEditor;
 
 namespace EscapeFromNightmares.UI
 {
+    /// <summary>
+    /// 타이틀 씬의 배경, 버튼, 설정 패널, 시작/종료 흐름을 제어합니다.
+    /// </summary>
     public sealed class TitleSceneController : MonoBehaviour
     {
         [SerializeField] private ResourcePathCatalog resourceCatalog;
@@ -61,12 +64,18 @@ namespace EscapeFromNightmares.UI
             soundManager.PlayBgm(resourceCatalog.titleBgmPath);
         }
 
+        /// <summary>
+        /// 확인음을 재생하고 설정된 게임 씬으로 이동합니다.
+        /// </summary>
         public void StartGame()
         {
             soundManager.PlaySfx(resourceCatalog.confirmSfxPath);
             SceneManager.LoadScene(gameSceneName);
         }
 
+        /// <summary>
+        /// UI 클릭음을 재생하고 오디오 설정 패널을 엽니다.
+        /// </summary>
         public void OpenSettings()
         {
             soundManager.PlayUi(resourceCatalog.uiClickPath);
@@ -76,6 +85,9 @@ namespace EscapeFromNightmares.UI
             }
         }
 
+        /// <summary>
+        /// UI 클릭음을 재생한 뒤 에디터에서는 Play Mode를 종료하고 빌드에서는 애플리케이션을 종료합니다.
+        /// </summary>
         public void QuitGame()
         {
             soundManager.PlayUi(resourceCatalog.uiClickPath);
@@ -86,6 +98,9 @@ namespace EscapeFromNightmares.UI
 #endif
         }
 
+        /// <summary>
+        /// 타이틀 로고가 없는 구버전 호출부에서 씬 참조를 주입할 때 사용합니다.
+        /// </summary>
         public void SetReferences(
             ResourcePathCatalog catalog,
             AudioMixer mixer,
@@ -99,6 +114,9 @@ namespace EscapeFromNightmares.UI
             SetReferences(catalog, mixer, background, null, start, settingsButtonReference, quit, audioPanel, targetSceneName);
         }
 
+        /// <summary>
+        /// 에디터 빌더가 생성한 타이틀 씬 UI 참조와 이동 대상 씬 이름을 주입합니다.
+        /// </summary>
         public void SetReferences(
             ResourcePathCatalog catalog,
             AudioMixer mixer,

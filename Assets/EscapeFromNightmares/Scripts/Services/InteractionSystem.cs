@@ -3,6 +3,9 @@ using EscapeFromNightmares.Data;
 
 namespace EscapeFromNightmares.Services
 {
+    /// <summary>
+    /// 단순 상호작용 판정 결과의 종류입니다.
+    /// </summary>
     public enum InteractionResultType
     {
         None,
@@ -14,6 +17,9 @@ namespace EscapeFromNightmares.Services
         TriggerEvent
     }
 
+    /// <summary>
+    /// 상호작용 판정 결과와 그 결과가 참조하는 방/아이템/퍼즐/이벤트 ID를 담습니다.
+    /// </summary>
     public readonly struct InteractionResult
     {
         public InteractionResult(InteractionResultType resultType, string value)
@@ -22,10 +28,15 @@ namespace EscapeFromNightmares.Services
             Value = value;
         }
 
+        /// <summary>상호작용 결과 종류입니다.</summary>
         public InteractionResultType ResultType { get; }
+        /// <summary>결과 종류에 따라 해석되는 대상 ID입니다.</summary>
         public string Value { get; }
     }
 
+    /// <summary>
+    /// InteractableDefinition을 간단한 결과 타입으로 해석하는 초기 상호작용 판정기입니다.
+    /// </summary>
     public sealed class InteractionSystem
     {
         private readonly GameSession session;
@@ -42,6 +53,9 @@ namespace EscapeFromNightmares.Services
             this.flags = flags;
         }
 
+        /// <summary>
+        /// 상호작용 조건을 확인한 뒤 이동, 아이템 획득, 퍼즐 열기 같은 결과로 변환합니다.
+        /// </summary>
         public InteractionResult Resolve(InteractableDefinition interactable)
         {
             if (interactable == null
@@ -84,6 +98,9 @@ namespace EscapeFromNightmares.Services
         }
     }
 
+    /// <summary>
+    /// GameDirector가 실제로 실행할 수 있는 상호작용 액션 종류입니다.
+    /// </summary>
     public enum EscapeActionType
     {
         None,
@@ -101,6 +118,9 @@ namespace EscapeFromNightmares.Services
         CompleteStage
     }
 
+    /// <summary>
+    /// 하나의 런타임 액션과 액션 실행에 필요한 문자열/정수/사운드 데이터를 담습니다.
+    /// </summary>
     public readonly struct EscapeAction
     {
         public EscapeAction(EscapeActionType type, string value, int intValue = 0, SoundEntry soundEntry = null)
@@ -111,9 +131,13 @@ namespace EscapeFromNightmares.Services
             SoundEntry = soundEntry;
         }
 
+        /// <summary>실행할 액션 종류입니다.</summary>
         public EscapeActionType Type { get; }
+        /// <summary>방 ID, 아이템 ID, 플래그 ID처럼 액션이 참조하는 문자열 값입니다.</summary>
         public string Value { get; }
+        /// <summary>회전 방향처럼 정수 값이 필요한 액션에 사용합니다.</summary>
         public int IntValue { get; }
+        /// <summary>사운드 재생 액션에 연결된 사운드 카탈로그 항목입니다.</summary>
         public SoundEntry SoundEntry { get; }
 
         public static EscapeAction MoveRoom(string roomId)
@@ -177,6 +201,9 @@ namespace EscapeFromNightmares.Services
         }
     }
 
+    /// <summary>
+    /// 상호작용 해석의 성공 여부와 GameDirector가 순서대로 실행할 액션 목록입니다.
+    /// </summary>
     public sealed class EscapeActionResult
     {
         private readonly List<EscapeAction> actions = new List<EscapeAction>();
@@ -187,20 +214,26 @@ namespace EscapeFromNightmares.Services
             Message = message;
         }
 
+        /// <summary>상호작용이나 퍼즐 해석이 성공했는지 여부입니다.</summary>
         public bool Succeeded { get; }
+        /// <summary>실패 또는 디버그 로그에 사용할 메시지입니다.</summary>
         public string Message { get; }
+        /// <summary>성공 시 실행할 액션 목록입니다.</summary>
         public IReadOnlyList<EscapeAction> Actions => actions;
 
+        /// <summary>성공 결과를 생성합니다.</summary>
         public static EscapeActionResult Success(string message = "")
         {
             return new EscapeActionResult(true, message);
         }
 
+        /// <summary>실패 결과를 생성합니다.</summary>
         public static EscapeActionResult Failure(string message)
         {
             return new EscapeActionResult(false, message);
         }
 
+        /// <summary>None이 아닌 액션을 결과 목록에 추가하고 같은 결과 객체를 반환합니다.</summary>
         public EscapeActionResult Add(EscapeAction action)
         {
             if (action.Type != EscapeActionType.None)
@@ -212,6 +245,9 @@ namespace EscapeFromNightmares.Services
         }
     }
 
+    /// <summary>
+    /// 상호작용과 퍼즐 결과를 GameDirector가 실행할 액션 목록으로 변환합니다.
+    /// </summary>
     public sealed class EscapeActionResolver
     {
         private readonly GameSession session;
@@ -225,6 +261,9 @@ namespace EscapeFromNightmares.Services
             this.soundCatalog = soundCatalog;
         }
 
+        /// <summary>
+        /// 클릭된 상호작용의 조건, 사운드, 플래그, 결과 동작을 액션 목록으로 해석합니다.
+        /// </summary>
         public EscapeActionResult ResolveInteractable(InteractableDefinition interactable)
         {
             if (interactable == null)
@@ -242,6 +281,7 @@ namespace EscapeFromNightmares.Services
                 return EscapeActionResult.Failure("필요 조건을 만족하지 못했습니다.");
             }
 
+            // 사운드와 플래그는 상호작용 종류와 무관하게 공통으로 먼저 누적합니다.
             var result = EscapeActionResult.Success();
             AddSound(result, interactable.soundId);
             AddFlags(result, interactable.setFlagIds);
@@ -297,11 +337,13 @@ namespace EscapeFromNightmares.Services
             }
         }
 
+        /// <summary>방향 전환 버튼 입력을 회전 액션으로 변환합니다.</summary>
         public EscapeActionResult ResolveRotateFace(int offset)
         {
             return EscapeActionResult.Success().Add(EscapeAction.RotateFace(offset));
         }
 
+        /// <summary>퍼즐 성공 시 필요한 사운드와 성공 플래그 액션을 생성합니다.</summary>
         public EscapeActionResult ResolvePuzzleSuccess(PuzzleDefinition puzzle)
         {
             if (puzzle == null)
@@ -316,6 +358,7 @@ namespace EscapeFromNightmares.Services
             return result;
         }
 
+        /// <summary>퍼즐 실패 시 실패 사운드를 포함한 실패 결과를 생성합니다.</summary>
         public EscapeActionResult ResolvePuzzleFailure(PuzzleDefinition puzzle)
         {
             var result = EscapeActionResult.Failure("퍼즐 해결 실패.");
@@ -327,6 +370,7 @@ namespace EscapeFromNightmares.Services
             return result;
         }
 
+        /// <summary>스테이지 클리어 플래그와 완료 액션을 생성합니다.</summary>
         public EscapeActionResult ResolveCompleteStage(StageDefinition stage)
         {
             var result = EscapeActionResult.Success();

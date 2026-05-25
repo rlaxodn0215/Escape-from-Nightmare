@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7b10f4a33f4aeb86054e64c175fde4, type: 3}
+  m_Name: StageCatalog
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.StageCatalog
+  stage1: {fileID: 11400000, guid: 4ae05e18c15958e498d67977a7f5ef0b, type: 2}

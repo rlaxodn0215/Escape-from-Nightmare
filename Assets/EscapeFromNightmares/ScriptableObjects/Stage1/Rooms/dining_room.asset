@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc337f25dc48f2a8fa0584e2c4dfe3, type: 3}
+  m_Name: dining_room
+  m_EditorClassIdentifier: EscapeFromNightmares::EscapeFromNightmares.Data.RoomDefinition
+  roomId: dining_room
+  displayName: Dining Room
+  floorName: 1F
+  backgroundResource: EscapeFromNightmares/Rooms/dining_room_north
+  faces:
+  - direction: 0
+    displayName: Seat Order
+    backgroundResource: EscapeFromNightmares/Rooms/dining_room_north
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: dining_seat_order_clue
+      displayName: Dining Seat Order
+      type: 6
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.24
+        y: 0.2
+        width: 0.52
+        height: 0.52
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: 
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/dining_seat_order_clue
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: EscapeFromNightmares/CloseUps/dining_seat_order_clue
+      setFlagIds: []
+      soundId: ui_click
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 1
+    displayName: Hallway Door
+    backgroundResource: EscapeFromNightmares/Rooms/dining_room_east
+    conditionalBackgrounds: []
+    interactables:
+    - interactableId: dining_exit
+      displayName: 1F Hallway
+      type: 0
+      normalizedHitbox:
+        serializedVersion: 2
+        x: 0.62
+        y: 0.11
+        width: 0.24
+        height: 0.74
+      conditions:
+        requiredItemIds: []
+        requiredFlagIds: []
+        anyFlagIds: []
+        forbiddenFlagIds: []
+        solvedPuzzleIds: []
+      requiredItemId: 
+      grantsItemId: 
+      targetRoomId: first_floor_hallway
+      puzzleId: 
+      solvesPuzzleId: 
+      eventId: 
+      imageResource: EscapeFromNightmares/Objects/dining_exit
+      closeUpClosedResource: 
+      closeUpOpenWithItemResource: 
+      closeUpOpenEmptyResource: 
+      closeUpItemId: 
+      closeUpItemHitbox:
+        serializedVersion: 2
+        x: 0.42
+        y: 0.35
+        width: 0.22
+        height: 0.24
+      closeUpOpenSoundId: 
+      closeUpCloseSoundId: 
+      hideViewResource: 
+      clueViewResource: 
+      setFlagIds: []
+      soundId: sfx_door
+      consumeOnUse: 0
+      oneShot: 0
+      hiddenByDefault: 0
+      showWorldImage: 0
+      disableRoomHitboxWhenUsed: 0
+  - direction: 2
+    displayName: Dining Cabinets
+    backgroundResource: EscapeFromNightmares/Rooms/dining_room_south
+    conditionalBackgrounds: []
+    interactables: []
+  - direction: 3
+    displayName: Dining Window
+    backgroundResource: EscapeFromNightmares/Rooms/dining_room_west
+    conditionalBackgrounds: []
+    interactables: []
+  mapPosition: {x: 0, y: 0}
+  connectedRoomIds:
+  - first_floor_hallway
+  interactables:
+  - interactableId: dining_seat_order_clue
+    displayName: Dining Seat Order
+    type: 6
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.24
+      y: 0.2
+      width: 0.52
+      height: 0.52
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: 
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/dining_seat_order_clue
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: EscapeFromNightmares/CloseUps/dining_seat_order_clue
+    setFlagIds: []
+    soundId: ui_click
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  - interactableId: dining_exit
+    displayName: 1F Hallway
+    type: 0
+    normalizedHitbox:
+      serializedVersion: 2
+      x: 0.62
+      y: 0.11
+      width: 0.24
+      height: 0.74
+    conditions:
+      requiredItemIds: []
+      requiredFlagIds: []
+      anyFlagIds: []
+      forbiddenFlagIds: []
+      solvedPuzzleIds: []
+    requiredItemId: 
+    grantsItemId: 
+    targetRoomId: first_floor_hallway
+    puzzleId: 
+    solvesPuzzleId: 
+    eventId: 
+    imageResource: EscapeFromNightmares/Objects/dining_exit
+    closeUpClosedResource: 
+    closeUpOpenWithItemResource: 
+    closeUpOpenEmptyResource: 
+    closeUpItemId: 
+    closeUpItemHitbox:
+      serializedVersion: 2
+      x: 0.42
+      y: 0.35
+      width: 0.22
+      height: 0.24
+    closeUpOpenSoundId: 
+    closeUpCloseSoundId: 
+    hideViewResource: 
+    clueViewResource: 
+    setFlagIds: []
+    soundId: sfx_door
+    consumeOnUse: 0
+    oneShot: 0
+    hiddenByDefault: 0
+    showWorldImage: 0
+    disableRoomHitboxWhenUsed: 0
+  hideSpotCount: 0
+  dangerModifier: 1
+  allowMonster: 1
