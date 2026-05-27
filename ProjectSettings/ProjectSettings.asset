@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: d9580b29991450143bd23504cf3dc4b7
+  productGUID: 90de2709d53a44f4dbbc9daa30d3f25f
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: EscapeFromNightmares
+  productName: EscapeFromNightmare
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -604,14 +604,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: EscapeFromNightmares
+  metroPackageName: EscapeFromNightmare
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: EscapeFromNightmares
+  metroApplicationDescription: EscapeFromNightmare
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -682,10 +682,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: beb1cd5b-d296-439b-a19d-612bdf63b7d0
+  cloudProjectId: 8cea1041-d6c8-4f4b-81b0-ca2c5bdb2240
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: EscapeFromNightmares 2026-05-20_22-50-36
+  projectName: EscapeFromNightmare 2026-05-27_21-06-50
   organizationId: tedia
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
