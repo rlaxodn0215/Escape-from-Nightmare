@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dd934642-0a21-44d4-b5aa-a86e6bc7db37" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/EscapeAudioMixer.mixer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/EscapeAudioMixer.mixer.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Audio.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Prefabs/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/BGM.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/BGM/bgm_final_chase.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/BGM/bgm_stage1_ambient.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/BGM/title_loop.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_confirm.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_door.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_drawer_close.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_drawer_open.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_hide.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_item_pickup.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_puzzle_failure.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/SFX/sfx_puzzle_success.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Audio/UI/ui_click.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/attic_family_album_photo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/basement_wall_symbols.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_closed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/child_desk_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/child_drawing_board.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/child_window_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/dressing_color_sequence_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_clue_board.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_desk_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_safe_clue_note.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_safe_locked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_safe_open_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_safe_open_with_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_safe_surrounding.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/CloseUps/study_window_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/HideViews.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/HideViews/basement_main_hide_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/HideViews/child_bed_under_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_broken_hand_mirror.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_front_door_key.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_fuse_holder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_old_necklace.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_small_doll.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_study_safe_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_symbol_fragment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Items/item_torn_drawing_fragment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Monster.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Objects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Objects/child_bed_hide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Objects/child_desk_drawer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Objects/child_room_door.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Objects/child_window_silhouette.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/attic_toy_sequence.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/basement_altar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/breaker_box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/front_door_escape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/laundry_storage_box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/master_bedroom_drawer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/mirror_symbol_panel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/altar_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/altar_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_spawned.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_taken.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/altar_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/altar_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_main_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_main_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_main_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_main_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_entry_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_entry_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_entry_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_entry_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_main_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_main_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_main_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/basement_main_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/child_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/child_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/child_room_north_drawer_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/child_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/child_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/dressing_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/dressing_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/dressing_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/dressing_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/entrance_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/entrance_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/entrance_north_chase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/entrance_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/entrance_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/family_photo_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/family_photo_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/family_photo_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/family_photo_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/living_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/living_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/living_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/living_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/master_bedroom_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/master_bedroom_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/master_bedroom_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/master_bedroom_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/mirror_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/mirror_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/mirror_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/mirror_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/stairwell_2f_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/stairwell_2f_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/stairwell_2f_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/stairwell_2f_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_north_safe_open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_with_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Rooms/study_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/button_close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/button_quit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/button_settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/button_start.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/settings_header.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/settings_label_bgm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/settings_label_master.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/settings_label_sfx.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/settings_label_ui.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/settings_panel_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/slider_fill.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/slider_handle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/UI/slider_track.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/title_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/Title/title_logo_escape_from_nightmare.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/inventory_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/inventory_close_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/inventory_panel_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/inventory_slot_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/inventory_slot_selected.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/ui_back_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/ui_hide_exit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/ui_rotate_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Resources/EscapeFromNightmares/UI/ui_rotate_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/ScriptableObjects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/ScriptableObjects/ResourcePathCatalog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EscapeFromNightmares/ScriptableObjects/ResourcePathCatalog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/TitleCanvas.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/TitleCanvas.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM/bgm_final_chase.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM/bgm_final_chase.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM/bgm_stage1_ambient.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM/bgm_stage1_ambient.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM/title_loop.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/BGM/title_loop.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_confirm.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_confirm.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_door.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_door.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_drawer_close.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_drawer_close.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_drawer_open.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_drawer_open.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_hide.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_hide.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_item_pickup.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_item_pickup.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_puzzle_failure.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_puzzle_failure.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_puzzle_success.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/SFX/sfx_puzzle_success.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/UI/ui_click.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Audio/UI/ui_click.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/attic_family_album_photo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/attic_family_album_photo.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/basement_wall_symbols.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/basement_wall_symbols.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_closed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_closed.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_desk_surface.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_drawing_board.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_drawing_board.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_window_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/child_window_view.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/dining_seat_order_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/dining_seat_order_clue.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/dressing_color_sequence_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/dressing_color_sequence_clue.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/kitchen_clock_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/kitchen_clock_clue.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_clue_board.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_clue_board.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_desk_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_desk_surface.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_portrait.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_clue_note.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_clue_note.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_locked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_locked.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_open_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_open_empty.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_open_with_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_open_with_item.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_surrounding.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_safe_surrounding.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_window_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/CloseUps/study_window_view.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Data.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Data/StageCatalog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Data/StageCatalog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Endings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Endings/stage1_clear_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Endings/stage1_clear_background.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/basement_main_hide_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/basement_main_hide_view.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/child_bed_under_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/child_bed_under_view.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/kitchen_sink_hide_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/kitchen_sink_hide_view.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/laundry_machine_hide_view.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/HideViews/laundry_machine_hide_view.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_broken_hand_mirror.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_broken_hand_mirror.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_front_door_key.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_front_door_key.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_fuse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_fuse.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_fuse_holder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_fuse_holder.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_old_keychain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_old_keychain.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_old_necklace.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_old_necklace.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_small_doll.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_small_doll.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_study_safe_clue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_study_safe_clue.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_symbol_fragment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_symbol_fragment.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_torn_drawing_fragment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Items/item_torn_drawing_fragment.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Monster.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Monster/monster_shadow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Monster/monster_shadow.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_bed_hide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_bed_hide.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_desk_drawer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_desk_drawer.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_room_door.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_room_door.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_window_silhouette.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Objects/child_window_silhouette.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/attic_toy_sequence.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/attic_toy_sequence.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/basement_altar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/basement_altar.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/breaker_box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/breaker_box.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/front_door_escape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/front_door_escape.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/laundry_storage_box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/laundry_storage_box.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/master_bedroom_drawer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/master_bedroom_drawer.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/mirror_symbol_panel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/mirror_symbol_panel.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_0.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Puzzles/study_safe_digit_9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_spawned.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_spawned.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_taken.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_north_key_taken.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/altar_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_main_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/attic_toy_storage_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_entry_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/basement_main_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_north_drawer_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_north_drawer_empty.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/child_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dining_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/dressing_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_north_chase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_north_chase.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/entrance_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/family_photo_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south_chase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/first_floor_hallway_south_chase.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/kitchen_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/laundry_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/living_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/master_bedroom_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/mirror_room_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_bathroom_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/second_floor_hallway_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_1f_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/stairwell_2f_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_east.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_east.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north_safe_open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north_safe_open.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_empty.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_with_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_north_safe_open_with_item.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_south.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_south.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_west.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Rooms/study_west.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_close.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_quit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_quit.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_settings.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_start.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/button_start.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_header.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_header.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_bgm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_bgm.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_master.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_master.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_sfx.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_sfx.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_ui.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_label_ui.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_panel_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/settings_panel_bg.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/slider_fill.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/slider_fill.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/slider_handle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/slider_handle.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/slider_track.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/UI/slider_track.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/title_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/title_background.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/title_logo_escape_from_nightmare.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/Title/title_logo_escape_from_nightmare.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_button.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_close_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_close_button.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_panel_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_panel_bg.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_slot_empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_slot_empty.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_slot_selected.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/inventory_slot_selected.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_back_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_back_arrow.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_hide_exit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_hide_exit.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_rotate_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_rotate_left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_rotate_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/EscapeFromNightmares/UI/ui_rotate_right.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TitleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TitleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/MonsterPlacementCatalog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/MonsterPlacementCatalog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/ResourcePathCatalog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/ResourcePathCatalog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/RoomSpriteCatalog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/RoomSpriteCatalog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/broken_hand_mirror.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/broken_hand_mirror.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/front_door_key.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/front_door_key.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/fuse.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/fuse.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/fuse_holder.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/fuse_holder.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/old_keychain.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/old_keychain.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/old_necklace.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/old_necklace.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/small_doll.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/small_doll.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/study_safe_clue.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/study_safe_clue.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/symbol_fragment.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/symbol_fragment.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/torn_drawing_fragment.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Items/torn_drawing_fragment.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/attic_toy_sequence.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/attic_toy_sequence.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/basement_altar.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/basement_altar.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/breaker_box.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/breaker_box.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/front_door_escape.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/front_door_escape.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/laundry_storage_box.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/laundry_storage_box.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/master_bedroom_drawer.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/master_bedroom_drawer.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/mirror_symbol_panel.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/mirror_symbol_panel.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/study_safe.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Puzzles/study_safe.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/altar_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/altar_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/attic_main.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/attic_main.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/attic_toy_storage.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/attic_toy_storage.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/basement_entry.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/basement_entry.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/basement_main.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/basement_main.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/child_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/child_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/dining_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/dining_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/dressing_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/dressing_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/entrance.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/entrance.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/family_photo_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/family_photo_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/first_floor_hallway.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/first_floor_hallway.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/kitchen.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/kitchen.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/laundry_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/laundry_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/living_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/living_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/master_bedroom.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/master_bedroom.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/mirror_room.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/mirror_room.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/second_floor_bathroom.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/second_floor_bathroom.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/second_floor_hallway.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/second_floor_hallway.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/stairwell_1f.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/stairwell_1f.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/stairwell_2f.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/stairwell_2f.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/study.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Rooms/study.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Stage1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Stage1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Stage1MonsterNodeGraph.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Stage1MonsterNodeGraph.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Stage1SoundCatalog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Stage1/Stage1SoundCatalog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bootstrap/EscapeFromNightmaresBootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bootstrap/EscapeFromNightmaresBootstrap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/GameDefinitions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/GameDefinitions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/ItemDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/ItemDefinition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/MonsterNodeGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/MonsterNodeGraph.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/MonsterPlacementCatalog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/MonsterPlacementCatalog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/PuzzleDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/PuzzleDefinition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/ResourcePathCatalog.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/ResourcePathCatalog.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/RoomDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/RoomDefinition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/RoomSpriteCatalog.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/RoomSpriteCatalog.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/SoundCatalog.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/SoundCatalog.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StageCatalog.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StageCatalog.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StageDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StageDefinition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/RuntimeStageFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/RuntimeStageFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/Stage1DataAssetBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/Stage1DataAssetBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/TitleSceneAssetBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/TitleSceneAssetBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/GameDirector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Runtime/GameDirector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/StageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Runtime/StageRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/StudySafePuzzleRules.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Runtime/StudySafePuzzleRules.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Services/InteractionSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Services/InteractionSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Services/ResourceManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Services/ResourceManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Services/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Services/SoundManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SettingsAudioPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SettingsAudioPanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TitleSceneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TitleSceneController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/GameSessionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/GameSessionTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/StageAssetCatalogTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/StageAssetCatalogTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/StageTestData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/StageTestData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Recovery.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Recovery/0.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Recovery/0.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3EG5jrAv2OxyK0W1tHKfRmfzZMd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath D:\Game\Project\Escape_from_Nightmare -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Game\Project\Escape_from_Nightmare" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="D:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Game\Project\Escape_from_Nightmare -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Game\Project\Escape_from_Nightmare" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd934642-0a21-44d4-b5aa-a86e6bc7db37" name="Changes" comment="" />
+      <created>1779792205299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779792205299</updated>
+      <workItem from="1779792208346" duration="1129000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -9,7 +9,7 @@ namespace EscapeFromNightmares.Tests.EditMode
         public static StageDefinition LoadStage1()
         {
             var stage = StageRepository.LoadStage1();
-            Assert.That(stage, Is.Not.Null, "Stage 1 ScriptableObject asset is missing. Rebuild Stage 1 data assets before running tests.");
+            Assert.That(stage, Is.Not.Null, "Stage 1 runtime data is missing.");
             return stage;
         }
     }

@@ -13,7 +13,7 @@ namespace EscapeFromNightmares.Bootstrap
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void CreateRuntime()
         {
-            if (SceneManager.GetActiveScene().name == "TitleScene" || Object.FindFirstObjectByType<TitleSceneController>() != null)
+            if (SceneManager.GetActiveScene().name == "Title" || Object.FindFirstObjectByType<TitleSceneController>() != null)
             {
                 return;
             }

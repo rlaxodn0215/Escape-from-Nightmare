@@ -1,12 +1,10 @@
-using UnityEngine;
-
 namespace EscapeFromNightmares.Data
 {
     /// <summary>
     /// Authored inventory item data.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Item Definition")]
-    public sealed class ItemDefinition : ScriptableObject
+    [System.Serializable]
+    public sealed class ItemDefinition
     {
         public string itemId;
         public string displayName;

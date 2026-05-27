@@ -1,0 +1,259 @@
+파일명: 03_PUZZLES_ITEMS_EVENTS.txt
+
+Escape From Nightmares
+퍼즐 / 아이템 / 이벤트 문서
+
+================================================================================
+01. 아이템 목록
+================================================================================
+
+1. torn_drawing_fragment
+- 이름: 찢어진 그림 조각
+- 획득: child_room / child_desk_drawer
+- 사용: attic_toy_sequence
+- 내용: 가족 4명이 장난감을 들고 있는 그림
+- 타입: clue_item
+
+2. study_safe_clue
+- 이름: 서재 금고 단서
+- 획득: family_photo_room / hidden_photo_drawer
+- 사용: study_safe
+- 타입: clue_item
+
+3. fuse_holder
+- 이름: 퓨즈 홀더
+- 획득: study / study_safe
+- 사용: laundry_room / breaker_box
+- 타입: mechanical_part
+
+4. fuse
+- 이름: 퓨즈
+- 획득: laundry_room / laundry_storage_box
+- 사용: laundry_room / breaker_box
+- 타입: mechanical_part
+
+5. broken_hand_mirror
+- 이름: 깨진 손거울
+- 획득: mirror_room
+- 사용: basement_altar
+- 제단 문양: cracked_circle
+- 타입: altar_object
+
+6. small_doll
+- 이름: 작은 인형
+- 획득: attic_toy_storage / attic_toy_box
+- 사용: basement_altar
+- 제단 문양: child_hand
+- 타입: altar_object
+
+7. old_keychain
+- 이름: 낡은 열쇠고리
+- 획득: laundry_room / breaker_box
+- 사용: basement_altar
+- 제단 문양: keyhole
+- 타입: altar_object
+
+8. old_necklace
+- 이름: 낡은 목걸이
+- 획득: master_bedroom / master_bedroom_drawer
+- 사용: basement_altar
+- 제단 문양: heart
+- 타입: altar_object
+
+9. symbol_fragment
+- 이름: 문양 조각
+- 획득: attic_toy_storage / attic_toy_box
+- 사용: basement_altar
+- 기능: 거울 방 문양과 제단 문양 연결 단서
+- 타입: clue_item
+
+10. front_door_key
+- 이름: 현관 열쇠
+- 획득: altar_room / front_door_key_on_altar
+- 사용: entrance / front_door
+- 획득 즉시 최종 추격 시작
+- 타입: key_item
+
+================================================================================
+02. 퍼즐 입력 정답
+================================================================================
+
+study_safe:
+- 위치: study
+- 타입: number_lock
+- 자리 수: 4
+- 정답: 3142
+- 단서: 가족사진 순서에 맞는 서재 책 번호
+- 보상: fuse_holder
+
+laundry_storage_box:
+- 위치: laundry_room
+- 타입: number_lock
+- 자리 수: 4
+- 정답: 0915
+- 단서: 식탁 좌석 순서 + 부엌 시계 시간
+- 보상: fuse
+- 오답: 오류음 + 오브젝트 흔들림 + 위험도 소폭 증가
+
+mirror_symbol_panel:
+- 위치: mirror_room
+- 타입: symbol_sequence
+- 문양:
+  - heart
+  - child_hand
+  - cracked_circle
+  - keyhole
+- 정답:
+  - heart → child_hand → cracked_circle → keyhole
+- 단서:
+  - second_floor_bathroom: 반전 규칙
+  - dressing_room: 색상 규칙
+  - study: 숫자 순서
+- 성공: 거울 파괴
+- 보상: broken_hand_mirror
+
+attic_toy_sequence:
+- 위치: attic_toy_storage
+- 타입: silent_sequence
+- 장난감:
+  - doll
+  - train
+  - block
+  - bell
+- 정답:
+  - doll → train → block → bell
+- 단서:
+  - torn_drawing_fragment
+  - attic_family_album_photo
+- 정답이면 소리 없음
+- 오답이면 장난감 소리 발생
+- 오답 소리는 몬스터를 유인함
+- 보상:
+  - small_doll
+  - symbol_fragment
+
+master_bedroom_drawer:
+- 위치: master_bedroom
+- 타입: color_sequence
+- 정답:
+  - black → white → red → gray
+- 단서:
+  - dressing_room 옷 색상 순서
+- 보상:
+  - old_necklace
+
+basement_altar:
+- 위치: altar_room
+- 타입: symbol_item_matching
+- 정답:
+  - cracked_circle → broken_hand_mirror
+  - child_hand → small_doll
+  - keyhole → old_keychain
+  - heart → old_necklace
+- 성공:
+  - front_door_key_on_altar 생성
+
+front_door_escape:
+- 위치: entrance
+- 타입: item_use
+- 필요 아이템:
+  - front_door_key
+- 성공:
+  - stage1_clear
+
+================================================================================
+03. 퍼즐 체인
+================================================================================
+
+1. child_room_intro
+- child_room에서 시작
+- child_desk_drawer에서 torn_drawing_fragment 획득
+- event_window_silhouette 발생
+- second_floor_hallway로 이동
+
+2. family_photo_study_safe
+- child_room 장난감 위치 관찰
+- family_photo_room에서 가족사진 퍼즐 해결
+- hidden_photo_drawer에서 study_safe_clue 획득
+- study 책 번호 확인
+- study_safe에 3142 입력
+- fuse_holder 획득
+
+3. kitchen_dining_laundry_number
+- dining_room 식탁 좌석 순서 확인
+- kitchen 시계 시간 확인
+- laundry_storage_box에 0915 입력
+- fuse 획득
+- kitchen 문 앞에서 몬스터 첫 등장
+
+4. laundry_electric_restore
+- fuse_holder + fuse를 breaker_box에 사용
+- 전기 복구
+- basement_electronic_lock_released
+- breaker_box 안에서 old_keychain 획득
+- 전기 복구 소음으로 몬스터 위험도 증가
+
+5. mirror_symbol_chain
+- second_floor_bathroom 반전 규칙 확인
+- dressing_room 색상 규칙 확인
+- study 숫자 순서 확인
+- mirror_room 문양 입력
+- 거울 파괴
+- broken_hand_mirror 획득
+
+6. master_bedroom_necklace_chain
+- dressing_room 옷 색상 순서 확인
+- master_bedroom_drawer에 black → white → red → gray 입력
+- old_necklace 획득
+
+7. attic_toy_chain
+- torn_drawing_fragment와 attic 가족앨범 사진 비교
+- attic_toy_sequence 해결
+- small_doll, symbol_fragment 획득
+
+8. basement_altar_chain
+- basement_wall_symbols 확인
+- symbol_fragment로 문양 연결 해석
+- 가족 물건 4개를 제단 문양에 배치
+- front_door_key_on_altar 생성
+- front_door_key 획득
+- 최종 추격 시작
+
+9. final_chase_escape
+- 경로:
+  altar_room → basement_main → stairwell → living_room → entrance
+- living_room에서 은신 1회 권장 또는 필요
+- entrance에서 front_door_key 사용
+- stage1_clear
+
+================================================================================
+04. 주요 이벤트
+================================================================================
+
+공통:
+- event_puzzle_error_soft
+
+초반:
+- event_window_silhouette
+
+퍼즐:
+- event_open_hidden_photo_drawer
+- event_open_study_safe
+- event_open_laundry_storage_box
+- event_restore_electricity
+- event_basement_door_unlocked
+- event_break_mirror
+- event_open_master_bedroom_drawer
+- event_toy_wrong_sound
+- event_open_attic_toy_box
+- event_front_door_key_appears
+
+몬스터:
+- event_kitchen_first_appearance
+- event_electric_noise_attracts_monster
+- event_final_chase_trigger
+- event_player_captured
+
+현관/엔딩:
+- event_front_door_locked
+- event_stage1_clear

@@ -21,7 +21,7 @@ namespace EscapeFromNightmares.Runtime
 
         public static string DigitResource(int digit)
         {
-            return "EscapeFromNightmares/Puzzles/study_safe_digit_" + digit;
+            return "Puzzles/study_safe_digit_" + digit;
         }
 
         public static bool ShouldPreserveDigitLayout(bool hasSerializedReference, bool foundSceneObject)

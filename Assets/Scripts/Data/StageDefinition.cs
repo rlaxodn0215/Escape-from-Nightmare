@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EscapeFromNightmares.Data
 {
     /// <summary>
     /// Top-level authored data for one stage.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Stage Definition")]
-    public sealed class StageDefinition : ScriptableObject
+    [System.Serializable]
+    public sealed class StageDefinition
     {
         public string stageId = "stage1";
         public string displayName = "Stage 1";
@@ -17,6 +16,6 @@ namespace EscapeFromNightmares.Data
         public List<ItemDefinition> items = new List<ItemDefinition>();
         public List<PuzzleDefinition> puzzles = new List<PuzzleDefinition>();
         public MonsterNodeGraph monsterNodeGraph;
-        public SoundCatalog soundCatalog;
+        public List<SoundEntry> sounds = new List<SoundEntry>();
     }
 }

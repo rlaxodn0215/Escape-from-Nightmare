@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Linq;
 using EscapeFromNightmares.Data;
 using EscapeFromNightmares.Runtime;
@@ -45,7 +45,7 @@ namespace EscapeFromNightmares.Tests.EditMode
 
                 Assert.That(room.faces, Has.Length.EqualTo(4), room.roomId);
                 Assert.That(room.faces.Select(face => face.direction), Is.EquivalentTo(expectedDirections), room.roomId);
-                Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/" + room.roomId + "_" + face.direction.ToString().ToLowerInvariant()), Is.True, room.roomId);
+                Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/" + room.roomId + "_" + face.direction.ToString().ToLowerInvariant()), Is.True, room.roomId);
             }
         }
 
@@ -79,8 +79,8 @@ namespace EscapeFromNightmares.Tests.EditMode
             var south = room.faces.First(face => face.direction == RoomFaceDirection.South);
 
             Assert.That(room.faces, Has.Length.EqualTo(2));
-            Assert.That(north.backgroundResource, Is.EqualTo("EscapeFromNightmares/Rooms/second_floor_hallway_north"));
-            Assert.That(south.backgroundResource, Is.EqualTo("EscapeFromNightmares/Rooms/second_floor_hallway_south"));
+            Assert.That(north.backgroundResource, Is.EqualTo("Rooms/second_floor_hallway_north"));
+            Assert.That(south.backgroundResource, Is.EqualTo("Rooms/second_floor_hallway_south"));
             Assert.That(north.interactables.Select(item => item.targetRoomId), Is.EquivalentTo(new[] { "child_room", "study", "second_floor_bathroom", "mirror_room" }));
             Assert.That(south.interactables.Select(item => item.targetRoomId), Is.EquivalentTo(new[] { "master_bedroom", "dressing_room", "stairwell_2f" }));
         }
@@ -182,41 +182,41 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void Stage1Data_BasementAltarChainResourcesLoadAsSprites()
+        public void Stage1Data_BasementAltarChainSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/basement_entry_north",
-                "EscapeFromNightmares/Rooms/basement_entry_east",
-                "EscapeFromNightmares/Rooms/basement_entry_south",
-                "EscapeFromNightmares/Rooms/basement_entry_west",
-                "EscapeFromNightmares/Rooms/basement_main_north",
-                "EscapeFromNightmares/Rooms/basement_main_east",
-                "EscapeFromNightmares/Rooms/basement_main_south",
-                "EscapeFromNightmares/Rooms/basement_main_west",
-                "EscapeFromNightmares/Rooms/altar_room_north",
-                "EscapeFromNightmares/Rooms/altar_room_east",
-                "EscapeFromNightmares/Rooms/altar_room_south",
-                "EscapeFromNightmares/Rooms/altar_room_west",
-                "EscapeFromNightmares/Rooms/altar_room_north_key_spawned",
-                "EscapeFromNightmares/Rooms/altar_room_north_key_taken",
-                "EscapeFromNightmares/CloseUps/basement_wall_symbols",
-                "EscapeFromNightmares/HideViews/basement_main_hide_view",
-                "EscapeFromNightmares/Puzzles/basement_altar",
-                "EscapeFromNightmares/Items/item_front_door_key"
+                "Rooms/basement_entry_north",
+                "Rooms/basement_entry_east",
+                "Rooms/basement_entry_south",
+                "Rooms/basement_entry_west",
+                "Rooms/basement_main_north",
+                "Rooms/basement_main_east",
+                "Rooms/basement_main_south",
+                "Rooms/basement_main_west",
+                "Rooms/altar_room_north",
+                "Rooms/altar_room_east",
+                "Rooms/altar_room_south",
+                "Rooms/altar_room_west",
+                "Rooms/altar_room_north_key_spawned",
+                "Rooms/altar_room_north_key_taken",
+                "CloseUps/basement_wall_symbols",
+                "HideViews/basement_main_hide_view",
+                "Puzzles/basement_altar",
+                "Items/item_front_door_key"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
 
-            foreach (var path in paths.Where(path => !path.StartsWith("EscapeFromNightmares/Items/")))
+            foreach (var path in paths.Where(path => !path.StartsWith("Items/")))
             {
-                AssertPngResourceSize(path, 1280, 720);
+                AssertStageVisualAssetSize(path);
             }
 
-            AssertPngResourceSize("EscapeFromNightmares/Items/item_front_door_key", 512, 512);
+            AssertPngAssetSize("Items/item_front_door_key", 512, 512);
         }
 
         [Test]
@@ -240,76 +240,76 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(frontDoor.type, Is.EqualTo(InteractableType.PuzzleObject));
             Assert.That(frontDoor.puzzleId, Is.EqualTo("front_door_escape"));
             Assert.That(frontDoor.showWorldImage, Is.False);
-            Assert.That(north.conditionalBackgrounds.Select(item => item.backgroundResource), Is.EqualTo(new[] { "EscapeFromNightmares/Rooms/entrance_north_chase" }));
+            Assert.That(north.conditionalBackgrounds.Select(item => item.backgroundResource), Is.EqualTo(new[] { "Rooms/entrance_north_chase" }));
             Assert.That(north.conditionalBackgrounds[0].conditions.requiredFlagIds, Is.EqualTo(new[] { "final_chase_started" }));
         }
 
         [Test]
-        public void Stage1Data_FinalChaseFrontDoorResourcesLoadAsSprites()
+        public void Stage1Data_FinalChaseFrontDoorSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/entrance_north",
-                "EscapeFromNightmares/Rooms/entrance_east",
-                "EscapeFromNightmares/Rooms/entrance_south",
-                "EscapeFromNightmares/Rooms/entrance_west",
-                "EscapeFromNightmares/Rooms/entrance_north_chase",
-                "EscapeFromNightmares/Rooms/first_floor_hallway_south_chase",
-                "EscapeFromNightmares/Puzzles/front_door_escape"
+                "Rooms/entrance_north",
+                "Rooms/entrance_east",
+                "Rooms/entrance_south",
+                "Rooms/entrance_west",
+                "Rooms/entrance_north_chase",
+                "Rooms/first_floor_hallway_south_chase",
+                "Puzzles/front_door_escape"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
-                AssertPngResourceSize(path, 1280, 720);
+                AssertSpriteLoads(path, path);
+                AssertStageVisualAssetSize(path);
             }
         }
 
         [Test]
-        public void Stage1Data_FirstFloorLaundryPowerChainResourcesLoadAsSprites()
+        public void Stage1Data_FirstFloorLaundryPowerChainSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/stairwell_1f_north",
-                "EscapeFromNightmares/Rooms/stairwell_1f_east",
-                "EscapeFromNightmares/Rooms/stairwell_1f_south",
-                "EscapeFromNightmares/Rooms/stairwell_1f_west",
-                "EscapeFromNightmares/Rooms/first_floor_hallway_north",
-                "EscapeFromNightmares/Rooms/first_floor_hallway_south",
-                "EscapeFromNightmares/Rooms/dining_room_north",
-                "EscapeFromNightmares/Rooms/dining_room_east",
-                "EscapeFromNightmares/Rooms/dining_room_south",
-                "EscapeFromNightmares/Rooms/dining_room_west",
-                "EscapeFromNightmares/Rooms/kitchen_north",
-                "EscapeFromNightmares/Rooms/kitchen_east",
-                "EscapeFromNightmares/Rooms/kitchen_south",
-                "EscapeFromNightmares/Rooms/kitchen_west",
-                "EscapeFromNightmares/Rooms/laundry_room_north",
-                "EscapeFromNightmares/Rooms/laundry_room_east",
-                "EscapeFromNightmares/Rooms/laundry_room_south",
-                "EscapeFromNightmares/Rooms/laundry_room_west",
-                "EscapeFromNightmares/CloseUps/dining_seat_order_clue",
-                "EscapeFromNightmares/CloseUps/kitchen_clock_clue",
-                "EscapeFromNightmares/HideViews/kitchen_sink_hide_view",
-                "EscapeFromNightmares/HideViews/laundry_machine_hide_view",
-                "EscapeFromNightmares/Puzzles/laundry_storage_box",
-                "EscapeFromNightmares/Puzzles/breaker_box",
-                "EscapeFromNightmares/Items/item_fuse",
-                "EscapeFromNightmares/Items/item_old_keychain"
+                "Rooms/stairwell_1f_north",
+                "Rooms/stairwell_1f_east",
+                "Rooms/stairwell_1f_south",
+                "Rooms/stairwell_1f_west",
+                "Rooms/first_floor_hallway_north",
+                "Rooms/first_floor_hallway_south",
+                "Rooms/dining_room_north",
+                "Rooms/dining_room_east",
+                "Rooms/dining_room_south",
+                "Rooms/dining_room_west",
+                "Rooms/kitchen_north",
+                "Rooms/kitchen_east",
+                "Rooms/kitchen_south",
+                "Rooms/kitchen_west",
+                "Rooms/laundry_room_north",
+                "Rooms/laundry_room_east",
+                "Rooms/laundry_room_south",
+                "Rooms/laundry_room_west",
+                "CloseUps/dining_seat_order_clue",
+                "CloseUps/kitchen_clock_clue",
+                "HideViews/kitchen_sink_hide_view",
+                "HideViews/laundry_machine_hide_view",
+                "Puzzles/laundry_storage_box",
+                "Puzzles/breaker_box",
+                "Items/item_fuse",
+                "Items/item_old_keychain"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
 
-            foreach (var path in paths.Where(path => !path.StartsWith("EscapeFromNightmares/Items/")))
+            foreach (var path in paths.Where(path => !path.StartsWith("Items/")))
             {
-                AssertPngResourceSize(path, 1280, 720);
+                AssertStageVisualAssetSize(path);
             }
 
-            AssertPngResourceSize("EscapeFromNightmares/Items/item_fuse", 512, 512);
-            AssertPngResourceSize("EscapeFromNightmares/Items/item_old_keychain", 512, 512);
+            AssertPngAssetSize("Items/item_fuse", 512, 512);
+            AssertPngAssetSize("Items/item_old_keychain", 512, 512);
         }
 
         [Test]
@@ -323,7 +323,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.East).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "study_exit" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.South).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "study_safe_clue_note", "study_desk_surface", "study_clue_board" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.West).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "study_portrait", "study_window_view" }));
-            Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/study_" + face.direction.ToString().ToLowerInvariant()), Is.True);
+            Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/study_" + face.direction.ToString().ToLowerInvariant()), Is.True);
         }
 
         [Test]
@@ -333,7 +333,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var room = stage.rooms.First(item => item.roomId == "study");
             var clue = room.interactables.First(item => item.interactableId == "study_safe_clue_note");
 
-            Assert.That(clue.clueViewResource, Is.EqualTo("EscapeFromNightmares/CloseUps/study_safe_clue_note"));
+            Assert.That(clue.clueViewResource, Is.EqualTo("CloseUps/study_safe_clue_note"));
             foreach (var interactable in room.interactables)
             {
                 Assert.That(interactable.showWorldImage, Is.False, interactable.interactableId);
@@ -357,7 +357,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(room.connectedRoomIds, Is.EqualTo(new[] { "second_floor_hallway" }));
             Assert.That(room.hideSpotCount, Is.EqualTo(0));
             Assert.That(room.faces, Has.Length.EqualTo(4));
-            Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/mirror_room_" + face.direction.ToString().ToLowerInvariant()), Is.True);
+            Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/mirror_room_" + face.direction.ToString().ToLowerInvariant()), Is.True);
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.North).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "mirror_panel_obj" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.East).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "mirror_exit" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.South).interactables, Is.Empty);
@@ -373,29 +373,29 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void Stage1Data_MirrorRoomResourcesLoadAsSprites()
+        public void Stage1Data_MirrorRoomSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/mirror_room_north",
-                "EscapeFromNightmares/Rooms/mirror_room_east",
-                "EscapeFromNightmares/Rooms/mirror_room_south",
-                "EscapeFromNightmares/Rooms/mirror_room_west",
-                "EscapeFromNightmares/Puzzles/mirror_symbol_panel"
+                "Rooms/mirror_room_north",
+                "Rooms/mirror_room_east",
+                "Rooms/mirror_room_south",
+                "Rooms/mirror_room_west",
+                "Puzzles/mirror_symbol_panel"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
 
-            foreach (var path in paths.Where(item => !item.StartsWith("EscapeFromNightmares/Items/")))
+            foreach (var path in paths.Where(item => !item.StartsWith("Items/")))
             {
-                AssertPngResourceSize(path, 1280, 720);
+                AssertStageVisualAssetSize(path);
             }
 
-            AssertPngResourceSize("EscapeFromNightmares/Items/item_small_doll", 512, 512);
-            AssertPngResourceSize("EscapeFromNightmares/Items/item_symbol_fragment", 512, 512);
+            AssertPngAssetSize("Items/item_small_doll", 512, 512);
+            AssertPngAssetSize("Items/item_symbol_fragment", 512, 512);
         }
 
         [Test]
@@ -409,13 +409,13 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(room.connectedRoomIds, Is.EqualTo(new[] { "second_floor_hallway" }));
             Assert.That(room.hideSpotCount, Is.EqualTo(0));
             Assert.That(room.faces, Has.Length.EqualTo(4));
-            Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/second_floor_bathroom_" + face.direction.ToString().ToLowerInvariant()), Is.True);
+            Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/second_floor_bathroom_" + face.direction.ToString().ToLowerInvariant()), Is.True);
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.North).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "bathroom_mirror_rule_clue" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.East).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "bathroom_exit" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.South).interactables, Is.Empty);
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.West).interactables, Is.Empty);
             Assert.That(clue.type, Is.EqualTo(InteractableType.ClueObject));
-            Assert.That(clue.clueViewResource, Is.EqualTo("EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue"));
+            Assert.That(clue.clueViewResource, Is.EqualTo("CloseUps/bathroom_mirror_rule_clue"));
             Assert.That(clue.showWorldImage, Is.False);
             Assert.That(exit.type, Is.EqualTo(InteractableType.Door));
             Assert.That(exit.targetRoomId, Is.EqualTo("second_floor_hallway"));
@@ -423,20 +423,20 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void Stage1Data_SecondFloorBathroomResourcesLoadAsSprites()
+        public void Stage1Data_SecondFloorBathroomSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/second_floor_bathroom_north",
-                "EscapeFromNightmares/Rooms/second_floor_bathroom_east",
-                "EscapeFromNightmares/Rooms/second_floor_bathroom_south",
-                "EscapeFromNightmares/Rooms/second_floor_bathroom_west",
-                "EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue"
+                "Rooms/second_floor_bathroom_north",
+                "Rooms/second_floor_bathroom_east",
+                "Rooms/second_floor_bathroom_south",
+                "Rooms/second_floor_bathroom_west",
+                "CloseUps/bathroom_mirror_rule_clue"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
         }
 
@@ -451,13 +451,13 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(room.connectedRoomIds, Is.EqualTo(new[] { "second_floor_hallway" }));
             Assert.That(room.hideSpotCount, Is.EqualTo(0));
             Assert.That(room.faces, Has.Length.EqualTo(4));
-            Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/dressing_room_" + face.direction.ToString().ToLowerInvariant()), Is.True);
+            Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/dressing_room_" + face.direction.ToString().ToLowerInvariant()), Is.True);
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.North).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "dressing_color_sequence_clue" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.East).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "dressing_exit" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.South).interactables, Is.Empty);
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.West).interactables, Is.Empty);
             Assert.That(clue.type, Is.EqualTo(InteractableType.ClueObject));
-            Assert.That(clue.clueViewResource, Is.EqualTo("EscapeFromNightmares/CloseUps/dressing_color_sequence_clue"));
+            Assert.That(clue.clueViewResource, Is.EqualTo("CloseUps/dressing_color_sequence_clue"));
             Assert.That(clue.showWorldImage, Is.False);
             Assert.That(exit.type, Is.EqualTo(InteractableType.Door));
             Assert.That(exit.targetRoomId, Is.EqualTo("second_floor_hallway"));
@@ -465,20 +465,20 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void Stage1Data_DressingRoomResourcesLoadAsSprites()
+        public void Stage1Data_DressingRoomSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/dressing_room_north",
-                "EscapeFromNightmares/Rooms/dressing_room_east",
-                "EscapeFromNightmares/Rooms/dressing_room_south",
-                "EscapeFromNightmares/Rooms/dressing_room_west",
-                "EscapeFromNightmares/CloseUps/dressing_color_sequence_clue"
+                "Rooms/dressing_room_north",
+                "Rooms/dressing_room_east",
+                "Rooms/dressing_room_south",
+                "Rooms/dressing_room_west",
+                "CloseUps/dressing_color_sequence_clue"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
         }
 
@@ -493,7 +493,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(room.connectedRoomIds, Is.EqualTo(new[] { "second_floor_hallway" }));
             Assert.That(room.hideSpotCount, Is.EqualTo(0));
             Assert.That(room.faces, Has.Length.EqualTo(4));
-            Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/master_bedroom_" + face.direction.ToString().ToLowerInvariant()), Is.True);
+            Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/master_bedroom_" + face.direction.ToString().ToLowerInvariant()), Is.True);
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.North).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "master_drawer_obj" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.East).interactables.Select(item => item.interactableId), Is.EquivalentTo(new[] { "master_exit" }));
             Assert.That(room.faces.First(face => face.direction == RoomFaceDirection.South).interactables, Is.Empty);
@@ -509,20 +509,20 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void Stage1Data_MasterBedroomResourcesLoadAsSprites()
+        public void Stage1Data_MasterBedroomSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/master_bedroom_north",
-                "EscapeFromNightmares/Rooms/master_bedroom_east",
-                "EscapeFromNightmares/Rooms/master_bedroom_south",
-                "EscapeFromNightmares/Rooms/master_bedroom_west",
-                "EscapeFromNightmares/Puzzles/master_bedroom_drawer"
+                "Rooms/master_bedroom_north",
+                "Rooms/master_bedroom_east",
+                "Rooms/master_bedroom_south",
+                "Rooms/master_bedroom_west",
+                "Puzzles/master_bedroom_drawer"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
         }
 
@@ -551,7 +551,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             Assert.That(attic.faces.First(face => face.direction == RoomFaceDirection.South).interactables.Select(item => item.targetRoomId), Is.EqualTo(new[] { "stairwell_2f" }));
             Assert.That(attic.faces.First(face => face.direction == RoomFaceDirection.West).interactables, Is.Empty);
             Assert.That(album.type, Is.EqualTo(InteractableType.ClueObject));
-            Assert.That(album.clueViewResource, Is.EqualTo("EscapeFromNightmares/CloseUps/attic_family_album_photo"));
+            Assert.That(album.clueViewResource, Is.EqualTo("CloseUps/attic_family_album_photo"));
             Assert.That(album.showWorldImage, Is.False);
 
             var toyBox = toyStorage.interactables.First(item => item.interactableId == "attic_toy_box");
@@ -568,32 +568,32 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void Stage1Data_AtticChainResourcesLoadAsSprites()
+        public void Stage1Data_AtticChainSpriteAssetsLoad()
         {
             var paths = new[]
             {
-                "EscapeFromNightmares/Rooms/stairwell_2f_north",
-                "EscapeFromNightmares/Rooms/stairwell_2f_east",
-                "EscapeFromNightmares/Rooms/stairwell_2f_south",
-                "EscapeFromNightmares/Rooms/stairwell_2f_west",
-                "EscapeFromNightmares/Rooms/attic_main_north",
-                "EscapeFromNightmares/Rooms/attic_main_east",
-                "EscapeFromNightmares/Rooms/attic_main_south",
-                "EscapeFromNightmares/Rooms/attic_main_west",
-                "EscapeFromNightmares/Rooms/attic_toy_storage_north",
-                "EscapeFromNightmares/Rooms/attic_toy_storage_east",
-                "EscapeFromNightmares/Rooms/attic_toy_storage_south",
-                "EscapeFromNightmares/Rooms/attic_toy_storage_west",
-                "EscapeFromNightmares/CloseUps/attic_family_album_photo",
-                "EscapeFromNightmares/CloseUps/basement_wall_symbols",
-                "EscapeFromNightmares/Puzzles/attic_toy_sequence",
-                "EscapeFromNightmares/Items/item_small_doll",
-                "EscapeFromNightmares/Items/item_symbol_fragment"
+                "Rooms/stairwell_2f_north",
+                "Rooms/stairwell_2f_east",
+                "Rooms/stairwell_2f_south",
+                "Rooms/stairwell_2f_west",
+                "Rooms/attic_main_north",
+                "Rooms/attic_main_east",
+                "Rooms/attic_main_south",
+                "Rooms/attic_main_west",
+                "Rooms/attic_toy_storage_north",
+                "Rooms/attic_toy_storage_east",
+                "Rooms/attic_toy_storage_south",
+                "Rooms/attic_toy_storage_west",
+                "CloseUps/attic_family_album_photo",
+                "CloseUps/basement_wall_symbols",
+                "Puzzles/attic_toy_sequence",
+                "Items/item_small_doll",
+                "Items/item_symbol_fragment"
             };
 
             foreach (var path in paths)
             {
-                Assert.That(Resources.Load<Sprite>(path), Is.Not.Null, path);
+                AssertSpriteLoads(path, path);
             }
         }
 
@@ -616,8 +616,8 @@ namespace EscapeFromNightmares.Tests.EditMode
             var room = stage.rooms.First(item => item.roomId == "child_room");
             var interactables = room.faces.SelectMany(face => face.interactables).ToArray();
 
-            Assert.That(room.faces.All(face => face.backgroundResource == "EscapeFromNightmares/Rooms/child_room_" + face.direction.ToString().ToLowerInvariant()), Is.True);
-            Assert.That(interactables.All(interactable => interactable.imageResource == "EscapeFromNightmares/Objects/" + interactable.interactableId), Is.True);
+            Assert.That(room.faces.All(face => face.backgroundResource == "Rooms/child_room_" + face.direction.ToString().ToLowerInvariant()), Is.True);
+            Assert.That(interactables.All(interactable => interactable.imageResource == "Objects/" + interactable.interactableId), Is.True);
 
             foreach (var interactable in interactables)
             {
@@ -652,7 +652,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var item = stage.items.First(candidate => candidate.itemId == "torn_drawing_fragment");
 
-            Assert.That(item.iconResource, Is.EqualTo("EscapeFromNightmares/Items/item_torn_drawing_fragment"));
+            Assert.That(item.iconResource, Is.EqualTo("Items/item_torn_drawing_fragment"));
         }
 
         [Test]
@@ -661,9 +661,9 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var drawer = stage.rooms.First(room => room.roomId == "child_room").interactables.First(item => item.interactableId == "child_desk_drawer");
 
-            Assert.That(drawer.closeUpClosedResource, Is.EqualTo("EscapeFromNightmares/CloseUps/child_desk_drawer_closed"));
-            Assert.That(drawer.closeUpOpenWithItemResource, Is.EqualTo("EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item"));
-            Assert.That(drawer.closeUpOpenEmptyResource, Is.EqualTo("EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty"));
+            Assert.That(drawer.closeUpClosedResource, Is.EqualTo("CloseUps/child_desk_drawer_closed"));
+            Assert.That(drawer.closeUpOpenWithItemResource, Is.EqualTo("CloseUps/child_desk_drawer_open_with_item"));
+            Assert.That(drawer.closeUpOpenEmptyResource, Is.EqualTo("CloseUps/child_desk_drawer_open_empty"));
             Assert.That(drawer.closeUpItemId, Is.EqualTo("torn_drawing_fragment"));
             Assert.That(drawer.closeUpOpenSoundId, Is.EqualTo("sfx_drawer_open"));
             Assert.That(drawer.closeUpCloseSoundId, Is.EqualTo("sfx_drawer_close"));
@@ -680,9 +680,9 @@ namespace EscapeFromNightmares.Tests.EditMode
 
             Assert.That(puzzle.successFlag, Is.EqualTo("study_safe_unlocked"));
             Assert.That(puzzle.deferSolvedUntilRewardPickup, Is.True);
-            Assert.That(safe.closeUpClosedResource, Is.EqualTo("EscapeFromNightmares/CloseUps/study_safe_locked"));
-            Assert.That(safe.closeUpOpenWithItemResource, Is.EqualTo("EscapeFromNightmares/CloseUps/study_safe_open_with_item"));
-            Assert.That(safe.closeUpOpenEmptyResource, Is.EqualTo("EscapeFromNightmares/CloseUps/study_safe_open_empty"));
+            Assert.That(safe.closeUpClosedResource, Is.EqualTo("CloseUps/study_safe_locked"));
+            Assert.That(safe.closeUpOpenWithItemResource, Is.EqualTo("CloseUps/study_safe_open_with_item"));
+            Assert.That(safe.closeUpOpenEmptyResource, Is.EqualTo("CloseUps/study_safe_open_empty"));
             Assert.That(safe.closeUpItemId, Is.EqualTo("fuse_holder"));
         }
 
@@ -709,7 +709,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             {
                 var interactable = interactables.First(item => item.interactableId == id);
                 Assert.That(interactable.type, Is.EqualTo(InteractableType.ClueObject), id);
-                Assert.That(interactable.clueViewResource, Is.EqualTo("EscapeFromNightmares/CloseUps/" + id), id);
+                Assert.That(interactable.clueViewResource, Is.EqualTo("CloseUps/" + id), id);
                 Assert.That(interactable.showWorldImage, Is.False, id);
             }
         }
@@ -724,17 +724,17 @@ namespace EscapeFromNightmares.Tests.EditMode
             var childNorth = stage.rooms.First(room => room.roomId == "child_room").faces.First(face => face.direction == RoomFaceDirection.North);
             var studyNorth = stage.rooms.First(room => room.roomId == "study").faces.First(face => face.direction == RoomFaceDirection.North);
 
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(childNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/child_room_north"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(childNorth, flags), Is.EqualTo("Rooms/child_room_north"));
             session.AddItem("torn_drawing_fragment");
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(childNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/child_room_north_drawer_empty"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(childNorth, flags), Is.EqualTo("Rooms/child_room_north_drawer_empty"));
 
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/study_north"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("Rooms/study_north"));
             session.SetFlag("study_safe_opened");
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/study_north_safe_open_with_item"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("Rooms/study_north_safe_open_with_item"));
             session.AddItem("fuse_holder");
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/study_north_safe_open_empty"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("Rooms/study_north_safe_open_empty"));
             session.SetFlag("puzzle_study_safe_clear");
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/study_north_safe_open_empty"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(studyNorth, flags), Is.EqualTo("Rooms/study_north_safe_open_empty"));
         }
 
         [Test]
@@ -747,13 +747,13 @@ namespace EscapeFromNightmares.Tests.EditMode
             var entranceNorth = stage.rooms.First(room => room.roomId == "entrance").faces.First(face => face.direction == RoomFaceDirection.North);
             var hallwaySouth = stage.rooms.First(room => room.roomId == "first_floor_hallway").faces.First(face => face.direction == RoomFaceDirection.South);
 
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(entranceNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/entrance_north"));
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(hallwaySouth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/first_floor_hallway_south"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(entranceNorth, flags), Is.EqualTo("Rooms/entrance_north"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(hallwaySouth, flags), Is.EqualTo("Rooms/first_floor_hallway_south"));
 
             session.SetFlag("final_chase_started");
 
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(entranceNorth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/entrance_north_chase"));
-            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(hallwaySouth, flags), Is.EqualTo("EscapeFromNightmares/Rooms/first_floor_hallway_south_chase"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(entranceNorth, flags), Is.EqualTo("Rooms/entrance_north_chase"));
+            Assert.That(GameDirector.ResolveRoomFaceBackgroundResource(hallwaySouth, flags), Is.EqualTo("Rooms/first_floor_hallway_south_chase"));
         }
 
         [Test]
@@ -781,7 +781,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var hideSpot = stage.rooms.First(room => room.roomId == "child_room").interactables.First(item => item.interactableId == "child_bed_hide");
 
-            Assert.That(hideSpot.hideViewResource, Is.EqualTo("EscapeFromNightmares/HideViews/child_bed_under_view"));
+            Assert.That(hideSpot.hideViewResource, Is.EqualTo("HideViews/child_bed_under_view"));
             Assert.That(hideSpot.soundId, Is.EqualTo("sfx_hide"));
         }
 
@@ -791,7 +791,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var session = new GameSession();
             session.Start(stage);
-            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.soundCatalog);
+            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.sounds);
             var drawer = stage.rooms.First(room => room.roomId == "child_room").interactables.First(item => item.interactableId == "child_desk_drawer");
 
             var result = resolver.ResolveInteractable(drawer);
@@ -898,14 +898,13 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void RoomSpriteCatalog_TryFindReturnsDirectSpriteReference()
+        public void BindingLookup_TryFindSpriteReturnsDirectSpriteReference()
         {
             var texture = new Texture2D(4, 4);
             var sprite = Sprite.Create(texture, new Rect(0f, 0f, 4f, 4f), Vector2.one * 0.5f);
-            var catalog = ScriptableObject.CreateInstance<RoomSpriteCatalog>();
-            catalog.SetSprites(new[] { new SpriteEntry { spriteId = "child_room_north", sprite = sprite } });
+            var bindings = new[] { new SpriteBinding { spriteId = "child_room_north", sprite = sprite } };
 
-            Assert.That(catalog.TryFind("child_room_north", out var found), Is.True);
+            Assert.That(BindingLookup.TryFindSprite(bindings, "child_room_north", out var found), Is.True);
             Assert.That(found, Is.EqualTo(sprite));
         }
 
@@ -929,17 +928,14 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void MonsterPlacementCatalog_AssetLoadsAndMatchesRuntimeRoomFaces()
+        public void MonsterPlacementCatalog_DefaultRuntimeDataMatchesRoomFaces()
         {
             var stage = StageTestData.LoadStage1();
-            var catalog = AssetDatabase.LoadAssetAtPath<MonsterPlacementCatalog>("Assets/EscapeFromNightmares/ScriptableObjects/MonsterPlacementCatalog.asset");
+            var catalog = MonsterPlacementCatalog.CreateDefault(stage);
             var expectedKeys = stage.rooms
                 .Where(room => room.roomId != "child_room")
                 .SelectMany(room => room.faces.Select(face => room.roomId + "|" + face.direction))
                 .ToArray();
-
-            Assert.That(catalog, Is.Not.Null);
-
             var actualKeys = catalog.Placements
                 .Select(entry => entry.roomId + "|" + entry.faceDirection)
                 .ToArray();
@@ -988,113 +984,62 @@ namespace EscapeFromNightmares.Tests.EditMode
         [Test]
         public void GameDirector_TryResolveMonsterPlacementRequiresVisibleStateEnabledEntryAndPositiveRect()
         {
-            var catalog = ScriptableObject.CreateInstance<MonsterPlacementCatalog>();
-            try
+            var catalog = new MonsterPlacementCatalog();
+            var rect = new Rect(0.25f, 0.3f, 0.2f, 0.5f);
+            catalog.SetPlacements(new[]
             {
-                var rect = new Rect(0.25f, 0.3f, 0.2f, 0.5f);
-                catalog.SetPlacements(new[]
-                {
-                    new MonsterPlacementEntry
-                    {
-                        roomId = "kitchen",
-                        faceDirection = RoomFaceDirection.North,
-                        enabled = true,
-                        normalizedRect = rect
-                    },
-                    new MonsterPlacementEntry
-                    {
-                        roomId = "kitchen",
-                        faceDirection = RoomFaceDirection.East,
-                        enabled = false,
-                        normalizedRect = rect
-                    }
-                });
+                new MonsterPlacementEntry { roomId = "kitchen", faceDirection = RoomFaceDirection.North, enabled = true, normalizedRect = rect },
+                new MonsterPlacementEntry { roomId = "kitchen", faceDirection = RoomFaceDirection.East, enabled = false, normalizedRect = rect }
+            });
 
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Disabled, out _), Is.False);
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Normal, out _), Is.False);
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.East, MonsterState.Approaching, out _), Is.False);
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Approaching, out var approachingRect), Is.True);
-                Assert.That(approachingRect, Is.EqualTo(rect));
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Searching, out _), Is.True);
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.NearDetection, out _), Is.True);
-                Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Chase, out _), Is.True);
-            }
-            finally
-            {
-                UnityEngine.Object.DestroyImmediate(catalog);
-            }
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Disabled, out _), Is.False);
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Normal, out _), Is.False);
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.East, MonsterState.Approaching, out _), Is.False);
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Approaching, out var approachingRect), Is.True);
+            Assert.That(approachingRect, Is.EqualTo(rect));
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Searching, out _), Is.True);
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.NearDetection, out _), Is.True);
+            Assert.That(GameDirector.TryResolveMonsterPlacement(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Chase, out _), Is.True);
         }
 
         [Test]
         public void GameDirector_CreateMonsterQaSnapshotReportsHiddenAndMissingPlacementReasons()
         {
-            var catalog = ScriptableObject.CreateInstance<MonsterPlacementCatalog>();
-            try
-            {
-                var hidden = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Normal, false);
-                var missing = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Approaching, false);
-                var noCatalog = GameDirector.CreateMonsterQaSnapshot(null, "kitchen", RoomFaceDirection.North, MonsterState.Searching, false);
+            var catalog = new MonsterPlacementCatalog();
+            var hidden = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Normal, false);
+            var missing = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Approaching, false);
+            var noCatalog = GameDirector.CreateMonsterQaSnapshot(null, "kitchen", RoomFaceDirection.North, MonsterState.Searching, false);
 
-                Assert.That(hidden.Status, Is.EqualTo(GameDirector.MonsterQaStatus.StateHidden));
-                Assert.That(hidden.StatusText, Is.EqualTo("state hidden"));
-                Assert.That(missing.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementMissing));
-                Assert.That(missing.StatusText, Is.EqualTo("placement missing"));
-                Assert.That(noCatalog.Status, Is.EqualTo(GameDirector.MonsterQaStatus.CatalogMissing));
-                Assert.That(noCatalog.StatusText, Is.EqualTo("catalog missing"));
-            }
-            finally
-            {
-                UnityEngine.Object.DestroyImmediate(catalog);
-            }
+            Assert.That(hidden.Status, Is.EqualTo(GameDirector.MonsterQaStatus.StateHidden));
+            Assert.That(hidden.StatusText, Is.EqualTo("state hidden"));
+            Assert.That(missing.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementMissing));
+            Assert.That(missing.StatusText, Is.EqualTo("placement missing"));
+            Assert.That(noCatalog.Status, Is.EqualTo(GameDirector.MonsterQaStatus.CatalogMissing));
+            Assert.That(noCatalog.StatusText, Is.EqualTo("catalog missing"));
         }
 
         [Test]
         public void GameDirector_CreateMonsterQaSnapshotReportsDisabledEmptyAndReadyPlacements()
         {
-            var catalog = ScriptableObject.CreateInstance<MonsterPlacementCatalog>();
-            try
+            var catalog = new MonsterPlacementCatalog();
+            catalog.SetPlacements(new[]
             {
-                catalog.SetPlacements(new[]
-                {
-                    new MonsterPlacementEntry
-                    {
-                        roomId = "kitchen",
-                        faceDirection = RoomFaceDirection.North,
-                        enabled = false,
-                        normalizedRect = new Rect(0.2f, 0.2f, 0.3f, 0.4f)
-                    },
-                    new MonsterPlacementEntry
-                    {
-                        roomId = "kitchen",
-                        faceDirection = RoomFaceDirection.East,
-                        enabled = true,
-                        normalizedRect = Rect.zero
-                    },
-                    new MonsterPlacementEntry
-                    {
-                        roomId = "kitchen",
-                        faceDirection = RoomFaceDirection.South,
-                        enabled = true,
-                        normalizedRect = new Rect(0.2f, 0.2f, 0.3f, 0.4f)
-                    }
-                });
+                new MonsterPlacementEntry { roomId = "kitchen", faceDirection = RoomFaceDirection.North, enabled = false, normalizedRect = new Rect(0.2f, 0.2f, 0.3f, 0.4f) },
+                new MonsterPlacementEntry { roomId = "kitchen", faceDirection = RoomFaceDirection.East, enabled = true, normalizedRect = Rect.zero },
+                new MonsterPlacementEntry { roomId = "kitchen", faceDirection = RoomFaceDirection.South, enabled = true, normalizedRect = new Rect(0.2f, 0.2f, 0.3f, 0.4f) }
+            });
 
-                var disabled = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Approaching, false);
-                var empty = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.East, MonsterState.Searching, false);
-                var ready = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.South, MonsterState.Chase, true);
+            var disabled = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.North, MonsterState.Approaching, false);
+            var empty = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.East, MonsterState.Searching, false);
+            var ready = GameDirector.CreateMonsterQaSnapshot(catalog, "kitchen", RoomFaceDirection.South, MonsterState.Chase, true);
 
-                Assert.That(disabled.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementDisabled));
-                Assert.That(disabled.StatusText, Is.EqualTo("placement disabled"));
-                Assert.That(empty.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementEmpty));
-                Assert.That(empty.StatusText, Is.EqualTo("placement empty"));
-                Assert.That(ready.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementReady));
-                Assert.That(ready.ShouldShowMonster, Is.True);
-                Assert.That(ready.MonsterImageActive, Is.True);
-            }
-            finally
-            {
-                UnityEngine.Object.DestroyImmediate(catalog);
-            }
+            Assert.That(disabled.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementDisabled));
+            Assert.That(disabled.StatusText, Is.EqualTo("placement disabled"));
+            Assert.That(empty.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementEmpty));
+            Assert.That(empty.StatusText, Is.EqualTo("placement empty"));
+            Assert.That(ready.Status, Is.EqualTo(GameDirector.MonsterQaStatus.PlacementReady));
+            Assert.That(ready.ShouldShowMonster, Is.True);
+            Assert.That(ready.MonsterImageActive, Is.True);
         }
 
         [Test]
@@ -1459,7 +1404,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             try
             {
                 var root = rootObject.GetComponent<RectTransform>();
-                var sprite = Resources.Load<Sprite>(GameDirector.StageClearBackgroundResource);
+                var sprite = LoadSpriteAsset(GameDirector.StageClearBackgroundResource);
 
                 var ui = GameDirector.CreateStageClearPanel(root, sprite);
                 var group = ui.panel.GetComponent<CanvasGroup>();
@@ -1524,7 +1469,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var session = new GameSession();
             session.Start(stage);
-            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.soundCatalog);
+            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.sounds);
             var pickup = stage.rooms.First(room => room.roomId == "altar_room").interactables.First(item => item.interactableId == "front_door_key_on_altar");
 
             Assert.That(resolver.ResolveInteractable(pickup).Succeeded, Is.False);
@@ -1574,16 +1519,16 @@ namespace EscapeFromNightmares.Tests.EditMode
         {
             for (var digit = 0; digit <= 9; digit++)
             {
-                Assert.That(GameDirector.StudySafeDigitResource(digit), Is.EqualTo("EscapeFromNightmares/Puzzles/study_safe_digit_" + digit));
+                Assert.That(GameDirector.StudySafeDigitResource(digit), Is.EqualTo("Puzzles/study_safe_digit_" + digit));
             }
         }
 
         [Test]
-        public void StudySafeDigit_ResourcesLoadAsSprites()
+        public void StudySafeDigits_LoadAsSpriteAssets()
         {
             for (var digit = 0; digit <= 9; digit++)
             {
-                Assert.That(Resources.Load<Sprite>(GameDirector.StudySafeDigitResource(digit)), Is.Not.Null, digit.ToString());
+                AssertSpriteLoads(GameDirector.StudySafeDigitResource(digit), digit.ToString());
             }
         }
 
@@ -1705,7 +1650,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var session = new GameSession();
             session.Start(stage);
-            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.soundCatalog);
+            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.sounds);
             var exit = stage.rooms.First(room => room.roomId == "mirror_room").interactables.First(item => item.interactableId == "mirror_exit");
 
             var result = resolver.ResolveInteractable(exit);
@@ -1720,7 +1665,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var session = new GameSession();
             session.Start(stage);
-            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.soundCatalog);
+            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.sounds);
             var puzzleObject = stage.rooms.First(room => room.roomId == "study").interactables.First(item => item.puzzleId == "study_safe");
 
             var result = resolver.ResolveInteractable(puzzleObject);
@@ -1735,11 +1680,11 @@ namespace EscapeFromNightmares.Tests.EditMode
         {
             var stage = StageTestData.LoadStage1();
 
-            Assert.That(stage.puzzles.All(puzzle => puzzle.closeUpResource == "EscapeFromNightmares/Puzzles/" + puzzle.puzzleId), Is.True);
+            Assert.That(stage.puzzles.All(puzzle => puzzle.closeUpResource == "Puzzles/" + puzzle.puzzleId), Is.True);
         }
 
         [Test]
-        public void Stage1Data_FaceCloseUpAndPuzzleResourcesLoadAsSprites()
+        public void Stage1Data_FaceCloseUpAndPuzzleSpriteAssetsLoad()
         {
             var stage = StageTestData.LoadStage1();
 
@@ -1789,40 +1734,34 @@ namespace EscapeFromNightmares.Tests.EditMode
             foreach (var resourcePath in AiGeneratedCloseUpAndPuzzleResources())
             {
                 AssertSpriteLoads(resourcePath, resourcePath);
-                AssertPngResourceSize(resourcePath, 1280, 720);
+                AssertPngAssetSize(resourcePath, 1280, 720);
             }
 
             for (var digit = 0; digit <= 9; digit++)
             {
                 var resourcePath = GameDirector.StudySafeDigitResource(digit);
                 AssertSpriteLoads(resourcePath, resourcePath);
-                AssertPngResourceSize(resourcePath, 180, 220);
+                AssertPngAssetSize(resourcePath, 180, 220);
             }
         }
 
         [Test]
         public void Stage1Data_StageClearEndingAssetLoadsAndIsRegistered()
         {
-            Assert.That(GameDirector.StageClearBackgroundResource, Is.EqualTo("EscapeFromNightmares/Endings/stage1_clear_background"));
+            Assert.That(GameDirector.StageClearBackgroundResource, Is.EqualTo("Endings/stage1_clear_background"));
             AssertSpriteLoads(GameDirector.StageClearBackgroundResource, "stage clear background");
-            AssertPngResourceSize(GameDirector.StageClearBackgroundResource, 1280, 720);
+            AssertPngAssetSize(GameDirector.StageClearBackgroundResource, 1280, 720);
 
-            var catalog = AssetDatabase.LoadAssetAtPath<RoomSpriteCatalog>("Assets/EscapeFromNightmares/ScriptableObjects/RoomSpriteCatalog.asset");
-
-            Assert.That(catalog, Is.Not.Null);
-            Assert.That(catalog.Sprites.Any(entry => entry.spriteId == "stage1_clear_background" && entry.sprite != null), Is.True);
+            Assert.That(GameDirector.StageClearBackgroundResource.EndsWith("stage1_clear_background"), Is.True);
         }
 
         [Test]
         public void Stage1Data_MonsterShadowAssetLoadsAndIsRegistered()
         {
-            Assert.That(GameDirector.MonsterShadowResource, Is.EqualTo("EscapeFromNightmares/Monster/monster_shadow"));
+            Assert.That(GameDirector.MonsterShadowResource, Is.EqualTo("Monster/monster_shadow"));
             AssertSpriteLoads(GameDirector.MonsterShadowResource, "monster shadow object");
 
-            var catalog = AssetDatabase.LoadAssetAtPath<RoomSpriteCatalog>("Assets/EscapeFromNightmares/ScriptableObjects/RoomSpriteCatalog.asset");
-
-            Assert.That(catalog, Is.Not.Null);
-            Assert.That(catalog.Sprites.Any(entry => entry.spriteId == "monster_shadow" && entry.sprite != null), Is.True);
+            Assert.That(GameDirector.MonsterShadowResource.EndsWith("monster_shadow"), Is.True);
         }
 
         [Test]
@@ -1838,8 +1777,8 @@ namespace EscapeFromNightmares.Tests.EditMode
 
             foreach (var entry in StrictIdentityCloseUpCases())
             {
-                Assert.That(Resources.Load<Sprite>(entry.sourceResourcePath), Is.Not.Null, entry.sourceResourcePath);
-                Assert.That(Resources.Load<Sprite>(entry.targetResourcePath), Is.Not.Null, entry.targetResourcePath);
+                AssertSpriteLoads(entry.sourceResourcePath, entry.sourceResourcePath);
+                AssertSpriteLoads(entry.targetResourcePath, entry.targetResourcePath);
                 Assert.That(harness, Does.Contain(entry.targetResourcePath), entry.targetResourcePath);
                 Assert.That(harness, Does.Contain("Exception"), entry.targetResourcePath);
                 Assert.That(harness, Does.Contain("AI-generated replacement"), entry.targetResourcePath);
@@ -1870,7 +1809,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var session = new GameSession();
             session.Start(stage);
-            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.soundCatalog);
+            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.sounds);
             var interactable = new InteractableDefinition
             {
                 interactableId = "one_shot_item",
@@ -1887,26 +1826,23 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void SoundCatalog_TryFind_ReturnsEntryWithCategory()
+        public void BindingLookup_TryFindSoundReturnsEntryWithCategory()
         {
-            var catalog = StageTestData.LoadStage1().soundCatalog;
+            var sounds = StageTestData.LoadStage1().sounds;
 
-            Assert.That(catalog.TryFind("ui_click", out var entry), Is.True);
+            Assert.That(BindingLookup.TryFindSound(sounds, "ui_click", out var entry), Is.True);
             Assert.That(entry.category, Is.EqualTo(SoundCategory.Ui));
-            Assert.That(entry.resourcePath, Is.EqualTo("EscapeFromNightmares/Audio/UI/ui_click"));
         }
 
         [Test]
-        public void SoundCatalog_TryFind_ReturnsDrawerSoundEntries()
+        public void BindingLookup_TryFindSoundReturnsDrawerSoundEntries()
         {
-            var catalog = StageTestData.LoadStage1().soundCatalog;
+            var sounds = StageTestData.LoadStage1().sounds;
 
-            Assert.That(catalog.TryFind("sfx_drawer_open", out var openEntry), Is.True);
+            Assert.That(BindingLookup.TryFindSound(sounds, "sfx_drawer_open", out var openEntry), Is.True);
             Assert.That(openEntry.category, Is.EqualTo(SoundCategory.Sfx));
-            Assert.That(openEntry.resourcePath, Is.EqualTo("EscapeFromNightmares/Audio/SFX/sfx_drawer_open"));
-            Assert.That(catalog.TryFind("sfx_drawer_close", out var closeEntry), Is.True);
+            Assert.That(BindingLookup.TryFindSound(sounds, "sfx_drawer_close", out var closeEntry), Is.True);
             Assert.That(closeEntry.category, Is.EqualTo(SoundCategory.Sfx));
-            Assert.That(closeEntry.resourcePath, Is.EqualTo("EscapeFromNightmares/Audio/SFX/sfx_drawer_close"));
         }
 
         [Test]
@@ -1915,7 +1851,7 @@ namespace EscapeFromNightmares.Tests.EditMode
             var stage = StageTestData.LoadStage1();
             var session = new GameSession();
             session.Start(stage);
-            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.soundCatalog);
+            var resolver = new EscapeActionResolver(session, new FlagService(session), stage.sounds);
             var interactable = new InteractableDefinition
             {
                 interactableId = "sound_note",
@@ -1954,55 +1890,22 @@ namespace EscapeFromNightmares.Tests.EditMode
         }
 
         [Test]
-        public void ResourcePathCatalog_CreateDefault_UsesExpectedResourcesPaths()
+        public void RuntimeStageFactory_CreateStage1UsesRuntimeData()
         {
-            var catalog = ResourcePathCatalog.CreateDefault();
+            var stage = RuntimeStageFactory.CreateStage1();
 
-            Assert.That(catalog.titleBackgroundPath, Is.EqualTo("EscapeFromNightmares/Title/title_background"));
-            Assert.That(catalog.titleLogoPath, Is.EqualTo("EscapeFromNightmares/Title/title_logo_escape_from_nightmare"));
-            Assert.That(catalog.titleStartButtonPath, Is.EqualTo("EscapeFromNightmares/Title/UI/button_start"));
-            Assert.That(catalog.titleSettingsButtonPath, Is.EqualTo("EscapeFromNightmares/Title/UI/button_settings"));
-            Assert.That(catalog.titleQuitButtonPath, Is.EqualTo("EscapeFromNightmares/Title/UI/button_quit"));
-            Assert.That(catalog.titleCloseButtonPath, Is.EqualTo("EscapeFromNightmares/Title/UI/button_close"));
-            Assert.That(catalog.settingsPanelBackgroundPath, Is.EqualTo("EscapeFromNightmares/Title/UI/settings_panel_bg"));
-            Assert.That(catalog.settingsHeaderPath, Is.EqualTo("EscapeFromNightmares/Title/UI/settings_header"));
-            Assert.That(catalog.settingsMasterLabelPath, Is.EqualTo("EscapeFromNightmares/Title/UI/settings_label_master"));
-            Assert.That(catalog.settingsBgmLabelPath, Is.EqualTo("EscapeFromNightmares/Title/UI/settings_label_bgm"));
-            Assert.That(catalog.settingsSfxLabelPath, Is.EqualTo("EscapeFromNightmares/Title/UI/settings_label_sfx"));
-            Assert.That(catalog.settingsUiLabelPath, Is.EqualTo("EscapeFromNightmares/Title/UI/settings_label_ui"));
-            Assert.That(catalog.settingsSliderTrackPath, Is.EqualTo("EscapeFromNightmares/Title/UI/slider_track"));
-            Assert.That(catalog.settingsSliderFillPath, Is.EqualTo("EscapeFromNightmares/Title/UI/slider_fill"));
-            Assert.That(catalog.settingsSliderHandlePath, Is.EqualTo("EscapeFromNightmares/Title/UI/slider_handle"));
-            Assert.That(catalog.titleBgmPath, Is.EqualTo("EscapeFromNightmares/Audio/BGM/title_loop"));
-            Assert.That(catalog.uiClickPath, Is.EqualTo("EscapeFromNightmares/Audio/UI/ui_click"));
-            Assert.That(catalog.confirmSfxPath, Is.EqualTo("EscapeFromNightmares/Audio/SFX/sfx_confirm"));
+            Assert.That(stage.rooms, Is.Not.Empty);
+            Assert.That(stage.sounds, Is.Not.Empty);
         }
 
         [Test]
-        public void ResourceManager_MissingSpritePath_ReturnsFallbackSprite()
-        {
-            var manager = new ResourceManager(ResourcePathCatalog.CreateDefault());
-
-            Assert.That(manager.LoadSprite("missing/path/for/test"), Is.Not.Null);
-            Assert.That(manager.LoadAudioClip("missing/path/for/test"), Is.Null);
-        }
-
-        [Test]
-        public void SoundManager_VolumeToDecibels_MapsRange()
-        {
-            Assert.That(SoundManager.VolumeToDecibels(1f), Is.EqualTo(0f).Within(0.001f));
-            Assert.That(SoundManager.VolumeToDecibels(0f), Is.EqualTo(-80f).Within(0.001f));
-            Assert.That(SoundManager.VolumeToDecibels(0.5f), Is.EqualTo(-6.0206f).Within(0.001f));
-        }
-
-        [Test]
-        public void SoundManager_ApplyVolumesWithoutMixer_UsesAudioSourceFallback()
+        public void SoundManager_ApplyVolumes_UsesAudioSourceVolumes()
         {
             var gameObject = new GameObject("SoundManagerTest");
             try
             {
                 var manager = gameObject.AddComponent<SoundManager>();
-                manager.Initialize(new ResourceManager(ResourcePathCatalog.CreateDefault()));
+                manager.Initialize();
 
                 Assert.DoesNotThrow(() => manager.ApplyVolumes(new SettingsSaveService.SettingsData
                 {
@@ -2011,7 +1914,11 @@ namespace EscapeFromNightmares.Tests.EditMode
                     sfxVolume = 0.25f,
                     uiVolume = 0.75f
                 }));
-                Assert.That(gameObject.GetComponentsInChildren<AudioSource>().Length, Is.EqualTo(3));
+                var sources = gameObject.GetComponentsInChildren<AudioSource>();
+                Assert.That(sources.Length, Is.EqualTo(3));
+                Assert.That(gameObject.transform.Find("BGM Source").GetComponent<AudioSource>().volume, Is.EqualTo(0.25f).Within(0.001f));
+                Assert.That(gameObject.transform.Find("SFX Source").GetComponent<AudioSource>().volume, Is.EqualTo(0.125f).Within(0.001f));
+                Assert.That(gameObject.transform.Find("UI Source").GetComponent<AudioSource>().volume, Is.EqualTo(0.375f).Within(0.001f));
             }
             finally
             {
@@ -2026,12 +1933,11 @@ namespace EscapeFromNightmares.Tests.EditMode
             try
             {
                 var manager = gameObject.AddComponent<SoundManager>();
-                manager.Initialize(new ResourceManager(ResourcePathCatalog.CreateDefault()));
+                manager.Initialize();
 
                 Assert.DoesNotThrow(() => manager.Play(new SoundEntry
                 {
                     soundId = "missing",
-                    resourcePath = "missing/path/for/test",
                     category = SoundCategory.Sfx
                 }));
             }
@@ -2066,12 +1972,12 @@ namespace EscapeFromNightmares.Tests.EditMode
                 return;
             }
 
-            Assert.That(Resources.Load<Sprite>(resourcePath), Is.Not.Null, context + " -> " + resourcePath);
+            Assert.That(LoadSpriteAsset(resourcePath), Is.Not.Null, context + " -> " + resourcePath);
         }
 
-        private static void AssertPngResourceSize(string resourcePath, int width, int height)
+        private static void AssertPngAssetSize(string resourcePath, int width, int height)
         {
-            var texture = LoadPngResource(resourcePath);
+            var texture = LoadPngAsset(resourcePath);
             try
             {
                 Assert.That(texture.width, Is.EqualTo(width), resourcePath);
@@ -2083,38 +1989,49 @@ namespace EscapeFromNightmares.Tests.EditMode
             }
         }
 
+        private static void AssertStageVisualAssetSize(string resourcePath)
+        {
+            if (resourcePath.StartsWith("Rooms/"))
+            {
+                AssertPngAssetSize(resourcePath, 1920, 1080);
+                return;
+            }
+
+            AssertPngAssetSize(resourcePath, 1280, 720);
+        }
+
         private static string[] AiGeneratedCloseUpAndPuzzleResources()
         {
             return new[]
             {
-                "EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue",
-                "EscapeFromNightmares/CloseUps/child_desk_drawer_closed",
-                "EscapeFromNightmares/CloseUps/child_desk_drawer_open_empty",
-                "EscapeFromNightmares/CloseUps/child_desk_drawer_open_with_item",
-                "EscapeFromNightmares/CloseUps/child_desk_surface",
-                "EscapeFromNightmares/CloseUps/child_drawing_board",
-                "EscapeFromNightmares/CloseUps/child_window_view",
-                "EscapeFromNightmares/CloseUps/dressing_color_sequence_clue",
-                "EscapeFromNightmares/CloseUps/dining_seat_order_clue",
-                "EscapeFromNightmares/CloseUps/kitchen_clock_clue",
-                "EscapeFromNightmares/CloseUps/study_clue_board",
-                "EscapeFromNightmares/CloseUps/study_desk_surface",
-                "EscapeFromNightmares/CloseUps/study_portrait",
-                "EscapeFromNightmares/CloseUps/study_safe_clue_note",
-                "EscapeFromNightmares/CloseUps/study_safe_locked",
-                "EscapeFromNightmares/CloseUps/study_safe_open_empty",
-                "EscapeFromNightmares/CloseUps/study_safe_open_with_item",
-                "EscapeFromNightmares/CloseUps/study_safe_surrounding",
-                "EscapeFromNightmares/CloseUps/study_window_view",
-                "EscapeFromNightmares/CloseUps/attic_family_album_photo",
-                "EscapeFromNightmares/Puzzles/attic_toy_sequence",
-                "EscapeFromNightmares/Puzzles/basement_altar",
-                "EscapeFromNightmares/Puzzles/breaker_box",
-                "EscapeFromNightmares/Puzzles/front_door_escape",
-                "EscapeFromNightmares/Puzzles/laundry_storage_box",
-                "EscapeFromNightmares/Puzzles/master_bedroom_drawer",
-                "EscapeFromNightmares/Puzzles/mirror_symbol_panel",
-                "EscapeFromNightmares/Puzzles/study_safe"
+                "CloseUps/bathroom_mirror_rule_clue",
+                "CloseUps/child_desk_drawer_closed",
+                "CloseUps/child_desk_drawer_open_empty",
+                "CloseUps/child_desk_drawer_open_with_item",
+                "CloseUps/child_desk_surface",
+                "CloseUps/child_drawing_board",
+                "CloseUps/child_window_view",
+                "CloseUps/dressing_color_sequence_clue",
+                "CloseUps/dining_seat_order_clue",
+                "CloseUps/kitchen_clock_clue",
+                "CloseUps/study_clue_board",
+                "CloseUps/study_desk_surface",
+                "CloseUps/study_portrait",
+                "CloseUps/study_safe_clue_note",
+                "CloseUps/study_safe_locked",
+                "CloseUps/study_safe_open_empty",
+                "CloseUps/study_safe_open_with_item",
+                "CloseUps/study_safe_surrounding",
+                "CloseUps/study_window_view",
+                "CloseUps/attic_family_album_photo",
+                "Puzzles/attic_toy_sequence",
+                "Puzzles/basement_altar",
+                "Puzzles/breaker_box",
+                "Puzzles/front_door_escape",
+                "Puzzles/laundry_storage_box",
+                "Puzzles/master_bedroom_drawer",
+                "Puzzles/mirror_symbol_panel",
+                "Puzzles/study_safe"
             };
         }
 
@@ -2123,34 +2040,39 @@ namespace EscapeFromNightmares.Tests.EditMode
             return new[]
             {
                 new StrictIdentityCloseUpCase(
-                    "EscapeFromNightmares/Rooms/second_floor_bathroom_north",
-                    "EscapeFromNightmares/CloseUps/bathroom_mirror_rule_clue",
+                    "Rooms/second_floor_bathroom_north",
+                    "CloseUps/bathroom_mirror_rule_clue",
                     new Rect(0.26f, 0.24f, 0.48f, 0.48f),
                     "Rect(0.26, 0.24, 0.48, 0.48)"),
                 new StrictIdentityCloseUpCase(
-                    "EscapeFromNightmares/Rooms/dressing_room_north",
-                    "EscapeFromNightmares/CloseUps/dressing_color_sequence_clue",
+                    "Rooms/dressing_room_north",
+                    "CloseUps/dressing_color_sequence_clue",
                     new Rect(0.22f, 0.18f, 0.56f, 0.56f),
                     "Rect(0.22, 0.18, 0.56, 0.56)"),
                 new StrictIdentityCloseUpCase(
-                    "EscapeFromNightmares/Rooms/mirror_room_north",
-                    "EscapeFromNightmares/Puzzles/mirror_symbol_panel",
+                    "Rooms/mirror_room_north",
+                    "Puzzles/mirror_symbol_panel",
                     new Rect(0.32f, 0.13f, 0.36f, 0.36f),
                     "Rect(0.32, 0.13, 0.36, 0.36)"),
                 new StrictIdentityCloseUpCase(
-                    "EscapeFromNightmares/Rooms/master_bedroom_north",
-                    "EscapeFromNightmares/Puzzles/master_bedroom_drawer",
+                    "Rooms/master_bedroom_north",
+                    "Puzzles/master_bedroom_drawer",
                     new Rect(0.36f, 0.20f, 0.48f, 0.48f),
                     "Rect(0.36, 0.20, 0.48, 0.48)")
             };
         }
 
-        private static Texture2D LoadPngResource(string resourcePath)
+        private static Texture2D LoadPngAsset(string resourcePath)
         {
-            var path = Path.Combine(Application.dataPath, "EscapeFromNightmares/Resources/" + resourcePath + ".png");
+            var path = Path.Combine(Application.dataPath, "Art/" + resourcePath + ".png");
             var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             Assert.That(texture.LoadImage(File.ReadAllBytes(path)), Is.True, resourcePath);
             return texture;
+        }
+
+        private static Sprite LoadSpriteAsset(string resourcePath)
+        {
+            return AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/" + resourcePath + ".png");
         }
 
         private static float MaxCropDelta(Texture2D source, Texture2D target, Rect cropRect)

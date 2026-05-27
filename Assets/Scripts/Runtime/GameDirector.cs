@@ -19,10 +19,11 @@ namespace EscapeFromNightmares.Runtime
     /// </summary>
     public sealed class GameDirector : MonoBehaviour
     {
-        [Header("Catalogs")]
-        [SerializeField] private StageDefinition stageDefinition;
-        [SerializeField] private RoomSpriteCatalog spriteCatalog;
-        [SerializeField] private MonsterPlacementCatalog monsterPlacementCatalog;
+        [Header("Direct Asset Bindings")]
+        [SerializeField] private ResourcePathCatalog resourceCatalog;
+        [SerializeField] private SpriteBinding[] spriteBindings = System.Array.Empty<SpriteBinding>();
+        [SerializeField] private SoundEntry[] soundBindings = System.Array.Empty<SoundEntry>();
+        [SerializeField] private MonsterPlacementCatalog monsterPlacementCatalog = new MonsterPlacementCatalog();
 
         [Header("Room View")]
         [SerializeField] private Image roomFaceImage;
@@ -78,14 +79,20 @@ namespace EscapeFromNightmares.Runtime
         private HidingSystem hidingSystem;
         private MonsterAIController monsterAI;
         private SettingsSaveService saveService;
-        private ResourceManager resourceManager;
         private SoundManager soundManager;
         private StageLookup stageLookup;
         private EscapeActionExecutor actionExecutor;
+        private RuntimeContext runtimeContext;
+        private RuntimeAssetResolver assetResolver;
+        private RoomViewController roomViewController;
+        private MonsterViewController monsterViewController;
+        private ModalViewController modalViewController;
+        private PuzzleFlowController puzzleFlowController;
 
         private readonly Dictionary<string, RoomDefinition> rooms = new Dictionary<string, RoomDefinition>();
         private readonly Dictionary<string, ItemDefinition> items = new Dictionary<string, ItemDefinition>();
         private readonly Dictionary<string, PuzzleDefinition> puzzles = new Dictionary<string, PuzzleDefinition>();
+        private readonly HashSet<string> missingSpriteWarnings = new HashSet<string>();
         private readonly List<string> puzzleInputTokens = new List<string>();
         private readonly int[] studySafeDigits = new int[StudySafeDigitCount];
 
@@ -98,10 +105,11 @@ namespace EscapeFromNightmares.Runtime
         private bool sceneTransitionInProgress;
         private bool studySafeSolvedInPanel;
         private bool monsterQaPanelVisible;
-        /// <summary>스테이지 클리어 화면 배경으로 사용하는 Resources 경로입니다.</summary>
-        public const string StageClearBackgroundResource = "EscapeFromNightmares/Endings/stage1_clear_background";
-        /// <summary>몬스터 그림자 스프라이트로 사용하는 Resources 경로입니다.</summary>
-        public const string MonsterShadowResource = "EscapeFromNightmares/Monster/monster_shadow";
+        /// <summary>스테이지 클리어 화면 배경으로 사용하는 스프라이트 ID입니다.</summary>
+        public const string StageClearBackgroundResource = "Endings/stage1_clear_background";
+        /// <summary>몬스터 그림자 스프라이트로 사용하는 스프라이트 ID입니다.</summary>
+        public const string MonsterShadowResource = "Monster/monster_shadow";
+        public const string DefaultResourceCatalogPath = "EscapeFromNightmares/ResourcePathCatalog";
         /// <summary>부엌 첫 등장 연출을 한 번만 처리하기 위한 이벤트 플래그입니다.</summary>
         public const string KitchenFirstAppearanceEventFlag = "event_kitchen_first_appearance";
         private const float ModalFadeDuration = 0.22f;
@@ -124,8 +132,9 @@ namespace EscapeFromNightmares.Runtime
         /// 에디터 빌더가 만든 씬 UI와 카탈로그 참조를 런타임 컨트롤러에 주입합니다.
         /// </summary>
         public void SetSceneReferences(
-            RoomSpriteCatalog roomSprites,
+            SpriteBinding[] sprites,
             MonsterPlacementCatalog monsterPlacements,
+            SoundEntry[] sounds,
             Image roomImage,
             RectTransform objectLayer,
             Image monsterObjectImage,
@@ -156,11 +165,13 @@ namespace EscapeFromNightmares.Runtime
             Image clearBackgroundImage = null,
             Button clearTitleButton = null,
             MonsterRuntimeQaPanel monsterRuntimeQaPanel = null,
+            ResourcePathCatalog catalog = null,
             StageDefinition mainStage = null)
         {
-            stageDefinition = mainStage;
-            spriteCatalog = roomSprites;
-            monsterPlacementCatalog = monsterPlacements;
+            resourceCatalog = catalog;
+            spriteBindings = sprites ?? System.Array.Empty<SpriteBinding>();
+            soundBindings = sounds ?? System.Array.Empty<SoundEntry>();
+            monsterPlacementCatalog = monsterPlacements ?? new MonsterPlacementCatalog();
             roomFaceImage = roomImage;
             roomObjectLayer = objectLayer;
             monsterImage = monsterObjectImage;
@@ -191,12 +202,19 @@ namespace EscapeFromNightmares.Runtime
             stageClearBackgroundImage = clearBackgroundImage;
             stageClearTitleButton = clearTitleButton;
             monsterQaPanel = monsterRuntimeQaPanel;
+            if (assetResolver != null)
+            {
+                assetResolver.SetBindings(spriteBindings, soundBindings, stage == null ? null : stage.sounds);
+                assetResolver.SetSoundManager(soundManager);
+            }
         }
 
         private void Awake()
         {
-            // 현재 프로토타입은 ScriptableObject 에셋 대신 코드 팩토리에서 Stage 1 데이터를 조립한다.
-            stage = StageRepository.LoadStage1(stageDefinition);
+            EnsureResourceCatalog();
+
+            // 현재 프로토타입은 외부 데이터 에셋 대신 코드 팩토리에서 Stage 1 데이터를 조립한다.
+            stage = StageRepository.LoadStage1();
             if (stage == null)
             {
                 enabled = false;
@@ -222,7 +240,7 @@ namespace EscapeFromNightmares.Runtime
                 puzzles[puzzle.puzzleId] = puzzle;
             }
 
-            if (monsterPlacementCatalog == null)
+            if (monsterPlacementCatalog == null || monsterPlacementCatalog.Placements.Count == 0)
             {
                 monsterPlacementCatalog = MonsterPlacementCatalog.CreateDefault(stage);
             }
@@ -232,16 +250,45 @@ namespace EscapeFromNightmares.Runtime
             flagService = new FlagService(session);
             inventoryService = new InventoryService(session);
             puzzleService = new PuzzleService(session, flagService);
-            actionResolver = new EscapeActionResolver(session, flagService, stage.soundCatalog);
+            actionResolver = new EscapeActionResolver(
+                session,
+                flagService,
+                soundBindings != null && soundBindings.Length > 0 ? soundBindings : stage.sounds);
             dangerSystem = new DangerSystem();
             hidingSystem = new HidingSystem();
             monsterAI = new MonsterAIController();
             saveService = new SettingsSaveService(Application.persistentDataPath);
-            resourceManager = new ResourceManager(ResourcePathCatalog.CreateDefault());
-
             EnsureEventSystem();
             EnsureSoundManager();
+            runtimeContext = new RuntimeContext
+            {
+                Stage = stage,
+                StageLookup = stageLookup,
+                Session = session,
+                Flags = flagService,
+                Inventory = inventoryService,
+                Puzzles = puzzleService,
+                Danger = dangerSystem,
+                Hiding = hidingSystem,
+                MonsterAI = monsterAI,
+                SaveService = saveService,
+                Sound = soundManager,
+                ActionResolver = actionResolver
+            };
+            assetResolver = new RuntimeAssetResolver(
+                resourceCatalog,
+                spriteBindings,
+                soundBindings,
+                stage.sounds,
+                soundManager,
+                this,
+                DefaultResourceCatalogPath);
+            assetResolver.EnsureResourceCatalog();
+            resourceCatalog = assetResolver.ResourceCatalog;
+            modalViewController = new ModalViewController(this, ModalFadeDuration);
+            puzzleFlowController = new PuzzleFlowController(puzzleInputTokens);
             EnsureUi();
+            CreateViewControllers();
             BindUi();
             actionExecutor = new EscapeActionExecutor(
                 OpenRoom,
@@ -255,11 +302,28 @@ namespace EscapeFromNightmares.Runtime
                 OpenHideView,
                 session,
                 CompleteStage);
+            runtimeContext.ActionExecutor = actionExecutor;
         }
 
         private void Start()
         {
             StartGame();
+        }
+
+        private void CreateViewControllers()
+        {
+            monsterViewController = new MonsterViewController(
+                roomObjectLayer,
+                monsterImage,
+                monsterPlacementCatalog,
+                ResolveSprite,
+                image => monsterImage = image);
+            roomViewController = new RoomViewController(
+                roomFaceImage,
+                roomObjectLayer,
+                ResolveSprite,
+                HandleInteractable,
+                monsterViewController);
         }
 
         private void Update()
@@ -296,7 +360,7 @@ namespace EscapeFromNightmares.Runtime
             inventoryWindow?.Close();
             PlaySoundById("bgm_stage1_ambient");
             OpenRoomImmediate(session.CurrentRoomId);
-            Debug.Log("MainScene started: " + session.CurrentRoomId);
+            Debug.Log("Main started: " + session.CurrentRoomId);
         }
 
         private void OpenRoom(string roomId)
@@ -325,102 +389,12 @@ namespace EscapeFromNightmares.Runtime
             // 현재 방/방향 데이터가 화면의 배경 이미지와 클릭 가능한 상호작용 레이어의 원천이다.
             var room = CurrentRoom();
             var face = CurrentFace(room);
-            var faceInteractables = face.interactables ?? new InteractableDefinition[0];
-
-            if (roomFaceImage != null)
-            {
-                roomFaceImage.sprite = ResolveSprite(ResolveRoomFaceBackgroundResource(face, flagService));
-                roomFaceImage.color = Color.white;
-                roomFaceImage.preserveAspect = true;
-            }
-
-            RenderRoomObjects(faceInteractables);
-            RenderMonster();
-        }
-
-        private void RenderRoomObjects(InteractableDefinition[] interactables)
-        {
-            if (roomObjectLayer == null)
-            {
-                return;
-            }
-
-            ClearChildrenExcept(roomObjectLayer, monsterImage == null ? null : monsterImage.transform);
-            // 조건을 만족하는 상호작용만 버튼으로 만들고, 이미지가 없는 항목은 투명 히트박스로 처리한다.
-            foreach (var interactable in interactables)
-            {
-                if (!ShouldRenderRoomHitbox(interactable, session, flagService))
-                {
-                    continue;
-                }
-
-                if (string.IsNullOrWhiteSpace(interactable.imageResource))
-                {
-                    continue;
-                }
-
-                var button = interactable.showWorldImage
-                    ? CreateImageButton(interactable.interactableId, roomObjectLayer, ResolveSprite(interactable.imageResource), () => HandleInteractable(interactable))
-                    : CreateTransparentButton(interactable.interactableId, roomObjectLayer, () => HandleInteractable(interactable));
-                Stretch(button.GetComponent<RectTransform>(), interactable.normalizedHitbox);
-            }
+            roomViewController?.Render(room, face, session, flagService, monsterAI);
         }
 
         private void RenderMonster()
         {
-            if (session == null || string.IsNullOrWhiteSpace(session.CurrentRoomId))
-            {
-                HideMonsterImage();
-                return;
-            }
-
-            if (!TryResolveMonsterPlacement(monsterPlacementCatalog, session.CurrentRoomId, session.CurrentFaceDirection, monsterAI.State, out var placementRect))
-            {
-                HideMonsterImage();
-                return;
-            }
-
-            // 몬스터는 방 오브젝트 레이어의 가장 위에 배치해 상호작용 이미지와 겹쳐도 항상 보이게 한다.
-            var image = EnsureMonsterImage();
-            if (image == null)
-            {
-                return;
-            }
-
-            image.sprite = ResolveSprite(MonsterShadowResource);
-            image.color = Color.white;
-            image.preserveAspect = true;
-            image.raycastTarget = false;
-            ApplyMonsterPlacement(image.rectTransform, placementRect);
-            image.transform.SetAsLastSibling();
-            image.gameObject.SetActive(true);
-        }
-
-        private Image EnsureMonsterImage()
-        {
-            if (monsterImage != null)
-            {
-                return monsterImage;
-            }
-
-            if (roomObjectLayer == null)
-            {
-                return null;
-            }
-
-            monsterImage = CreateImage("MonsterImage", roomObjectLayer, Color.white);
-            monsterImage.raycastTarget = false;
-            monsterImage.preserveAspect = true;
-            monsterImage.gameObject.SetActive(false);
-            return monsterImage;
-        }
-
-        private void HideMonsterImage()
-        {
-            if (monsterImage != null)
-            {
-                monsterImage.gameObject.SetActive(false);
-            }
+            monsterViewController?.Render(session, monsterAI);
         }
 
         [System.Diagnostics.Conditional("UNITY_EDITOR"), System.Diagnostics.Conditional("DEVELOPMENT_BUILD")]
@@ -918,7 +892,7 @@ namespace EscapeFromNightmares.Runtime
         private void OpenPuzzlePanel(PuzzleDefinition puzzle)
         {
             activePuzzle = puzzle;
-            puzzleInputTokens.Clear();
+            puzzleFlowController.Reset();
             studySafeSolvedInPanel = false;
 
             PuzzlePresenter.ApplyHeader(puzzle, puzzleTitleText, puzzleInputText, puzzleLogText, puzzleCloseUpImage, ResolveSprite);
@@ -948,7 +922,7 @@ namespace EscapeFromNightmares.Runtime
         private void ClosePuzzlePanel()
         {
             activePuzzle = null;
-            puzzleInputTokens.Clear();
+            puzzleFlowController.Reset();
             studySafeSolvedInPanel = false;
             if (puzzlePanel != null)
             {
@@ -959,7 +933,7 @@ namespace EscapeFromNightmares.Runtime
         private void HidePuzzlePanelImmediate()
         {
             activePuzzle = null;
-            puzzleInputTokens.Clear();
+            puzzleFlowController.Reset();
             studySafeSolvedInPanel = false;
             HidePanelImmediate(puzzlePanel, ref puzzleFadeRoutine);
         }
@@ -1018,7 +992,7 @@ namespace EscapeFromNightmares.Runtime
             Debug.Log("Study safe unlocked and opened.");
             RenderRoom();
             activePuzzle = null;
-            puzzleInputTokens.Clear();
+            puzzleFlowController.Reset();
             StartPanelFade(puzzlePanel, false, ref puzzleFadeRoutine, () =>
             {
                 PlaySoundById("sfx_drawer_open");
@@ -1117,18 +1091,13 @@ namespace EscapeFromNightmares.Runtime
                 return;
             }
 
-            if (puzzleInputTokens.Count >= activePuzzle.answerTokens.Length)
-            {
-                puzzleInputTokens.RemoveAt(puzzleInputTokens.Count - 1);
-            }
-
-            puzzleInputTokens.Add(token);
+            puzzleFlowController.AddToken(token, activePuzzle.answerTokens.Length);
             RefreshPuzzleInputText();
         }
 
         private void ClearPuzzleTokens()
         {
-            puzzleInputTokens.Clear();
+            puzzleFlowController.Reset();
             RefreshPuzzleInputText();
         }
 
@@ -1136,7 +1105,7 @@ namespace EscapeFromNightmares.Runtime
         {
             if (puzzleInputText != null)
             {
-                puzzleInputText.text = puzzleInputTokens.Count == 0 ? "Input: -" : "Input: " + PuzzlePresenter.FormatInput(puzzleInputTokens);
+                puzzleInputText.text = puzzleFlowController.InputLabel();
             }
         }
 
@@ -1151,7 +1120,7 @@ namespace EscapeFromNightmares.Runtime
             return StudySafePuzzleRules.NextDigitValue(currentValue);
         }
 
-        /// <summary>서재 금고 숫자 이미지의 Resources 경로를 반환합니다.</summary>
+        /// <summary>서재 금고 숫자 이미지의 스프라이트 ID를 반환합니다.</summary>
         public static string StudySafeDigitResource(int digit)
         {
             return StudySafePuzzleRules.DigitResource(Mathf.Clamp(digit, 0, 9));
@@ -1305,7 +1274,15 @@ namespace EscapeFromNightmares.Runtime
 
         private void PlaySoundById(string soundId)
         {
-            if (stage.soundCatalog != null && stage.soundCatalog.TryFind(soundId, out var entry))
+            if (assetResolver != null)
+            {
+                assetResolver.PlaySoundById(soundId);
+                return;
+            }
+
+            if (BindingLookup.TryFindSound(soundBindings, soundId, out var entry)
+                || (resourceCatalog != null && resourceCatalog.TryFindSound(soundId, out entry))
+                || BindingLookup.TryFindSound(stage.sounds, soundId, out entry))
             {
                 soundManager.Play(entry);
             }
@@ -1313,13 +1290,63 @@ namespace EscapeFromNightmares.Runtime
 
         private Sprite ResolveSprite(string resourcePathOrId)
         {
+            if (assetResolver != null)
+            {
+                return assetResolver.ResolveSprite(resourcePathOrId);
+            }
+
             var spriteId = SpriteId(resourcePathOrId);
-            if (spriteCatalog != null && spriteCatalog.TryFind(spriteId, out var sprite))
+            if (BindingLookup.TryFindSprite(spriteBindings, spriteId, out var sprite))
             {
                 return sprite;
             }
 
-            return resourceManager.LoadSprite(resourcePathOrId);
+            EnsureResourceCatalog();
+            if (resourceCatalog != null && resourceCatalog.TryFindSprite(spriteId, out sprite))
+            {
+                return sprite;
+            }
+
+            WarnMissingSprite(resourcePathOrId, spriteId);
+            return null;
+        }
+
+        public static ResourcePathCatalog LoadDefaultResourceCatalog()
+        {
+            return Resources.Load<ResourcePathCatalog>(DefaultResourceCatalogPath);
+        }
+
+        private void EnsureResourceCatalog()
+        {
+            if (assetResolver != null)
+            {
+                assetResolver.EnsureResourceCatalog();
+                resourceCatalog = assetResolver.ResourceCatalog;
+                return;
+            }
+
+            if (resourceCatalog != null)
+            {
+                return;
+            }
+
+            resourceCatalog = LoadDefaultResourceCatalog();
+            if (resourceCatalog == null)
+            {
+                Debug.LogWarning("ResourcePathCatalog not found at Resources/" + DefaultResourceCatalogPath, this);
+            }
+        }
+
+        private void WarnMissingSprite(string resourcePathOrId, string spriteId)
+        {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            if (string.IsNullOrWhiteSpace(spriteId) || !missingSpriteWarnings.Add(spriteId))
+            {
+                return;
+            }
+
+            Debug.LogWarning("Sprite binding not found: " + resourcePathOrId + " (id: " + spriteId + ")", this);
+#endif
         }
 
         private Sprite ResolveItemIcon(string itemId)
@@ -1334,7 +1361,7 @@ namespace EscapeFromNightmares.Runtime
                 return ResolveSprite(item.iconResource);
             }
 
-            return ResolveSprite("EscapeFromNightmares/Items/item_" + itemId);
+            return ResolveSprite("Items/item_" + itemId);
         }
 
         private static string CloseUpSpriteResource(InteractableDefinition interactable, CloseUpState state)
@@ -1344,13 +1371,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static string SpriteId(string resourcePathOrId)
         {
-            if (string.IsNullOrWhiteSpace(resourcePathOrId))
-            {
-                return string.Empty;
-            }
-
-            var slashIndex = resourcePathOrId.LastIndexOf('/');
-            return slashIndex >= 0 ? resourcePathOrId.Substring(slashIndex + 1) : resourcePathOrId;
+            return RuntimeAssetResolver.SpriteId(resourcePathOrId);
         }
 
         /// <summary>
@@ -1411,7 +1432,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static void ReturnToTitleScene()
         {
-            SceneManager.LoadScene("TitleScene");
+            SceneManager.LoadScene("Title");
         }
 
         private void StartSceneTransition(System.Action applyChange)
@@ -1467,6 +1488,12 @@ namespace EscapeFromNightmares.Runtime
 
         private void StartPanelFade(GameObject panel, bool visible, ref Coroutine routine, System.Action onComplete = null)
         {
+            if (modalViewController != null)
+            {
+                modalViewController.StartPanelFade(panel, visible, ref routine, onComplete);
+                return;
+            }
+
             if (panel == null)
             {
                 onComplete?.Invoke();
@@ -1483,6 +1510,12 @@ namespace EscapeFromNightmares.Runtime
 
         private void HidePanelImmediate(GameObject panel, ref Coroutine routine)
         {
+            if (modalViewController != null)
+            {
+                modalViewController.HidePanelImmediate(panel, ref routine);
+                return;
+            }
+
             if (panel == null)
             {
                 return;
@@ -1508,7 +1541,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static CanvasGroup EnsureCanvasGroup(GameObject panel)
         {
-            return PanelFader.EnsureCanvasGroup(panel);
+            return ModalViewController.EnsureCanvasGroup(panel);
         }
 
         private void EnsureSoundManager()
@@ -1519,7 +1552,7 @@ namespace EscapeFromNightmares.Runtime
                 soundManager = new GameObject("Sound Manager").AddComponent<SoundManager>();
             }
 
-            soundManager.Initialize(resourceManager);
+            soundManager.Initialize();
             soundManager.ApplyVolumes(saveService.LoadSettings());
         }
 
@@ -1696,7 +1729,7 @@ namespace EscapeFromNightmares.Runtime
             var image = button.GetComponent<Image>();
             if (image != null)
             {
-                image.sprite = ResolveSprite("EscapeFromNightmares/UI/ui_back_arrow");
+                image.sprite = ResolveSprite("UI/ui_back_arrow");
                 image.color = Color.white;
                 image.preserveAspect = true;
             }
@@ -1790,7 +1823,7 @@ namespace EscapeFromNightmares.Runtime
                 puzzleBackButton = FindChildComponent<Button>(parent, "PuzzleBackButton");
                 if (puzzleBackButton == null)
                 {
-                    puzzleBackButton = CreateImageButton("PuzzleBackButton", parent, ResolveSprite("EscapeFromNightmares/UI/ui_back_arrow"), ClosePuzzlePanel);
+                    puzzleBackButton = CreateImageButton("PuzzleBackButton", parent, ResolveSprite("UI/ui_back_arrow"), ClosePuzzlePanel);
                 }
             }
 
@@ -1878,73 +1911,32 @@ namespace EscapeFromNightmares.Runtime
 
         private static GameObject CreatePanel(string name, Transform parent, Color color)
         {
-            var panel = new GameObject(name, typeof(RectTransform), typeof(Image));
-            panel.transform.SetParent(parent, false);
-            panel.GetComponent<Image>().color = color;
-            return panel;
+            return FallbackUiBuilder.CreatePanel(name, parent, color);
         }
 
         private static Image CreateImage(string name, Transform parent, Color color)
         {
-            var imageObject = new GameObject(name, typeof(RectTransform), typeof(Image));
-            imageObject.transform.SetParent(parent, false);
-            var image = imageObject.GetComponent<Image>();
-            image.color = color;
-            return image;
+            return FallbackUiBuilder.CreateImage(name, parent, color);
         }
 
         private Button CreateImageButton(string name, Transform parent, Sprite sprite, UnityEngine.Events.UnityAction action)
         {
-            var buttonObject = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-            buttonObject.transform.SetParent(parent, false);
-            var image = buttonObject.GetComponent<Image>();
-            image.sprite = sprite;
-            image.color = Color.white;
-            image.preserveAspect = true;
-            var button = buttonObject.GetComponent<Button>();
-            button.onClick.AddListener(action);
-            return button;
+            return FallbackUiBuilder.CreateImageButton(name, parent, sprite, action);
         }
 
         private Button CreateTransparentButton(string name, Transform parent, UnityEngine.Events.UnityAction action)
         {
-            var buttonObject = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-            buttonObject.transform.SetParent(parent, false);
-            var image = buttonObject.GetComponent<Image>();
-            image.color = new Color(1f, 1f, 1f, 0.001f);
-            image.raycastTarget = true;
-            var button = buttonObject.GetComponent<Button>();
-            button.transition = Selectable.Transition.None;
-            button.onClick.AddListener(action);
-            return button;
+            return FallbackUiBuilder.CreateTransparentButton(name, parent, action);
         }
 
         private static Button CreateTextButton(string name, Transform parent, string label, UnityEngine.Events.UnityAction action)
         {
-            var buttonObject = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-            buttonObject.transform.SetParent(parent, false);
-            buttonObject.GetComponent<Image>().color = new Color(0.02f, 0.018f, 0.015f, 0.96f);
-            var button = buttonObject.GetComponent<Button>();
-            button.onClick.AddListener(action);
-            var text = CreateText("Label", buttonObject.transform, 24, TextAnchor.MiddleCenter);
-            text.text = label;
-            text.color = new Color(0.96f, 0.88f, 0.66f, 1f);
-            Stretch(text.rectTransform, new Rect(0f, 0f, 1f, 1f));
-            return button;
+            return FallbackUiBuilder.CreateTextButton(name, parent, label, action);
         }
 
         private static Text CreateText(string name, Transform parent, int size, TextAnchor anchor)
         {
-            var textObject = new GameObject(name, typeof(RectTransform), typeof(Text));
-            textObject.transform.SetParent(parent, false);
-            var text = textObject.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            text.fontSize = size;
-            text.color = new Color(0.88f, 0.86f, 0.82f, 1f);
-            text.alignment = anchor;
-            text.horizontalOverflow = HorizontalWrapMode.Wrap;
-            text.verticalOverflow = VerticalWrapMode.Truncate;
-            return text;
+            return FallbackUiBuilder.CreateText(name, parent, size, anchor);
         }
 
         /// <summary>
@@ -1973,13 +1965,7 @@ namespace EscapeFromNightmares.Runtime
 
         private static void BindButton(Button button, UnityEngine.Events.UnityAction action)
         {
-            if (button == null)
-            {
-                return;
-            }
-
-            button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(action);
+            FallbackUiBuilder.BindButton(button, action);
         }
 
         private static void SetButtonVisible(Button button, bool visible)
@@ -2056,42 +2042,17 @@ namespace EscapeFromNightmares.Runtime
 
         private static void ClearChildren(Transform parent)
         {
-            if (parent == null)
-            {
-                return;
-            }
-
-            for (var index = parent.childCount - 1; index >= 0; index--)
-            {
-                Destroy(parent.GetChild(index).gameObject);
-            }
+            FallbackUiBuilder.ClearChildren(parent);
         }
 
         private static void ClearChildrenExcept(Transform parent, Transform preservedChild)
         {
-            if (parent == null)
-            {
-                return;
-            }
-
-            for (var index = parent.childCount - 1; index >= 0; index--)
-            {
-                var child = parent.GetChild(index);
-                if (child == preservedChild)
-                {
-                    continue;
-                }
-
-                Destroy(child.gameObject);
-            }
+            FallbackUiBuilder.ClearChildrenExcept(parent, preservedChild);
         }
 
         private static void Stretch(RectTransform rectTransform, Rect normalizedRect)
         {
-            rectTransform.anchorMin = new Vector2(normalizedRect.xMin, normalizedRect.yMin);
-            rectTransform.anchorMax = new Vector2(normalizedRect.xMax, normalizedRect.yMax);
-            rectTransform.offsetMin = Vector2.zero;
-            rectTransform.offsetMax = Vector2.zero;
+            FallbackUiBuilder.Stretch(rectTransform, normalizedRect);
         }
 
         private static void EnsureEventSystem()

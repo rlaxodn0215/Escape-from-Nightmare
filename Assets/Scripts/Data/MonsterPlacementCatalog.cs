@@ -7,8 +7,8 @@ namespace EscapeFromNightmares.Data
     /// <summary>
     /// 방과 바라보는 방향마다 몬스터 그림자를 어느 위치에 표시할지 정의하는 카탈로그입니다.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Monster Placement Catalog")]
-    public sealed class MonsterPlacementCatalog : ScriptableObject
+    [Serializable]
+    public sealed class MonsterPlacementCatalog
     {
         [SerializeField] private List<MonsterPlacementEntry> placements = new List<MonsterPlacementEntry>();
 
@@ -58,7 +58,7 @@ namespace EscapeFromNightmares.Data
         /// </summary>
         public static MonsterPlacementCatalog CreateDefault(StageDefinition stage)
         {
-            var catalog = CreateInstance<MonsterPlacementCatalog>();
+            var catalog = new MonsterPlacementCatalog();
             catalog.SetPlacements(CreateDefaultEntries(stage));
             return catalog;
         }

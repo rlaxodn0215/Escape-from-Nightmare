@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EscapeFromNightmares.Data
@@ -58,6 +59,61 @@ namespace EscapeFromNightmares.Data
         Ui,
         Ambience,
         Monster
+    }
+
+    [Serializable]
+    public sealed class SoundEntry
+    {
+        public string soundId;
+        public AudioClip clip;
+        public SoundCategory category = SoundCategory.Sfx;
+        public bool loop;
+    }
+
+    [Serializable]
+    public sealed class SpriteBinding
+    {
+        public string spriteId;
+        public Sprite sprite;
+    }
+
+    public static class BindingLookup
+    {
+        public static bool TryFindSprite(IEnumerable<SpriteBinding> bindings, string spriteId, out Sprite sprite)
+        {
+            if (bindings != null)
+            {
+                foreach (var binding in bindings)
+                {
+                    if (binding != null && binding.spriteId == spriteId && binding.sprite != null)
+                    {
+                        sprite = binding.sprite;
+                        return true;
+                    }
+                }
+            }
+
+            sprite = null;
+            return false;
+        }
+
+        public static bool TryFindSound(IEnumerable<SoundEntry> entries, string soundId, out SoundEntry entry)
+        {
+            if (entries != null)
+            {
+                foreach (var candidate in entries)
+                {
+                    if (candidate != null && candidate.soundId == soundId)
+                    {
+                        entry = candidate;
+                        return true;
+                    }
+                }
+            }
+
+            entry = null;
+            return false;
+        }
     }
 
     [Serializable]

@@ -252,13 +252,13 @@ namespace EscapeFromNightmares.Services
     {
         private readonly GameSession session;
         private readonly FlagService flags;
-        private readonly SoundCatalog soundCatalog;
+        private readonly IEnumerable<SoundEntry> sounds;
 
-        public EscapeActionResolver(GameSession session, FlagService flags, SoundCatalog soundCatalog)
+        public EscapeActionResolver(GameSession session, FlagService flags, IEnumerable<SoundEntry> sounds)
         {
             this.session = session;
             this.flags = flags;
-            this.soundCatalog = soundCatalog;
+            this.sounds = sounds;
         }
 
         /// <summary>
@@ -395,7 +395,7 @@ namespace EscapeFromNightmares.Services
 
         private void AddSound(EscapeActionResult result, string soundId)
         {
-            if (string.IsNullOrWhiteSpace(soundId) || soundCatalog == null || !soundCatalog.TryFind(soundId, out var entry))
+            if (string.IsNullOrWhiteSpace(soundId) || !BindingLookup.TryFindSound(sounds, soundId, out var entry))
             {
                 return;
             }

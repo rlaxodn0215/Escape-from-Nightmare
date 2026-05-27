@@ -1,13 +1,12 @@
 using System;
-using UnityEngine;
 
 namespace EscapeFromNightmares.Data
 {
     /// <summary>
     /// Authored puzzle rule, reward, and presentation data.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Puzzle Definition")]
-    public sealed class PuzzleDefinition : ScriptableObject
+    [Serializable]
+    public sealed class PuzzleDefinition
     {
         public string puzzleId;
         public string displayName;

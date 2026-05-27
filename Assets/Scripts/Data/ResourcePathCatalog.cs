@@ -1,41 +1,58 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EscapeFromNightmares.Data
 {
     /// <summary>
-    /// Resources 폴더에서 타이틀 UI와 공통 UI 사운드를 찾기 위한 기본 경로 목록입니다.
+    /// Direct Unity asset references keyed by the resource-style ids used in stage data.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Resource Path Catalog")]
+    [CreateAssetMenu(fileName = "ResourcePathCatalog", menuName = "Escape From Nightmares/Resource Path Catalog")]
     public sealed class ResourcePathCatalog : ScriptableObject
     {
-        [Header("Title")]
-        public string titleBackgroundPath = "EscapeFromNightmares/Title/title_background";
-        public string titleLogoPath = "EscapeFromNightmares/Title/title_logo_escape_from_nightmare";
-        public string titleStartButtonPath = "EscapeFromNightmares/Title/UI/button_start";
-        public string titleSettingsButtonPath = "EscapeFromNightmares/Title/UI/button_settings";
-        public string titleQuitButtonPath = "EscapeFromNightmares/Title/UI/button_quit";
-        public string titleCloseButtonPath = "EscapeFromNightmares/Title/UI/button_close";
-        public string settingsPanelBackgroundPath = "EscapeFromNightmares/Title/UI/settings_panel_bg";
-        public string settingsHeaderPath = "EscapeFromNightmares/Title/UI/settings_header";
-        public string settingsMasterLabelPath = "EscapeFromNightmares/Title/UI/settings_label_master";
-        public string settingsBgmLabelPath = "EscapeFromNightmares/Title/UI/settings_label_bgm";
-        public string settingsSfxLabelPath = "EscapeFromNightmares/Title/UI/settings_label_sfx";
-        public string settingsUiLabelPath = "EscapeFromNightmares/Title/UI/settings_label_ui";
-        public string settingsSliderTrackPath = "EscapeFromNightmares/Title/UI/slider_track";
-        public string settingsSliderFillPath = "EscapeFromNightmares/Title/UI/slider_fill";
-        public string settingsSliderHandlePath = "EscapeFromNightmares/Title/UI/slider_handle";
-        public string titleBgmPath = "EscapeFromNightmares/Audio/BGM/title_loop";
+        [SerializeField] private SpriteBinding[] spriteBindings = Array.Empty<SpriteBinding>();
+        [SerializeField] private SoundEntry[] soundBindings = Array.Empty<SoundEntry>();
 
-        [Header("UI Audio")]
-        public string uiClickPath = "EscapeFromNightmares/Audio/UI/ui_click";
-        public string confirmSfxPath = "EscapeFromNightmares/Audio/SFX/sfx_confirm";
+        public IReadOnlyList<SpriteBinding> SpriteBindings => spriteBindings;
+        public IReadOnlyList<SoundEntry> SoundBindings => soundBindings;
 
-        /// <summary>
-        /// 카탈로그 에셋이 없을 때 코드에서 동일한 기본 경로를 사용하기 위한 런타임 기본값을 만듭니다.
-        /// </summary>
-        public static ResourcePathCatalog CreateDefault()
+        public bool TryFindSprite(string spriteId, out Sprite sprite)
         {
-            return CreateInstance<ResourcePathCatalog>();
+            return BindingLookup.TryFindSprite(spriteBindings, spriteId, out sprite);
+        }
+
+        public bool TryFindSound(string soundId, out SoundEntry entry)
+        {
+            return BindingLookup.TryFindSound(soundBindings, soundId, out entry);
+        }
+
+        public void SetSpriteBindings(IEnumerable<SpriteBinding> bindings)
+        {
+            spriteBindings = ToArray(bindings);
+        }
+
+        public void SetSoundBindings(IEnumerable<SoundEntry> bindings)
+        {
+            soundBindings = ToArray(bindings);
+        }
+
+        private static T[] ToArray<T>(IEnumerable<T> entries)
+        {
+            if (entries == null)
+            {
+                return Array.Empty<T>();
+            }
+
+            var list = new List<T>();
+            foreach (var entry in entries)
+            {
+                if (entry != null)
+                {
+                    list.Add(entry);
+                }
+            }
+
+            return list.ToArray();
         }
     }
 }

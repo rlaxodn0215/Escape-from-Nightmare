@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EscapeFromNightmares.Data
 {
     /// <summary>
     /// Authored monster navigation graph for room-to-room pressure.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Monster Node Graph")]
-    public sealed class MonsterNodeGraph : ScriptableObject
+    [Serializable]
+    public sealed class MonsterNodeGraph
     {
         public List<MonsterNode> nodes = new List<MonsterNode>();
     }

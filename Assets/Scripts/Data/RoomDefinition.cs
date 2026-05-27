@@ -6,8 +6,8 @@ namespace EscapeFromNightmares.Data
     /// <summary>
     /// Authored room data, including per-face backgrounds, movement links, and interactions.
     /// </summary>
-    [CreateAssetMenu(menuName = "Escape From Nightmares/Room Definition")]
-    public sealed class RoomDefinition : ScriptableObject
+    [Serializable]
+    public sealed class RoomDefinition
     {
         public string roomId;
         public string displayName;
