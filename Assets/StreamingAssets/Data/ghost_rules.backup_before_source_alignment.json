@@ -1,0 +1,85 @@
+{
+  "ghostRules": [
+    {
+      "ruleId": "GhostRule_Bedroom",
+      "locationId": "Bedroom",
+      "minArrivalTime": 6,
+      "maxArrivalTime": 12,
+      "minLeaveTime": 5,
+      "maxLeaveTime": 15,
+      "dangerIncreasePerSecond": 0.25
+    },
+    {
+      "ruleId": "GhostRule_Hallway",
+      "locationId": "Hallway",
+      "minArrivalTime": 4,
+      "maxArrivalTime": 10,
+      "minLeaveTime": 5,
+      "maxLeaveTime": 16,
+      "dangerIncreasePerSecond": 0.3
+    },
+    {
+      "ruleId": "GhostRule_ChildRoom",
+      "locationId": "ChildRoom",
+      "minArrivalTime": 5,
+      "maxArrivalTime": 11,
+      "minLeaveTime": 5,
+      "maxLeaveTime": 18,
+      "dangerIncreasePerSecond": 0.28
+    },
+    {
+      "ruleId": "GhostRule_Study",
+      "locationId": "Study",
+      "minArrivalTime": 5,
+      "maxArrivalTime": 10,
+      "minLeaveTime": 6,
+      "maxLeaveTime": 18,
+      "dangerIncreasePerSecond": 0.3
+    },
+    {
+      "ruleId": "GhostRule_LivingRoom",
+      "locationId": "LivingRoom",
+      "minArrivalTime": 4,
+      "maxArrivalTime": 9,
+      "minLeaveTime": 6,
+      "maxLeaveTime": 18,
+      "dangerIncreasePerSecond": 0.32
+    },
+    {
+      "ruleId": "GhostRule_Kitchen",
+      "locationId": "Kitchen",
+      "minArrivalTime": 3,
+      "maxArrivalTime": 8,
+      "minLeaveTime": 6,
+      "maxLeaveTime": 20,
+      "dangerIncreasePerSecond": 0.35
+    },
+    {
+      "ruleId": "GhostRule_Basement",
+      "locationId": "Basement",
+      "minArrivalTime": 2,
+      "maxArrivalTime": 6,
+      "minLeaveTime": 8,
+      "maxLeaveTime": 20,
+      "dangerIncreasePerSecond": 0.5
+    },
+    {
+      "ruleId": "GhostRule_LockedRoom",
+      "locationId": "LockedRoom",
+      "minArrivalTime": 2,
+      "maxArrivalTime": 5,
+      "minLeaveTime": 8,
+      "maxLeaveTime": 20,
+      "dangerIncreasePerSecond": 0.55
+    },
+    {
+      "ruleId": "GhostRule_Entrance",
+      "locationId": "Entrance",
+      "minArrivalTime": 2,
+      "maxArrivalTime": 5,
+      "minLeaveTime": 8,
+      "maxLeaveTime": 20,
+      "dangerIncreasePerSecond": 0.45
+    }
+  ]
+}

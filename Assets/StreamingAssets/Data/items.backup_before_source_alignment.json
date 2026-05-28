@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "itemId": "OldDrawerKey",
+      "displayName": "Old Drawer Key",
+      "description": "A small rusty key found after solving the bedroom code.",
+      "iconPath": "Items/OldDrawerKey",
+      "consumable": true
+    },
+    {
+      "itemId": "FrontDoorKey",
+      "displayName": "Front Door Key",
+      "description": "The key that can open the way out.",
+      "iconPath": "Items/FrontDoorKey",
+      "consumable": false
+    },
+    {
+      "itemId": "BasementFuse",
+      "displayName": "Basement Fuse",
+      "description": "A fuse that may restore power to the basement device.",
+      "iconPath": "Items/BasementFuse",
+      "consumable": true
+    },
+    {
+      "itemId": "RustyHandle",
+      "displayName": "Rusty Handle",
+      "description": "A handle that seems to fit an old mechanism.",
+      "iconPath": "Items/RustyHandle",
+      "consumable": true
+    }
+  ]
+}

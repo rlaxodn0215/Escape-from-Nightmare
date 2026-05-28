@@ -1,0 +1,180 @@
+{
+  "doors": [
+    {
+      "doorId": "Door_Bedroom_SecondFloorHallway",
+      "fromLocationId": "Bedroom",
+      "fromViewId": "Bedroom_Front",
+      "toLocationId": "SecondFloorHallway",
+      "toViewId": "SecondFloorHallway_Back",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_SecondFloorHallway_Bedroom",
+      "fromLocationId": "SecondFloorHallway",
+      "fromViewId": "SecondFloorHallway_Back",
+      "toLocationId": "Bedroom",
+      "toViewId": "Bedroom_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_ChildRoom_SecondFloorHallway",
+      "fromLocationId": "ChildRoom",
+      "fromViewId": "ChildRoom_Front",
+      "toLocationId": "SecondFloorHallway",
+      "toViewId": "SecondFloorHallway_Back",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_SecondFloorHallway_ChildRoom",
+      "fromLocationId": "SecondFloorHallway",
+      "fromViewId": "SecondFloorHallway_Back",
+      "toLocationId": "ChildRoom",
+      "toViewId": "ChildRoom_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_Study_SecondFloorHallway",
+      "fromLocationId": "Study",
+      "fromViewId": "Study_Front",
+      "toLocationId": "SecondFloorHallway",
+      "toViewId": "SecondFloorHallway_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_SecondFloorHallway_Study",
+      "fromLocationId": "SecondFloorHallway",
+      "fromViewId": "SecondFloorHallway_Front",
+      "toLocationId": "Study",
+      "toViewId": "Study_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_SecondFloorHallway_LivingRoom",
+      "fromLocationId": "SecondFloorHallway",
+      "fromViewId": "SecondFloorHallway_Front",
+      "toLocationId": "LivingRoom",
+      "toViewId": "LivingRoom_Back",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_LivingRoom_SecondFloorHallway",
+      "fromLocationId": "LivingRoom",
+      "fromViewId": "LivingRoom_Back",
+      "toLocationId": "SecondFloorHallway",
+      "toViewId": "SecondFloorHallway_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_LivingRoom_Entrance",
+      "fromLocationId": "LivingRoom",
+      "fromViewId": "LivingRoom_Front",
+      "toLocationId": "Entrance",
+      "toViewId": "Entrance_Front",
+      "requiredItemId": "FrontDoorKey",
+      "requiredPuzzleId": "",
+      "startsLocked": true,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_Entrance_LivingRoom",
+      "fromLocationId": "Entrance",
+      "fromViewId": "Entrance_Front",
+      "toLocationId": "LivingRoom",
+      "toViewId": "LivingRoom_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_LivingRoom_Kitchen",
+      "fromLocationId": "LivingRoom",
+      "fromViewId": "LivingRoom_Back",
+      "toLocationId": "Kitchen",
+      "toViewId": "Kitchen_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_Kitchen_LivingRoom",
+      "fromLocationId": "Kitchen",
+      "fromViewId": "Kitchen_Front",
+      "toLocationId": "LivingRoom",
+      "toViewId": "LivingRoom_Back",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_Kitchen_BasementStorage",
+      "fromLocationId": "Kitchen",
+      "fromViewId": "Kitchen_Front",
+      "toLocationId": "BasementStorage",
+      "toViewId": "BasementStorage_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_BasementStorage_Kitchen",
+      "fromLocationId": "BasementStorage",
+      "fromViewId": "BasementStorage_Front",
+      "toLocationId": "Kitchen",
+      "toViewId": "Kitchen_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_BasementStorage_LockedRoom",
+      "fromLocationId": "BasementStorage",
+      "fromViewId": "BasementStorage_Right",
+      "toLocationId": "LockedRoom",
+      "toViewId": "LockedRoom_Front",
+      "requiredItemId": "",
+      "requiredPuzzleId": "Puzzle_BasementStorage_01",
+      "startsLocked": true,
+      "staysUnlockedAfterOpen": true
+    },
+    {
+      "doorId": "Door_LockedRoom_BasementStorage",
+      "fromLocationId": "LockedRoom",
+      "fromViewId": "LockedRoom_Front",
+      "toLocationId": "BasementStorage",
+      "toViewId": "BasementStorage_Right",
+      "requiredItemId": "",
+      "requiredPuzzleId": "",
+      "startsLocked": false,
+      "staysUnlockedAfterOpen": true
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "clues": [
+    {
+      "clueId": "Clue_Bedroom_Photo",
+      "locationId": "Bedroom",
+      "imagePath": "ExamineImages/BedroomPhoto",
+      "requiredPuzzleId": "",
+      "requiredItemId": "",
+      "startsUnlocked": true,
+      "displayName": "Old Photo",
+      "description": "A faded photo. The numbers 7319 are scratched into the back.",
+      "lockedMessage": ""
+    },
+    {
+      "clueId": "Clue_LockedDrawer_Note",
+      "locationId": "Bedroom",
+      "imagePath": "ClueImages/LockedDrawerNote",
+      "requiredPuzzleId": "",
+      "requiredItemId": "OldDrawerKey",
+      "startsUnlocked": false,
+      "displayName": "Locked Drawer Note",
+      "description": "A note inside the drawer mentions the order: Red, Blue, Green.",
+      "lockedMessage": "The drawer is locked."
+    },
+    {
+      "clueId": "Clue_ChildRoom_CardHint",
+      "locationId": "ChildRoom",
+      "imagePath": "ClueImages/ChildRoomCardHint",
+      "requiredPuzzleId": "",
+      "requiredItemId": "",
+      "startsUnlocked": true,
+      "displayName": "Scattered Cards",
+      "description": "Three cards stand out: Red, Blue, and Green.",
+      "lockedMessage": ""
+    },
+    {
+      "clueId": "Clue_Study_BookHint",
+      "locationId": "Study",
+      "imagePath": "ClueImages/StudyBookHint",
+      "requiredPuzzleId": "Puzzle_ChildRoom_01",
+      "requiredItemId": "",
+      "startsUnlocked": false,
+      "displayName": "Book Order Hint",
+      "description": "The old notes point to the book order: Red, Blue, Green, Black.",
+      "lockedMessage": "You cannot make sense of the shelf yet."
+    },
+    {
+      "clueId": "Clue_BasementPassword",
+      "locationId": "Study",
+      "imagePath": "ClueImages/BasementPassword",
+      "requiredPuzzleId": "Puzzle_Study_01",
+      "requiredItemId": "",
+      "startsUnlocked": false,
+      "displayName": "Basement Password",
+      "description": "The note says: Kitchen lock code is 4826.",
+      "lockedMessage": "The note is still hidden."
+    },
+    {
+      "clueId": "Clue_LivingRoom_SymbolHint",
+      "locationId": "LivingRoom",
+      "imagePath": "ClueImages/LivingRoomSymbolHint",
+      "requiredPuzzleId": "",
+      "requiredItemId": "",
+      "startsUnlocked": true,
+      "displayName": "Symbol Painting",
+      "description": "The painting shows three symbols in order: Moon, Eye, Key.",
+      "lockedMessage": ""
+    },
+    {
+      "clueId": "Clue_Kitchen_NumberHint",
+      "locationId": "Kitchen",
+      "imagePath": "ClueImages/KitchenNumberHint",
+      "requiredPuzzleId": "Puzzle_Study_01",
+      "requiredItemId": "",
+      "startsUnlocked": false,
+      "displayName": "Kitchen Number Hint",
+      "description": "The kitchen lock accepts the number 4826.",
+      "lockedMessage": "You need another clue before this makes sense."
+    },
+    {
+      "clueId": "Clue_EntranceDoor",
+      "locationId": "Entrance",
+      "imagePath": "ClueImages/EntranceDoor",
+      "requiredPuzzleId": "",
+      "requiredItemId": "FrontDoorKey",
+      "startsUnlocked": false,
+      "displayName": "Front Door",
+      "description": "The nightmare loosens its grip as the key turns.",
+      "lockedMessage": "The door will not open without the right key."
+    }
+  ]
+}

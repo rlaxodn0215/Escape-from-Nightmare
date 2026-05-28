@@ -1,0 +1,40 @@
+{
+  "symbols": [
+    {
+      "symbolId": "Symbol_01",
+      "displayName": "Symbol 01",
+      "spritePath": "Symbols/Symbol_01",
+      "value": 1
+    },
+    {
+      "symbolId": "Symbol_02",
+      "displayName": "Symbol 02",
+      "spritePath": "Symbols/Symbol_02",
+      "value": 2
+    },
+    {
+      "symbolId": "Symbol_03",
+      "displayName": "Symbol 03",
+      "spritePath": "Symbols/Symbol_03",
+      "value": 3
+    },
+    {
+      "symbolId": "Symbol_04",
+      "displayName": "Symbol 04",
+      "spritePath": "Symbols/Symbol_04",
+      "value": 4
+    },
+    {
+      "symbolId": "Symbol_05",
+      "displayName": "Symbol 05",
+      "spritePath": "Symbols/Symbol_05",
+      "value": 5
+    },
+    {
+      "symbolId": "Symbol_06",
+      "displayName": "Symbol 06",
+      "spritePath": "Symbols/Symbol_06",
+      "value": 6
+    }
+  ]
+}
