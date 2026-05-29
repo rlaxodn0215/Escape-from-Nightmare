@@ -14,6 +14,16 @@ namespace EscapeFromNightmare
 
         private Coroutine endingRoutine;
 
+        public bool ReturnToTitleAfterEnding
+        {
+            get { return returnToTitleAfterEnding; }
+        }
+
+        public void SetReturnToTitleAfterEnding(bool value)
+        {
+            returnToTitleAfterEnding = value;
+        }
+
         private void OnEnable()
         {
             SubscribePanel();
@@ -41,6 +51,8 @@ namespace EscapeFromNightmare
 
         public IEnumerator EndingRoutine()
         {
+            bool shouldReturnToTitle = returnToTitleAfterEnding;
+
             if (endingPanel != null)
             {
                 endingPanel.Show(endingTitle, endingMessage);
@@ -52,7 +64,7 @@ namespace EscapeFromNightmare
 
             yield return new WaitForSeconds(Mathf.Max(0f, returnToTitleDelaySeconds));
 
-            if (returnToTitleAfterEnding)
+            if (shouldReturnToTitle)
             {
                 if (GameManager.Instance != null)
                 {

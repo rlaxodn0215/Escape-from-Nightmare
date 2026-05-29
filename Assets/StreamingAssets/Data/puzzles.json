@@ -46,7 +46,7 @@
       "puzzleId": "Puzzle_LivingRoom_01",
       "locationId": "LivingRoom",
       "type": "ItemUse",
-      "prefabPath": "",
+      "prefabPath": "PuzzleUI/PuzzleUI_LivingRoomItemUse",
       "codeLength": 0,
       "answerVariableName": "",
       "timeLimitSeconds": 0,

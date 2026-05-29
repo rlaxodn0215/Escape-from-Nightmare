@@ -98,6 +98,18 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        public virtual bool SetSlotSymbolForTest(int index, string symbolId)
+        {
+            if (index < 0 || index >= slots.Count || slots[index] == null)
+            {
+                return false;
+            }
+
+            slots[index].SetSymbol(symbolId);
+            RefreshDisplay();
+            return true;
+        }
+
         public virtual void Submit()
         {
             if (expectedSequence == null || expectedSequence.Length == 0)

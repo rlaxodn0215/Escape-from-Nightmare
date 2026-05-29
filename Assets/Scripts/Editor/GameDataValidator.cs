@@ -59,7 +59,7 @@ namespace EscapeFromNightmare
             ValidatePuzzleAnswers(answerList, puzzleIds, puzzleMap);
             ValidateGhostRules(ghostRuleList, locationIds);
             ValidateSymbolsUsedByAnswers(answerList, puzzleMap, symbolIds);
-            ValidateSourceAlignment(locationList, doorList, puzzleList, symbolList);
+            ValidateSourceAlignment(locationList, doorList, puzzleList, symbolList, itemIds, clueIds, doorIds);
 
             Debug.Log("Game data validation complete. Errors: " + errorCount + ", Warnings: " + warningCount);
             Debug.Log("[GameDataValidator] Next: run Escape From Nightmare / Validate Current Scene Wiring, then Validate Puzzle Prefab Contracts.");
@@ -595,7 +595,7 @@ namespace EscapeFromNightmare
             Debug.LogWarning("[GameDataValidator] " + message);
         }
 
-        private static void ValidateSourceAlignment(IEnumerable<LocationRecord> locations, IEnumerable<DoorRecord> doors, IEnumerable<PuzzleRecord> puzzles, IEnumerable<SymbolRecord> symbols)
+        private static void ValidateSourceAlignment(IEnumerable<LocationRecord> locations, IEnumerable<DoorRecord> doors, IEnumerable<PuzzleRecord> puzzles, IEnumerable<SymbolRecord> symbols, HashSet<string> itemIds, HashSet<string> clueIds, HashSet<string> doorIds)
         {
             foreach (LocationRecord location in locations)
             {
@@ -622,12 +622,12 @@ namespace EscapeFromNightmare
                     continue;
                 }
 
-                if (door.doorId.Contains("Hallway"))
+                if (ContainsIdSegment(door.doorId, "Hallway"))
                 {
                     AddWarning("Legacy doorId may reference Hallway. Use SecondFloorHallway naming: " + door.doorId);
                 }
 
-                if (door.doorId.Contains("Basement") && !door.doorId.Contains("BasementStorage"))
+                if (ContainsIdSegment(door.doorId, "Basement"))
                 {
                     AddWarning("Legacy doorId may reference Basement. Use BasementStorage naming: " + door.doorId);
                 }
@@ -673,6 +673,26 @@ namespace EscapeFromNightmare
                     AddError("Source-aligned Kitchen reward should be BasementFuse, not FrontDoorKey.");
                 }
 
+                if (puzzle.puzzleId == "Puzzle_LivingRoom_01" && puzzle.rewardId != "SmallClockworkDevice")
+                {
+                    AddError("Puzzle_LivingRoom_01 should reward SmallClockworkDevice.");
+                }
+
+                if (puzzle.puzzleId == "Puzzle_Kitchen_01" && puzzle.rewardId != "BasementFuse")
+                {
+                    AddError("Puzzle_Kitchen_01 should reward BasementFuse.");
+                }
+
+                if (puzzle.puzzleId == "Puzzle_LockedRoom_01" && puzzle.rewardId != "FrontDoorKey")
+                {
+                    AddError("Puzzle_LockedRoom_01 should reward FrontDoorKey.");
+                }
+
+                if (puzzle.puzzleId == "Puzzle_Entrance_01" && puzzle.rewardType != PuzzleRewardType.Ending)
+                {
+                    AddError("Puzzle_Entrance_01 should use rewardType Ending.");
+                }
+
                 if (puzzle.rewardId == "FrontDoorKey" && puzzle.puzzleId != "Puzzle_LockedRoom_01")
                 {
                     AddWarning("FrontDoorKey should normally be rewarded by Puzzle_LockedRoom_01. Found on: " + puzzle.puzzleId);
@@ -688,6 +708,41 @@ namespace EscapeFromNightmare
                     AddWarning("Puzzle_LockedRoom_01 should require ModifiedClockworkDevice.");
                 }
             }
+
+            RequireSourceId(itemIds, "SmallClockworkDevice", "items.json");
+            RequireSourceId(itemIds, "ModifiedClockworkDevice", "items.json");
+            RequireSourceId(itemIds, "BasementFuse", "items.json");
+            RequireSourceId(itemIds, "FrontDoorKey", "items.json");
+            RequireSourceId(clueIds, "BasementClueImage", "clues.json");
+            RequireSourceId(clueIds, "KitchenCodeClueImage", "clues.json");
+            RequireSourceId(doorIds, "Door_BasementStorage_LockedRoom", "doors.json");
+        }
+
+        private static void RequireSourceId(HashSet<string> ids, string requiredId, string owner)
+        {
+            if (ids == null || !ids.Contains(requiredId))
+            {
+                AddError("Source-aligned required ID is missing from " + owner + ": " + requiredId);
+            }
+        }
+
+        private static bool ContainsIdSegment(string value, string segment)
+        {
+            if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(segment))
+            {
+                return false;
+            }
+
+            string[] parts = value.Split('_');
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (parts[i] == segment)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

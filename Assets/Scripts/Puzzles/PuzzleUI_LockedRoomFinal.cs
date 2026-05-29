@@ -1,31 +1,61 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
     public class PuzzleUI_LockedRoomFinal : PuzzleSymbolCycleUIBase
     {
-        private bool sequenceResolved;
+        [SerializeField] private Text itemUseMessageText;
+        [SerializeField] private Button useClockworkDeviceButton;
+        [SerializeField] private string requiredFinalItemId = "ModifiedClockworkDevice";
+
+        private bool sequenceSolved;
+
+        public bool IsSequenceSolvedForTest
+        {
+            get { return sequenceSolved; }
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            if (useClockworkDeviceButton != null)
+            {
+                useClockworkDeviceButton.onClick.RemoveListener(UseRequiredItem);
+                useClockworkDeviceButton.onClick.AddListener(UseRequiredItem);
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            if (useClockworkDeviceButton != null)
+            {
+                useClockworkDeviceButton.onClick.RemoveListener(UseRequiredItem);
+            }
+
+            base.OnDisable();
+        }
 
         public override void Initialize(PuzzleRecord record)
         {
-            sequenceResolved = false;
+            sequenceSolved = false;
             base.Initialize(record);
+            SetItemUseMessage(string.Empty);
             // TODO: Bind locked room final puzzle-specific visuals.
         }
 
-        public void UseRequiredDevice()
+        public void UseRequiredItem()
         {
-            if (!sequenceResolved)
+            if (!sequenceSolved)
             {
-                SetMessage("Solve the symbols first.");
+                SetItemUseMessage("Solve the symbols first.");
                 return;
             }
 
-            if (puzzleRecord == null || string.IsNullOrEmpty(puzzleRecord.requiredItemId))
-            {
-                Debug.LogWarning("LockedRoomFinal requiredItemId is empty.", this);
-                return;
-            }
+            string requiredItemId = !string.IsNullOrEmpty(requiredFinalItemId)
+                ? requiredFinalItemId
+                : (puzzleRecord != null ? puzzleRecord.requiredItemId : string.Empty);
 
             if (InventoryManager.Instance == null)
             {
@@ -33,9 +63,9 @@ namespace EscapeFromNightmare
                 return;
             }
 
-            if (!InventoryManager.Instance.TryUseSelectedItem(puzzleRecord.requiredItemId))
+            if (!InventoryManager.Instance.TryUseSelectedItem(requiredItemId))
             {
-                SetMessage("Use the modified device.");
+                SetItemUseMessage("Use the modified clockwork device.");
                 return;
             }
 
@@ -52,10 +82,24 @@ namespace EscapeFromNightmare
             Complete();
         }
 
+        public void UseRequiredDevice()
+        {
+            UseRequiredItem();
+        }
+
         protected override void OnCorrectSequenceResolved()
         {
-            sequenceResolved = true;
+            sequenceSolved = true;
             SetMessage("Use the modified device.");
+            SetItemUseMessage("Use the modified clockwork device.");
+        }
+
+        private void SetItemUseMessage(string message)
+        {
+            if (itemUseMessageText != null)
+            {
+                itemUseMessageText.text = message;
+            }
         }
     }
 }

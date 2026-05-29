@@ -9,6 +9,11 @@ namespace EscapeFromNightmare
         [SerializeField] protected Button useSelectedItemButton;
         [SerializeField] protected Button closeButton;
 
+        public string RequiredItemId
+        {
+            get { return puzzleRecord != null ? puzzleRecord.requiredItemId : string.Empty; }
+        }
+
         protected virtual void OnEnable()
         {
             HookButtons();
@@ -27,9 +32,16 @@ namespace EscapeFromNightmare
 
         public virtual void UseSelectedItem()
         {
-            if (puzzleRecord == null || string.IsNullOrEmpty(puzzleRecord.requiredItemId))
+            if (puzzleRecord == null)
             {
-                Debug.LogWarning("ItemUse puzzle has no requiredItemId: " + puzzleId, this);
+                Debug.LogWarning("ItemUse puzzle has no PuzzleRecord: " + puzzleId, this);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(puzzleRecord.requiredItemId))
+            {
+                SetMessage("Correct.");
+                Complete();
                 return;
             }
 

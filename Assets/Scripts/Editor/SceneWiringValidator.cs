@@ -1101,17 +1101,30 @@ namespace EscapeFromNightmare
 
         private static T[] FindSceneObjects<T>() where T : UnityEngine.Object
         {
-            T[] objects = Resources.FindObjectsOfTypeAll<T>();
             List<T> sceneObjects = new List<T>();
+            T[] activeSceneObjects = UnityEngine.Object.FindObjectsByType<T>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            AddSceneObjects(activeSceneObjects, sceneObjects);
+
+            T[] allLoadedObjects = Resources.FindObjectsOfTypeAll<T>();
+            AddSceneObjects(allLoadedObjects, sceneObjects);
+
+            return sceneObjects.ToArray();
+        }
+
+        private static void AddSceneObjects<T>(T[] objects, List<T> sceneObjects) where T : UnityEngine.Object
+        {
+            if (objects == null)
+            {
+                return;
+            }
+
             for (int i = 0; i < objects.Length; i++)
             {
-                if (IsSceneObject(objects[i]))
+                if (IsSceneObject(objects[i]) && !sceneObjects.Contains(objects[i]))
                 {
                     sceneObjects.Add(objects[i]);
                 }
             }
-
-            return sceneObjects.ToArray();
         }
 
         private static bool IsSceneObject(UnityEngine.Object obj)

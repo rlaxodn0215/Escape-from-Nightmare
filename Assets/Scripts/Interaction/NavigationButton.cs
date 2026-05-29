@@ -12,6 +12,21 @@ namespace EscapeFromNightmare
 
         private Button button;
 
+        public NavigationActionType ActionType
+        {
+            get { return actionType; }
+        }
+
+        public string TargetLocationId
+        {
+            get { return targetLocationId; }
+        }
+
+        public string TargetViewId
+        {
+            get { return targetViewId; }
+        }
+
         private void Awake()
         {
             CacheButton();

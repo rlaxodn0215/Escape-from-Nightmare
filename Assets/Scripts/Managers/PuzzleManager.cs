@@ -8,6 +8,21 @@ namespace EscapeFromNightmare
         public GameObject currentPuzzleInstance;
         public PuzzleRecord currentPuzzle;
 
+        public GameObject CurrentPuzzleInstance
+        {
+            get { return currentPuzzleInstance; }
+        }
+
+        public PuzzleRecord CurrentPuzzle
+        {
+            get { return currentPuzzle; }
+        }
+
+        public bool HasOpenPuzzle
+        {
+            get { return currentPuzzleInstance != null; }
+        }
+
         public void OpenPuzzle(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId))
@@ -89,7 +104,7 @@ namespace EscapeFromNightmare
             currentPuzzleInstance = null;
             currentPuzzle = null;
 
-            if (GameManager.Instance != null)
+            if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Puzzle)
             {
                 GameManager.Instance.SetState(GameState.Playing);
             }

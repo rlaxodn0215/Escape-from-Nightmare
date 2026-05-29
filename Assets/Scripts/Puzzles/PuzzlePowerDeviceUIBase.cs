@@ -23,6 +23,16 @@ namespace EscapeFromNightmare
         protected readonly List<string> currentInputs = new List<string>();
         protected string[] expectedPattern;
 
+        public IReadOnlyList<string> CurrentInputs
+        {
+            get { return currentInputs; }
+        }
+
+        public string[] ExpectedPattern
+        {
+            get { return expectedPattern; }
+        }
+
         protected virtual void Awake()
         {
             if (autoCollectSwitchButtons)
@@ -194,7 +204,11 @@ namespace EscapeFromNightmare
 
                 if (!string.IsNullOrEmpty(requiredSecondItemId) && !string.IsNullOrEmpty(transformedItemId))
                 {
-                    InventoryManager.Instance.TryTransformItem(requiredSecondItemId, transformedItemId);
+                    if (!InventoryManager.Instance.TryTransformItem(requiredSecondItemId, transformedItemId))
+                    {
+                        InventoryManager.Instance.TryRemoveItem(requiredSecondItemId);
+                        InventoryManager.Instance.TryAddItem(transformedItemId);
+                    }
                 }
             }
             else

@@ -55,9 +55,9 @@ namespace EscapeFromNightmare
             GameObject prefab = Resources.Load<GameObject>(puzzle.prefabPath);
             if (prefab == null)
             {
-                if (IsFirstFivePuzzle(puzzle))
+                if (IsFirstFivePuzzle(puzzle) || IsRemainingPuzzle(puzzle))
                 {
-                    AddError("Required first-five puzzle prefab not found at Resources path: " + puzzle.prefabPath + " (" + puzzle.puzzleId + ")");
+                    AddError("Required puzzle prefab not found at Resources path: " + puzzle.prefabPath + " (" + puzzle.puzzleId + ")");
                 }
                 else
                 {
@@ -356,6 +356,19 @@ namespace EscapeFromNightmare
                 || puzzle.puzzleId == "Puzzle_LivingRoom_02";
         }
 
+        private static bool IsRemainingPuzzle(PuzzleRecord puzzle)
+        {
+            if (puzzle == null)
+            {
+                return false;
+            }
+
+            return puzzle.puzzleId == "Puzzle_LivingRoom_01"
+                || puzzle.puzzleId == "Puzzle_BasementStorage_01"
+                || puzzle.puzzleId == "Puzzle_LockedRoom_01"
+                || puzzle.puzzleId == "Puzzle_Entrance_01";
+        }
+
         private static void ValidateExpectedOptionsForKnownSequence(PuzzleRecord puzzle, HashSet<string> optionIds, string path)
         {
             if (puzzle == null || optionIds == null)
@@ -400,9 +413,36 @@ namespace EscapeFromNightmare
             }
 
             string path = puzzle.puzzleId + " / " + puzzle.prefabPath;
+            CheckObjectField(ui, "inputText", "inputText", path, false);
+            CheckObjectField(ui, "messageText", "messageText", path, false);
             CheckObjectField(ui, "powerButton", "powerButton", path, true);
             CheckObjectField(ui, "resetButton", "resetButton", path, false);
             CheckObjectField(ui, "closeButton", "closeButton", path, false);
+
+            if (puzzle.requiredItemId != "BasementFuse")
+            {
+                AddError("Puzzle_BasementStorage_01 should require BasementFuse: " + puzzle.puzzleId);
+            }
+
+            if (GetStringField(ui, "requiredSecondItemId") != "SmallClockworkDevice")
+            {
+                AddError("PowerDevice requiredSecondItemId should be SmallClockworkDevice: " + path);
+            }
+
+            if (GetStringField(ui, "transformedItemId") != "ModifiedClockworkDevice")
+            {
+                AddError("PowerDevice transformedItemId should be ModifiedClockworkDevice: " + path);
+            }
+
+            if (GetStringField(ui, "unlockDoorId") != "Door_BasementStorage_LockedRoom")
+            {
+                AddError("PowerDevice unlockDoorId should be Door_BasementStorage_LockedRoom: " + path);
+            }
+
+            if (GetStringField(ui, "unlockClueId") != "BasementClueImage")
+            {
+                AddError("PowerDevice unlockClueId should be BasementClueImage: " + path);
+            }
 
             PuzzlePowerSwitchButton[] buttons = prefab.GetComponentsInChildren<PuzzlePowerSwitchButton>(true);
             if (buttons.Length < 3)
@@ -444,8 +484,19 @@ namespace EscapeFromNightmare
             }
 
             string path = puzzle.puzzleId + " / " + puzzle.prefabPath;
+            CheckObjectField(ui, "messageText", "messageText", path, false);
             CheckObjectField(ui, "useSelectedItemButton", "useSelectedItemButton", path, true);
             CheckObjectField(ui, "closeButton", "closeButton", path, false);
+
+            if (puzzle.puzzleId == "Puzzle_LivingRoom_01" && puzzle.requiredItemId != "OldDrawerKey")
+            {
+                AddError("Puzzle_LivingRoom_01 should require OldDrawerKey.");
+            }
+
+            if (puzzle.puzzleId == "Puzzle_Entrance_01" && puzzle.requiredItemId != "FrontDoorKey")
+            {
+                AddError("Puzzle_Entrance_01 should require FrontDoorKey.");
+            }
         }
 
         private static void ValidateFinalSymbolItemPrefab(PuzzleRecord puzzle, GameObject prefab)
@@ -463,6 +514,21 @@ namespace EscapeFromNightmare
             }
 
             string path = puzzle.puzzleId + " / " + puzzle.prefabPath;
+            CheckObjectField(ui, "submitButton", "submitButton", path, true);
+            CheckObjectField(ui, "resetButton", "resetButton", path, false);
+            CheckObjectField(ui, "closeButton", "closeButton", path, false);
+            CheckObjectField(ui, "useClockworkDeviceButton", "useClockworkDeviceButton", path, true);
+
+            if (GetStringField(ui, "requiredFinalItemId") != "ModifiedClockworkDevice")
+            {
+                AddError("LockedRoomFinal requiredFinalItemId should be ModifiedClockworkDevice: " + path);
+            }
+
+            if (puzzle.rewardType != PuzzleRewardType.Item || puzzle.rewardId != "FrontDoorKey")
+            {
+                AddError("Puzzle_LockedRoom_01 should reward FrontDoorKey as Item.");
+            }
+
             PuzzleSymbolCycleSlot[] slots = prefab.GetComponentsInChildren<PuzzleSymbolCycleSlot>(true);
             if (slots.Length < 5)
             {
@@ -579,6 +645,12 @@ namespace EscapeFromNightmare
         {
             SerializedProperty property = GetProperty(target, fieldName);
             return property != null ? property.boolValue : defaultValue;
+        }
+
+        private static string GetStringField(UnityEngine.Object target, string fieldName)
+        {
+            SerializedProperty property = GetProperty(target, fieldName);
+            return property != null ? property.stringValue : string.Empty;
         }
 
         private static int GetIntField(UnityEngine.Object target, string fieldName, int defaultValue)
