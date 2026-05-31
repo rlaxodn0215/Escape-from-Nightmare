@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Remaining Puzzle Runtime Test Runner
+// Role: Runs play-mode route and puzzle checks, then records failures in a form that can be reported by editor tools.
+// Scope: This script belongs to Tests\RemainingPuzzleRuntimeTestRunner.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,29 +15,39 @@ using UnityEngine.SceneManagement;
 
 namespace EscapeFromNightmare
 {
+    // Runtime test helper for the Remaining Puzzle Runtime Test Runner scenario, including setup, execution, and readable failure output.
     public class RemainingPuzzleRuntimeTestRunner : MonoBehaviour
     {
-        [SerializeField] private bool runOnStart = true;
+        [SerializeField] private bool runOnStart = false;
         [SerializeField] private float waitAfterOpenSeconds = 0.1f;
         [SerializeField] private float waitAfterSubmitSeconds = 0.1f;
         [SerializeField] private string reportRelativePath = "Docs/GeneratedRemainingPuzzleRuntimeTestReport.md";
 
+        // Stores the results value used by this script's runtime or editor workflow.
         private readonly List<PuzzleRuntimeTestResult> results = new List<PuzzleRuntimeTestResult>();
+        // Stores the created Runtime Objects value used by this script's runtime or editor workflow.
         private readonly List<GameObject> createdRuntimeObjects = new List<GameObject>();
+        // Stores the original Save Backup Path value used by this script's runtime or editor workflow.
         private string originalSaveBackupPath;
+        // Stores the original Save Existed value used by this script's runtime or editor workflow.
         private bool originalSaveExisted;
+        // Stores the save Backup Succeeded value used by this script's runtime or editor workflow.
         private bool saveBackupSucceeded;
+        // Stores the original Return To Title After Ending value used by this script's runtime or editor workflow.
         private bool originalReturnToTitleAfterEnding = true;
+        // Stores the captured Ending Return Setting value used by this script's runtime or editor workflow.
         private bool capturedEndingReturnSetting;
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private IEnumerator Start()
         {
-            if (runOnStart)
+            if (runOnStart || RuntimeTestLaunchGate.ConsumeRun(nameof(RemainingPuzzleRuntimeTestRunner)))
             {
                 yield return RunAllTests();
             }
         }
 
+        // Performs the Run All Tests operation while keeping its implementation details inside this script.
         public IEnumerator RunAllTests()
         {
             results.Clear();
@@ -90,6 +107,7 @@ namespace EscapeFromNightmare
             Debug.Log("Remaining puzzle runtime tests completed. Passed: " + passed + ", Failed: " + failed);
         }
 
+        // Performs the Test Living Room Item Use operation while keeping its implementation details inside this script.
         private IEnumerator TestLivingRoomItemUse()
         {
             const string testName = "LivingRoom Item Use";
@@ -123,6 +141,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Basement Power Device operation while keeping its implementation details inside this script.
         private IEnumerator TestBasementPowerDevice()
         {
             const string testName = "Basement Power Device";
@@ -165,6 +184,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Locked Room Final operation while keeping its implementation details inside this script.
         private IEnumerator TestLockedRoomFinal()
         {
             const string testName = "Locked Room Final";
@@ -218,6 +238,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Entrance Door operation while keeping its implementation details inside this script.
         private IEnumerator TestEntranceDoor()
         {
             const string testName = "Entrance Door";
@@ -251,6 +272,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Opens the requested puzzle, clue, screen, or navigation target for the player.
         private IEnumerator OpenPuzzleAndWait(string puzzleId)
         {
             if (PuzzleRetryLockManager.Instance != null)
@@ -283,6 +305,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Direct Instantiate Puzzle For Test operation while keeping its implementation details inside this script.
         private bool DirectInstantiatePuzzleForTest(string puzzleId)
         {
             if (GameDataManager.Instance == null || PuzzleManager.Instance == null)
@@ -331,6 +354,7 @@ namespace EscapeFromNightmare
             return UnityEngine.Object.FindFirstObjectByType<T>(FindObjectsInactive.Include);
         }
 
+        // Closes the active UI or interaction and returns control to the normal game flow.
         private void ClosePuzzleIfOpen()
         {
             if (PuzzleManager.Instance != null && PuzzleManager.Instance.HasOpenPuzzle)
@@ -339,6 +363,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Backup Current Save operation while keeping its implementation details inside this script.
         private void BackupCurrentSave()
         {
             saveBackupSucceeded = false;
@@ -366,6 +391,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Restore Original Save operation while keeping its implementation details inside this script.
         private void RestoreOriginalSave()
         {
             if (SaveManager.Instance == null)
@@ -396,6 +422,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         private void ResetRuntimeStateForTests()
         {
             if (SaveManager.Instance != null)
@@ -426,6 +453,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private bool EnsureRequiredManagers()
         {
             EnsureManager<GameManager>("RemainingRuntimeTest_GameManager");
@@ -490,17 +518,20 @@ namespace EscapeFromNightmare
             return UnityEngine.Object.FindFirstObjectByType<T>(FindObjectsInactive.Include);
         }
 
+        // Performs the Add Pass operation while keeping its implementation details inside this script.
         private void AddPass(string testName, string puzzleId, string message, float duration)
         {
             AddResult(testName, puzzleId, true, message, duration);
         }
 
+        // Performs the Add Fail operation while keeping its implementation details inside this script.
         private void AddFail(string testName, string puzzleId, string message, float duration)
         {
             Debug.LogError("[RemainingPuzzleRuntimeTestRunner] " + testName + " failed. " + message);
             AddResult(testName, puzzleId, false, message, duration);
         }
 
+        // Performs the Add Result operation while keeping its implementation details inside this script.
         private void AddResult(string testName, string puzzleId, bool passed, string message, float duration)
         {
             PuzzleRuntimeTestResult result = new PuzzleRuntimeTestResult();
@@ -512,6 +543,7 @@ namespace EscapeFromNightmare
             results.Add(result);
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private void WriteMarkdownReport()
         {
             string path = GetReportPath();
@@ -586,6 +618,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private string GetReportPath()
         {
             string relativePath = string.IsNullOrEmpty(reportRelativePath)
@@ -595,11 +628,13 @@ namespace EscapeFromNightmare
             return Path.Combine(Application.dataPath, relativePath);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsPuzzleCompleted(string puzzleId)
         {
             return SaveManager.Instance != null && SaveManager.Instance.IsPuzzleCompleted(puzzleId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool HasItem(string itemId)
         {
             if (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(itemId))
@@ -610,6 +645,7 @@ namespace EscapeFromNightmare
             return SaveManager.Instance != null && SaveManager.Instance.IsItemOwned(itemId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsClueUnlocked(string clueId)
         {
             if (ClueImageManager.Instance != null && ClueImageManager.Instance.IsClueUnlocked(clueId))
@@ -620,16 +656,19 @@ namespace EscapeFromNightmare
             return SaveManager.Instance != null && SaveManager.Instance.IsClueUnlocked(clueId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsDoorOpened(string doorId)
         {
             return SaveManager.Instance != null && SaveManager.Instance.IsDoorOpened(doorId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsFinalChaseStarted()
         {
             return SaveManager.Instance != null && SaveManager.Instance.IsFinalChaseStarted();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private int CountPassed()
         {
             int count = 0;
@@ -644,11 +683,13 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Performs the Elapsed operation while keeping its implementation details inside this script.
         private float Elapsed(float start)
         {
             return Time.realtimeSinceStartup - start;
         }
 
+        // Performs the Escape Markdown operation while keeping its implementation details inside this script.
         private string EscapeMarkdown(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -659,6 +700,7 @@ namespace EscapeFromNightmare
             return value.Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");
         }
 
+        // Performs the Cleanup Runtime Objects operation while keeping its implementation details inside this script.
         private void CleanupRuntimeObjects()
         {
             for (int i = 0; i < createdRuntimeObjects.Count; i++)

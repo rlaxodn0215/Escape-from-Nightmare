@@ -29,6 +29,13 @@ This runner verifies the remaining four puzzle flows after the first five puzzle
 
 The runner backs up `save_data.json` before testing and restores it after testing. If no save existed before the test, the generated test save is deleted.
 
+## Editor Menus
+
+- `Escape From Nightmare / Tests / Prepare Remaining Puzzle Runtime Test Runner`
+- `Escape From Nightmare / Tests / Run Remaining Puzzle Runtime Tests`
+
+The Prepare menu creates or selects the runner without enabling automatic Play Mode execution. The Run menu requests a one-time runtime test launch for the current editor session.
+
 ## Failure Checklist
 
 Check:

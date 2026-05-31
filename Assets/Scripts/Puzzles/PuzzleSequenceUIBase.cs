@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Sequence UI Base
+// Role: Controls puzzle UI input, answer validation, retry behavior, and reward handoff to PuzzleManager.
+// Scope: This script belongs to Puzzles\PuzzleSequenceUIBase.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Puzzle controller for the Puzzle Sequence UI Base screen, translating UI input into puzzle progress and completion.
     public class PuzzleSequenceUIBase : PuzzleUIBase
     {
         [SerializeField] protected Text sequenceText;
@@ -19,10 +27,14 @@ namespace EscapeFromNightmare
         [SerializeField] protected bool refreshOptionsFromSymbolRecords = false;
         [SerializeField] protected string[] fallbackAnswerSequence;
 
+        // Stores the current Sequence value used by this script's runtime or editor workflow.
         protected readonly List<string> currentSequence = new List<string>();
+        // Stores the expected Sequence value used by this script's runtime or editor workflow.
         protected string[] expectedSequence;
+        // Stores the answer Record value used by this script's runtime or editor workflow.
         protected PuzzleAnswerRecord answerRecord;
 
+        // Caches required component references and prepares this object before other startup code runs.
         protected virtual void Awake()
         {
             if (autoCollectOptionButtons)
@@ -36,6 +48,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         protected virtual void OnEnable()
         {
             HookButtons();
@@ -43,11 +56,13 @@ namespace EscapeFromNightmare
             RefreshOptionButtons();
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         protected virtual void OnDisable()
         {
             UnhookButtons();
         }
 
+        // Initializes local UI and state from an external record before the player can interact with it.
         public override void Initialize(PuzzleRecord record)
         {
             base.Initialize(record);
@@ -59,6 +74,7 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        // Performs the Select Option operation while keeping its implementation details inside this script.
         public void SelectOption(string optionId)
         {
             if (string.IsNullOrEmpty(optionId))
@@ -88,6 +104,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         public void ResetInput()
         {
             currentSequence.Clear();
@@ -96,6 +113,7 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        // Performs the Submit operation while keeping its implementation details inside this script.
         public void Submit()
         {
             if (expectedSequence == null || expectedSequence.Length == 0)
@@ -124,6 +142,7 @@ namespace EscapeFromNightmare
             RefreshOptionButtons();
         }
 
+        // Performs the Cache Option Buttons operation while keeping its implementation details inside this script.
         protected virtual void CacheOptionButtons()
         {
             Transform root = optionButtonRoot != null ? optionButtonRoot : transform;
@@ -140,6 +159,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Resolve Answer operation while keeping its implementation details inside this script.
         protected virtual void ResolveAnswer()
         {
             answerRecord = null;
@@ -167,6 +187,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual bool IsCorrectSequence()
         {
             if (expectedSequence == null || currentSequence.Count != expectedSequence.Length)
@@ -185,6 +206,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         protected virtual void RefreshDisplay()
         {
             if (sequenceText != null)
@@ -193,6 +215,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         protected virtual void RefreshOptionButtons()
         {
             for (int i = 0; i < optionButtons.Count; i++)
@@ -209,6 +232,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         protected virtual void SetMessage(string message)
         {
             if (messageText != null)
@@ -217,6 +241,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Hook Buttons operation while keeping its implementation details inside this script.
         protected virtual void HookButtons()
         {
             if (autoCollectOptionButtons && optionButtons.Count == 0)
@@ -256,6 +281,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Unhook Buttons operation while keeping its implementation details inside this script.
         protected virtual void UnhookButtons()
         {
             if (submitButton != null)
@@ -274,6 +300,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Normalize Option operation while keeping its implementation details inside this script.
         private string NormalizeOption(string value)
         {
             if (value == null)
@@ -285,6 +312,7 @@ namespace EscapeFromNightmare
             return caseSensitive ? value : value.ToUpperInvariant();
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         private void RefreshOptionSymbols()
         {
             for (int i = 0; i < optionButtons.Count; i++)

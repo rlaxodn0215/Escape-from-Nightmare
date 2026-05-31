@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Save Data
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\SaveManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,22 +13,35 @@ using UnityEngine;
 namespace EscapeFromNightmare
 {
     [Serializable]
+    // Runtime owner for the Save Data system, keeping shared state and events behind one access point.
     public class SaveData
     {
+        // Stores the current Location Id value used by this script's runtime or editor workflow.
         public string currentLocationId;
+        // Stores the current View Id value used by this script's runtime or editor workflow.
         public string currentViewId;
+        // Stores the completed Puzzle Ids value used by this script's runtime or editor workflow.
         public List<string> completedPuzzleIds = new List<string>();
+        // Stores the owned Item Ids value used by this script's runtime or editor workflow.
         public List<string> ownedItemIds = new List<string>();
+        // Stores the used Item Ids value used by this script's runtime or editor workflow.
         public List<string> usedItemIds = new List<string>();
+        // Stores the opened Door Ids value used by this script's runtime or editor workflow.
         public List<string> openedDoorIds = new List<string>();
+        // Stores the unlocked Clue Ids value used by this script's runtime or editor workflow.
         public List<string> unlockedClueIds = new List<string>();
+        // Stores the final Chase Started value used by this script's runtime or editor workflow.
         public bool finalChaseStarted;
+        // Stores the has Started value used by this script's runtime or editor workflow.
         public bool hasStarted;
+        // Stores the last Saved Utc value used by this script's runtime or editor workflow.
         public string lastSavedUtc;
     }
 
+    // Runtime owner for the Save Manager system, keeping shared state and events behind one access point.
     public class SaveManager : Singleton<SaveManager>
     {
+        // Stores the current Data value used by this script's runtime or editor workflow.
         private SaveData currentData;
 
         protected override bool UseDontDestroyOnLoad
@@ -56,18 +76,21 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public IReadOnlyList<string> GetOwnedItemIds()
         {
             EnsureData();
             return currentData.ownedItemIds;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public IReadOnlyList<string> GetUnlockedClueIds()
         {
             EnsureData();
             return currentData.unlockedClueIds;
         }
 
+        // Performs the Replace Owned Items operation while keeping its implementation details inside this script.
         public void ReplaceOwnedItems(IEnumerable<string> itemIds)
         {
             EnsureData();
@@ -87,6 +110,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Remove Owned Item operation while keeping its implementation details inside this script.
         public void RemoveOwnedItem(string itemId)
         {
             EnsureData();
@@ -99,6 +123,7 @@ namespace EscapeFromNightmare
             currentData.ownedItemIds.Remove(itemId);
         }
 
+        // Performs the Replace Unlocked Clues operation while keeping its implementation details inside this script.
         public void ReplaceUnlockedClues(IEnumerable<string> clueIds)
         {
             EnsureData();
@@ -118,18 +143,21 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetFinalChaseStarted(bool value)
         {
             EnsureData();
             currentData.finalChaseStarted = value;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsFinalChaseStarted()
         {
             EnsureData();
             return currentData.finalChaseStarted;
         }
 
+        // Caches required component references and prepares this object before other startup code runs.
         protected override void Awake()
         {
             base.Awake();
@@ -142,6 +170,7 @@ namespace EscapeFromNightmare
             EnsureData();
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private void EnsureData()
         {
             if (currentData == null)
@@ -190,6 +219,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool HasSaveData()
         {
             try
@@ -203,6 +233,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         public SaveData CreateDefaultSaveData()
         {
             SaveData data = new SaveData();
@@ -219,6 +250,7 @@ namespace EscapeFromNightmare
             return data;
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         public void ResetDataForNewGame()
         {
             string path = GetSavePath();
@@ -239,6 +271,14 @@ namespace EscapeFromNightmare
             SaveGame();
         }
 
+        // Resets runtime state for editor-only manual play without deleting or overwriting save_data.json.
+        public void ResetDataForNewGameInMemory()
+        {
+            currentData = CreateDefaultSaveData();
+            MarkGameStarted();
+        }
+
+        // Performs the Try Load Game operation while keeping its implementation details inside this script.
         public bool TryLoadGame()
         {
             bool loaded = LoadGame();
@@ -253,6 +293,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Mark Game Started operation while keeping its implementation details inside this script.
         public void MarkGameStarted()
         {
             EnsureData();
@@ -260,6 +301,7 @@ namespace EscapeFromNightmare
             currentData.lastSavedUtc = DateTime.UtcNow.ToString("o");
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetCurrentPosition(string locationId, string viewId)
         {
             EnsureData();
@@ -267,12 +309,14 @@ namespace EscapeFromNightmare
             currentData.currentViewId = viewId;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsPuzzleCompleted(string puzzleId)
         {
             EnsureData();
             return !string.IsNullOrEmpty(puzzleId) && currentData.completedPuzzleIds.Contains(puzzleId);
         }
 
+        // Performs the Mark Puzzle Completed operation while keeping its implementation details inside this script.
         public void MarkPuzzleCompleted(string puzzleId)
         {
             EnsureData();
@@ -283,6 +327,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Mark Checkpoint After Puzzle operation while keeping its implementation details inside this script.
         public void MarkCheckpointAfterPuzzle(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId))
@@ -294,12 +339,14 @@ namespace EscapeFromNightmare
             SaveGame();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsDoorOpened(string doorId)
         {
             EnsureData();
             return !string.IsNullOrEmpty(doorId) && currentData.openedDoorIds.Contains(doorId);
         }
 
+        // Performs the Mark Door Opened operation while keeping its implementation details inside this script.
         public void MarkDoorOpened(string doorId)
         {
             EnsureData();
@@ -310,12 +357,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsItemOwned(string itemId)
         {
             EnsureData();
             return !string.IsNullOrEmpty(itemId) && currentData.ownedItemIds.Contains(itemId);
         }
 
+        // Performs the Mark Item Owned operation while keeping its implementation details inside this script.
         public void MarkItemOwned(string itemId)
         {
             EnsureData();
@@ -326,12 +375,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsItemUsed(string itemId)
         {
             EnsureData();
             return !string.IsNullOrEmpty(itemId) && currentData.usedItemIds.Contains(itemId);
         }
 
+        // Performs the Mark Item Used operation while keeping its implementation details inside this script.
         public void MarkItemUsed(string itemId)
         {
             EnsureData();
@@ -342,12 +393,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsClueUnlocked(string clueId)
         {
             EnsureData();
             return !string.IsNullOrEmpty(clueId) && currentData.unlockedClueIds.Contains(clueId);
         }
 
+        // Performs the Mark Clue Unlocked operation while keeping its implementation details inside this script.
         public void MarkClueUnlocked(string clueId)
         {
             EnsureData();
@@ -358,6 +411,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Collects current runtime state and writes it to the configured save location.
         public void SaveGame()
         {
             EnsureData();
@@ -386,6 +440,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         public bool LoadGame()
         {
             string path = GetSavePath();
@@ -445,6 +500,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Delete Save operation while keeping its implementation details inside this script.
         public void DeleteSave()
         {
             string path = GetSavePath();
@@ -464,11 +520,13 @@ namespace EscapeFromNightmare
             EnsureData();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public string GetSavePath()
         {
             return Path.Combine(Application.persistentDataPath, "save_data.json");
         }
 
+        // Performs the Auto Save If Possible operation while keeping its implementation details inside this script.
         public void AutoSaveIfPossible()
         {
             if (currentData == null)
@@ -488,6 +546,7 @@ namespace EscapeFromNightmare
             SaveGame();
         }
 
+        // Performs the On Application Pause operation while keeping its implementation details inside this script.
         private void OnApplicationPause(bool pause)
         {
             if (pause)
@@ -496,6 +555,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the On Application Quit operation while keeping its implementation details inside this script.
         private void OnApplicationQuit()
         {
             AutoSaveIfPossible();

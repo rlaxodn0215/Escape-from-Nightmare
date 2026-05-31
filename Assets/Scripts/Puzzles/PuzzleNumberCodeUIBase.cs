@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Number Code UI Base
+// Role: Controls puzzle UI input, answer validation, retry behavior, and reward handoff to PuzzleManager.
+// Scope: This script belongs to Puzzles\PuzzleNumberCodeUIBase.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +12,7 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Puzzle controller for the Puzzle Number Code UI Base screen, translating UI input into puzzle progress and completion.
     public class PuzzleNumberCodeUIBase : PuzzleUIBase
     {
         [SerializeField] protected Text displayText;
@@ -21,14 +29,22 @@ namespace EscapeFromNightmare
         [SerializeField] protected Text timerText;
         [SerializeField] protected bool useTimeLimit = true;
 
+        // Stores the current Input value used by this script's runtime or editor workflow.
         protected string currentInput = string.Empty;
+        // Stores the expected Answer value used by this script's runtime or editor workflow.
         protected string expectedAnswer = string.Empty;
+        // Stores the max Length value used by this script's runtime or editor workflow.
         protected int maxLength = 4;
+        // Stores the answer Record value used by this script's runtime or editor workflow.
         protected PuzzleAnswerRecord answerRecord;
+        // Stores the remaining Time value used by this script's runtime or editor workflow.
         protected float remainingTime;
+        // Stores the timer Routine value used by this script's runtime or editor workflow.
         protected Coroutine timerRoutine;
+        // Stores the timer Running value used by this script's runtime or editor workflow.
         protected bool timerRunning;
 
+        // Caches required component references and prepares this object before other startup code runs.
         protected virtual void Awake()
         {
             if (autoCollectNumberButtons)
@@ -37,18 +53,21 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         protected virtual void OnEnable()
         {
             HookButtons();
             RefreshDisplay();
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         protected virtual void OnDisable()
         {
             UnhookButtons();
             StopTimer();
         }
 
+        // Initializes local UI and state from an external record before the player can interact with it.
         public override void Initialize(PuzzleRecord record)
         {
             base.Initialize(record);
@@ -60,6 +79,7 @@ namespace EscapeFromNightmare
             StartTimerIfNeeded();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         public void AppendDigit(int digit)
         {
             digit = Mathf.Clamp(digit, 0, 9);
@@ -73,6 +93,7 @@ namespace EscapeFromNightmare
             RefreshDisplay();
         }
 
+        // Performs the Clear Input operation while keeping its implementation details inside this script.
         public void ClearInput()
         {
             currentInput = string.Empty;
@@ -80,6 +101,7 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        // Performs the Backspace operation while keeping its implementation details inside this script.
         public void Backspace()
         {
             if (currentInput.Length > 0)
@@ -90,6 +112,7 @@ namespace EscapeFromNightmare
             RefreshDisplay();
         }
 
+        // Performs the Submit operation while keeping its implementation details inside this script.
         public void Submit()
         {
             if (string.IsNullOrEmpty(expectedAnswer))
@@ -118,12 +141,14 @@ namespace EscapeFromNightmare
             RefreshDisplay();
         }
 
+        // Closes the active UI or interaction and returns control to the normal game flow.
         public override void Close()
         {
             StopTimer();
             base.Close();
         }
 
+        // Performs the Cache Number Buttons operation while keeping its implementation details inside this script.
         protected virtual void CacheNumberButtons()
         {
             Transform root = numberButtonRoot != null ? numberButtonRoot : transform;
@@ -140,6 +165,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Resolve Answer operation while keeping its implementation details inside this script.
         protected virtual void ResolveAnswer()
         {
             answerRecord = null;
@@ -175,11 +201,13 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual bool IsCorrectAnswer()
         {
             return NormalizeAnswer(currentInput) == NormalizeAnswer(expectedAnswer);
         }
 
+        // Performs the Normalize Answer operation while keeping its implementation details inside this script.
         protected virtual string NormalizeAnswer(string value)
         {
             if (value == null)
@@ -204,6 +232,7 @@ namespace EscapeFromNightmare
             return normalized;
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         protected virtual void RefreshDisplay()
         {
             if (displayText != null)
@@ -212,6 +241,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         protected virtual void SetMessage(string message)
         {
             if (messageText != null)
@@ -220,6 +250,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Begins this system's runtime flow and initializes any timers, events, or counters it needs.
         protected virtual void StartTimerIfNeeded()
         {
             StopTimer();
@@ -237,6 +268,7 @@ namespace EscapeFromNightmare
             timerRoutine = StartCoroutine(TimerRoutine());
         }
 
+        // Performs the Timer Routine operation while keeping its implementation details inside this script.
         protected virtual IEnumerator TimerRoutine()
         {
             while (timerRunning && remainingTime > 0f)
@@ -257,6 +289,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stops an active routine or state so the next run can start cleanly.
         protected virtual void StopTimer()
         {
             timerRunning = false;
@@ -268,6 +301,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Handle Time Out operation while keeping its implementation details inside this script.
         protected virtual void HandleTimeOut()
         {
             StopTimer();
@@ -303,6 +337,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         protected virtual void RefreshTimerText()
         {
             if (timerText != null)
@@ -311,6 +346,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Hook Buttons operation while keeping its implementation details inside this script.
         protected virtual void HookButtons()
         {
             if (autoCollectNumberButtons && numberButtons.Count == 0)
@@ -351,6 +387,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Unhook Buttons operation while keeping its implementation details inside this script.
         protected virtual void UnhookButtons()
         {
             if (submitButton != null)
@@ -374,6 +411,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Remove Whitespace operation while keeping its implementation details inside this script.
         private string RemoveWhitespace(string value)
         {
             string result = string.Empty;

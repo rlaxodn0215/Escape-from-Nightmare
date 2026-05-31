@@ -1,14 +1,24 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Inventory Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\InventoryManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Inventory Manager system, keeping shared state and events behind one access point.
     public class InventoryManager : Singleton<InventoryManager>
     {
         [SerializeField] private bool loadFromSaveOnStart = true;
 
+        // Stores the owned Item Ids value used by this script's runtime or editor workflow.
         private readonly List<string> ownedItemIds = new List<string>();
+        // Stores the selected Item Id value used by this script's runtime or editor workflow.
         private string selectedItemId;
 
         public event Action InventoryChanged;
@@ -24,6 +34,7 @@ namespace EscapeFromNightmare
             get { return selectedItemId; }
         }
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {
             if (loadFromSaveOnStart)
@@ -32,6 +43,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         public void LoadFromSave()
         {
             if (SaveManager.Instance == null)
@@ -55,6 +67,7 @@ namespace EscapeFromNightmare
             NotifyInventoryChanged();
         }
 
+        // Performs the Replace Inventory operation while keeping its implementation details inside this script.
         public void ReplaceInventory(IEnumerable<string> itemIds)
         {
             ownedItemIds.Clear();
@@ -82,6 +95,7 @@ namespace EscapeFromNightmare
             NotifyInventoryChanged();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool HasItem(string itemId)
         {
             if (string.IsNullOrEmpty(itemId))
@@ -97,11 +111,13 @@ namespace EscapeFromNightmare
             return SaveManager.Instance != null && SaveManager.Instance.IsItemOwned(itemId);
         }
 
+        // Performs the Add Item operation while keeping its implementation details inside this script.
         public void AddItem(string itemId)
         {
             TryAddItem(itemId);
         }
 
+        // Performs the Try Add Item operation while keeping its implementation details inside this script.
         public bool TryAddItem(string itemId)
         {
             if (string.IsNullOrEmpty(itemId))
@@ -131,11 +147,13 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Remove Item operation while keeping its implementation details inside this script.
         public void RemoveItem(string itemId)
         {
             TryRemoveItem(itemId);
         }
 
+        // Performs the Try Remove Item operation while keeping its implementation details inside this script.
         public bool TryRemoveItem(string itemId)
         {
             if (string.IsNullOrEmpty(itemId))
@@ -171,6 +189,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Try Transform Item operation while keeping its implementation details inside this script.
         public bool TryTransformItem(string fromItemId, string toItemId)
         {
             if (string.IsNullOrEmpty(fromItemId) || string.IsNullOrEmpty(toItemId))
@@ -194,6 +213,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Select Item operation while keeping its implementation details inside this script.
         public void SelectItem(string itemId)
         {
             if (string.IsNullOrEmpty(itemId))
@@ -212,6 +232,7 @@ namespace EscapeFromNightmare
             NotifySelectedItemChanged();
         }
 
+        // Performs the Try Use Selected Item operation while keeping its implementation details inside this script.
         public bool TryUseSelectedItem(string requiredItemId)
         {
             if (string.IsNullOrEmpty(requiredItemId))
@@ -245,12 +266,14 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Clear Selected Item operation while keeping its implementation details inside this script.
         public void ClearSelectedItem()
         {
             selectedItemId = string.Empty;
             NotifySelectedItemChanged();
         }
 
+        // Performs the Notify Inventory Changed operation while keeping its implementation details inside this script.
         private void NotifyInventoryChanged()
         {
             if (InventoryChanged != null)
@@ -259,6 +282,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Notify Selected Item Changed operation while keeping its implementation details inside this script.
         private void NotifySelectedItemChanged()
         {
             if (SelectedItemChanged != null)
@@ -267,6 +291,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ItemRecord GetItemRecord(string itemId)
         {
             if (GameDataManager.Instance == null)

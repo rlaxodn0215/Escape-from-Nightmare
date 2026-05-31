@@ -16,9 +16,9 @@ This document is the first-pass ID map for wiring Unity Editor objects to the JS
 
 ## Views
 
-- Bedroom: Bedroom_Front, Bedroom_Right, Bedroom_Back, Bedroom_Left
+- Bedroom: Bedroom_Front, Bedroom_Back
 - Hallway: Hallway_Front, Hallway_Right, Hallway_Back, Hallway_Left
-- ChildRoom: ChildRoom_Front, ChildRoom_Right, ChildRoom_Back, ChildRoom_Left
+- ChildRoom: ChildRoom_Front, ChildRoom_Back
 - Study: Study_Front, Study_Right, Study_Back, Study_Left
 - LivingRoom: LivingRoom_Front, LivingRoom_Right, LivingRoom_Back, LivingRoom_Left
 - Kitchen: Kitchen_Front, Kitchen_Right, Kitchen_Back, Kitchen_Left

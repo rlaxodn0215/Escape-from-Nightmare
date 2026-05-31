@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Symbol Cycle UI Base
+// Role: Controls puzzle UI input, answer validation, retry behavior, and reward handoff to PuzzleManager.
+// Scope: This script belongs to Puzzles\PuzzleSymbolCycleUIBase.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Puzzle controller for the Puzzle Symbol Cycle UI Base screen, translating UI input into puzzle progress and completion.
     public class PuzzleSymbolCycleUIBase : PuzzleUIBase
     {
         [SerializeField] protected Text sequenceText;
@@ -17,6 +25,7 @@ namespace EscapeFromNightmare
         [SerializeField] protected int expectedSlotCount = 5;
         [SerializeField] protected string[] availableSymbolIds;
 
+        // Stores the expected Sequence value used by this script's runtime or editor workflow.
         protected string[] expectedSequence;
 
         public string[] AvailableSymbolIds
@@ -24,6 +33,7 @@ namespace EscapeFromNightmare
             get { return availableSymbolIds; }
         }
 
+        // Caches required component references and prepares this object before other startup code runs.
         protected virtual void Awake()
         {
             ResolveAvailableSymbols();
@@ -34,17 +44,20 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         protected virtual void OnEnable()
         {
             HookButtons();
             RefreshDisplay();
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         protected virtual void OnDisable()
         {
             UnhookButtons();
         }
 
+        // Initializes local UI and state from an external record before the player can interact with it.
         public override void Initialize(PuzzleRecord record)
         {
             base.Initialize(record);
@@ -55,6 +68,7 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        // Performs the Index Of Available Symbol operation while keeping its implementation details inside this script.
         public virtual int IndexOfAvailableSymbol(string symbolId)
         {
             if (availableSymbolIds == null || string.IsNullOrEmpty(symbolId))
@@ -73,6 +87,7 @@ namespace EscapeFromNightmare
             return -1;
         }
 
+        // Performs the Cycle Slot operation while keeping its implementation details inside this script.
         public virtual void CycleSlot(PuzzleSymbolCycleSlot slot)
         {
             if (slot == null)
@@ -84,6 +99,7 @@ namespace EscapeFromNightmare
             RefreshDisplay();
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         public virtual void ResetInput()
         {
             for (int i = 0; i < slots.Count; i++)
@@ -98,6 +114,7 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public virtual bool SetSlotSymbolForTest(int index, string symbolId)
         {
             if (index < 0 || index >= slots.Count || slots[index] == null)
@@ -110,6 +127,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Submit operation while keeping its implementation details inside this script.
         public virtual void Submit()
         {
             if (expectedSequence == null || expectedSequence.Length == 0)
@@ -135,6 +153,7 @@ namespace EscapeFromNightmare
             RegisterFailure();
         }
 
+        // Performs the Cache Slots operation while keeping its implementation details inside this script.
         protected virtual void CacheSlots()
         {
             Transform root = slotRoot != null ? slotRoot : transform;
@@ -157,6 +176,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Resolve Available Symbols operation while keeping its implementation details inside this script.
         protected virtual void ResolveAvailableSymbols()
         {
             if (availableSymbolIds != null && availableSymbolIds.Length > 0)
@@ -182,6 +202,7 @@ namespace EscapeFromNightmare
                 : new string[] { "Symbol_01", "Symbol_02", "Symbol_03", "Symbol_04", "Symbol_05", "Symbol_06" };
         }
 
+        // Performs the Resolve Answer operation while keeping its implementation details inside this script.
         protected virtual void ResolveAnswer()
         {
             expectedSequence = null;
@@ -202,6 +223,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual bool IsCompleteInput()
         {
             if (slots.Count < expectedSlotCount)
@@ -220,6 +242,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual bool IsCorrectSequence()
         {
             string[] currentSequence = GetCurrentSequence();
@@ -241,6 +264,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual string[] GetCurrentSequence()
         {
             int count = Mathf.Min(expectedSlotCount, slots.Count);
@@ -253,11 +277,13 @@ namespace EscapeFromNightmare
             return result;
         }
 
+        // Performs the On Correct Sequence Resolved operation while keeping its implementation details inside this script.
         protected virtual void OnCorrectSequenceResolved()
         {
             Complete();
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         protected virtual void RefreshDisplay()
         {
             if (sequenceText != null)
@@ -266,6 +292,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         protected virtual void SetMessage(string message)
         {
             if (messageText != null)
@@ -274,6 +301,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Hook Buttons operation while keeping its implementation details inside this script.
         protected virtual void HookButtons()
         {
             if (submitButton != null)
@@ -295,6 +323,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Unhook Buttons operation while keeping its implementation details inside this script.
         protected virtual void UnhookButtons()
         {
             if (submitButton != null)

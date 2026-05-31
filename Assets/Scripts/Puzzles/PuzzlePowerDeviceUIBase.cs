@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Power Device UI Base
+// Role: Controls puzzle UI input, answer validation, retry behavior, and reward handoff to PuzzleManager.
+// Scope: This script belongs to Puzzles\PuzzlePowerDeviceUIBase.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Puzzle controller for the Puzzle Power Device UI Base screen, translating UI input into puzzle progress and completion.
     public class PuzzlePowerDeviceUIBase : PuzzleUIBase
     {
         [SerializeField] protected Text inputText;
@@ -20,7 +28,9 @@ namespace EscapeFromNightmare
         [SerializeField] protected string unlockDoorId = "Door_BasementStorage_LockedRoom";
         [SerializeField] protected string unlockClueId = "BasementClueImage";
 
+        // Stores the current Inputs value used by this script's runtime or editor workflow.
         protected readonly List<string> currentInputs = new List<string>();
+        // Stores the expected Pattern value used by this script's runtime or editor workflow.
         protected string[] expectedPattern;
 
         public IReadOnlyList<string> CurrentInputs
@@ -33,6 +43,7 @@ namespace EscapeFromNightmare
             get { return expectedPattern; }
         }
 
+        // Caches required component references and prepares this object before other startup code runs.
         protected virtual void Awake()
         {
             if (autoCollectSwitchButtons)
@@ -41,17 +52,20 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         protected virtual void OnEnable()
         {
             HookButtons();
             RefreshDisplay();
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         protected virtual void OnDisable()
         {
             UnhookButtons();
         }
 
+        // Initializes local UI and state from an external record before the player can interact with it.
         public override void Initialize(PuzzleRecord record)
         {
             base.Initialize(record);
@@ -60,6 +74,7 @@ namespace EscapeFromNightmare
             SetMessage(string.Empty);
         }
 
+        // Performs the Input Switch operation while keeping its implementation details inside this script.
         public void InputSwitch(string switchId)
         {
             if (string.IsNullOrEmpty(switchId))
@@ -77,6 +92,7 @@ namespace EscapeFromNightmare
             RefreshDisplay();
         }
 
+        // Performs the Press Power Button operation while keeping its implementation details inside this script.
         public void PressPowerButton()
         {
             if (!HasRequiredItems())
@@ -104,12 +120,14 @@ namespace EscapeFromNightmare
             ResetInput();
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         public void ResetInput()
         {
             currentInputs.Clear();
             RefreshDisplay();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual bool HasRequiredItems()
         {
             if (InventoryManager.Instance == null)
@@ -131,6 +149,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Resolve Answer operation while keeping its implementation details inside this script.
         protected virtual void ResolveAnswer()
         {
             expectedPattern = null;
@@ -155,6 +174,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         protected virtual bool IsCorrectPattern()
         {
             if (expectedPattern == null || currentInputs.Count != expectedPattern.Length)
@@ -175,6 +195,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         protected virtual void ApplyPowerDeviceReward()
         {
             if (SaveManager.Instance != null)
@@ -222,6 +243,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Cache Switch Buttons operation while keeping its implementation details inside this script.
         protected virtual void CacheSwitchButtons()
         {
             Transform root = switchButtonRoot != null ? switchButtonRoot : transform;
@@ -238,6 +260,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         protected virtual void RefreshDisplay()
         {
             if (inputText != null)
@@ -246,6 +269,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         protected virtual void SetMessage(string message)
         {
             if (messageText != null)
@@ -254,6 +278,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Hook Buttons operation while keeping its implementation details inside this script.
         protected virtual void HookButtons()
         {
             if (autoCollectSwitchButtons && switchButtons.Count == 0)
@@ -280,6 +305,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Unhook Buttons operation while keeping its implementation details inside this script.
         protected virtual void UnhookButtons()
         {
             if (powerButton != null)

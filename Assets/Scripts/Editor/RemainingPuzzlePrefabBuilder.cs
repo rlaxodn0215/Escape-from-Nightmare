@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Remaining Puzzle Prefab Builder
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\RemainingPuzzlePrefabBuilder.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,23 +14,29 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Remaining Puzzle Prefab Builder workflow, exposed through menu items or called by other validation tools.
     public static class RemainingPuzzlePrefabBuilder
     {
+        // Stores the Puzzle Ui Folder value used by this script's runtime or editor workflow.
         private const string PuzzleUiFolder = "Assets/Resources/PuzzleUI";
+        // Stores the Backup Folder value used by this script's runtime or editor workflow.
         private const string BackupFolder = "Assets/Backups/PuzzleUI";
 
         [MenuItem("Escape From Nightmare/Puzzle Prefabs/Create Missing Remaining Puzzle Prefabs")]
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         public static void CreateMissingRemainingPuzzlePrefabs()
         {
             BuildAll(false);
         }
 
         [MenuItem("Escape From Nightmare/Puzzle Prefabs/Rebuild Remaining Puzzle Prefabs With Backup")]
+        // Performs the Rebuild Remaining Puzzle Prefabs With Backup operation while keeping its implementation details inside this script.
         public static void RebuildRemainingPuzzlePrefabsWithBackup()
         {
             BuildAll(true);
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static void BuildAll(bool rebuild)
         {
             EnsureFolder(PuzzleUiFolder);
@@ -64,6 +77,7 @@ namespace EscapeFromNightmare
             Debug.Log("[RemainingPuzzlePrefabBuilder] Completed. Created: " + created + ", Rebuilt: " + rebuilt + ", Skipped: " + skipped);
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static BuildResult BuildItemUsePrefab(string prefabName, Type componentType, string title, bool rebuild)
         {
             string prefabPath = PuzzleUiFolder + "/" + prefabName + ".prefab";
@@ -102,6 +116,7 @@ namespace EscapeFromNightmare
             return rebuild ? BuildResult.Rebuilt : BuildResult.Created;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static BuildResult BuildBasementPowerDevicePrefab(bool rebuild)
         {
             const string prefabName = "PuzzleUI_BasementPowerDevice";
@@ -159,6 +174,7 @@ namespace EscapeFromNightmare
             return rebuild ? BuildResult.Rebuilt : BuildResult.Created;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static BuildResult BuildLockedRoomFinalPrefab(bool rebuild)
         {
             const string prefabName = "PuzzleUI_LockedRoomFinal";
@@ -219,6 +235,7 @@ namespace EscapeFromNightmare
             return rebuild ? BuildResult.Rebuilt : BuildResult.Created;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static PuzzlePowerSwitchButton CreateSwitchButton(string name, Transform parent, string switchId, PuzzlePowerDeviceUIBase target)
         {
             Button button = CreateButton(name, parent, switchId);
@@ -230,6 +247,7 @@ namespace EscapeFromNightmare
             return switchButton;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static PuzzleSymbolCycleSlot CreateSymbolSlot(string name, Transform parent, int slotIndex, PuzzleSymbolCycleUIBase target)
         {
             GameObject slot = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button), typeof(PuzzleSymbolCycleSlot));
@@ -245,6 +263,7 @@ namespace EscapeFromNightmare
             return cycleSlot;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static GameObject CreateUiRoot(string name, Type componentType)
         {
             GameObject root = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
@@ -256,6 +275,7 @@ namespace EscapeFromNightmare
             return root;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static GameObject CreatePanel(string name, Transform parent)
         {
             GameObject panel = new GameObject(name, typeof(RectTransform));
@@ -263,6 +283,7 @@ namespace EscapeFromNightmare
             return panel;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static Text CreateText(string name, Transform parent, string text, int fontSize)
         {
             GameObject textObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
@@ -276,6 +297,7 @@ namespace EscapeFromNightmare
             return textComponent;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static Button CreateButton(string name, Transform parent, string label)
         {
             GameObject buttonObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
@@ -287,6 +309,7 @@ namespace EscapeFromNightmare
             return buttonObject.GetComponent<Button>();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetRect(RectTransform rect, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)
         {
             if (rect == null)
@@ -301,6 +324,7 @@ namespace EscapeFromNightmare
             rect.sizeDelta = Vector2.zero;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static Font GetDefaultFont()
         {
             Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -317,6 +341,7 @@ namespace EscapeFromNightmare
             return font;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedObjectReference(UnityEngine.Object target, string fieldName, UnityEngine.Object value)
         {
             SerializedProperty property = FindProperty(target, fieldName);
@@ -329,6 +354,7 @@ namespace EscapeFromNightmare
             property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedString(UnityEngine.Object target, string fieldName, string value)
         {
             SerializedProperty property = FindProperty(target, fieldName);
@@ -341,6 +367,7 @@ namespace EscapeFromNightmare
             property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedInt(UnityEngine.Object target, string fieldName, int value)
         {
             SerializedProperty property = FindProperty(target, fieldName);
@@ -353,6 +380,7 @@ namespace EscapeFromNightmare
             property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedObjectList(UnityEngine.Object target, string fieldName, IList<UnityEngine.Object> values)
         {
             SerializedProperty property = FindProperty(target, fieldName);
@@ -370,6 +398,7 @@ namespace EscapeFromNightmare
             property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedStringArray(UnityEngine.Object target, string fieldName, string[] values)
         {
             SerializedProperty property = FindProperty(target, fieldName);
@@ -387,6 +416,7 @@ namespace EscapeFromNightmare
             property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static SerializedProperty FindProperty(UnityEngine.Object target, string fieldName)
         {
             if (target == null || string.IsNullOrEmpty(fieldName))
@@ -404,6 +434,7 @@ namespace EscapeFromNightmare
             return property;
         }
 
+        // Collects current runtime state and writes it to the configured save location.
         private static void SavePrefab(GameObject root, string path)
         {
             GameObject saved = PrefabUtility.SaveAsPrefabAsset(root, path);
@@ -413,6 +444,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Backup Existing Prefab operation while keeping its implementation details inside this script.
         private static void BackupExistingPrefab(string prefabPath)
         {
             try
@@ -429,6 +461,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureFolder(string path)
         {
             if (!AssetDatabase.IsValidFolder(path))
@@ -444,6 +477,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateResourcesLoad(string resourcesPath)
         {
             GameObject prefab = Resources.Load<GameObject>(resourcesPath);
@@ -457,6 +491,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static void Count(BuildResult result, ref int created, ref int rebuilt, ref int skipped)
         {
             if (result == BuildResult.Created)
@@ -473,6 +508,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Lists the supported Build Result states so callers can branch without fragile string comparisons.
         private enum BuildResult
         {
             Created,

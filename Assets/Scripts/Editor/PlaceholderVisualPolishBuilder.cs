@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Placeholder Visual Polish Builder
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\PlaceholderVisualPolishBuilder.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,66 +17,98 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Placeholder Visual Polish Builder workflow, exposed through menu items or called by other validation tools.
     public static class PlaceholderVisualPolishBuilder
     {
+        // Editor utility for the Category Stats workflow, exposed through menu items or called by other validation tools.
         private class CategoryStats
         {
+            // Stores the name value used by this script's runtime or editor workflow.
             public string name;
+            // Stores the processed value used by this script's runtime or editor workflow.
             public int processed;
+            // Stores the added value used by this script's runtime or editor workflow.
             public int added;
+            // Stores the reused value used by this script's runtime or editor workflow.
             public int reused;
+            // Stores the warnings value used by this script's runtime or editor workflow.
             public int warnings;
+            // Stores the errors value used by this script's runtime or editor workflow.
             public int errors;
         }
 
+        // Editor utility for the View Binding Row workflow, exposed through menu items or called by other validation tools.
         private class ViewBindingRow
         {
+            // Stores the view Id value used by this script's runtime or editor workflow.
             public string viewId;
+            // Stores the game Object Path value used by this script's runtime or editor workflow.
             public string gameObjectPath;
+            // Stores the resources Path value used by this script's runtime or editor workflow.
             public string resourcesPath;
+            // Stores the component Added value used by this script's runtime or editor workflow.
             public bool componentAdded;
         }
 
+        // Editor utility for the Hotspot Row workflow, exposed through menu items or called by other validation tools.
         private class HotspotRow
         {
+            // Stores the type value used by this script's runtime or editor workflow.
             public string type;
+            // Stores the target Id value used by this script's runtime or editor workflow.
             public string targetId;
+            // Stores the game Object Path value used by this script's runtime or editor workflow.
             public string gameObjectPath;
+            // Stores the label value used by this script's runtime or editor workflow.
             public string label;
+            // Stores the debug Visible value used by this script's runtime or editor workflow.
             public bool debugVisible;
         }
 
         private static readonly Dictionary<string, CategoryStats> stats = new Dictionary<string, CategoryStats>();
+        // Stores the warnings value used by this script's runtime or editor workflow.
         private static readonly List<string> warnings = new List<string>();
+        // Stores the errors value used by this script's runtime or editor workflow.
         private static readonly List<string> errors = new List<string>();
+        // Stores the view Binding Rows value used by this script's runtime or editor workflow.
         private static readonly List<ViewBindingRow> viewBindingRows = new List<ViewBindingRow>();
+        // Stores the hotspot Rows value used by this script's runtime or editor workflow.
         private static readonly List<HotspotRow> hotspotRows = new List<HotspotRow>();
+        // Stores the panel Rows value used by this script's runtime or editor workflow.
         private static readonly List<string> panelRows = new List<string>();
 
+        // Stores the Game Scene Path value used by this script's runtime or editor workflow.
         private const string GameScenePath = "Assets/Scenes/GameScene.unity";
+        // Stores the Report Path value used by this script's runtime or editor workflow.
         private const string ReportPath = "Assets/Docs/GeneratedPlaceholderVisualPolishReport.md";
+        // Stores the last Backup Path value used by this script's runtime or editor workflow.
         private static string lastBackupPath = string.Empty;
+        // Stores the last Saved value used by this script's runtime or editor workflow.
         private static bool lastSaved;
 
         [MenuItem("Escape From Nightmare/Visual Polish/Apply Placeholder Visual Polish")]
+        // Applies calculated settings to Unity components or runtime state.
         public static void ApplyPlaceholderVisualPolish()
         {
             RunBuilder(false);
         }
 
         [MenuItem("Escape From Nightmare/Visual Polish/Apply Placeholder Visual Polish And Save With Backup")]
+        // Applies calculated settings to Unity components or runtime state.
         public static void ApplyPlaceholderVisualPolishAndSaveWithBackup()
         {
             RunBuilder(true);
         }
 
         [MenuItem("Escape From Nightmare/Visual Polish/Generate Placeholder Visual Polish Report")]
+        // Performs the Generate Placeholder Visual Polish Report operation while keeping its implementation details inside this script.
         public static void GeneratePlaceholderVisualPolishReport()
         {
             ResetReportState();
             WritePolishReport();
         }
 
+        // Performs the Run Builder operation while keeping its implementation details inside this script.
         private static void RunBuilder(bool saveWithBackup)
         {
             ResetReportState();
@@ -123,6 +162,7 @@ namespace EscapeFromNightmare
             Debug.Log("Placeholder visual polish completed. Saved: " + lastSaved + ", Errors: " + errors.Count + ", Warnings: " + warnings.Count);
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         private static void ResetReportState()
         {
             stats.Clear();
@@ -135,6 +175,7 @@ namespace EscapeFromNightmare
             lastSaved = false;
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureResourceFolders()
         {
             string[] folders =
@@ -157,6 +198,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureFolder(string assetPath)
         {
             if (AssetDatabase.IsValidFolder(assetPath))
@@ -174,6 +216,7 @@ namespace EscapeFromNightmare
             AssetDatabase.CreateFolder(parent, name);
         }
 
+        // Opens the requested puzzle, clue, screen, or navigation target for the player.
         private static bool OpenGameSceneIfNeeded()
         {
             Scene activeScene = SceneManager.GetActiveScene();
@@ -192,6 +235,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Backup Game Scene operation while keeping its implementation details inside this script.
         private static bool BackupGameScene()
         {
             try
@@ -217,6 +261,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyDebugOverlay(Canvas canvas)
         {
             CategoryStats category = GetStats("Debug Overlay");
@@ -238,6 +283,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyViewBackgroundBindings()
         {
             LocationView[] views = FindSceneObjects<LocationView>();
@@ -297,6 +343,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyHotspotVisuals()
         {
             ClickableButton[] buttons = FindSceneObjects<ClickableButton>();
@@ -359,6 +406,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyNavigationVisuals()
         {
             NavigationButton[] navigationButtons = FindSceneObjects<NavigationButton>();
@@ -400,6 +448,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyPanelPresets()
         {
             ApplyPanelPreset("ClueImagePanel", FindFirstSceneObject<ClueImagePanelUI>());
@@ -409,6 +458,7 @@ namespace EscapeFromNightmare
             ApplyPanelPreset("InventoryBar", FindFirstSceneObject<InventoryBarUI>());
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyPanelPreset(string panelName, Component component)
         {
             CategoryStats category = GetStats("Panels");
@@ -444,6 +494,7 @@ namespace EscapeFromNightmare
             panelRows.Add(panelName + "|" + (added ? "Yes" : "No") + "|Preset applied to " + GetHierarchyPath(component.gameObject));
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static Text EnsureButtonLabel(GameObject buttonObject)
         {
             Text label = buttonObject.GetComponentInChildren<Text>(true);
@@ -464,6 +515,7 @@ namespace EscapeFromNightmare
             return label;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetHotspotLabel(ClickableButton clickable)
         {
             if (clickable == null)
@@ -488,6 +540,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private static void ApplyClickableRect(ClickableButton clickable, RectTransform rect, Dictionary<string, int> indexByView)
         {
             if (clickable == null || rect == null)
@@ -527,6 +580,7 @@ namespace EscapeFromNightmare
             rect.anchoredPosition = anchored;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static Vector2 GetSuggestedPosition(ClickableButton clickable, int index)
         {
             float xOffset = ((index % 3) - 1) * 280f;
@@ -550,6 +604,7 @@ namespace EscapeFromNightmare
             return new Vector2(xOffset, yOffset);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetParentViewId(Transform transform)
         {
             if (transform == null)
@@ -561,6 +616,7 @@ namespace EscapeFromNightmare
             return view != null ? view.ViewId : string.Empty;
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private static void WritePolishReport()
         {
             string absolutePath = Path.Combine(Application.dataPath, "Docs/GeneratedPlaceholderVisualPolishReport.md");
@@ -639,6 +695,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendList(StringBuilder builder, string title, List<string> values)
         {
             builder.AppendLine("## " + title);
@@ -696,6 +753,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsSceneObject(UnityEngine.Object obj)
         {
             if (obj == null || EditorUtility.IsPersistent(obj))
@@ -711,6 +769,7 @@ namespace EscapeFromNightmare
             return gameObject != null && gameObject.scene.IsValid();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetRectStretch(RectTransform rect)
         {
             if (rect == null)
@@ -723,6 +782,7 @@ namespace EscapeFromNightmare
             rect.offsetMax = Vector2.zero;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetRectAnchor(RectTransform rect, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)
         {
             if (rect == null)
@@ -735,6 +795,7 @@ namespace EscapeFromNightmare
             rect.offsetMax = offsetMax;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static Font GetDefaultFont()
         {
             Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -749,6 +810,7 @@ namespace EscapeFromNightmare
             return font;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedObject(UnityEngine.Object target, string fieldName, UnityEngine.Object value)
         {
             SerializedObject serializedObject = new SerializedObject(target);
@@ -762,6 +824,7 @@ namespace EscapeFromNightmare
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedBool(UnityEngine.Object target, string fieldName, bool value)
         {
             SerializedObject serializedObject = new SerializedObject(target);
@@ -775,6 +838,7 @@ namespace EscapeFromNightmare
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedFloat(UnityEngine.Object target, string fieldName, float value)
         {
             SerializedObject serializedObject = new SerializedObject(target);
@@ -788,6 +852,7 @@ namespace EscapeFromNightmare
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static CategoryStats GetStats(string name)
         {
             CategoryStats category;
@@ -799,24 +864,28 @@ namespace EscapeFromNightmare
             return category;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static void CountAdded(string categoryName)
         {
             CategoryStats category = GetStats(categoryName);
             category.added++;
         }
 
+        // Records a non-blocking validation concern for follow-up review.
         private static void AddWarning(string message)
         {
             warnings.Add(message);
             Debug.LogWarning("[PlaceholderVisualPolishBuilder] " + message);
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string message)
         {
             errors.Add(message);
             Debug.LogError("[PlaceholderVisualPolishBuilder] " + message);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetHierarchyPath(GameObject obj)
         {
             if (obj == null)
@@ -833,6 +902,7 @@ namespace EscapeFromNightmare
             return path;
         }
 
+        // Performs the Escape Markdown operation while keeping its implementation details inside this script.
         private static string EscapeMarkdown(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value.Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");

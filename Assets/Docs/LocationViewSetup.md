@@ -18,9 +18,7 @@ GameScene
   - LocationRoot
     - Location_Bedroom
       - View_Bedroom_Front
-      - View_Bedroom_Right
       - View_Bedroom_Back
-      - View_Bedroom_Left
   - NavigationButtons
     - Button_Left
     - Button_Right

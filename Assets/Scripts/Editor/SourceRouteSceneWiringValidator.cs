@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Scene Wiring Validator
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\SourceRouteSceneWiringValidator.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,24 +15,34 @@ using UnityEngine.SceneManagement;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Scene Wiring Validator workflow, exposed through menu items or called by other validation tools.
     public static class SourceRouteSceneWiringValidator
     {
+        // Stores the errors value used by this script's runtime or editor workflow.
         private static readonly List<string> errors = new List<string>();
+        // Stores the warnings value used by this script's runtime or editor workflow.
         private static readonly List<string> warnings = new List<string>();
+        // Stores the infos value used by this script's runtime or editor workflow.
         private static readonly List<string> infos = new List<string>();
         private static readonly Dictionary<string, List<string>> doorButtonPaths = new Dictionary<string, List<string>>();
         private static readonly Dictionary<string, List<string>> puzzleButtonPaths = new Dictionary<string, List<string>>();
         private static readonly Dictionary<string, List<string>> clueButtonPaths = new Dictionary<string, List<string>>();
+        // Stores the final Door Paths value used by this script's runtime or editor workflow.
         private static readonly List<string> finalDoorPaths = new List<string>();
         private static readonly Dictionary<string, LocationController> locationMap = new Dictionary<string, LocationController>();
         private static readonly Dictionary<string, HashSet<string>> locationViewMap = new Dictionary<string, HashSet<string>>();
 
+        // Stores the door Ids value used by this script's runtime or editor workflow.
         private static HashSet<string> doorIds = new HashSet<string>();
+        // Stores the puzzle Ids value used by this script's runtime or editor workflow.
         private static HashSet<string> puzzleIds = new HashSet<string>();
+        // Stores the clue Ids value used by this script's runtime or editor workflow.
         private static HashSet<string> clueIds = new HashSet<string>();
+        // Stores the item Ids value used by this script's runtime or editor workflow.
         private static HashSet<string> itemIds = new HashSet<string>();
         private static Dictionary<string, PuzzleRecord> puzzleMap = new Dictionary<string, PuzzleRecord>();
 
+        // Stores the Required Managers value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredManagers =
         {
             "GameDataManager",
@@ -40,9 +57,11 @@ namespace EscapeFromNightmare
             "NoiseManager",
             "GhostManager",
             "HideManager",
-            "ChaseManager"
+            "ChaseManager",
+            "ScreenFadeManager"
         };
 
+        // Stores the Required Locations value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredLocations =
         {
             "Bedroom",
@@ -56,10 +75,11 @@ namespace EscapeFromNightmare
             "LockedRoom"
         };
 
+        // Stores the Required Views value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredViews =
         {
-            "Bedroom_Front", "Bedroom_Right", "Bedroom_Back", "Bedroom_Left",
-            "ChildRoom_Front", "ChildRoom_Right", "ChildRoom_Back", "ChildRoom_Left",
+            "Bedroom_Front", "Bedroom_Back",
+            "ChildRoom_Front", "ChildRoom_Back",
             "Study_Front", "Study_Right", "Study_Back", "Study_Left",
             "SecondFloorHallway_Front", "SecondFloorHallway_Back",
             "LivingRoom_Front", "LivingRoom_Back",
@@ -69,6 +89,7 @@ namespace EscapeFromNightmare
             "LockedRoom_Front", "LockedRoom_Right", "LockedRoom_Back", "LockedRoom_Left"
         };
 
+        // Stores the Required Doors value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredDoors =
         {
             "Door_Bedroom_SecondFloorHallway",
@@ -89,6 +110,7 @@ namespace EscapeFromNightmare
             "Door_Entrance_LivingRoom"
         };
 
+        // Stores the Required Puzzles value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredPuzzles =
         {
             "Puzzle_Bedroom_01",
@@ -102,6 +124,7 @@ namespace EscapeFromNightmare
             "Puzzle_Entrance_01"
         };
 
+        // Stores the Recommended Clues value used by this script's runtime or editor workflow.
         private static readonly string[] RecommendedClues =
         {
             "BedroomPhotoCodeClue",
@@ -115,6 +138,7 @@ namespace EscapeFromNightmare
         };
 
         [MenuItem("Escape From Nightmare/Validate Source Route Scene Wiring")]
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         public static void ValidateSourceRouteSceneWiring()
         {
             Reset();
@@ -135,6 +159,7 @@ namespace EscapeFromNightmare
             Debug.Log("Source route scene wiring validation completed. Errors: " + errors.Count + ", Warnings: " + warnings.Count);
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private static void Reset()
         {
             errors.Clear();
@@ -153,6 +178,7 @@ namespace EscapeFromNightmare
             puzzleMap = new Dictionary<string, PuzzleRecord>();
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         private static void LoadData()
         {
             string dataPath = Path.Combine(Application.streamingAssetsPath, "Data");
@@ -231,6 +257,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Collect Scene Maps operation while keeping its implementation details inside this script.
         private static void CollectSceneMaps()
         {
             LocationController[] locations = FindSceneObjects<LocationController>();
@@ -317,6 +344,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateUseItemTarget(ClickableButton button, string path)
         {
             if (string.IsNullOrEmpty(button.RequiredItemId))
@@ -337,6 +365,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateActiveScene()
         {
             Scene activeScene = SceneManager.GetActiveScene();
@@ -346,6 +375,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateManagers()
         {
             for (int i = 0; i < RequiredManagers.Length; i++)
@@ -369,6 +399,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateRootsAndPanels()
         {
             PuzzleManager[] puzzleManagers = FindSceneObjects<PuzzleManager>();
@@ -387,10 +418,19 @@ namespace EscapeFromNightmare
             RequireComponent<ClueImagePanelUI>("ClueImagePanelUI", true);
             RequireComponent<GameOverPanelUI>("GameOverPanelUI", true);
             RequireComponent<EndingPanelUI>("EndingPanelUI", true);
+            RequireComponent<HideInteriorViewUI>("HideInteriorViewUI", true);
             RequireComponent<HideExitButton>("HideExitButton", true);
+            RequireComponent<InteractionInputGate>("InteractionInputGate", true);
             RequireComponent<GhostStatusUI>("GhostStatusUI", false);
+
+            ScreenFadeManager[] fadeManagers = FindSceneObjects<ScreenFadeManager>();
+            if (fadeManagers.Length == 0 || GetObjectField(fadeManagers[0], "fadeCanvasGroup") == null)
+            {
+                AddError("ScreenFadeManager.fadeCanvasGroup is missing.");
+            }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateLocationsAndViews()
         {
             for (int i = 0; i < RequiredLocations.Length; i++)
@@ -410,6 +450,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool HasView(string viewId)
         {
             foreach (KeyValuePair<string, HashSet<string>> pair in locationViewMap)
@@ -423,6 +464,7 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateButtons()
         {
             ClickableButton[] buttons = FindSceneObjects<ClickableButton>();
@@ -432,6 +474,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateVisualPolishComponents()
         {
             LocationView[] views = FindSceneObjects<LocationView>();
@@ -490,6 +533,7 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateRequiredDoors()
         {
             for (int i = 0; i < RequiredDoors.Length; i++)
@@ -501,6 +545,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateRequiredPuzzles()
         {
             for (int i = 0; i < RequiredPuzzles.Length; i++)
@@ -527,6 +572,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateRecommendedClues()
         {
             for (int i = 0; i < RecommendedClues.Length; i++)
@@ -538,6 +584,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateFinalDoorOrEntrance()
         {
             bool hasEntrancePuzzle = puzzleButtonPaths.ContainsKey("Puzzle_Entrance_01");
@@ -548,6 +595,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool HasFinalDoorForEntrance()
         {
             ClickableButton[] buttons = FindSceneObjects<ClickableButton>();
@@ -566,6 +614,7 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private static void WriteReport()
         {
             string path = Path.Combine(Application.dataPath, "Docs/GeneratedSourceRouteSceneWiringReport.md");
@@ -604,6 +653,7 @@ namespace EscapeFromNightmare
             Debug.Log("[SourceRouteSceneWiringValidator] Report written: " + path);
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendManagers(StringBuilder builder)
         {
             builder.AppendLine("## Managers");
@@ -619,6 +669,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendLocations(StringBuilder builder)
         {
             builder.AppendLine("## Location Controllers");
@@ -634,6 +685,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendButtonTable(StringBuilder builder, string title, string idLabel, string[] requiredIds, Dictionary<string, List<string>> paths)
         {
             builder.AppendLine("## " + title);
@@ -649,6 +701,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendPuzzleButtons(StringBuilder builder)
         {
             builder.AppendLine("## Required Puzzle Buttons");
@@ -670,6 +723,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendList(StringBuilder builder, string title, List<string> values)
         {
             builder.AppendLine("### " + title);
@@ -688,6 +742,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Performs the Add Path operation while keeping its implementation details inside this script.
         private static void AddPath(Dictionary<string, List<string>> map, string key, string path)
         {
             if (!map.ContainsKey(key))
@@ -713,6 +768,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static int CountComponentByName(string typeName)
         {
             switch (typeName)
@@ -730,6 +786,7 @@ namespace EscapeFromNightmare
                 case "GhostManager": return FindSceneObjects<GhostManager>().Length;
                 case "HideManager": return FindSceneObjects<HideManager>().Length;
                 case "ChaseManager": return FindSceneObjects<ChaseManager>().Length;
+                case "ScreenFadeManager": return FindSceneObjects<ScreenFadeManager>().Length;
                 default: return 0;
             }
         }
@@ -757,6 +814,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsSceneObject(UnityEngine.Object obj)
         {
             if (obj == null || EditorUtility.IsPersistent(obj))
@@ -772,6 +830,7 @@ namespace EscapeFromNightmare
             return gameObject != null && gameObject.scene.IsValid();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static UnityEngine.Object GetObjectField(UnityEngine.Object target, string fieldName)
         {
             if (target == null)
@@ -783,6 +842,7 @@ namespace EscapeFromNightmare
             return property != null ? property.objectReferenceValue : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetHierarchyPath(GameObject obj)
         {
             if (obj == null)
@@ -799,17 +859,20 @@ namespace EscapeFromNightmare
             return path;
         }
 
+        // Performs the Escape Markdown operation while keeping its implementation details inside this script.
         private static string EscapeMarkdown(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value.Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string message)
         {
             errors.Add(message);
             Debug.LogError("[SourceRouteSceneWiringValidator] " + message);
         }
 
+        // Records a non-blocking validation concern for follow-up review.
         private static void AddWarning(string message)
         {
             warnings.Add(message);

@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Ghost Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\GhostManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Ghost Manager system, keeping shared state and events behind one access point.
     public class GhostManager : Singleton<GhostManager>
     {
         [SerializeField] private bool autoStartPatrolOnStart = true;
@@ -16,10 +24,15 @@ namespace EscapeFromNightmare
         [SerializeField] private bool resetDangerWhenGhostLeaves = true;
         [SerializeField] private bool ignoreNoiseWhileChasing = true;
 
+        // Stores the runtime State value used by this script's runtime or editor workflow.
         private GhostRuntimeState runtimeState = GhostRuntimeState.Inactive;
+        // Stores the current Ghost Location Id value used by this script's runtime or editor workflow.
         private string currentGhostLocationId;
+        // Stores the target Noise Location Id value used by this script's runtime or editor workflow.
         private string targetNoiseLocationId;
+        // Stores the danger Level value used by this script's runtime or editor workflow.
         private float dangerLevel;
+        // Stores the noise Response Routine value used by this script's runtime or editor workflow.
         private Coroutine noiseResponseRoutine;
 
         public GhostRuntimeState RuntimeState
@@ -64,6 +77,7 @@ namespace EscapeFromNightmare
         public event Action ChaseStarted;
         public event Action ChaseStopped;
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {
             ApplySettings();
@@ -74,6 +88,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Refreshes frame-dependent input, timers, animation, or visual state.
         private void Update()
         {
             if (runtimeState == GhostRuntimeState.SearchingLocation || runtimeState == GhostRuntimeState.Chasing)
@@ -82,6 +97,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Begins this system's runtime flow and initializes any timers, events, or counters it needs.
         public void StartPatrol()
         {
             targetNoiseLocationId = string.Empty;
@@ -90,6 +106,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost patrol started.");
         }
 
+        // Stops an active routine or state so the next run can start cleanly.
         public void StopPatrol()
         {
             if (noiseResponseRoutine != null)
@@ -103,6 +120,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost patrol stopped.");
         }
 
+        // Performs the React To Noise operation while keeping its implementation details inside this script.
         public void ReactToNoise(string locationId)
         {
             if (string.IsNullOrEmpty(locationId))
@@ -128,6 +146,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost reacts to noise at location: " + locationId);
         }
 
+        // Performs the Enter Location operation while keeping its implementation details inside this script.
         public void EnterLocation(string locationId)
         {
             if (string.IsNullOrEmpty(locationId))
@@ -147,6 +166,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost enters location: " + locationId);
         }
 
+        // Performs the Leave Current Location operation while keeping its implementation details inside this script.
         public void LeaveCurrentLocation()
         {
             string previousLocationId = currentGhostLocationId;
@@ -170,6 +190,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost leaves current location: " + previousLocationId);
         }
 
+        // Begins this system's runtime flow and initializes any timers, events, or counters it needs.
         public void StartChase()
         {
             if (runtimeState == GhostRuntimeState.Chasing)
@@ -203,6 +224,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost chase started.");
         }
 
+        // Stops an active routine or state so the next run can start cleanly.
         public void StopChase()
         {
             if (noiseResponseRoutine != null)
@@ -224,6 +246,7 @@ namespace EscapeFromNightmare
             Debug.Log("Ghost chase stopped.");
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsGhostInLocation(string locationId)
         {
             if (string.IsNullOrEmpty(locationId))
@@ -234,6 +257,7 @@ namespace EscapeFromNightmare
             return currentGhostLocationId == locationId;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsGhostThreateningCurrentLocation()
         {
             if (LocationManager.Instance == null)
@@ -244,12 +268,14 @@ namespace EscapeFromNightmare
             return IsGhostInLocation(LocationManager.Instance.CurrentLocationId);
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         public void ResetDanger()
         {
             dangerLevel = 0f;
             RaiseDangerChanged();
         }
 
+        // Performs the Noise Response Routine operation while keeping its implementation details inside this script.
         private IEnumerator NoiseResponseRoutine(string locationId)
         {
             GhostRuleRecord rule = GetRuleForLocation(locationId);
@@ -266,6 +292,7 @@ namespace EscapeFromNightmare
             noiseResponseRoutine = null;
         }
 
+        // Performs the Update Danger operation while keeping its implementation details inside this script.
         private void UpdateDanger()
         {
             if (runtimeState == GhostRuntimeState.Chasing)
@@ -303,6 +330,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private void SetRuntimeState(GhostRuntimeState newState)
         {
             if (runtimeState == newState)
@@ -318,6 +346,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private GhostRuleRecord GetRuleForLocation(string locationId)
         {
             if (GameDataManager.Instance == null)
@@ -328,6 +357,7 @@ namespace EscapeFromNightmare
             return GameDataManager.Instance.GetGhostRuleForLocation(locationId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private float GetArrivalDelay(GhostRuleRecord rule)
         {
             float min = rule != null && rule.minArrivalTime > 0f ? rule.minArrivalTime : defaultMinArrivalTime;
@@ -335,6 +365,7 @@ namespace EscapeFromNightmare
             return RandomRangeSafe(min, max);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private float GetLeaveDelay(GhostRuleRecord rule)
         {
             float min = rule != null && rule.minLeaveTime > 0f ? rule.minLeaveTime : defaultMinLeaveTime;
@@ -342,6 +373,7 @@ namespace EscapeFromNightmare
             return RandomRangeSafe(min, max);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private float GetDangerIncreasePerSecond(GhostRuleRecord rule)
         {
             if (rule != null && rule.dangerIncreasePerSecond > 0f)
@@ -352,6 +384,7 @@ namespace EscapeFromNightmare
             return defaultDangerIncreasePerSecond;
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         private void ApplySettings()
         {
             if (GameDataManager.Instance == null || GameDataManager.Instance.Settings == null)
@@ -386,6 +419,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Random Range Safe operation while keeping its implementation details inside this script.
         private float RandomRangeSafe(float min, float max)
         {
             min = Mathf.Max(0f, min);
@@ -406,6 +440,7 @@ namespace EscapeFromNightmare
             return UnityEngine.Random.Range(min, max);
         }
 
+        // Performs the Raise Danger Changed operation while keeping its implementation details inside this script.
         private void RaiseDangerChanged()
         {
             if (DangerChanged != null)

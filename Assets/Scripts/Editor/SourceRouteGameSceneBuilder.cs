@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Game Scene Builder
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\SourceRouteGameSceneBuilder.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,41 +18,81 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Game Scene Builder workflow, exposed through menu items or called by other validation tools.
     public static class SourceRouteGameSceneBuilder
     {
+        // Stores the Game Scene Path value used by this script's runtime or editor workflow.
         private const string GameScenePath = "Assets/Scenes/GameScene.unity";
+        // Stores the Report Path value used by this script's runtime or editor workflow.
         private const string ReportPath = "Assets/Docs/GeneratedSourceRouteGameSceneBuilderReport.md";
+        private const string RotateArrowLeftSpritePath = "Assets/Resources/UI/Buttons/RotateArrowLeft.png";
+        private const string RotateArrowRightSpritePath = "Assets/Resources/UI/Buttons/RotateArrowRight.png";
+        private const string InventoryBarPanelSpritePath = "Assets/Resources/UI/Panels/InventoryBarPanel.png";
+        private const string InventorySlotEmptySpritePath = "Assets/Resources/UI/Panels/InventorySlotEmpty.png";
+        private const string InventorySlotSelectedSpritePath = "Assets/Resources/UI/Panels/InventorySlotSelected.png";
+        private const float InventorySlotSize = 72f;
 
         private static readonly Dictionary<string, SourceRouteGameSceneBuilderCategoryStats> stats = new Dictionary<string, SourceRouteGameSceneBuilderCategoryStats>();
+        // Stores the created Objects value used by this script's runtime or editor workflow.
         private static readonly List<string> createdObjects = new List<string>();
+        // Stores the reused Objects value used by this script's runtime or editor workflow.
         private static readonly List<string> reusedObjects = new List<string>();
+        // Stores the linked Fields value used by this script's runtime or editor workflow.
         private static readonly List<string> linkedFields = new List<string>();
+        // Stores the warnings value used by this script's runtime or editor workflow.
         private static readonly List<string> warnings = new List<string>();
+        // Stores the errors value used by this script's runtime or editor workflow.
         private static readonly List<string> errors = new List<string>();
 
+        // Stores the canvas value used by this script's runtime or editor workflow.
         private static Canvas canvas;
+        // Stores the location Root value used by this script's runtime or editor workflow.
         private static Transform locationRoot;
+        // Stores the navigation Root value used by this script's runtime or editor workflow.
         private static Transform navigationRoot;
+        // Stores the inventory Root value used by this script's runtime or editor workflow.
         private static Transform inventoryRoot;
+        // Stores the puzzle Ui Root value used by this script's runtime or editor workflow.
         private static Transform puzzleUiRoot;
+        // Stores the clue Image Panel Root value used by this script's runtime or editor workflow.
         private static Transform clueImagePanelRoot;
+        // Stores the game Over Panel Root value used by this script's runtime or editor workflow.
         private static Transform gameOverPanelRoot;
+        // Stores the ending Panel Root value used by this script's runtime or editor workflow.
         private static Transform endingPanelRoot;
+        private static Transform hideViewRoot;
+        private static Transform hideInteriorRoot;
+        // Stores the ghost Status Root value used by this script's runtime or editor workflow.
         private static Transform ghostStatusRoot;
+        private static Transform screenFadeRoot;
 
+        // Stores the game Data Manager value used by this script's runtime or editor workflow.
         private static GameDataManager gameDataManager;
+        // Stores the location Manager value used by this script's runtime or editor workflow.
         private static LocationManager locationManager;
+        // Stores the interaction Manager value used by this script's runtime or editor workflow.
         private static InteractionManager interactionManager;
+        // Stores the inventory Manager value used by this script's runtime or editor workflow.
         private static InventoryManager inventoryManager;
+        // Stores the puzzle Manager value used by this script's runtime or editor workflow.
         private static PuzzleManager puzzleManager;
+        // Stores the save Manager value used by this script's runtime or editor workflow.
         private static SaveManager saveManager;
+        // Stores the game Manager value used by this script's runtime or editor workflow.
         private static GameManager gameManager;
+        // Stores the ending Manager value used by this script's runtime or editor workflow.
         private static EndingManager endingManager;
+        // Stores the clue Image Manager value used by this script's runtime or editor workflow.
         private static ClueImageManager clueImageManager;
+        // Stores the noise Manager value used by this script's runtime or editor workflow.
         private static NoiseManager noiseManager;
+        // Stores the ghost Manager value used by this script's runtime or editor workflow.
         private static GhostManager ghostManager;
+        // Stores the hide Manager value used by this script's runtime or editor workflow.
         private static HideManager hideManager;
+        // Stores the chase Manager value used by this script's runtime or editor workflow.
         private static ChaseManager chaseManager;
+        private static ScreenFadeManager screenFadeManager;
 
         private static readonly Dictionary<string, LocationController> locationsById = new Dictionary<string, LocationController>();
         private static readonly Dictionary<string, LocationView> viewsById = new Dictionary<string, LocationView>();
@@ -53,9 +100,12 @@ namespace EscapeFromNightmare
         private static readonly Dictionary<string, PuzzleRecord> puzzlesById = new Dictionary<string, PuzzleRecord>();
         private static readonly Dictionary<string, ClueRecord> cluesById = new Dictionary<string, ClueRecord>();
 
+        // Stores the last Run Saved value used by this script's runtime or editor workflow.
         private static bool lastRunSaved;
+        // Stores the last Backup Path value used by this script's runtime or editor workflow.
         private static string lastBackupPath = string.Empty;
 
+        // Stores the Required Doors value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredDoors =
         {
             "Door_Bedroom_SecondFloorHallway",
@@ -76,6 +126,7 @@ namespace EscapeFromNightmare
             "Door_Entrance_LivingRoom"
         };
 
+        // Stores the Required Puzzles value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredPuzzles =
         {
             "Puzzle_Bedroom_01",
@@ -89,6 +140,7 @@ namespace EscapeFromNightmare
             "Puzzle_Entrance_01"
         };
 
+        // Stores the Recommended Clues value used by this script's runtime or editor workflow.
         private static readonly string[] RecommendedClues =
         {
             "BedroomPhotoCodeClue",
@@ -101,10 +153,11 @@ namespace EscapeFromNightmare
             "BasementClueImage"
         };
 
+        // Stores the Location Views value used by this script's runtime or editor workflow.
         private static readonly string[,] LocationViews =
         {
-            { "Bedroom", "Bedroom_Front,Bedroom_Right,Bedroom_Back,Bedroom_Left", "Bedroom_Front" },
-            { "ChildRoom", "ChildRoom_Front,ChildRoom_Right,ChildRoom_Back,ChildRoom_Left", "ChildRoom_Front" },
+            { "Bedroom", "Bedroom_Front,Bedroom_Back", "Bedroom_Front" },
+            { "ChildRoom", "ChildRoom_Front,ChildRoom_Back", "ChildRoom_Front" },
             { "Study", "Study_Front,Study_Right,Study_Back,Study_Left", "Study_Front" },
             { "SecondFloorHallway", "SecondFloorHallway_Front,SecondFloorHallway_Back", "SecondFloorHallway_Front" },
             { "LivingRoom", "LivingRoom_Front,LivingRoom_Back", "LivingRoom_Front" },
@@ -115,18 +168,21 @@ namespace EscapeFromNightmare
         };
 
         [MenuItem("Escape From Nightmare/Scene Setup/Build Missing Source Route GameScene Wiring")]
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         public static void BuildMissingSourceRouteGameSceneWiring()
         {
             Build(false);
         }
 
         [MenuItem("Escape From Nightmare/Scene Setup/Build Missing Source Route GameScene Wiring And Save With Backup")]
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         public static void BuildMissingSourceRouteGameSceneWiringAndSaveWithBackup()
         {
             Build(true);
         }
 
         [MenuItem("Escape From Nightmare/Scene Setup/Generate Source Route GameScene Builder Report")]
+        // Performs the Generate Source Route Game Scene Builder Report operation while keeping its implementation details inside this script.
         public static void GenerateSourceRouteGameSceneBuilderReport()
         {
             ResetRunState();
@@ -143,6 +199,7 @@ namespace EscapeFromNightmare
             WriteBuilderReport();
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static void Build(bool saveWithBackup)
         {
             ResetRunState();
@@ -194,6 +251,7 @@ namespace EscapeFromNightmare
             Debug.Log("Source route GameScene builder completed. Errors: " + errors.Count + ", Warnings: " + warnings.Count + ", Saved: " + lastRunSaved);
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         private static void ResetRunState()
         {
             stats.Clear();
@@ -215,9 +273,13 @@ namespace EscapeFromNightmare
             clueImagePanelRoot = null;
             gameOverPanelRoot = null;
             endingPanelRoot = null;
+            hideViewRoot = null;
+            hideInteriorRoot = null;
             ghostStatusRoot = null;
+            screenFadeRoot = null;
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static bool EnsureGameSceneOpen()
         {
             Scene activeScene = SceneManager.GetActiveScene();
@@ -237,6 +299,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Backup Game Scene operation while keeping its implementation details inside this script.
         private static bool BackupGameScene()
         {
             try
@@ -261,6 +324,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         private static void LoadData()
         {
             string dataPath = Path.Combine(Application.streamingAssetsPath, "Data");
@@ -325,6 +389,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Cache Scene Objects operation while keeping its implementation details inside this script.
         private static void CacheSceneObjects()
         {
             locationsById.Clear();
@@ -349,6 +414,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureCanvasAndEventSystem()
         {
             canvas = FindComponentInScene<Canvas>();
@@ -387,6 +453,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureManagers()
         {
             Transform managersRoot = GetOrCreateGameObject("Managers", null, "Managers").transform;
@@ -403,6 +470,7 @@ namespace EscapeFromNightmare
             ghostManager = EnsureManager<GhostManager>("GhostManager", managersRoot);
             hideManager = EnsureManager<HideManager>("HideManager", managersRoot);
             chaseManager = EnsureManager<ChaseManager>("ChaseManager", managersRoot);
+            screenFadeManager = EnsureManager<ScreenFadeManager>("ScreenFadeManager", managersRoot);
         }
 
         private static T EnsureManager<T>(string objectName, Transform parent) where T : Component
@@ -420,6 +488,7 @@ namespace EscapeFromNightmare
             return component;
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureUiRoots()
         {
             Transform canvasTransform = canvas != null ? canvas.transform : null;
@@ -430,8 +499,12 @@ namespace EscapeFromNightmare
             clueImagePanelRoot = CreatePanel("ClueImagePanel", canvasTransform, "UI Roots").transform;
             gameOverPanelRoot = CreatePanel("GameOverPanel", canvasTransform, "UI Roots").transform;
             endingPanelRoot = CreatePanel("EndingPanel", canvasTransform, "UI Roots").transform;
-            CreateButton("HideExitButton", canvasTransform, "Exit Hide", "UI Roots");
+            hideViewRoot = CreatePanel("HideViewRoot", canvasTransform, "UI Roots").transform;
+            hideInteriorRoot = CreateHideBackground(hideViewRoot);
             ghostStatusRoot = CreatePanel("GhostStatusPanel", canvasTransform, "UI Roots").transform;
+            screenFadeRoot = CreatePanel("ScreenFadeOverlay", canvasTransform, "UI Roots").transform;
+            screenFadeRoot.SetAsLastSibling();
+            GetOrCreateComponent<InteractionInputGate>(canvas.gameObject, "UI Roots");
 
             SetSerializedObjectReference(locationManager, "locationRoot", locationRoot, "UI Roots");
             if (puzzleManager != null && puzzleManager.puzzleUiRoot != puzzleUiRoot)
@@ -442,20 +515,35 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureInventoryUi()
         {
             InventoryBarUI bar = GetOrCreateComponent<InventoryBarUI>(inventoryRoot.gameObject, "Inventory UI");
+            CanvasGroup canvasGroup = GetOrCreateComponent<CanvasGroup>(inventoryRoot.gameObject, "Inventory UI");
+            ConfigureInventorySprite(GetOrCreateComponent<Image>(inventoryRoot.gameObject, "Inventory UI"), InventoryBarPanelSpritePath, false);
+            ConfigureInventoryBarRect(inventoryRoot.GetComponent<RectTransform>());
+
+            PanelVisualPreset inventoryPreset = inventoryRoot.GetComponent<PanelVisualPreset>();
+            if (inventoryPreset != null)
+            {
+                SetSerializedBool(inventoryPreset, "applyOnAwake", false, "Inventory UI");
+            }
+
             List<UnityEngine.Object> slots = new List<UnityEngine.Object>();
             for (int i = 1; i <= 6; i++)
             {
                 Transform slot = CreateButton("Slot_" + i.ToString("00"), inventoryRoot, string.Empty, "Inventory UI").transform;
+                ConfigureInventorySprite(GetOrCreateComponent<Image>(slot.gameObject, "Inventory UI"), InventorySlotEmptySpritePath, true);
+                ConfigureInventorySlotRect(slot.GetComponent<RectTransform>(), i - 1);
+
                 InventorySlotUI slotUi = GetOrCreateComponent<InventorySlotUI>(slot.gameObject, "Inventory UI");
                 GameObject emptyRoot = GetOrCreateGameObject("EmptyRoot", slot, "Inventory UI");
                 GameObject filledRoot = GetOrCreateGameObject("FilledRoot", slot, "Inventory UI");
                 Image iconImage = GetOrCreateImage("IconImage", filledRoot.transform, "Inventory UI");
                 Text labelText = CreateText("LabelText", filledRoot.transform, string.Empty, 18, "Inventory UI");
                 GameObject selectedIndicator = GetOrCreateGameObject("SelectedIndicator", slot, "Inventory UI");
-                GetOrCreateComponent<Image>(selectedIndicator, "Inventory UI").color = new Color(1f, 0.9f, 0.2f, 0.35f);
+                ConfigureInventorySprite(GetOrCreateComponent<Image>(selectedIndicator, "Inventory UI"), InventorySlotSelectedSpritePath, false);
+                ConfigureInventorySlotChildren(emptyRoot, filledRoot, iconImage, labelText, selectedIndicator);
 
                 SetSerializedObjectReference(slotUi, "iconImage", iconImage, "Inventory UI");
                 SetSerializedObjectReference(slotUi, "labelText", labelText, "Inventory UI");
@@ -468,8 +556,177 @@ namespace EscapeFromNightmare
             SetSerializedObjectReference(bar, "slotRoot", inventoryRoot, "Inventory UI");
             SetSerializedObjectList(bar, "slots", slots, "Inventory UI");
             SetSerializedBool(bar, "autoCollectSlots", true, "Inventory UI");
+            SetSerializedObjectReference(bar, "canvasGroup", canvasGroup, "Inventory UI");
+            SetSerializedBool(bar, "hideOnAwake", true, "Inventory UI");
+            ConfigureInventoryToggleButton(bar);
+
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = 0f;
+                canvasGroup.interactable = false;
+                canvasGroup.blocksRaycasts = false;
+            }
         }
 
+        private static Transform CreateHideBackground(Transform parent)
+        {
+            if (parent != null)
+            {
+                Transform existingChild = parent.Find("Background");
+                if (existingChild != null)
+                {
+                    AddReused("UI Roots", existingChild.gameObject, "Hide background exists");
+                    return existingChild;
+                }
+            }
+
+            GameObject retiredPanel = FindObjectInSceneByName("HideInteriorViewPanel");
+            if (retiredPanel != null)
+            {
+                retiredPanel.name = "Background";
+                retiredPanel.transform.SetParent(parent, false);
+                SetRectStretch(retiredPanel.GetComponent<RectTransform>());
+                AddReused("UI Roots", retiredPanel, "Migrated HideInteriorViewPanel to HideViewRoot/Background");
+                return retiredPanel.transform;
+            }
+
+            return CreatePanel("Background", parent, "UI Roots").transform;
+        }
+
+        private static void ConfigureInventoryBarRect(RectTransform rect)
+        {
+            if (rect == null)
+            {
+                return;
+            }
+
+            rect.anchorMin = new Vector2(1f, 1f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(1f, 1f);
+            rect.anchoredPosition = new Vector2(-18f, -76f);
+            rect.sizeDelta = new Vector2(220f, 300f);
+            rect.localScale = Vector3.one;
+        }
+
+        private static void ConfigureInventorySlotRect(RectTransform rect, int index)
+        {
+            if (rect == null)
+            {
+                return;
+            }
+
+            float columnSpacing = 84f;
+            float rowSpacing = 84f;
+            int column = index % 2;
+            int row = index / 2;
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = new Vector2(-columnSpacing * 0.5f + columnSpacing * column, rowSpacing - rowSpacing * row);
+            rect.sizeDelta = new Vector2(InventorySlotSize, InventorySlotSize);
+            rect.localScale = Vector3.one;
+        }
+
+        private static void ConfigureInventorySlotChildren(GameObject emptyRoot, GameObject filledRoot, Image iconImage, Text labelText, GameObject selectedIndicator)
+        {
+            SetRectStretch(emptyRoot != null ? emptyRoot.GetComponent<RectTransform>() : null);
+            SetRectStretch(filledRoot != null ? filledRoot.GetComponent<RectTransform>() : null);
+            SetRectInset(iconImage != null ? iconImage.GetComponent<RectTransform>() : null, 13f, 13f, 13f, 23f);
+
+            if (labelText != null)
+            {
+                labelText.fontSize = 10;
+                labelText.raycastTarget = false;
+                labelText.horizontalOverflow = HorizontalWrapMode.Wrap;
+                labelText.verticalOverflow = VerticalWrapMode.Truncate;
+                RectTransform labelRect = labelText.GetComponent<RectTransform>();
+                if (labelRect != null)
+                {
+                    labelRect.anchorMin = new Vector2(0f, 0f);
+                    labelRect.anchorMax = new Vector2(1f, 0f);
+                    labelRect.pivot = new Vector2(0.5f, 0f);
+                    labelRect.anchoredPosition = new Vector2(0f, 5f);
+                    labelRect.sizeDelta = new Vector2(-8f, 18f);
+                    labelRect.localScale = Vector3.one;
+                }
+            }
+
+            RectTransform selectedRect = selectedIndicator != null ? selectedIndicator.GetComponent<RectTransform>() : null;
+            if (selectedRect != null)
+            {
+                selectedRect.anchorMin = new Vector2(0.5f, 0.5f);
+                selectedRect.anchorMax = new Vector2(0.5f, 0.5f);
+                selectedRect.pivot = new Vector2(0.5f, 0.5f);
+                selectedRect.anchoredPosition = Vector2.zero;
+                selectedRect.sizeDelta = new Vector2(InventorySlotSize, InventorySlotSize);
+                selectedRect.localScale = Vector3.one;
+            }
+        }
+
+        private static void ConfigureInventoryToggleButton(InventoryBarUI bar)
+        {
+            Transform canvasTransform = canvas != null ? canvas.transform : null;
+            GameObject buttonObject = CreateButton("InventoryToggleButton", canvasTransform, "INV", "Inventory UI");
+            RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
+            if (buttonRect != null)
+            {
+                buttonRect.anchorMin = new Vector2(1f, 1f);
+                buttonRect.anchorMax = new Vector2(1f, 1f);
+                buttonRect.pivot = new Vector2(1f, 1f);
+                buttonRect.anchoredPosition = new Vector2(-18f, -18f);
+                buttonRect.sizeDelta = new Vector2(48f, 48f);
+                buttonRect.localScale = Vector3.one;
+            }
+
+            Image buttonImage = GetOrCreateComponent<Image>(buttonObject, "Inventory UI");
+            buttonImage.sprite = null;
+            buttonImage.type = Image.Type.Sliced;
+            buttonImage.color = new Color(0.07f, 0.08f, 0.09f, 0.9f);
+            buttonImage.raycastTarget = true;
+
+            InventoryToggleButtonUI toggle = GetOrCreateComponent<InventoryToggleButtonUI>(buttonObject, "Inventory UI");
+            toggle.SetInventoryBar(bar);
+            SetSerializedObjectReference(toggle, "inventoryBar", bar, "Inventory UI");
+
+            Transform textTransform = buttonObject.transform.Find("Text");
+            if (textTransform != null)
+            {
+                Text text = textTransform.GetComponent<Text>();
+                if (text != null)
+                {
+                    text.text = "INV";
+                    text.fontSize = 13;
+                    text.raycastTarget = false;
+                    text.color = new Color(0.85f, 0.9f, 0.95f, 1f);
+                }
+            }
+        }
+
+        private static void ConfigureInventorySprite(Image image, string spritePath, bool raycastTarget)
+        {
+            if (image == null)
+            {
+                AddError("Inventory UI", "Cannot configure inventory sprite on a null Image.");
+                return;
+            }
+
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+            if (sprite == null)
+            {
+                AddWarning("Inventory UI", "Inventory UI sprite is missing: " + spritePath);
+            }
+            else
+            {
+                image.sprite = sprite;
+            }
+
+            image.type = Image.Type.Sliced;
+            image.preserveAspect = false;
+            image.color = Color.white;
+            image.raycastTarget = raycastTarget;
+        }
+
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsurePanels()
         {
             ClueImagePanelUI cluePanel = GetOrCreateComponent<ClueImagePanelUI>(clueImagePanelRoot.gameObject, "Panels");
@@ -510,10 +767,50 @@ namespace EscapeFromNightmare
             SetSerializedBool(endingPanelUi, "hideOnAwake", true, "Panels");
             SetSerializedObjectReference(endingManager, "endingPanel", endingPanelUi, "Panels");
 
+            CanvasGroup hideRootCanvasGroup = GetOrCreateComponent<CanvasGroup>(hideViewRoot.gameObject, "Panels");
+            hideRootCanvasGroup.alpha = 0f;
+            hideRootCanvasGroup.interactable = false;
+            hideRootCanvasGroup.blocksRaycasts = false;
+
+            Image hideInteriorImage = GetOrCreateComponent<Image>(hideInteriorRoot.gameObject, "Panels");
+            hideInteriorImage.color = Color.white;
+            hideInteriorImage.raycastTarget = false;
+            hideInteriorImage.preserveAspect = false;
+            CanvasGroup hideInteriorCanvasGroup = GetOrCreateComponent<CanvasGroup>(hideInteriorRoot.gameObject, "Panels");
+            hideInteriorCanvasGroup.alpha = 0f;
+            hideInteriorCanvasGroup.interactable = false;
+            hideInteriorCanvasGroup.blocksRaycasts = false;
+            HideInteriorViewUI hideInteriorView = GetOrCreateComponent<HideInteriorViewUI>(hideInteriorRoot.gameObject, "Panels");
+            SetSerializedObjectReference(hideInteriorView, "rootObject", hideViewRoot.gameObject, "Panels");
+            SetSerializedObjectReference(hideInteriorView, "targetImage", hideInteriorImage, "Panels");
+            SetSerializedHideInteriorMappings(hideInteriorView, "Panels");
+            SetSerializedString(hideInteriorView, "fallbackResourcePath", "Backgrounds/Bedroom_ClosetInside", "Panels");
+
             GameObject hideExit = FindObjectInSceneByName("HideExitButton");
+            if (hideExit == null)
+            {
+                hideExit = CreateButton("HideExitButton", hideViewRoot, "Exit Hide", "Panels");
+            }
+            else if (hideExit.transform.parent != hideViewRoot)
+            {
+                hideExit.transform.SetParent(hideViewRoot, false);
+            }
+
+            ConfigureHideExitButton(hideExit);
             HideExitButton hideExitButton = GetOrCreateComponent<HideExitButton>(hideExit, "Panels");
             SetSerializedObjectReference(hideExitButton, "rootObject", hideExit, "Panels");
-            SetSerializedBool(hideExitButton, "showOnlyWhileHiding", true, "Panels");
+            SetSerializedBool(hideExitButton, "showOnlyWhileHiding", false, "Panels");
+
+            Image fadeImage = GetOrCreateComponent<Image>(screenFadeRoot.gameObject, "Panels");
+            fadeImage.color = Color.black;
+            fadeImage.raycastTarget = true;
+            CanvasGroup fadeCanvasGroup = GetOrCreateComponent<CanvasGroup>(screenFadeRoot.gameObject, "Panels");
+            fadeCanvasGroup.alpha = 0f;
+            fadeCanvasGroup.interactable = false;
+            fadeCanvasGroup.blocksRaycasts = false;
+            SetSerializedObjectReference(screenFadeManager, "fadeCanvasGroup", fadeCanvasGroup, "Panels");
+            SetSerializedFloat(screenFadeManager, "fadeOutSeconds", 0.6f, "Panels");
+            SetSerializedFloat(screenFadeManager, "fadeInSeconds", 0.6f, "Panels");
 
             GhostStatusUI ghostStatus = GetOrCreateComponent<GhostStatusUI>(ghostStatusRoot.gameObject, "Panels");
             Text stateText = CreateText("StateText", ghostStatusRoot, "Ghost: N/A", 18, "Panels");
@@ -525,19 +822,125 @@ namespace EscapeFromNightmare
             SetSerializedObjectReference(ghostStatus, "dangerText", dangerText, "Panels");
             SetSerializedObjectReference(ghostStatus, "chaseText", chaseText, "Panels");
             SetSerializedObjectReference(ghostStatus, "hideText", hideText, "Panels");
+
+            OrderHudLayers();
         }
 
+        private static void ConfigureHideExitButton(GameObject hideExit)
+        {
+            if (hideExit == null)
+            {
+                AddError("Panels", "HideExitButton could not be created or found.");
+                return;
+            }
+
+            hideExit.SetActive(true);
+
+            RectTransform rect = hideExit.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                rect.anchorMin = new Vector2(0.5f, 0f);
+                rect.anchorMax = new Vector2(0.5f, 0f);
+                rect.pivot = new Vector2(0.5f, 0f);
+                rect.anchoredPosition = new Vector2(0f, 64f);
+                rect.sizeDelta = new Vector2(220f, 52f);
+                rect.localScale = Vector3.one;
+            }
+
+            Image image = GetOrCreateComponent<Image>(hideExit, "Panels");
+            image.color = new Color(0.07f, 0.08f, 0.09f, 0.92f);
+            image.raycastTarget = true;
+
+            Transform textTransform = hideExit.transform.Find("Text");
+            if (textTransform != null)
+            {
+                Text text = textTransform.GetComponent<Text>();
+                if (text != null)
+                {
+                    text.text = "Exit Hide";
+                    text.fontSize = 18;
+                    text.raycastTarget = false;
+                    text.enabled = true;
+                }
+            }
+
+            hideExit.transform.SetAsLastSibling();
+        }
+
+        private static void OrderHudLayers()
+        {
+            if (hideViewRoot != null)
+            {
+                hideViewRoot.SetAsLastSibling();
+            }
+
+            GameObject inventoryToggle = FindObjectInSceneByName("InventoryToggleButton");
+            if (inventoryToggle != null)
+            {
+                inventoryToggle.transform.SetAsLastSibling();
+            }
+
+            if (screenFadeRoot != null)
+            {
+                screenFadeRoot.SetAsLastSibling();
+            }
+        }
+
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureNavigationButtons()
         {
-            GameObject left = CreateButton("Button_RotateLeft", navigationRoot, "<", "Navigation");
+            GameObject left = CreateButton("Button_RotateLeft", navigationRoot, string.Empty, "Navigation");
+            ConfigureNavigationButtonSprite(left, RotateArrowLeftSpritePath, "Navigation");
             NavigationButton leftNav = GetOrCreateComponent<NavigationButton>(left, "Navigation");
             SetSerializedInt(leftNav, "actionType", (int)NavigationActionType.RotateLeft, "Navigation");
 
-            GameObject right = CreateButton("Button_RotateRight", navigationRoot, ">", "Navigation");
+            GameObject right = CreateButton("Button_RotateRight", navigationRoot, string.Empty, "Navigation");
+            ConfigureNavigationButtonSprite(right, RotateArrowRightSpritePath, "Navigation");
             NavigationButton rightNav = GetOrCreateComponent<NavigationButton>(right, "Navigation");
             SetSerializedInt(rightNav, "actionType", (int)NavigationActionType.RotateRight, "Navigation");
         }
 
+        private static void ConfigureNavigationButtonSprite(GameObject buttonObject, string spritePath, string category)
+        {
+            if (buttonObject == null)
+            {
+                AddError(category, "Cannot configure navigation button sprite on null GameObject.");
+                return;
+            }
+
+            Image image = GetOrCreateComponent<Image>(buttonObject, category);
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+            if (sprite == null)
+            {
+                AddWarning(category, "Navigation button sprite is missing: " + spritePath);
+            }
+            else
+            {
+                image.sprite = sprite;
+                image.type = Image.Type.Simple;
+                image.preserveAspect = true;
+                image.color = Color.white;
+            }
+
+            RectTransform rect = buttonObject.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                rect.sizeDelta = new Vector2(40f, 40f);
+            }
+
+            Transform textTransform = buttonObject.transform.Find("Text");
+            if (textTransform != null)
+            {
+                Text label = textTransform.GetComponent<Text>();
+                if (label != null)
+                {
+                    label.text = string.Empty;
+                    label.enabled = false;
+                }
+            }
+        }
+
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureLocationsAndViews()
         {
             CacheSceneObjects();
@@ -605,6 +1008,7 @@ namespace EscapeFromNightmare
             SetSerializedString(locationManager, "startingViewId", "Bedroom_Front", "Locations");
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureDoorButtons()
         {
             for (int i = 0; i < RequiredDoors.Length; i++)
@@ -633,6 +1037,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsurePuzzleButtons()
         {
             for (int i = 0; i < RequiredPuzzles.Length; i++)
@@ -666,6 +1071,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureClueButtons()
         {
             for (int i = 0; i < RecommendedClues.Length; i++)
@@ -696,6 +1102,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureHidePoints()
         {
             CreateHidePoint("HidePoint_Bedroom_Closet", "Bedroom_Back");
@@ -703,6 +1110,7 @@ namespace EscapeFromNightmare
             CreateHidePoint("HidePoint_Study_Desk", "Study_Left");
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static void CreateHidePoint(string hidePointId, string viewId)
         {
             if (FindClickableButton(b => b.ClickableType == ClickableType.HidePoint && (b.TargetObjectId == hidePointId || b.ClickableId == hidePointId)) != null)
@@ -724,6 +1132,7 @@ namespace EscapeFromNightmare
             EditorUtility.SetDirty(clickable);
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureFinalDoor()
         {
             if (FindClickableButton(b => b.ClickableType == ClickableType.FinalDoor && b.RequiredItemId == "FrontDoorKey") != null)
@@ -743,12 +1152,14 @@ namespace EscapeFromNightmare
             EditorUtility.SetDirty(clickable);
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureBuildSettings()
         {
             EnsureSceneInBuildSettings("Assets/Scenes/TitleScene.unity");
             EnsureSceneInBuildSettings(GameScenePath);
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureSceneInBuildSettings(string scenePath)
         {
             if (!File.Exists(scenePath))
@@ -772,6 +1183,7 @@ namespace EscapeFromNightmare
             AddInfo("Build Settings", "Added scene to Build Settings: " + scenePath);
         }
 
+        // Performs the Resolve View Parent operation while keeping its implementation details inside this script.
         private static Transform ResolveViewParent(string viewId, string locationId, string category)
         {
             CacheSceneObjects();
@@ -797,6 +1209,7 @@ namespace EscapeFromNightmare
             return locationRoot;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetDefaultViewForLocation(string locationId)
         {
             for (int i = 0; i < LocationViews.GetLength(0); i++)
@@ -810,11 +1223,12 @@ namespace EscapeFromNightmare
             return string.Empty;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetPuzzleView(string puzzleId, string locationId)
         {
             switch (puzzleId)
             {
-                case "Puzzle_Bedroom_01": return "Bedroom_Front";
+                case "Puzzle_Bedroom_01": return "Bedroom_Back";
                 case "Puzzle_LivingRoom_01": return "LivingRoom_Front";
                 case "Puzzle_ChildRoom_01": return "ChildRoom_Front";
                 case "Puzzle_Study_01": return "Study_Front";
@@ -827,13 +1241,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetClueView(string clueId, string locationId)
         {
             switch (clueId)
             {
-                case "BedroomPhotoCodeClue": return "Bedroom_Left";
+                case "BedroomPhotoCodeClue": return "Bedroom_Back";
                 case "LivingRoomEntranceCodeClue": return "LivingRoom_Front";
-                case "ChildRoomCardSymbolClueImage": return "ChildRoom_Right";
+                case "ChildRoomCardSymbolClueImage": return "ChildRoom_Back";
                 case "StudyBookSymbolClueImage": return "Study_Right";
                 case "KitchenCodeClueImage": return "LivingRoom_Back";
                 case "KitchenFridgeSurfaceSymbolClue": return "Kitchen_Front";
@@ -843,6 +1258,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static ClickableButton FindClickableButton(Predicate<ClickableButton> predicate)
         {
             ClickableButton[] buttons = FindComponentsInScene<ClickableButton>();
@@ -857,6 +1273,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Performs the Write Static Docs operation while keeping its implementation details inside this script.
         private static void WriteStaticDocs()
         {
             WriteGeneratedWiringMap();
@@ -864,6 +1281,7 @@ namespace EscapeFromNightmare
             WriteUsageDoc();
         }
 
+        // Performs the Write Generated Wiring Map operation while keeping its implementation details inside this script.
         private static void WriteGeneratedWiringMap()
         {
             StringBuilder builder = new StringBuilder();
@@ -884,6 +1302,7 @@ namespace EscapeFromNightmare
             builder.AppendLine("- GhostManager");
             builder.AppendLine("- HideManager");
             builder.AppendLine("- ChaseManager");
+            builder.AppendLine("- ScreenFadeManager");
             builder.AppendLine();
             builder.AppendLine("## UI Roots");
             builder.AppendLine();
@@ -894,8 +1313,11 @@ namespace EscapeFromNightmare
             builder.AppendLine("- ClueImagePanel");
             builder.AppendLine("- GameOverPanel");
             builder.AppendLine("- EndingPanel");
-            builder.AppendLine("- HideExitButton");
+            builder.AppendLine("- HideViewRoot");
+            builder.AppendLine("- HideViewRoot/Background");
+            builder.AppendLine("- HideViewRoot/HideExitButton");
             builder.AppendLine("- GhostStatusPanel");
+            builder.AppendLine("- ScreenFadeOverlay");
             builder.AppendLine();
             AppendDoorMap(builder);
             AppendPuzzleMap(builder);
@@ -916,6 +1338,7 @@ namespace EscapeFromNightmare
             WriteTextAsset("Assets/Docs/GameSceneGeneratedWiringMap.md", builder.ToString());
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendDoorMap(StringBuilder builder)
         {
             builder.AppendLine("## Door Buttons");
@@ -931,6 +1354,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendPuzzleMap(StringBuilder builder)
         {
             builder.AppendLine("## Puzzle Buttons");
@@ -946,6 +1370,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendClueMap(StringBuilder builder)
         {
             builder.AppendLine("## Clue Buttons");
@@ -961,6 +1386,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Performs the Write Manual Polish Checklist operation while keeping its implementation details inside this script.
         private static void WriteManualPolishChecklist()
         {
             StringBuilder builder = new StringBuilder();
@@ -983,6 +1409,7 @@ namespace EscapeFromNightmare
             WriteTextAsset("Assets/Docs/GameSceneManualPolishChecklist.md", builder.ToString());
         }
 
+        // Performs the Write Usage Doc operation while keeping its implementation details inside this script.
         private static void WriteUsageDoc()
         {
             StringBuilder builder = new StringBuilder();
@@ -1015,6 +1442,7 @@ namespace EscapeFromNightmare
             WriteTextAsset("Assets/Docs/SourceRouteGameSceneBuilderUsage.md", builder.ToString());
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private static void WriteBuilderReport()
         {
             StringBuilder builder = new StringBuilder();
@@ -1047,6 +1475,7 @@ namespace EscapeFromNightmare
             WriteTextAsset(ReportPath, builder.ToString());
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendReportList(StringBuilder builder, string title, List<string> values)
         {
             builder.AppendLine("## " + title);
@@ -1065,6 +1494,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Performs the Write Text Asset operation while keeping its implementation details inside this script.
         private static void WriteTextAsset(string assetPath, string contents)
         {
             string directory = Path.GetDirectoryName(assetPath);
@@ -1075,6 +1505,7 @@ namespace EscapeFromNightmare
             File.WriteAllText(assetPath, contents);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static GameObject GetOrCreateGameObject(string name, Transform parent = null, string category = "UI Roots")
         {
             GameObject existing = null;
@@ -1126,6 +1557,7 @@ namespace EscapeFromNightmare
             return component;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static GameObject CreatePanel(string name, Transform parent, string category)
         {
             GameObject panel = GetOrCreateGameObject(name, parent, category);
@@ -1135,6 +1567,7 @@ namespace EscapeFromNightmare
             return panel;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static GameObject CreateButton(string name, Transform parent, string label, string category)
         {
             GameObject buttonObject = GetOrCreateGameObject(name, parent, category);
@@ -1151,6 +1584,7 @@ namespace EscapeFromNightmare
             return buttonObject;
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static Text CreateText(string name, Transform parent, string text, int fontSize, string category)
         {
             GameObject textObject = GetOrCreateGameObject(name, parent, category);
@@ -1164,6 +1598,7 @@ namespace EscapeFromNightmare
             return uiText;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static Image GetOrCreateImage(string name, Transform parent, string category)
         {
             GameObject imageObject = GetOrCreateGameObject(name, parent, category);
@@ -1172,6 +1607,7 @@ namespace EscapeFromNightmare
             return image;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static Font GetBuiltinFont()
         {
             Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -1186,6 +1622,7 @@ namespace EscapeFromNightmare
             return font;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetRectStretch(RectTransform rect)
         {
             if (rect == null)
@@ -1199,6 +1636,22 @@ namespace EscapeFromNightmare
             rect.localScale = Vector3.one;
         }
 
+        private static void SetRectInset(RectTransform rect, float left, float right, float top, float bottom)
+        {
+            if (rect == null)
+            {
+                return;
+            }
+
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.offsetMin = new Vector2(left, bottom);
+            rect.offsetMax = new Vector2(-right, -top);
+            rect.localScale = Vector3.one;
+        }
+
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedObjectReference(UnityEngine.Object target, string fieldName, UnityEngine.Object value, string category)
         {
             SerializedProperty property = FindProperty(target, fieldName, category);
@@ -1216,6 +1669,7 @@ namespace EscapeFromNightmare
             AddLinked(category, target, fieldName, value);
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedString(UnityEngine.Object target, string fieldName, string value, string category)
         {
             SerializedProperty property = FindProperty(target, fieldName, category);
@@ -1228,6 +1682,44 @@ namespace EscapeFromNightmare
             AddLinked(category, target, fieldName, null);
         }
 
+        private static void SetSerializedHideInteriorMappings(HideInteriorViewUI target, string category)
+        {
+            SerializedProperty property = FindProperty(target, "hideInteriorViews", category);
+            if (property == null || !property.isArray)
+            {
+                AddWarning(category, "HideInteriorViewUI.hideInteriorViews is missing or is not an array.");
+                return;
+            }
+
+            string[,] mappings =
+            {
+                { "HidePoint_Bedroom_Closet", "Backgrounds/Bedroom_ClosetInside" },
+                { "HidePoint_SecondFloorHallway_Cabinet", "Backgrounds/SecondFloorHallway_CabinetInside" },
+                { "HidePoint_Study_Desk", "Backgrounds/Study_DeskInside" }
+            };
+
+            property.arraySize = mappings.GetLength(0);
+            for (int i = 0; i < mappings.GetLength(0); i++)
+            {
+                SerializedProperty item = property.GetArrayElementAtIndex(i);
+                SerializedProperty hidePointId = item.FindPropertyRelative("hidePointId");
+                SerializedProperty resourcesPath = item.FindPropertyRelative("resourcesPath");
+                if (hidePointId != null)
+                {
+                    hidePointId.stringValue = mappings[i, 0];
+                }
+
+                if (resourcesPath != null)
+                {
+                    resourcesPath.stringValue = mappings[i, 1];
+                }
+            }
+
+            property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+            AddLinked(category, target, "hideInteriorViews", null);
+        }
+
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedBool(UnityEngine.Object target, string fieldName, bool value, string category)
         {
             SerializedProperty property = FindProperty(target, fieldName, category);
@@ -1240,6 +1732,20 @@ namespace EscapeFromNightmare
             AddLinked(category, target, fieldName, null);
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
+        private static void SetSerializedFloat(UnityEngine.Object target, string fieldName, float value, string category)
+        {
+            SerializedProperty property = FindProperty(target, fieldName, category);
+            if (property == null)
+            {
+                return;
+            }
+            property.floatValue = value;
+            property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+            AddLinked(category, target, fieldName, null);
+        }
+
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedInt(UnityEngine.Object target, string fieldName, int value, string category)
         {
             SerializedProperty property = FindProperty(target, fieldName, category);
@@ -1259,6 +1765,7 @@ namespace EscapeFromNightmare
             AddLinked(category, target, fieldName, null);
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetSerializedObjectList(UnityEngine.Object target, string fieldName, IList<UnityEngine.Object> values, string category)
         {
             SerializedProperty property = FindProperty(target, fieldName, category);
@@ -1276,6 +1783,7 @@ namespace EscapeFromNightmare
             AddLinked(category, target, fieldName, null);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static SerializedProperty FindProperty(UnityEngine.Object target, string fieldName, string category)
         {
             if (target == null)
@@ -1292,6 +1800,7 @@ namespace EscapeFromNightmare
             return property;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static GameObject FindObjectInSceneByName(string name)
         {
             GameObject[] objects = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -1325,6 +1834,7 @@ namespace EscapeFromNightmare
             return result.ToArray();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsSceneObject(UnityEngine.Object obj)
         {
             if (obj == null || EditorUtility.IsPersistent(obj))
@@ -1340,6 +1850,7 @@ namespace EscapeFromNightmare
             return gameObject != null && gameObject.scene.IsValid();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetHierarchyPath(GameObject go)
         {
             if (go == null)
@@ -1356,6 +1867,7 @@ namespace EscapeFromNightmare
             return path;
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureFolder(string assetPath)
         {
             if (string.IsNullOrEmpty(assetPath) || Directory.Exists(assetPath))
@@ -1365,6 +1877,7 @@ namespace EscapeFromNightmare
             Directory.CreateDirectory(assetPath);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static SourceRouteGameSceneBuilderCategoryStats GetStats(string category)
         {
             if (!stats.ContainsKey(category))
@@ -1374,6 +1887,7 @@ namespace EscapeFromNightmare
             return stats[category];
         }
 
+        // Performs the Add Created operation while keeping its implementation details inside this script.
         private static void AddCreated(string category, GameObject go)
         {
             GetStats(category).created++;
@@ -1384,12 +1898,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Add Reused operation while keeping its implementation details inside this script.
         private static void AddReused(string category, GameObject go, string reason)
         {
             GetStats(category).reused++;
             reusedObjects.Add((go != null ? GetHierarchyPath(go) : "(asset)") + " - " + reason);
         }
 
+        // Performs the Add Linked operation while keeping its implementation details inside this script.
         private static void AddLinked(string category, UnityEngine.Object target, string fieldName, UnityEngine.Object value)
         {
             GetStats(category).linked++;
@@ -1401,12 +1917,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Records contextual validation information that helps explain the current setup.
         private static void AddInfo(string category, string message)
         {
             GetStats(category);
             Debug.Log("[SourceRouteGameSceneBuilder] " + message);
         }
 
+        // Records a non-blocking validation concern for follow-up review.
         private static void AddWarning(string category, string message)
         {
             GetStats(category).warnings++;
@@ -1414,6 +1932,7 @@ namespace EscapeFromNightmare
             Debug.LogWarning("[SourceRouteGameSceneBuilder] " + message);
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string category, string message)
         {
             GetStats(category).errors++;

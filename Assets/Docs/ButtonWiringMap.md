@@ -20,7 +20,7 @@
 
 | Location | View | Puzzle | clickableType | linkedPuzzleId |
 |---|---|---|---|---|
-| Bedroom | Bedroom_Right | Bedroom code lock | Puzzle | Puzzle_Bedroom_01 |
+| Bedroom | Bedroom_Back | Bedroom code lock | Puzzle | Puzzle_Bedroom_01 |
 | ChildRoom | ChildRoom_Front | Card order | Puzzle | Puzzle_ChildRoom_01 |
 | Study | Study_Front | Book order | Puzzle | Puzzle_Study_01 |
 | LivingRoom | LivingRoom_Front | Symbol sequence | Puzzle | Puzzle_LivingRoom_01 |
@@ -30,8 +30,8 @@
 
 | Location | View | Target | clickableType | linkedClueImageId |
 |---|---|---|---|---|
-| Bedroom | Bedroom_Left | Old Photo | ExamineImage | Clue_Bedroom_Photo |
-| ChildRoom | ChildRoom_Right | Scattered Cards | ExamineImage | Clue_ChildRoom_CardHint |
+| Bedroom | Bedroom_Back | Old Photo | ExamineImage | BedroomPhotoCodeClue |
+| ChildRoom | ChildRoom_Back | Scattered Cards | ExamineImage | ChildRoomCardSymbolClueImage |
 | LivingRoom | LivingRoom_Left | Symbol Painting | ExamineImage | Clue_LivingRoom_SymbolHint |
 | Study | Study_Right | Basement Password Note | ExamineImage | Clue_BasementPassword |
 | Kitchen | Kitchen_Left | Kitchen Number Hint | ExamineImage | Clue_Kitchen_NumberHint |

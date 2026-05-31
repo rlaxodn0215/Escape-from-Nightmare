@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Post Visual Polish Regression Runner
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\PostVisualPolishRegressionRunner.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,17 +14,24 @@ using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Post Visual Polish Regression Runner workflow, exposed through menu items or called by other validation tools.
     public static class PostVisualPolishRegressionRunner
     {
+        // Editor utility for the Report Status workflow, exposed through menu items or called by other validation tools.
         private class ReportStatus
         {
+            // Stores the name value used by this script's runtime or editor workflow.
             public string name;
+            // Stores the path value used by this script's runtime or editor workflow.
             public string path;
+            // Stores the exists value used by this script's runtime or editor workflow.
             public bool exists;
+            // Stores the summary value used by this script's runtime or editor workflow.
             public string summary;
         }
 
         [MenuItem("Escape From Nightmare/Tests/Run Post Visual Polish Regression Suite")]
+        // Performs the Run Post Visual Polish Regression Suite operation while keeping its implementation details inside this script.
         public static void RunPostVisualPolishRegressionSuite()
         {
             Debug.Log("[PostVisualPolishRegressionRunner] Running safe editor-side visual checks. Play Mode runtime tests must still be launched through their test menus.");
@@ -27,6 +41,7 @@ namespace EscapeFromNightmare
             WriteReport();
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private static void WriteReport()
         {
             string path = Path.Combine(Application.dataPath, "Docs/GeneratedPostVisualPolishRegressionReport.md");
@@ -81,6 +96,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static List<ReportStatus> BuildReportStatuses()
         {
             List<ReportStatus> statuses = new List<ReportStatus>();
@@ -96,6 +112,7 @@ namespace EscapeFromNightmare
             return statuses;
         }
 
+        // Performs the Add Status operation while keeping its implementation details inside this script.
         private static void AddStatus(List<ReportStatus> statuses, string name, string fileName)
         {
             string fullPath = Path.Combine(Application.dataPath, "Docs", fileName);
@@ -109,6 +126,7 @@ namespace EscapeFromNightmare
             });
         }
 
+        // Performs the Summarize Report operation while keeping its implementation details inside this script.
         private static string SummarizeReport(string path)
         {
             try
@@ -139,6 +157,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Escape operation while keeping its implementation details inside this script.
         private static string Escape(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value.Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");

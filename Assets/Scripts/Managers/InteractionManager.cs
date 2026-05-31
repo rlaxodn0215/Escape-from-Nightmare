@@ -1,9 +1,18 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Interaction Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\InteractionManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Interaction Manager system, keeping shared state and events behind one access point.
     public class InteractionManager : Singleton<InteractionManager>
     {
+        // Performs the Handle Click operation while keeping its implementation details inside this script.
         public void HandleClick(ClickableButton button)
         {
             if (button == null)
@@ -41,6 +50,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Handle Examine Image operation while keeping its implementation details inside this script.
         private void HandleExamineImage(ClickableButton button)
         {
             if (button == null)
@@ -61,12 +71,14 @@ namespace EscapeFromNightmare
 
             if (string.IsNullOrEmpty(clueId))
             {
+                PlayUiFail();
                 Debug.LogWarning("ExamineImage clickable needs linkedClueImageId, targetObjectId, or clickableId.");
                 return;
             }
 
             if (ClueImageManager.Instance == null)
             {
+                PlayUiFail();
                 Debug.LogWarning("ClueImageManager instance is missing.");
                 return;
             }
@@ -74,10 +86,12 @@ namespace EscapeFromNightmare
             ClueImageManager.Instance.ShowClueImage(clueId);
         }
 
+        // Performs the Handle Puzzle operation while keeping its implementation details inside this script.
         private void HandlePuzzle(ClickableButton button)
         {
             if (string.IsNullOrEmpty(button.LinkedPuzzleId))
             {
+                PlayUiFail();
                 Debug.LogWarning("Puzzle clickable has an empty linkedPuzzleId: " + button.ClickableId);
                 return;
             }
@@ -86,6 +100,7 @@ namespace EscapeFromNightmare
 
             if (PuzzleManager.Instance == null)
             {
+                PlayUiFail();
                 Debug.LogWarning("PuzzleManager instance is missing.");
                 return;
             }
@@ -93,31 +108,50 @@ namespace EscapeFromNightmare
             PuzzleManager.Instance.OpenPuzzle(button.LinkedPuzzleId);
         }
 
+        // Performs the Handle Door operation while keeping its implementation details inside this script.
         private void HandleDoor(ClickableButton button)
         {
             Debug.Log("Handle door: " + button.LinkedDoorId);
 
             if (LocationManager.Instance == null)
             {
+                PlayUiFail();
                 Debug.LogWarning("LocationManager instance is missing.");
                 return;
             }
 
             if (!string.IsNullOrEmpty(button.LinkedDoorId))
             {
-                LocationManager.Instance.MoveThroughDoor(button.LinkedDoorId);
+                PlayMovementTransition(() =>
+                {
+                    if (LocationManager.Instance.MoveThroughDoor(button.LinkedDoorId))
+                    {
+                        PlaySfx(AudioCue.DoorMove);
+                    }
+                    else
+                    {
+                        PlaySfx(AudioCue.DoorLocked);
+                    }
+                });
+
                 return;
             }
 
             if (!string.IsNullOrEmpty(button.LinkedLocationId))
             {
-                LocationManager.Instance.SetLocation(button.LinkedLocationId, button.LinkedViewId);
+                PlayMovementTransition(() =>
+                {
+                    LocationManager.Instance.SetLocation(button.LinkedLocationId, button.LinkedViewId);
+                    PlaySfx(AudioCue.DoorMove);
+                });
                 return;
             }
 
+            PlayUiFail();
             Debug.LogWarning("Door clickable needs linkedDoorId or linkedLocationId: " + button.ClickableId);
         }
 
+        // Performs the Handle Hide Point operation while keeping its implementation details inside this script.
         private void HandleHidePoint(ClickableButton button)
         {
             if (button == null)
@@ -128,6 +162,7 @@ namespace EscapeFromNightmare
             HidePointController hidePointController = button.GetComponent<HidePointController>();
             if (hidePointController != null && !hidePointController.Usable)
             {
+                PlayUiFail();
                 Debug.Log("Hide point is not usable: " + hidePointController.HidePointId);
                 return;
             }
@@ -150,14 +185,16 @@ namespace EscapeFromNightmare
 
             if (HideManager.Instance == null)
             {
+                PlayUiFail();
                 Debug.LogWarning("HideManager instance is missing.");
                 return;
             }
 
             Debug.Log("Handle hide point: " + hidePointId);
-            HideManager.Instance.EnterHidePoint(hidePointId);
+            PlayMovementTransition(() => HideManager.Instance.EnterHidePoint(hidePointId));
         }
 
+        // Performs the Handle Pickup Item operation while keeping its implementation details inside this script.
         private void HandlePickupItem(ClickableButton button)
         {
             if (button == null)
@@ -168,6 +205,7 @@ namespace EscapeFromNightmare
             string itemId = button.LinkedItemId;
             if (string.IsNullOrEmpty(itemId))
             {
+                PlayUiFail();
                 Debug.LogWarning("PickupItem clickable has an empty linkedItemId: " + button.ClickableId);
                 return;
             }
@@ -176,6 +214,7 @@ namespace EscapeFromNightmare
 
             if (InventoryManager.Instance == null)
             {
+                PlayUiFail();
                 Debug.LogWarning("InventoryManager instance is missing.");
                 return;
             }
@@ -185,6 +224,8 @@ namespace EscapeFromNightmare
 
             if (added)
             {
+                PlaySfx(AudioCue.ItemPickup);
+
                 if (pickupItemController != null)
                 {
                     pickupItemController.MarkPickedUp();
@@ -207,12 +248,14 @@ namespace EscapeFromNightmare
             }
 
             Debug.Log("Item was not added, possibly already owned: " + itemId);
+            PlayUiFail();
             if (pickupItemController != null)
             {
                 pickupItemController.RefreshVisibility();
             }
         }
 
+        // Performs the Handle Use Item Target operation while keeping its implementation details inside this script.
         private void HandleUseItemTarget(ClickableButton button)
         {
             if (button == null)
@@ -223,21 +266,26 @@ namespace EscapeFromNightmare
             string requiredItemId = button.RequiredItemId;
             if (string.IsNullOrEmpty(requiredItemId))
             {
+                PlayUiFail();
                 Debug.LogWarning("UseItemTarget clickable has an empty requiredItemId: " + button.ClickableId);
                 return;
             }
 
             if (InventoryManager.Instance == null)
             {
+                PlayUiFail();
                 Debug.LogWarning("InventoryManager instance is missing.");
                 return;
             }
 
             if (!InventoryManager.Instance.TryUseSelectedItem(requiredItemId))
             {
+                PlayUiFail();
                 Debug.Log("No selected item or selected item does not match required item: " + requiredItemId);
                 return;
             }
+
+            PlayUiConfirm();
 
             if (!string.IsNullOrEmpty(button.LinkedPuzzleId))
             {
@@ -247,6 +295,7 @@ namespace EscapeFromNightmare
                 }
                 else
                 {
+                    PlayUiFail();
                     Debug.LogWarning("PuzzleManager instance is missing.");
                 }
             }
@@ -260,6 +309,7 @@ namespace EscapeFromNightmare
                 }
                 else
                 {
+                    PlayUiFail();
                     Debug.LogWarning("ClueImageManager instance is missing.");
                 }
             }
@@ -269,9 +319,11 @@ namespace EscapeFromNightmare
                 if (SaveManager.Instance != null)
                 {
                     SaveManager.Instance.MarkDoorOpened(button.LinkedDoorId);
+                    PlaySfx(AudioCue.DoorUnlock);
                 }
                 else
                 {
+                    PlayUiFail();
                     Debug.LogWarning("SaveManager instance is missing.");
                 }
             }
@@ -296,6 +348,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Handle Final Door operation while keeping its implementation details inside this script.
         private void HandleFinalDoor(ClickableButton button)
         {
             if (button == null)
@@ -307,15 +360,19 @@ namespace EscapeFromNightmare
             {
                 if (InventoryManager.Instance == null)
                 {
+                    PlayUiFail();
                     Debug.LogWarning("InventoryManager instance is missing.");
                     return;
                 }
 
                 if (!InventoryManager.Instance.TryUseSelectedItem(button.RequiredItemId))
                 {
+                    PlaySfx(AudioCue.DoorLocked);
                     Debug.Log("Final door requirement is not satisfied: " + button.RequiredItemId);
                     return;
                 }
+
+                PlaySfx(AudioCue.DoorUnlock);
             }
 
             if (!string.IsNullOrEmpty(button.LinkedPuzzleId))
@@ -326,6 +383,7 @@ namespace EscapeFromNightmare
                 }
                 else
                 {
+                    PlayUiFail();
                     Debug.LogWarning("PuzzleManager instance is missing.");
                 }
 
@@ -336,10 +394,21 @@ namespace EscapeFromNightmare
             {
                 if (LocationManager.Instance != null)
                 {
-                    LocationManager.Instance.MoveThroughDoor(button.LinkedDoorId);
+                    PlayMovementTransition(() =>
+                    {
+                        if (LocationManager.Instance.MoveThroughDoor(button.LinkedDoorId))
+                        {
+                            PlaySfx(AudioCue.DoorMove);
+                        }
+                        else
+                        {
+                            PlaySfx(AudioCue.DoorLocked);
+                        }
+                    });
                 }
                 else
                 {
+                    PlayUiFail();
                     Debug.LogWarning("LocationManager instance is missing.");
                 }
 
@@ -348,11 +417,54 @@ namespace EscapeFromNightmare
 
             if (GameManager.Instance != null)
             {
+                PlayUiConfirm();
                 GameManager.Instance.EnterEnding();
             }
             else
             {
+                PlayUiFail();
                 Debug.LogWarning("GameManager instance is missing.");
+            }
+        }
+
+        // Performs the Play Sfx operation while keeping its implementation details inside this script.
+        private void PlaySfx(AudioCue cue)
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySfx(cue);
+            }
+        }
+
+        private void PlayMovementTransition(System.Action action)
+        {
+            if (ScreenFadeManager.Instance != null)
+            {
+                ScreenFadeManager.Instance.PlayTransition(action);
+                return;
+            }
+
+            if (action != null)
+            {
+                action();
+            }
+        }
+
+        // Performs the Play Ui Confirm operation while keeping its implementation details inside this script.
+        private void PlayUiConfirm()
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayUi(AudioCue.UiConfirm);
+            }
+        }
+
+        // Performs the Play Ui Fail operation while keeping its implementation details inside this script.
+        private void PlayUiFail()
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayUi(AudioCue.UiFail);
             }
         }
     }

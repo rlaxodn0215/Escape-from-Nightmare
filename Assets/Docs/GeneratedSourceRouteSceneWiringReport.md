@@ -1,6 +1,6 @@
 # Source Route Scene Wiring Report
 
-- Generated At: 2026-05-29 23:07:42
+- Generated At: 2026-05-31 15:30:50
 - Active Scene: GameScene
 - Errors: 0
 - Warnings: 0
@@ -22,13 +22,14 @@
 | GhostManager | 1 | Found |  |
 | HideManager | 1 | Found |  |
 | ChaseManager | 1 | Found |  |
+| ScreenFadeManager | 1 | Found |  |
 
 ## Location Controllers
 
 | Location ID | Found | Views Found | Result |
 |---|---:|---:|---|
-| Bedroom | 1 | 4 | Found |
-| ChildRoom | 1 | 4 | Found |
+| Bedroom | 1 | 2 | Found |
+| ChildRoom | 1 | 2 | Found |
 | Study | 1 | 4 | Found |
 | SecondFloorHallway | 1 | 2 | Found |
 | LivingRoom | 1 | 2 | Found |
@@ -62,7 +63,7 @@
 
 | Puzzle ID | Found | Button Path | Prefab Load | Result |
 |---|---:|---|---|---|
-| Puzzle_Bedroom_01 | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01 | Loaded | Found |
+| Puzzle_Bedroom_01 | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01 | Loaded | Found |
 | Puzzle_LivingRoom_01 | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01 | Loaded | Found |
 | Puzzle_ChildRoom_01 | 1 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01 | Loaded | Found |
 | Puzzle_Study_01 | 1 | Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01 | Loaded | Found |
@@ -76,9 +77,9 @@
 
 | Clue ID | Found | Button Path | Result |
 |---|---:|---|---|
-| BedroomPhotoCodeClue | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Left/ButtonLayer/Button_Clue_BedroomPhotoCodeClue | Found |
+| BedroomPhotoCodeClue | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Clue_BedroomPhotoCodeClue | Found |
 | LivingRoomEntranceCodeClue | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue | Found |
-| ChildRoomCardSymbolClueImage | 1 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Right/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage | Found |
+| ChildRoomCardSymbolClueImage | 1 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage | Found |
 | StudyBookSymbolClueImage | 1 | Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage | Found |
 | KitchenCodeClueImage | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage | Found |
 | KitchenFridgeSurfaceSymbolClue | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue | Found |

@@ -1,20 +1,39 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Game Data Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\GameDataManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Game Data Manager system, keeping shared state and events behind one access point.
     public class GameDataManager : Singleton<GameDataManager>
     {
+        // Stores the locations value used by this script's runtime or editor workflow.
         private List<LocationRecord> locations = new List<LocationRecord>();
+        // Stores the doors value used by this script's runtime or editor workflow.
         private List<DoorRecord> doors = new List<DoorRecord>();
+        // Stores the items value used by this script's runtime or editor workflow.
         private List<ItemRecord> items = new List<ItemRecord>();
+        // Stores the puzzles value used by this script's runtime or editor workflow.
         private List<PuzzleRecord> puzzles = new List<PuzzleRecord>();
+        // Stores the puzzle Answers value used by this script's runtime or editor workflow.
         private List<PuzzleAnswerRecord> puzzleAnswers = new List<PuzzleAnswerRecord>();
+        // Stores the clues value used by this script's runtime or editor workflow.
         private List<ClueRecord> clues = new List<ClueRecord>();
+        // Stores the symbols value used by this script's runtime or editor workflow.
         private List<SymbolRecord> symbols = new List<SymbolRecord>();
+        // Stores the ghost Rules value used by this script's runtime or editor workflow.
         private List<GhostRuleRecord> ghostRules = new List<GhostRuleRecord>();
+        // Stores the settings value used by this script's runtime or editor workflow.
         private GameSettingsRecord settings = new GameSettingsRecord();
+        // Stores the audio Settings value used by this script's runtime or editor workflow.
+        private AudioSettingsRecord audioSettings = new AudioSettingsRecord();
 
         public IReadOnlyList<LocationRecord> Locations
         {
@@ -61,11 +80,18 @@ namespace EscapeFromNightmare
             get { return settings; }
         }
 
+        public AudioSettingsRecord AudioSettings
+        {
+            get { return audioSettings; }
+        }
+
+        // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {
             LoadAllData();
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         public void LoadAllData()
         {
             LocationRecordList locationList = LoadJson<LocationRecordList>("locations.json");
@@ -77,6 +103,7 @@ namespace EscapeFromNightmare
             SymbolRecordList symbolList = LoadJson<SymbolRecordList>("symbols.json");
             GhostRuleRecordList ghostRuleList = LoadJson<GhostRuleRecordList>("ghost_rules.json");
             GameSettingsWrapper settingsWrapper = LoadJson<GameSettingsWrapper>("game_settings.json");
+            AudioSettingsWrapper audioSettingsWrapper = LoadJson<AudioSettingsWrapper>("audio_settings.json");
 
             locations = locationList != null && locationList.locations != null ? locationList.locations : new List<LocationRecord>();
             doors = doorList != null && doorList.doors != null ? doorList.doors : new List<DoorRecord>();
@@ -87,6 +114,7 @@ namespace EscapeFromNightmare
             symbols = symbolList != null && symbolList.symbols != null ? symbolList.symbols : new List<SymbolRecord>();
             ghostRules = ghostRuleList != null && ghostRuleList.ghostRules != null ? ghostRuleList.ghostRules : new List<GhostRuleRecord>();
             settings = settingsWrapper != null && settingsWrapper.settings != null ? settingsWrapper.settings : new GameSettingsRecord();
+            audioSettings = audioSettingsWrapper != null && audioSettingsWrapper.audio != null ? audioSettingsWrapper.audio : new AudioSettingsRecord();
         }
 
         public T LoadJson<T>(string fileName) where T : class
@@ -103,11 +131,13 @@ namespace EscapeFromNightmare
             return JsonUtility.FromJson<T>(json);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public string GetDataPath(string fileName)
         {
             return Path.Combine(Application.streamingAssetsPath, "Data", fileName);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public PuzzleRecord GetPuzzleById(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId) || puzzles == null)
@@ -126,6 +156,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public ItemRecord GetItemById(string itemId)
         {
             if (string.IsNullOrEmpty(itemId) || items == null)
@@ -144,6 +175,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public LocationRecord GetLocationById(string locationId)
         {
             if (string.IsNullOrEmpty(locationId) || locations == null)
@@ -162,6 +194,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public DoorRecord GetDoorById(string doorId)
         {
             if (string.IsNullOrEmpty(doorId) || doors == null)
@@ -180,6 +213,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public ClueRecord GetClueById(string clueId)
         {
             if (string.IsNullOrEmpty(clueId) || clues == null)
@@ -198,11 +232,13 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool HasClue(string clueId)
         {
             return GetClueById(clueId) != null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public IReadOnlyList<ClueRecord> GetCluesByLocation(string locationId)
         {
             List<ClueRecord> result = new List<ClueRecord>();
@@ -222,6 +258,7 @@ namespace EscapeFromNightmare
             return result;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public PuzzleAnswerRecord GetPuzzleAnswerByVariableName(string answerVariableName)
         {
             if (string.IsNullOrEmpty(answerVariableName) || puzzleAnswers == null)
@@ -240,6 +277,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public PuzzleAnswerRecord GetPuzzleAnswerByPuzzleId(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId) || puzzleAnswers == null)
@@ -258,6 +296,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public PuzzleAnswerRecord GetPuzzleAnswer(PuzzleRecord puzzle)
         {
             if (puzzle == null)
@@ -282,18 +321,21 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public string GetAnswerText(PuzzleRecord puzzle)
         {
             PuzzleAnswerRecord answer = GetPuzzleAnswer(puzzle);
             return answer != null ? answer.answerText : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public string[] GetAnswerSequence(PuzzleRecord puzzle)
         {
             PuzzleAnswerRecord answer = GetPuzzleAnswer(puzzle);
             return answer != null ? answer.answerSequence : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public SymbolRecord GetSymbolById(string symbolId)
         {
             if (string.IsNullOrEmpty(symbolId) || symbols == null)
@@ -312,6 +354,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public GhostRuleRecord GetGhostRuleById(string ruleId)
         {
             if (string.IsNullOrEmpty(ruleId) || ghostRules == null)
@@ -330,6 +373,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public GhostRuleRecord GetGhostRuleForLocation(string locationId)
         {
             if (string.IsNullOrEmpty(locationId) || ghostRules == null)
@@ -348,11 +392,13 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool HasLocation(string locationId)
         {
             return GetLocationById(locationId) != null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool HasDoor(string doorId)
         {
             return GetDoorById(doorId) != null;

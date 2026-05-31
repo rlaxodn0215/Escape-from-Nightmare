@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Game Scene Interaction Runtime Test Menu
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\GameSceneInteractionRuntimeTestMenu.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -5,12 +12,16 @@ using UnityEngine.SceneManagement;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Game Scene Interaction Runtime Test Menu workflow, exposed through menu items or called by other validation tools.
     public static class GameSceneInteractionRuntimeTestMenu
     {
+        // Stores the Game Scene Path value used by this script's runtime or editor workflow.
         private const string GameScenePath = "Assets/Scenes/GameScene.unity";
+        // Stores the Runner Name value used by this script's runtime or editor workflow.
         private const string RunnerName = "GameSceneInteractionRuntimeTestRunner";
 
         [MenuItem("Escape From Nightmare/Tests/Prepare GameScene Interaction Runtime Test Runner")]
+        // Performs the Prepare Game Scene Interaction Runtime Test Runner operation while keeping its implementation details inside this script.
         public static void PrepareGameSceneInteractionRuntimeTestRunner()
         {
             EnsureGameSceneOpen();
@@ -24,19 +35,22 @@ namespace EscapeFromNightmare
                 Undo.RegisterCreatedObjectUndo(runnerObject, "Create GameScene Interaction Runtime Test Runner");
             }
 
-            SetBoolField(runner, "runOnStart", true);
+            SetBoolField(runner, "runOnStart", false);
             Selection.activeGameObject = runner.gameObject;
-            Debug.Log("[GameSceneInteractionRuntimeTestMenu] Prepared GameSceneInteractionRuntimeTestRunner. Scene was not saved automatically.");
+            Debug.Log("[GameSceneInteractionRuntimeTestMenu] Prepared GameSceneInteractionRuntimeTestRunner for manual selection. Scene was not saved automatically.");
         }
 
         [MenuItem("Escape From Nightmare/Tests/Run GameScene Interaction Runtime Tests")]
+        // Performs the Run Game Scene Interaction Runtime Tests operation while keeping its implementation details inside this script.
         public static void RunGameSceneInteractionRuntimeTests()
         {
             PrepareGameSceneInteractionRuntimeTestRunner();
+            RuntimeTestLaunchGate.RequestRun(RunnerName);
             EditorApplication.isPlaying = true;
             Debug.Log("[GameSceneInteractionRuntimeTestMenu] Play Mode requested for GameScene interaction runtime tests.");
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureGameSceneOpen()
         {
             Scene activeScene = SceneManager.GetActiveScene();
@@ -54,6 +68,7 @@ namespace EscapeFromNightmare
             EditorSceneManager.OpenScene(GameScenePath, OpenSceneMode.Single);
         }
 
+        // Performs the Disable Other Runtime Test Runners operation while keeping its implementation details inside this script.
         private static void DisableOtherRuntimeTestRunners()
         {
             FirstFivePuzzleRuntimeTestRunner firstFiveRunner = Object.FindFirstObjectByType<FirstFivePuzzleRuntimeTestRunner>(FindObjectsInactive.Include);
@@ -75,6 +90,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private static void SetBoolField(Object target, string fieldName, bool value)
         {
             if (target == null || string.IsNullOrEmpty(fieldName))

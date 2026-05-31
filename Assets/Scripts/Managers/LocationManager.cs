@@ -1,8 +1,16 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Location Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\LocationManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Location Manager system, keeping shared state and events behind one access point.
     public class LocationManager : Singleton<LocationManager>
     {
         [SerializeField] private Transform locationRoot;
@@ -12,13 +20,19 @@ namespace EscapeFromNightmare
         [SerializeField] private string startingViewId;
 
         private readonly Dictionary<string, LocationController> locationMap = new Dictionary<string, LocationController>();
+        // Stores the current Location Controller value used by this script's runtime or editor workflow.
         private LocationController currentLocationController;
+        // Stores the has Initialized value used by this script's runtime or editor workflow.
         private bool hasInitialized;
+        // Stores the suppress Chase Move Registration value used by this script's runtime or editor workflow.
         private bool suppressChaseMoveRegistration;
 
+        // Stores the Current Location Id value used by this script's runtime or editor workflow.
         public string CurrentLocationId;
+        // Stores the Current View Id value used by this script's runtime or editor workflow.
         public string CurrentViewId;
 
+        // Caches required component references and prepares this object before other startup code runs.
         protected override void Awake()
         {
             base.Awake();
@@ -32,6 +46,7 @@ namespace EscapeFromNightmare
             DeactivateAllLocations();
         }
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {
             if (!hasInitialized)
@@ -40,6 +55,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Register Location operation while keeping its implementation details inside this script.
         public void RegisterLocation(LocationController controller)
         {
             if (controller == null)
@@ -68,6 +84,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         public void BuildLocationMap()
         {
             if (collectLocationsFromRoot)
@@ -101,6 +118,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Collect Locations From Root operation while keeping its implementation details inside this script.
         public void CollectLocationsFromRoot()
         {
             if (locationRoot == null)
@@ -118,6 +136,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Initializes local UI and state from an external record before the player can interact with it.
         public void InitializeStartingLocation()
         {
             if (hasInitialized)
@@ -170,6 +189,7 @@ namespace EscapeFromNightmare
             suppressChaseMoveRegistration = previousSuppressChaseMoveRegistration;
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         public void ApplySavedPositionOrStartingLocation()
         {
             if (hasInitialized)
@@ -185,6 +205,30 @@ namespace EscapeFromNightmare
             InitializeStartingLocation();
         }
 
+        // Returns the scene to its authored first playable location without reading saved position data.
+        public void ResetToStartingLocation()
+        {
+            bool previousSuppressChaseMoveRegistration = suppressChaseMoveRegistration;
+            suppressChaseMoveRegistration = true;
+
+            if (currentLocationController != null)
+            {
+                currentLocationController.SetLocationActive(false);
+            }
+
+            currentLocationController = null;
+            CurrentLocationId = string.Empty;
+            CurrentViewId = string.Empty;
+            hasInitialized = false;
+
+            BuildLocationMap();
+            DeactivateAllLocations();
+            InitializeStartingLocation();
+
+            suppressChaseMoveRegistration = previousSuppressChaseMoveRegistration;
+        }
+
+        // Performs the Try Apply Saved Position operation while keeping its implementation details inside this script.
         public bool TryApplySavedPosition()
         {
             if (SaveManager.Instance == null)
@@ -214,6 +258,7 @@ namespace EscapeFromNightmare
             return applied;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetLocation(string locationId, string viewId = null)
         {
             if (string.IsNullOrEmpty(locationId))
@@ -276,6 +321,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetView(string viewId)
         {
             if (currentLocationController == null)
@@ -311,6 +357,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Rotate Left operation while keeping its implementation details inside this script.
         public void RotateLeft()
         {
             if (currentLocationController == null)
@@ -340,6 +387,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Rotate Right operation while keeping its implementation details inside this script.
         public void RotateRight()
         {
             if (currentLocationController == null)
@@ -369,49 +417,50 @@ namespace EscapeFromNightmare
             }
         }
 
-        public void MoveThroughDoor(string doorId)
+        // Performs the Move Through Door operation while keeping its implementation details inside this script.
+        public bool MoveThroughDoor(string doorId)
         {
             if (string.IsNullOrEmpty(doorId))
             {
                 Debug.LogWarning("Cannot move through an empty doorId.");
-                return;
+                return false;
             }
 
             if (GameDataManager.Instance == null)
             {
                 Debug.LogWarning("GameDataManager instance is missing.");
-                return;
+                return false;
             }
 
             DoorRecord door = GameDataManager.Instance.GetDoorById(doorId);
             if (door == null)
             {
                 Debug.LogWarning("Door not found: " + doorId);
-                return;
+                return false;
             }
 
             if (!string.IsNullOrEmpty(door.fromLocationId) && door.fromLocationId != CurrentLocationId)
             {
                 Debug.LogWarning("Door cannot be used from this location. Door: " + doorId + ", Current: " + CurrentLocationId);
-                return;
+                return false;
             }
 
             if (!string.IsNullOrEmpty(door.fromViewId) && door.fromViewId != CurrentViewId)
             {
                 Debug.LogWarning("Door cannot be used from this view. Door: " + doorId + ", Current: " + CurrentViewId);
-                return;
+                return false;
             }
 
             if (!string.IsNullOrEmpty(door.toLocationId) && GetLocationController(door.toLocationId) == null)
             {
                 Debug.LogWarning("Target LocationController not found for door: " + doorId + ", Target: " + door.toLocationId);
-                return;
+                return false;
             }
 
             if (!CanMoveThroughDoor(door))
             {
                 Debug.Log("Door is locked or requirements are not satisfied: " + doorId);
-                return;
+                return false;
             }
 
             SetLocation(door.toLocationId, door.toViewId);
@@ -436,8 +485,11 @@ namespace EscapeFromNightmare
             {
                 Debug.LogWarning("SaveManager instance is missing.");
             }
+
+            return true;
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         public void RefreshActiveView()
         {
             if (currentLocationController != null)
@@ -446,6 +498,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool CanMoveThroughDoor(DoorRecord door)
         {
             if (door == null)
@@ -475,6 +528,7 @@ namespace EscapeFromNightmare
             return IsDoorRequirementSatisfied(door);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsDoorRequirementSatisfied(DoorRecord door)
         {
             if (door == null)
@@ -521,6 +575,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Deactivate All Locations operation while keeping its implementation details inside this script.
         private void DeactivateAllLocations()
         {
             for (int i = 0; i < locationControllers.Count; i++)
@@ -532,6 +587,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private LocationController GetLocationController(string locationId)
         {
             if (string.IsNullOrEmpty(locationId))
@@ -553,6 +609,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private string GetDefaultViewIdForLocation(string locationId, LocationController controller)
         {
             if (GameDataManager.Instance != null)
@@ -580,11 +637,13 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsSameCurrentPosition(string locationId, string viewId)
         {
             return CurrentLocationId == locationId && CurrentViewId == viewId;
         }
 
+        // Performs the Register Chase Move If Needed operation while keeping its implementation details inside this script.
         private void RegisterChaseMoveIfNeeded()
         {
             if (ChaseManager.Instance == null || !ChaseManager.Instance.IsChasing)

@@ -26,6 +26,9 @@
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
+# Ignore Other Assets
+/OtherAssets/
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 /[Aa]ssets/[Oo]ther[Aa]ssets/

@@ -18,13 +18,9 @@ All paths below are `Resources.Load<Sprite>()` paths. Do not include file extens
 | View ID | Resources Path | ArtIntake File | Resources File |
 |---|---|---|---|
 | Bedroom_Front | Backgrounds/Bedroom_Front | Assets/ArtIntake/Backgrounds/Bedroom_Front.png | Assets/Resources/Backgrounds/Bedroom_Front.png |
-| Bedroom_Right | Backgrounds/Bedroom_Right | Assets/ArtIntake/Backgrounds/Bedroom_Right.png | Assets/Resources/Backgrounds/Bedroom_Right.png |
 | Bedroom_Back | Backgrounds/Bedroom_Back | Assets/ArtIntake/Backgrounds/Bedroom_Back.png | Assets/Resources/Backgrounds/Bedroom_Back.png |
-| Bedroom_Left | Backgrounds/Bedroom_Left | Assets/ArtIntake/Backgrounds/Bedroom_Left.png | Assets/Resources/Backgrounds/Bedroom_Left.png |
 | ChildRoom_Front | Backgrounds/ChildRoom_Front | Assets/ArtIntake/Backgrounds/ChildRoom_Front.png | Assets/Resources/Backgrounds/ChildRoom_Front.png |
-| ChildRoom_Right | Backgrounds/ChildRoom_Right | Assets/ArtIntake/Backgrounds/ChildRoom_Right.png | Assets/Resources/Backgrounds/ChildRoom_Right.png |
 | ChildRoom_Back | Backgrounds/ChildRoom_Back | Assets/ArtIntake/Backgrounds/ChildRoom_Back.png | Assets/Resources/Backgrounds/ChildRoom_Back.png |
-| ChildRoom_Left | Backgrounds/ChildRoom_Left | Assets/ArtIntake/Backgrounds/ChildRoom_Left.png | Assets/Resources/Backgrounds/ChildRoom_Left.png |
 | Study_Front | Backgrounds/Study_Front | Assets/ArtIntake/Backgrounds/Study_Front.png | Assets/Resources/Backgrounds/Study_Front.png |
 | Study_Right | Backgrounds/Study_Right | Assets/ArtIntake/Backgrounds/Study_Right.png | Assets/Resources/Backgrounds/Study_Right.png |
 | Study_Back | Backgrounds/Study_Back | Assets/ArtIntake/Backgrounds/Study_Back.png | Assets/Resources/Backgrounds/Study_Back.png |

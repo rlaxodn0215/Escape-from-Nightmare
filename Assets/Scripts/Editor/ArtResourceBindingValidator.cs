@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Art Resource Binding Validator
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\ArtResourceBindingValidator.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,21 +15,31 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Art Resource Binding Validator workflow, exposed through menu items or called by other validation tools.
     public static class ArtResourceBindingValidator
     {
+        // Editor utility for the Binding Row workflow, exposed through menu items or called by other validation tools.
         private class BindingRow
         {
+            // Stores the category value used by this script's runtime or editor workflow.
             public string category;
+            // Stores the target value used by this script's runtime or editor workflow.
             public string target;
+            // Stores the result value used by this script's runtime or editor workflow.
             public string result;
+            // Stores the notes value used by this script's runtime or editor workflow.
             public string notes;
         }
 
+        // Stores the rows value used by this script's runtime or editor workflow.
         private static readonly List<BindingRow> rows = new List<BindingRow>();
+        // Stores the errors value used by this script's runtime or editor workflow.
         private static readonly List<string> errors = new List<string>();
+        // Stores the warnings value used by this script's runtime or editor workflow.
         private static readonly List<string> warnings = new List<string>();
 
         [MenuItem("Escape From Nightmare/Art Resources/Validate Art Resource Bindings")]
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         public static void ValidateArtResourceBindings()
         {
             Reset();
@@ -36,6 +53,7 @@ namespace EscapeFromNightmare
             Debug.Log("[ArtResourceBindingValidator] Completed. Errors: " + errors.Count + ", Warnings: " + warnings.Count);
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateViewBackgroundBindings()
         {
             ViewBackgroundBinding[] bindings = Resources.FindObjectsOfTypeAll<ViewBackgroundBinding>();
@@ -74,6 +92,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateInventoryIcons()
         {
             ItemRecordList list = LoadJson<ItemRecordList>("items.json");
@@ -134,6 +153,7 @@ namespace EscapeFromNightmare
             AddRow("InventorySlotUI", "Scene Slots", sceneSlots > 0 ? "Checked" : "Warning", "slots=" + sceneSlots + ", iconImage connected=" + slotsWithIcon);
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateClueImages()
         {
             ClueRecordList list = LoadJson<ClueRecordList>("clues.json");
@@ -181,6 +201,7 @@ namespace EscapeFromNightmare
             AddRow("ClueImagePanelUI", GetPath(panel.gameObject), clueImage != null ? "Connected" : "Warning", "clueImage=" + (clueImage != null ? clueImage.name : "null"));
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateSymbolBindings()
         {
             SymbolRecordList list = LoadJson<SymbolRecordList>("symbols.json");
@@ -271,6 +292,7 @@ namespace EscapeFromNightmare
             AddRow("Symbol UI", "Cycle Slots", "Checked", "slots=" + sceneSlots + ", labels=" + slotsWithLabel + ", images=" + slotsWithImage);
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateHotspotButtons()
         {
             ClickableButton[] clickables = Resources.FindObjectsOfTypeAll<ClickableButton>();
@@ -313,6 +335,7 @@ namespace EscapeFromNightmare
             AddRow("Hotspot Summary", "Scene Clickables", withVisual == sceneClickables ? "Connected" : "Warning", "withVisual=" + withVisual + "/" + sceneClickables);
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidatePanelPresets()
         {
             CheckPanelPreset<ClueImagePanelUI>("ClueImagePanel");
@@ -375,6 +398,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static UnityEngine.Object GetObjectReference(UnityEngine.Object target, string fieldName)
         {
             if (target == null)
@@ -387,6 +411,7 @@ namespace EscapeFromNightmare
             return property != null ? property.objectReferenceValue : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool GetBool(UnityEngine.Object target, string fieldName, bool fallback)
         {
             SerializedObject serializedObject = new SerializedObject(target);
@@ -394,6 +419,7 @@ namespace EscapeFromNightmare
             return property != null ? property.boolValue : fallback;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static float GetFloat(UnityEngine.Object target, string fieldName, float fallback)
         {
             SerializedObject serializedObject = new SerializedObject(target);
@@ -401,6 +427,7 @@ namespace EscapeFromNightmare
             return property != null ? property.floatValue : fallback;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsSceneObject(UnityEngine.Object obj)
         {
             Component component = obj as Component;
@@ -412,6 +439,7 @@ namespace EscapeFromNightmare
             return component.gameObject.scene.IsValid();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetPath(GameObject go)
         {
             if (go == null)
@@ -430,23 +458,27 @@ namespace EscapeFromNightmare
             return path;
         }
 
+        // Performs the Add Row operation while keeping its implementation details inside this script.
         private static void AddRow(string category, string target, string result, string notes)
         {
             rows.Add(new BindingRow { category = category, target = target, result = result, notes = notes });
         }
 
+        // Records a non-blocking validation concern for follow-up review.
         private static void AddWarning(string message)
         {
             warnings.Add(message);
             Debug.LogWarning("[ArtResourceBindingValidator] " + message);
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string message)
         {
             errors.Add(message);
             Debug.LogError("[ArtResourceBindingValidator] " + message);
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private static void WriteReport()
         {
             string path = Path.Combine(Application.dataPath, "Docs/GeneratedArtBindingValidationReport.md");
@@ -485,6 +517,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendList(StringBuilder builder, string title, List<string> values)
         {
             builder.AppendLine();
@@ -502,6 +535,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private static void Reset()
         {
             rows.Clear();

@@ -1,11 +1,22 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\PuzzleManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Puzzle Manager system, keeping shared state and events behind one access point.
     public class PuzzleManager : Singleton<PuzzleManager>
     {
+        // Stores the puzzle Ui Root value used by this script's runtime or editor workflow.
         public Transform puzzleUiRoot;
+        // Stores the current Puzzle Instance value used by this script's runtime or editor workflow.
         public GameObject currentPuzzleInstance;
+        // Stores the current Puzzle value used by this script's runtime or editor workflow.
         public PuzzleRecord currentPuzzle;
 
         public GameObject CurrentPuzzleInstance
@@ -23,6 +34,7 @@ namespace EscapeFromNightmare
             get { return currentPuzzleInstance != null; }
         }
 
+        // Opens the requested puzzle, clue, screen, or navigation target for the player.
         public void OpenPuzzle(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId))
@@ -94,6 +106,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Closes the active UI or interaction and returns control to the normal game flow.
         public void CloseCurrentPuzzle()
         {
             if (currentPuzzleInstance != null)
@@ -110,6 +123,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Complete Puzzle operation while keeping its implementation details inside this script.
         public void CompletePuzzle(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId))
@@ -120,6 +134,11 @@ namespace EscapeFromNightmare
 
             if (SaveManager.Instance != null && SaveManager.Instance.IsPuzzleCompleted(puzzleId))
             {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayUi(AudioCue.UiConfirm);
+                }
+
                 Debug.Log("Puzzle already completed: " + puzzleId);
                 CloseCurrentPuzzle();
                 return;
@@ -165,9 +184,15 @@ namespace EscapeFromNightmare
                 Debug.LogWarning("SaveManager instance is missing.");
             }
 
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayUi(AudioCue.UiConfirm);
+            }
+
             CloseCurrentPuzzle();
         }
 
+        // Applies calculated settings to Unity components or runtime state.
         public void ApplyPuzzleReward(PuzzleRecord puzzle)
         {
             if (puzzle == null)
@@ -199,7 +224,10 @@ namespace EscapeFromNightmare
                 case PuzzleRewardType.Item:
                     if (InventoryManager.Instance != null)
                     {
-                        InventoryManager.Instance.TryAddItem(puzzle.rewardId);
+                        if (InventoryManager.Instance.TryAddItem(puzzle.rewardId) && AudioManager.Instance != null)
+                        {
+                            AudioManager.Instance.PlaySfx(AudioCue.ItemPickup);
+                        }
                     }
                     else
                     {
@@ -220,6 +248,11 @@ namespace EscapeFromNightmare
                     if (SaveManager.Instance != null)
                     {
                         SaveManager.Instance.MarkDoorOpened(puzzle.rewardId);
+
+                        if (AudioManager.Instance != null)
+                        {
+                            AudioManager.Instance.PlaySfx(AudioCue.DoorUnlock);
+                        }
                     }
                     else
                     {

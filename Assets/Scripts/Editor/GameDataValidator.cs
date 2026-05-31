@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Game Data Validator
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\GameDataValidator.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,12 +13,16 @@ using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Game Data Validator workflow, exposed through menu items or called by other validation tools.
     public static class GameDataValidator
     {
+        // Stores the error Count value used by this script's runtime or editor workflow.
         private static int errorCount;
+        // Stores the warning Count value used by this script's runtime or editor workflow.
         private static int warningCount;
 
         [MenuItem("Escape From Nightmare/Validate Game Data")]
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         public static void ValidateGameData()
         {
             errorCount = 0;
@@ -28,6 +39,7 @@ namespace EscapeFromNightmare
             SymbolRecordList symbols = LoadJson<SymbolRecordList>(dataPath, "symbols.json");
             GhostRuleRecordList ghostRules = LoadJson<GhostRuleRecordList>(dataPath, "ghost_rules.json");
             LoadJson<GameSettingsWrapper>(dataPath, "game_settings.json");
+            AudioSettingsWrapper audioSettings = LoadJson<AudioSettingsWrapper>(dataPath, "audio_settings.json");
 
             List<LocationRecord> locationList = locations != null && locations.locations != null ? locations.locations : new List<LocationRecord>();
             List<DoorRecord> doorList = doors != null && doors.doors != null ? doors.doors : new List<DoorRecord>();
@@ -60,6 +72,7 @@ namespace EscapeFromNightmare
             ValidateGhostRules(ghostRuleList, locationIds);
             ValidateSymbolsUsedByAnswers(answerList, puzzleMap, symbolIds);
             ValidateSourceAlignment(locationList, doorList, puzzleList, symbolList, itemIds, clueIds, doorIds);
+            ValidateAudioSettings(audioSettings != null ? audioSettings.audio : null);
 
             Debug.Log("Game data validation complete. Errors: " + errorCount + ", Warnings: " + warningCount);
             Debug.Log("[GameDataValidator] Next: run Escape From Nightmare / Validate Current Scene Wiring, then Validate Puzzle Prefab Contracts.");
@@ -160,6 +173,7 @@ namespace EscapeFromNightmare
             return map;
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateLocations(IEnumerable<LocationRecord> locations)
         {
             foreach (LocationRecord location in locations)
@@ -215,6 +229,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateDoors(IEnumerable<DoorRecord> doors, HashSet<string> locationIds, Dictionary<string, LocationRecord> locationMap, HashSet<string> itemIds, HashSet<string> puzzleIds)
         {
             foreach (DoorRecord door in doors)
@@ -255,6 +270,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateItems(IEnumerable<ItemRecord> items)
         {
             foreach (ItemRecord item in items)
@@ -286,6 +302,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidatePuzzles(IEnumerable<PuzzleRecord> puzzles, HashSet<string> locationIds, HashSet<string> itemIds, HashSet<string> doorIds, HashSet<string> clueIds, HashSet<string> answerVariableNames)
         {
             foreach (PuzzleRecord puzzle in puzzles)
@@ -333,6 +350,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidatePuzzleReward(PuzzleRecord puzzle, HashSet<string> itemIds, HashSet<string> doorIds, HashSet<string> clueIds)
         {
             if (string.IsNullOrEmpty(puzzle.rewardType) || puzzle.rewardType == PuzzleRewardType.None)
@@ -372,6 +390,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateClues(IEnumerable<ClueRecord> clues, HashSet<string> locationIds, HashSet<string> itemIds, HashSet<string> puzzleIds)
         {
             foreach (ClueRecord clue in clues)
@@ -413,6 +432,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateSymbols(IEnumerable<SymbolRecord> symbols)
         {
             foreach (SymbolRecord symbol in symbols)
@@ -444,6 +464,67 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks audio settings and verifies every configured Resources path resolves to an AudioClip.
+        private static void ValidateAudioSettings(AudioSettingsRecord audio)
+        {
+            if (audio == null)
+            {
+                AddError("audio_settings.json has no audio object.");
+                return;
+            }
+
+            ValidateAudioClipPath(audio.titleMusicPath, "titleMusicPath");
+            ValidateAudioClipPath(audio.gameplayMusicPath, "gameplayMusicPath");
+            ValidateAudioClipPath(audio.chaseMusicPath, "chaseMusicPath");
+            ValidateAudioClipPath(audio.endingMusicPath, "endingMusicPath");
+            ValidateAudioClipPath(audio.titleAmbiencePath, "titleAmbiencePath");
+            ValidateAudioClipPath(audio.roomAmbiencePath, "roomAmbiencePath");
+            ValidateAudioClipPath(audio.doorMoveSfxPath, "doorMoveSfxPath");
+            ValidateAudioClipPath(audio.doorUnlockSfxPath, "doorUnlockSfxPath");
+            ValidateAudioClipPath(audio.doorLockedSfxPath, "doorLockedSfxPath");
+            ValidateAudioClipPath(audio.itemPickupSfxPath, "itemPickupSfxPath");
+            ValidateAudioClipPath(audio.chaseStartSfxPath, "chaseStartSfxPath");
+            ValidateAudioClipPath(audio.gameOverImpactSfxPath, "gameOverImpactSfxPath");
+            ValidateAudioClipPath(audio.uiClickSfxPath, "uiClickSfxPath");
+            ValidateAudioClipPath(audio.uiConfirmSfxPath, "uiConfirmSfxPath");
+            ValidateAudioClipPath(audio.uiFailSfxPath, "uiFailSfxPath");
+
+            ValidateVolume(audio.musicVolume, "musicVolume");
+            ValidateVolume(audio.ambienceVolume, "ambienceVolume");
+            ValidateVolume(audio.sfxVolume, "sfxVolume");
+            ValidateVolume(audio.uiVolume, "uiVolume");
+
+            if (audio.fadeSeconds < 0f)
+            {
+                AddWarning("Audio fadeSeconds is negative and will be clamped at runtime: " + audio.fadeSeconds);
+            }
+        }
+
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
+        private static void ValidateAudioClipPath(string resourcesPath, string fieldName)
+        {
+            if (string.IsNullOrEmpty(resourcesPath))
+            {
+                AddWarning("Audio path is empty: " + fieldName);
+                return;
+            }
+
+            if (Resources.Load<AudioClip>(resourcesPath) == null)
+            {
+                AddWarning("Audio clip not found at Resources path: " + resourcesPath + " (" + fieldName + ")");
+            }
+        }
+
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
+        private static void ValidateVolume(float value, string fieldName)
+        {
+            if (value < 0f || value > 1f)
+            {
+                AddWarning("Audio volume should be between 0 and 1: " + fieldName + " = " + value);
+            }
+        }
+
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidatePuzzleAnswers(IEnumerable<PuzzleAnswerRecord> answers, HashSet<string> puzzleIds, Dictionary<string, PuzzleRecord> puzzleMap)
         {
             foreach (PuzzleAnswerRecord answer in answers)
@@ -486,6 +567,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateGhostRules(IEnumerable<GhostRuleRecord> ghostRules, HashSet<string> locationIds)
         {
             foreach (GhostRuleRecord rule in ghostRules)
@@ -523,6 +605,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateSymbolsUsedByAnswers(IEnumerable<PuzzleAnswerRecord> answers, Dictionary<string, PuzzleRecord> puzzleMap, HashSet<string> symbolIds)
         {
             foreach (PuzzleAnswerRecord answer in answers)
@@ -549,6 +632,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Check View Reference operation while keeping its implementation details inside this script.
         private static void CheckViewReference(Dictionary<string, LocationRecord> locationMap, string locationId, string viewId, string label, string ownerId)
         {
             if (string.IsNullOrEmpty(viewId))
@@ -573,28 +657,33 @@ namespace EscapeFromNightmare
             AddWarning(label + " is not in location viewIds: " + ownerId + " / " + locationId + " / " + viewId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsSequenceType(string type)
         {
             return type == "Sequence" || type == "SymbolSequence" || type == "SymbolCycle" || type == "FinalSequence" || type == "FinalSymbolItem" || type == "PowerDevice";
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsNumberCodeType(string type)
         {
             return type == "NumberCode";
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string message)
         {
             errorCount++;
             Debug.LogError("[GameDataValidator] " + message);
         }
 
+        // Records a non-blocking validation concern for follow-up review.
         private static void AddWarning(string message)
         {
             warningCount++;
             Debug.LogWarning("[GameDataValidator] " + message);
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateSourceAlignment(IEnumerable<LocationRecord> locations, IEnumerable<DoorRecord> doors, IEnumerable<PuzzleRecord> puzzles, IEnumerable<SymbolRecord> symbols, HashSet<string> itemIds, HashSet<string> clueIds, HashSet<string> doorIds)
         {
             foreach (LocationRecord location in locations)
@@ -718,6 +807,7 @@ namespace EscapeFromNightmare
             RequireSourceId(doorIds, "Door_BasementStorage_LockedRoom", "doors.json");
         }
 
+        // Performs the Require Source Id operation while keeping its implementation details inside this script.
         private static void RequireSourceId(HashSet<string> ids, string requiredId, string owner)
         {
             if (ids == null || !ids.Contains(requiredId))
@@ -726,6 +816,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Contains Id Segment operation while keeping its implementation details inside this script.
         private static bool ContainsIdSegment(string value, string segment)
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(segment))

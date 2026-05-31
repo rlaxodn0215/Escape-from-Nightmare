@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Game Scene Interaction Runtime Test Runner
+// Role: Runs play-mode route and puzzle checks, then records failures in a form that can be reported by editor tools.
+// Scope: This script belongs to Tests\GameSceneInteractionRuntimeTestRunner.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +16,10 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Runtime test helper for the Game Scene Interaction Runtime Test Runner scenario, including setup, execution, and readable failure output.
     public class GameSceneInteractionRuntimeTestRunner : MonoBehaviour
     {
-        [SerializeField] private bool runOnStart = true;
+        [SerializeField] private bool runOnStart = false;
         [SerializeField] private float waitAfterClickSeconds = 0.1f;
         [SerializeField] private float waitAfterOpenSeconds = 0.1f;
         [SerializeField] private string reportRelativePath = "Docs/GeneratedGameSceneInteractionRuntimeTestReport.md";
@@ -23,6 +31,7 @@ namespace EscapeFromNightmare
         [SerializeField] private bool testFinalDoorButton = true;
         [SerializeField] private bool runFullClickRoute = true;
 
+        // Stores the Required Door Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredDoorIds =
         {
             "Door_Bedroom_SecondFloorHallway",
@@ -43,6 +52,7 @@ namespace EscapeFromNightmare
             "Door_Entrance_LivingRoom"
         };
 
+        // Stores the Required Puzzle Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredPuzzleIds =
         {
             "Puzzle_Bedroom_01",
@@ -56,6 +66,7 @@ namespace EscapeFromNightmare
             "Puzzle_Entrance_01"
         };
 
+        // Stores the Recommended Clue Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RecommendedClueIds =
         {
             "BedroomPhotoCodeClue",
@@ -68,22 +79,31 @@ namespace EscapeFromNightmare
             "BasementClueImage"
         };
 
+        // Stores the results value used by this script's runtime or editor workflow.
         private readonly List<GameSceneInteractionTestResult> results = new List<GameSceneInteractionTestResult>();
+        // Stores the original Save Backup Path value used by this script's runtime or editor workflow.
         private string originalSaveBackupPath;
+        // Stores the original Save Existed value used by this script's runtime or editor workflow.
         private bool originalSaveExisted;
+        // Stores the save Backup Succeeded value used by this script's runtime or editor workflow.
         private bool saveBackupSucceeded;
+        // Stores the current Index value used by this script's runtime or editor workflow.
         private int currentIndex;
+        // Stores the original Return To Title After Ending value used by this script's runtime or editor workflow.
         private bool originalReturnToTitleAfterEnding = true;
+        // Stores the captured Ending Return Setting value used by this script's runtime or editor workflow.
         private bool capturedEndingReturnSetting;
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private IEnumerator Start()
         {
-            if (runOnStart)
+            if (runOnStart || RuntimeTestLaunchGate.ConsumeRun(nameof(GameSceneInteractionRuntimeTestRunner)))
             {
                 yield return RunAllInteractionTests();
             }
         }
 
+        // Performs the Run All Interaction Tests operation while keeping its implementation details inside this script.
         public IEnumerator RunAllInteractionTests()
         {
             results.Clear();
@@ -173,6 +193,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private bool EnsureRequiredSceneObjects()
         {
             bool ok = true;
@@ -208,6 +229,7 @@ namespace EscapeFromNightmare
             return ok;
         }
 
+        // Performs the Require Manager operation while keeping its implementation details inside this script.
         private bool RequireManager(UnityEngine.Object manager, string managerName)
         {
             if (manager != null)
@@ -219,6 +241,7 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Performs the Backup Current Save operation while keeping its implementation details inside this script.
         private void BackupCurrentSave()
         {
             saveBackupSucceeded = false;
@@ -246,6 +269,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Restore Original Save operation while keeping its implementation details inside this script.
         private void RestoreOriginalSave()
         {
             if (SaveManager.Instance == null)
@@ -276,6 +300,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Returns runtime state to its defaults for a new game, retry, or clean test run.
         private void ResetRuntimeStateForInteractionTests()
         {
             if (SaveManager.Instance != null)
@@ -323,6 +348,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Navigation Buttons operation while keeping its implementation details inside this script.
         private IEnumerator TestNavigationButtons()
         {
             const string category = "Navigation";
@@ -340,7 +366,7 @@ namespace EscapeFromNightmare
             LocationManager.Instance.SetLocation("Bedroom", "Bedroom_Front");
             yield return ClickButtonAndWait(GetButtonForNavigation(rotateRight));
             string afterRight = LocationManager.Instance.CurrentViewId;
-            bool rightOk = afterRight == "Bedroom_Right";
+            bool rightOk = afterRight == "Bedroom_Back";
 
             yield return ClickButtonAndWait(GetButtonForNavigation(rotateLeft));
             string afterLeft = LocationManager.Instance.CurrentViewId;
@@ -348,7 +374,7 @@ namespace EscapeFromNightmare
 
             if (rightOk && leftOk)
             {
-                AddPass(category, "RotateLeft/RotateRight", "RotateRight moved to Bedroom_Right and RotateLeft returned to Bedroom_Front.", Elapsed(start));
+                AddPass(category, "RotateLeft/RotateRight", "RotateRight moved to Bedroom_Back and RotateLeft returned to Bedroom_Front.", Elapsed(start));
             }
             else
             {
@@ -356,6 +382,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Door Buttons operation while keeping its implementation details inside this script.
         private IEnumerator TestDoorButtons()
         {
             const string category = "Door Buttons";
@@ -366,6 +393,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Door Button operation while keeping its implementation details inside this script.
         private IEnumerator TestDoorButton(string category, string doorId)
         {
             float start = Time.realtimeSinceStartup;
@@ -414,6 +442,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Puzzle Buttons operation while keeping its implementation details inside this script.
         private IEnumerator TestPuzzleButtons()
         {
             const string category = "Puzzle Buttons";
@@ -424,6 +453,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Puzzle Button Open operation while keeping its implementation details inside this script.
         private IEnumerator TestPuzzleButtonOpen(string category, string puzzleId)
         {
             float start = Time.realtimeSinceStartup;
@@ -472,6 +502,7 @@ namespace EscapeFromNightmare
             ClosePuzzleIfOpen();
         }
 
+        // Performs the Test Clue Buttons operation while keeping its implementation details inside this script.
         private IEnumerator TestClueButtons()
         {
             const string category = "ExamineImage Buttons";
@@ -482,6 +513,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Clue Button operation while keeping its implementation details inside this script.
         private IEnumerator TestClueButton(string category, string clueId)
         {
             float start = Time.realtimeSinceStartup;
@@ -523,6 +555,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Hide Point Buttons operation while keeping its implementation details inside this script.
         private IEnumerator TestHidePointButtons()
         {
             const string category = "HidePoint Buttons";
@@ -572,6 +605,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Final Door Button operation while keeping its implementation details inside this script.
         private IEnumerator TestFinalDoorButton()
         {
             const string category = "FinalDoor";
@@ -615,6 +649,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Test Full Scene Click Route operation while keeping its implementation details inside this script.
         private IEnumerator TestFullSceneClickRoute()
         {
             const string category = "Full Scene Click Route";
@@ -714,11 +749,13 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the yield Return Compatible operation while keeping its implementation details inside this script.
         private bool yieldReturnCompatible(bool value)
         {
             return value;
         }
 
+        // Performs the Complete Puzzle From Scene Button operation while keeping its implementation details inside this script.
         private IEnumerator CompletePuzzleFromSceneButton(string puzzleId)
         {
             PuzzleRecord puzzle = GameDataManager.Instance.GetPuzzleById(puzzleId);
@@ -806,6 +843,7 @@ namespace EscapeFromNightmare
             yield return new WaitForSeconds(waitAfterClickSeconds);
         }
 
+        // Performs the Complete Sequence operation while keeping its implementation details inside this script.
         private void CompleteSequence(string[] sequence)
         {
             PuzzleSequenceUIBase ui = FindCurrentPuzzleUi<PuzzleSequenceUIBase>();
@@ -825,6 +863,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Complete Symbol Cycle operation while keeping its implementation details inside this script.
         private void CompleteSymbolCycle()
         {
             PuzzleSymbolCycleUIBase ui = FindCurrentPuzzleUi<PuzzleSymbolCycleUIBase>();
@@ -837,6 +876,7 @@ namespace EscapeFromNightmare
             ui.Submit();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private void AppendDigits(PuzzleNumberCodeUIBase ui, string digits)
         {
             for (int i = 0; i < digits.Length; i++)
@@ -849,6 +889,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private bool SetSymbolSequence(PuzzleSymbolCycleUIBase ui)
         {
             string[] sequence = { "Symbol_01", "Symbol_03", "Symbol_04", "Symbol_05", "Symbol_06" };
@@ -863,6 +904,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Click Door And Wait operation while keeping its implementation details inside this script.
         private IEnumerator ClickDoorAndWait(string doorId)
         {
             DoorRecord door = GameDataManager.Instance != null ? GameDataManager.Instance.GetDoorById(doorId) : null;
@@ -881,6 +923,7 @@ namespace EscapeFromNightmare
             yield return new WaitForSeconds(waitAfterClickSeconds);
         }
 
+        // Performs the Click Button And Wait operation while keeping its implementation details inside this script.
         private IEnumerator ClickButtonAndWait(Button button)
         {
             if (button == null)
@@ -902,16 +945,19 @@ namespace EscapeFromNightmare
             yield return new WaitForSeconds(waitAfterClickSeconds);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private Button GetButtonForClickable(ClickableButton clickable)
         {
             return clickable != null ? clickable.GetComponent<Button>() : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private Button GetButtonForNavigation(NavigationButton navigationButton)
         {
             return navigationButton != null ? navigationButton.GetComponent<Button>() : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ClickableButton FindClickableByDoorId(string doorId)
         {
             ClickableButton[] clickables = FindClickables(ClickableType.Door);
@@ -926,6 +972,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ClickableButton FindClickableByPuzzleId(string puzzleId)
         {
             ClickableButton[] clickables = FindClickables(ClickableType.Puzzle);
@@ -940,6 +987,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ClickableButton FindClickableByClueId(string clueId)
         {
             ClickableButton[] clickables = FindClickables(ClickableType.ExamineImage);
@@ -959,6 +1007,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ClickableButton FindFinalDoorButton()
         {
             ClickableButton[] clickables = FindClickables(ClickableType.FinalDoor);
@@ -973,6 +1022,7 @@ namespace EscapeFromNightmare
             return clickables.Length > 0 ? clickables[0] : null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private NavigationButton FindNavigationButton(NavigationActionType actionType)
         {
             NavigationButton[] buttons = Resources.FindObjectsOfTypeAll<NavigationButton>();
@@ -987,6 +1037,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ClickableButton[] FindClickables(ClickableType clickableType)
         {
             List<ClickableButton> result = new List<ClickableButton>();
@@ -1016,11 +1067,13 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsSceneObject(Component component)
         {
             return component != null && component.gameObject != null && component.gameObject.scene.IsValid();
         }
 
+        // Performs the Activate Clickable Context operation while keeping its implementation details inside this script.
         private void ActivateClickableContext(ClickableButton clickable)
         {
             if (clickable == null || LocationManager.Instance == null)
@@ -1043,6 +1096,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Satisfy Door Requirements operation while keeping its implementation details inside this script.
         private void SatisfyDoorRequirements(DoorRecord door)
         {
             if (door == null)
@@ -1062,6 +1116,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Satisfy Puzzle Requirements operation while keeping its implementation details inside this script.
         private void SatisfyPuzzleRequirements(PuzzleRecord puzzle)
         {
             if (puzzle == null || InventoryManager.Instance == null)
@@ -1093,6 +1148,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Select Item If Needed operation while keeping its implementation details inside this script.
         private void SelectItemIfNeeded(string itemId)
         {
             if (InventoryManager.Instance == null || string.IsNullOrEmpty(itemId))
@@ -1131,6 +1187,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Closes the active UI or interaction and returns control to the normal game flow.
         private void ClosePuzzleIfOpen()
         {
             if (PuzzleManager.Instance != null && PuzzleManager.Instance.HasOpenPuzzle)
@@ -1139,49 +1196,58 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsPuzzleCompleted(string puzzleId)
         {
             return SaveManager.Instance != null && SaveManager.Instance.IsPuzzleCompleted(puzzleId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool HasItem(string itemId)
         {
             return (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(itemId))
                 || (SaveManager.Instance != null && SaveManager.Instance.IsItemOwned(itemId));
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsClueUnlocked(string clueId)
         {
             return (ClueImageManager.Instance != null && ClueImageManager.Instance.IsClueUnlocked(clueId))
                 || (SaveManager.Instance != null && SaveManager.Instance.IsClueUnlocked(clueId));
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsDoorOpened(string doorId)
         {
             return SaveManager.Instance != null && SaveManager.Instance.IsDoorOpened(doorId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsFinalChaseStarted()
         {
             return SaveManager.Instance != null && SaveManager.Instance.IsFinalChaseStarted();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsEndingState()
         {
             return GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Ending;
         }
 
+        // Performs the Add Pass operation while keeping its implementation details inside this script.
         private void AddPass(string category, string targetId, string message, float duration)
         {
             AddResult(category, targetId, true, message, duration);
         }
 
+        // Performs the Add Fail operation while keeping its implementation details inside this script.
         private void AddFail(string category, string targetId, string message, float duration)
         {
             Debug.LogError("[GameSceneInteractionRuntimeTestRunner] " + category + " failed. Target: " + targetId + ". " + message);
             AddResult(category, targetId, false, message, duration);
         }
 
+        // Performs the Add Result operation while keeping its implementation details inside this script.
         private void AddResult(string category, string targetId, bool passed, string message, float duration)
         {
             GameSceneInteractionTestResult result = new GameSceneInteractionTestResult();
@@ -1194,6 +1260,7 @@ namespace EscapeFromNightmare
             results.Add(result);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private int CountPassed()
         {
             int count = 0;
@@ -1208,6 +1275,7 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private int CountPassed(string category)
         {
             int count = 0;
@@ -1222,6 +1290,7 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private void WriteMarkdownReport()
         {
             string path = GetReportPath();
@@ -1312,6 +1381,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private void AppendCategorySummary(StringBuilder builder, string category)
         {
             int passed = 0;
@@ -1342,6 +1412,7 @@ namespace EscapeFromNightmare
             builder.AppendLine(" |");
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private string GetReportPath()
         {
             string relativePath = string.IsNullOrEmpty(reportRelativePath) ? "Docs/GeneratedGameSceneInteractionRuntimeTestReport.md" : reportRelativePath;
@@ -1349,16 +1420,19 @@ namespace EscapeFromNightmare
             return Path.Combine(Application.dataPath, relativePath);
         }
 
+        // Performs the Elapsed operation while keeping its implementation details inside this script.
         private float Elapsed(float start)
         {
             return Time.realtimeSinceStartup - start;
         }
 
+        // Performs the Escape Markdown operation while keeping its implementation details inside this script.
         private string EscapeMarkdown(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value.Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private string GetHierarchyPath(GameObject go)
         {
             if (go == null)

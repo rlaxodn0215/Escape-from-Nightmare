@@ -22,13 +22,9 @@ Incorrect examples:
 ## Backgrounds
 
 - `Bedroom_Front`
-- `Bedroom_Right`
 - `Bedroom_Back`
-- `Bedroom_Left`
 - `ChildRoom_Front`
-- `ChildRoom_Right`
 - `ChildRoom_Back`
-- `ChildRoom_Left`
 - `Study_Front`
 - `Study_Right`
 - `Study_Back`

@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Symbol Cycle Slot
+// Role: Controls puzzle UI input, answer validation, retry behavior, and reward handoff to PuzzleManager.
+// Scope: This script belongs to Puzzles\PuzzleSymbolCycleSlot.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
     [RequireComponent(typeof(Button))]
+    // Puzzle controller for the Puzzle Symbol Cycle Slot screen, translating UI input into puzzle progress and completion.
     public class PuzzleSymbolCycleSlot : MonoBehaviour
     {
         [SerializeField] private Image symbolImage;
@@ -11,8 +19,11 @@ namespace EscapeFromNightmare
         [SerializeField] private int slotIndex;
         [SerializeField] private PuzzleSymbolCycleUIBase target;
 
+        // Stores the button value used by this script's runtime or editor workflow.
         private Button button;
+        // Stores the current Symbol Id value used by this script's runtime or editor workflow.
         private string currentSymbolId;
+        // Stores the current Symbol Index value used by this script's runtime or editor workflow.
         private int currentSymbolIndex = -1;
 
         public int SlotIndex
@@ -25,11 +36,13 @@ namespace EscapeFromNightmare
             get { return currentSymbolId; }
         }
 
+        // Caches required component references and prepares this object before other startup code runs.
         private void Awake()
         {
             CacheReferences();
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         private void OnEnable()
         {
             CacheReferences();
@@ -41,6 +54,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         private void OnDisable()
         {
             if (button != null)
@@ -49,21 +63,25 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private void Reset()
         {
             CacheReferences();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetTarget(PuzzleSymbolCycleUIBase newTarget)
         {
             target = newTarget;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetSlotIndex(int index)
         {
             slotIndex = Mathf.Max(0, index);
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetSymbol(string symbolId)
         {
             currentSymbolId = symbolId;
@@ -71,6 +89,7 @@ namespace EscapeFromNightmare
             RefreshVisual();
         }
 
+        // Performs the Clear operation while keeping its implementation details inside this script.
         public void Clear()
         {
             currentSymbolId = string.Empty;
@@ -78,6 +97,7 @@ namespace EscapeFromNightmare
             RefreshVisual();
         }
 
+        // Performs the Cycle Next operation while keeping its implementation details inside this script.
         public void CycleNext()
         {
             string[] symbols = target != null ? target.AvailableSymbolIds : null;
@@ -96,6 +116,7 @@ namespace EscapeFromNightmare
             RefreshVisual();
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         public void RefreshVisual()
         {
             SymbolRecord symbol = null;
@@ -137,6 +158,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Handle Click operation while keeping its implementation details inside this script.
         private void HandleClick()
         {
             if (target == null)
@@ -153,6 +175,7 @@ namespace EscapeFromNightmare
             CycleNext();
         }
 
+        // Performs the Cache References operation while keeping its implementation details inside this script.
         private void CacheReferences()
         {
             if (button == null)

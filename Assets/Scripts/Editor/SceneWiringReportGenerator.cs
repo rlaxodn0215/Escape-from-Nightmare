@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Scene Wiring Report Generator
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\SceneWiringReportGenerator.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,11 +15,14 @@ using UnityEngine.SceneManagement;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Scene Wiring Report Generator workflow, exposed through menu items or called by other validation tools.
     public static class SceneWiringReportGenerator
     {
+        // Stores the Report Path value used by this script's runtime or editor workflow.
         private const string ReportPath = "Assets/Docs/GeneratedSceneWiringReport.md";
 
         [MenuItem("Escape From Nightmare/Generate Scene Wiring Report")]
+        // Performs the Generate Scene Wiring Report operation while keeping its implementation details inside this script.
         public static void GenerateSceneWiringReport()
         {
             Scene scene = SceneManager.GetActiveScene();
@@ -51,6 +61,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendManagers(StringBuilder builder)
         {
             builder.AppendLine("## Managers");
@@ -80,6 +91,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendLocations(StringBuilder builder)
         {
             builder.AppendLine("## Locations");
@@ -101,6 +113,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendClickableButtons(StringBuilder builder)
         {
             builder.AppendLine("## Clickable Buttons");
@@ -129,6 +142,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendNavigationButtons(StringBuilder builder)
         {
             builder.AppendLine("## Navigation Buttons");
@@ -147,6 +161,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendInventoryUI(StringBuilder builder)
         {
             InventoryBarUI[] bars = FindSceneObjects<InventoryBarUI>();
@@ -161,6 +176,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendPanels(StringBuilder builder)
         {
             builder.AppendLine("## Panels");
@@ -182,6 +198,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendPuzzlePrefabs(StringBuilder builder)
         {
             builder.AppendLine("## Puzzle Prefabs");
@@ -205,6 +222,7 @@ namespace EscapeFromNightmare
             builder.AppendLine();
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendWarnings(StringBuilder builder)
         {
             builder.AppendLine("## Warnings");
@@ -231,6 +249,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Location Exists operation while keeping its implementation details inside this script.
         private static bool LocationExists(string locationId)
         {
             LocationRecordList locations = LoadJson<LocationRecordList>("locations.json");
@@ -250,12 +269,14 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetStringField(UnityEngine.Object target, string fieldName)
         {
             SerializedProperty property = GetProperty(target, fieldName);
             return property != null ? property.stringValue : string.Empty;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetEnumField(UnityEngine.Object target, string fieldName)
         {
             SerializedProperty property = GetProperty(target, fieldName);
@@ -267,6 +288,7 @@ namespace EscapeFromNightmare
             return property.enumDisplayNames[property.enumValueIndex];
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static SerializedProperty GetProperty(UnityEngine.Object target, string fieldName)
         {
             if (target == null)
@@ -293,6 +315,7 @@ namespace EscapeFromNightmare
             return sceneObjects.ToArray();
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsSceneObject(UnityEngine.Object obj)
         {
             if (obj == null || EditorUtility.IsPersistent(obj))
@@ -327,6 +350,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetHierarchyPath(GameObject obj)
         {
             if (obj == null)
@@ -345,11 +369,13 @@ namespace EscapeFromNightmare
             return path;
         }
 
+        // Performs the Escape Cell operation while keeping its implementation details inside this script.
         private static string EscapeCell(string value)
         {
             return NullSafe(value).Replace("|", "\\|");
         }
 
+        // Performs the Null Safe operation while keeping its implementation details inside this script.
         private static string NullSafe(string value)
         {
             return string.IsNullOrEmpty(value) ? "" : value;

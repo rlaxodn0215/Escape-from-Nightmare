@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Clue Image Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\ClueImageManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Clue Image Manager system, keeping shared state and events behind one access point.
     public class ClueImageManager : Singleton<ClueImageManager>
     {
         [SerializeField] private ClueImagePanelUI clueImagePanel;
@@ -11,13 +19,16 @@ namespace EscapeFromNightmare
         [SerializeField] private bool unlockStartsUnlockedCluesOnStart = true;
         [SerializeField] private bool setExamineGameState = true;
 
+        // Stores the unlocked Clue Ids value used by this script's runtime or editor workflow.
         private readonly HashSet<string> unlockedClueIds = new HashSet<string>();
+        // Stores the current Clue value used by this script's runtime or editor workflow.
         private ClueRecord currentClue;
 
         public event Action<string> ClueUnlocked;
         public event Action<string> ClueShown;
         public event Action ClueHidden;
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {
             if (loadUnlockedCluesOnStart)
@@ -31,6 +42,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         public void LoadUnlockedCluesFromSave()
         {
             unlockedClueIds.Clear();
@@ -51,6 +63,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Unlock Starts Unlocked Clues operation while keeping its implementation details inside this script.
         public void UnlockStartsUnlockedClues()
         {
             if (GameDataManager.Instance == null || GameDataManager.Instance.Clues == null)
@@ -85,6 +98,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Makes the related panel or visual element visible and fills in its current content.
         public void ShowClueImage(string clueImageId)
         {
             if (string.IsNullOrEmpty(clueImageId))
@@ -127,6 +141,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Hides the related panel or visual element and clears transient interaction state.
         public void HideCurrentImage()
         {
             if (clueImagePanel != null)
@@ -143,6 +158,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Unlock Clue operation while keeping its implementation details inside this script.
         public void UnlockClue(string clueId)
         {
             if (string.IsNullOrEmpty(clueId))
@@ -171,6 +187,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool IsClueUnlocked(string clueId)
         {
             if (string.IsNullOrEmpty(clueId))
@@ -192,6 +209,7 @@ namespace EscapeFromNightmare
             return record != null && record.startsUnlocked;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool CanShowClue(ClueRecord record)
         {
             if (record == null)
@@ -212,6 +230,7 @@ namespace EscapeFromNightmare
             return AreRequirementsSatisfied(record);
         }
 
+        // Performs the Are Requirements Satisfied operation while keeping its implementation details inside this script.
         public bool AreRequirementsSatisfied(ClueRecord record)
         {
             if (record == null)
@@ -240,6 +259,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public string GetLockedMessage(ClueRecord record)
         {
             if (record != null && !string.IsNullOrEmpty(record.lockedMessage))
@@ -260,6 +280,7 @@ namespace EscapeFromNightmare
             return "You cannot examine this yet.";
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private ClueRecord GetClueRecord(string clueId)
         {
             if (GameDataManager.Instance == null)
@@ -271,6 +292,7 @@ namespace EscapeFromNightmare
             return GameDataManager.Instance.GetClueById(clueId);
         }
 
+        // Loads saved data or Resources assets and converts them into runtime-ready values.
         private Sprite LoadClueSprite(ClueRecord record)
         {
             if (record == null || string.IsNullOrEmpty(record.imagePath))
@@ -287,6 +309,7 @@ namespace EscapeFromNightmare
             return sprite;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsRequiredPuzzleCompleted(string puzzleId)
         {
             if (string.IsNullOrEmpty(puzzleId))
@@ -303,6 +326,7 @@ namespace EscapeFromNightmare
             return SaveManager.Instance.IsPuzzleCompleted(puzzleId);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsRequiredItemSatisfied(string itemId)
         {
             if (string.IsNullOrEmpty(itemId))
@@ -319,6 +343,7 @@ namespace EscapeFromNightmare
             return InventoryManager.Instance.HasItem(itemId);
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private void SetGameStateForShow()
         {
             if (setExamineGameState && GameManager.Instance != null)
@@ -327,6 +352,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private void SetGameStateForHide()
         {
             if (setExamineGameState && GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Examine)

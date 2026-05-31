@@ -6,9 +6,7 @@
       "defaultViewId": "Bedroom_Front",
       "viewIds": [
         "Bedroom_Front",
-        "Bedroom_Right",
-        "Bedroom_Back",
-        "Bedroom_Left"
+        "Bedroom_Back"
       ],
       "isConnectorLocation": false
     },

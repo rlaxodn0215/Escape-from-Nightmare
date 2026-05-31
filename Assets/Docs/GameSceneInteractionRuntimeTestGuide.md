@@ -24,6 +24,8 @@ This test verifies the actual placeholder GameScene interaction surface. Unlike 
 - `Escape From Nightmare / Tests / Prepare GameScene Interaction Runtime Test Runner`
 - `Escape From Nightmare / Tests / Run GameScene Interaction Runtime Tests`
 
+The Prepare menu creates or selects the runner without enabling automatic Play Mode execution. The Run menu requests a one-time runtime test launch for the current editor session.
+
 ## Result File
 
 - `Assets/Docs/GeneratedGameSceneInteractionRuntimeTestReport.md`

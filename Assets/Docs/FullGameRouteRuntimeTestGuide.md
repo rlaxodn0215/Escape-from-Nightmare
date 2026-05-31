@@ -19,7 +19,7 @@ It checks progression logic, reward state, clue unlocks, door unlocks, final cha
 - `Escape From Nightmare / Tests / Prepare Full Game Route Runtime Test Runner`
 - `Escape From Nightmare / Tests / Run Full Game Route Runtime Test`
 
-The menu creates a temporary `FullGameRouteRuntimeTestRunner` object in the active scene and does not save the scene.
+The Prepare menu creates or selects a `FullGameRouteRuntimeTestRunner` object in the active scene without enabling automatic Play Mode execution. The Run menu requests a one-time runtime test launch for the current editor session.
 
 ## Route
 

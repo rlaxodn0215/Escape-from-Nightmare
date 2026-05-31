@@ -1,312 +1,227 @@
 # Source Route GameScene Builder Report
 
-- Generated At: 2026-05-29 21:39:12
+- Generated At: 2026-05-31 15:29:58
 - Scene: Assets/Scenes/GameScene.unity
 - Saved: True
-- Backup Path: Assets/Backups/Scenes/GameScene.backup_before_source_route_wiring_20260529_213911.unity
+- Backup Path: Assets/Backups/Scenes/GameScene.backup_before_source_route_wiring_20260531_152958.unity
 
 ## Summary
 
 | Category | Created | Reused | Linked | Warnings | Errors |
 |---|---:|---:|---:|---:|---:|
-| Build Settings | 0 | 1 | 0 | 1 | 0 |
-| UI Roots | 4 | 8 | 1 | 0 | 0 |
-| Managers | 25 | 1 | 0 | 0 | 0 |
-| Inventory UI | 42 | 0 | 33 | 0 | 0 |
-| Panels | 20 | 0 | 26 | 0 | 0 |
-| Navigation | 4 | 0 | 2 | 0 | 0 |
-| Locations | 18 | 0 | 41 | 0 | 0 |
-| Views | 78 | 0 | 52 | 0 | 0 |
-| Door Buttons | 32 | 0 | 0 | 0 | 0 |
-| Puzzle Buttons | 18 | 0 | 0 | 0 | 0 |
-| Clue Buttons | 16 | 0 | 0 | 0 | 0 |
-| HidePoints | 6 | 0 | 9 | 0 | 0 |
-| FinalDoor | 2 | 0 | 0 | 0 | 0 |
+| Build Settings | 0 | 2 | 0 | 0 | 0 |
+| UI Roots | 0 | 13 | 1 | 0 | 0 |
+| Managers | 0 | 15 | 0 | 0 | 0 |
+| Inventory UI | 0 | 44 | 37 | 0 | 0 |
+| Panels | 0 | 20 | 33 | 0 | 0 |
+| Navigation | 0 | 4 | 2 | 0 | 0 |
+| Locations | 0 | 9 | 32 | 0 | 0 |
+| Views | 0 | 44 | 44 | 0 | 0 |
+| Door Buttons | 0 | 16 | 0 | 0 | 0 |
+| Puzzle Buttons | 0 | 9 | 0 | 0 | 0 |
+| Clue Buttons | 0 | 8 | 0 | 0 | 0 |
+| HidePoints | 0 | 3 | 0 | 0 | 0 |
+| FinalDoor | 0 | 1 | 0 | 0 | 0 |
 
 ## Created Objects
 
-- Managers
-- Managers/GameManager
-- Managers/GameManager
-- Managers/SaveManager
-- Managers/SaveManager
-- Managers/GameDataManager
-- Managers/GameDataManager
-- Managers/LocationManager
-- Managers/LocationManager
-- Managers/InteractionManager
-- Managers/InteractionManager
-- Managers/InventoryManager
-- Managers/InventoryManager
-- Managers/EndingManager
-- Managers/EndingManager
-- Managers/ClueImageManager
-- Managers/ClueImageManager
-- Managers/NoiseManager
-- Managers/NoiseManager
-- Managers/GhostManager
-- Managers/GhostManager
-- Managers/HideManager
-- Managers/HideManager
-- Managers/ChaseManager
-- Managers/ChaseManager
-- Canvas/NavigationButtons
-- Canvas/HideExitButton
-- Canvas/HideExitButton/Text
-- Canvas/GhostStatusPanel
-- Canvas/InventoryBar/Slot_01
-- Canvas/InventoryBar/Slot_01/Text
-- Canvas/InventoryBar/Slot_01/EmptyRoot
-- Canvas/InventoryBar/Slot_01/FilledRoot
-- Canvas/InventoryBar/Slot_01/FilledRoot/IconImage
-- Canvas/InventoryBar/Slot_01/FilledRoot/LabelText
-- Canvas/InventoryBar/Slot_01/SelectedIndicator
-- Canvas/InventoryBar/Slot_02
-- Canvas/InventoryBar/Slot_02/Text
-- Canvas/InventoryBar/Slot_02/EmptyRoot
-- Canvas/InventoryBar/Slot_02/FilledRoot
-- Canvas/InventoryBar/Slot_02/FilledRoot/IconImage
-- Canvas/InventoryBar/Slot_02/FilledRoot/LabelText
-- Canvas/InventoryBar/Slot_02/SelectedIndicator
-- Canvas/InventoryBar/Slot_03
-- Canvas/InventoryBar/Slot_03/Text
-- Canvas/InventoryBar/Slot_03/EmptyRoot
-- Canvas/InventoryBar/Slot_03/FilledRoot
-- Canvas/InventoryBar/Slot_03/FilledRoot/IconImage
-- Canvas/InventoryBar/Slot_03/FilledRoot/LabelText
-- Canvas/InventoryBar/Slot_03/SelectedIndicator
-- Canvas/InventoryBar/Slot_04
-- Canvas/InventoryBar/Slot_04/Text
-- Canvas/InventoryBar/Slot_04/EmptyRoot
-- Canvas/InventoryBar/Slot_04/FilledRoot
-- Canvas/InventoryBar/Slot_04/FilledRoot/IconImage
-- Canvas/InventoryBar/Slot_04/FilledRoot/LabelText
-- Canvas/InventoryBar/Slot_04/SelectedIndicator
-- Canvas/InventoryBar/Slot_05
-- Canvas/InventoryBar/Slot_05/Text
-- Canvas/InventoryBar/Slot_05/EmptyRoot
-- Canvas/InventoryBar/Slot_05/FilledRoot
-- Canvas/InventoryBar/Slot_05/FilledRoot/IconImage
-- Canvas/InventoryBar/Slot_05/FilledRoot/LabelText
-- Canvas/InventoryBar/Slot_05/SelectedIndicator
-- Canvas/InventoryBar/Slot_06
-- Canvas/InventoryBar/Slot_06/Text
-- Canvas/InventoryBar/Slot_06/EmptyRoot
-- Canvas/InventoryBar/Slot_06/FilledRoot
-- Canvas/InventoryBar/Slot_06/FilledRoot/IconImage
-- Canvas/InventoryBar/Slot_06/FilledRoot/LabelText
-- Canvas/InventoryBar/Slot_06/SelectedIndicator
-- Canvas/ClueImagePanel/Background
-- Canvas/ClueImagePanel/ClueImage
-- Canvas/ClueImagePanel/TitleText
-- Canvas/ClueImagePanel/DescriptionText
-- Canvas/ClueImagePanel/MessageText
-- Canvas/ClueImagePanel/CloseButton
-- Canvas/ClueImagePanel/CloseButton/Text
-- Canvas/GameOverPanel/MessageText
-- Canvas/GameOverPanel/RestartButton
-- Canvas/GameOverPanel/RestartButton/Text
-- Canvas/GameOverPanel/ReturnTitleButton
-- Canvas/GameOverPanel/ReturnTitleButton/Text
-- Canvas/EndingPanel/TitleText
-- Canvas/EndingPanel/MessageText
-- Canvas/EndingPanel/SkipButton
-- Canvas/EndingPanel/SkipButton/Text
-- Canvas/GhostStatusPanel/StateText
-- Canvas/GhostStatusPanel/DangerText
-- Canvas/GhostStatusPanel/ChaseText
-- Canvas/GhostStatusPanel/HideText
-- Canvas/NavigationButtons/Button_RotateLeft
-- Canvas/NavigationButtons/Button_RotateLeft/Text
-- Canvas/NavigationButtons/Button_RotateRight
-- Canvas/NavigationButtons/Button_RotateRight/Text
-- Canvas/LocationRoot/Location_Bedroom
-- Canvas/LocationRoot/Location_Bedroom
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Right
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Right
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Right/ButtonLayer
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Left
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Left
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Left/ButtonLayer
-- Canvas/LocationRoot/Location_ChildRoom
-- Canvas/LocationRoot/Location_ChildRoom
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Right
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Right
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Right/ButtonLayer
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Left
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Left
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Left/ButtonLayer
-- Canvas/LocationRoot/Location_Study
-- Canvas/LocationRoot/Location_Study
-- Canvas/LocationRoot/Location_Study/View_Study_Front
-- Canvas/LocationRoot/Location_Study/View_Study_Front
-- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer
-- Canvas/LocationRoot/Location_Study/View_Study_Right
-- Canvas/LocationRoot/Location_Study/View_Study_Right
-- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer
-- Canvas/LocationRoot/Location_Study/View_Study_Back
-- Canvas/LocationRoot/Location_Study/View_Study_Back
-- Canvas/LocationRoot/Location_Study/View_Study_Back/ButtonLayer
-- Canvas/LocationRoot/Location_Study/View_Study_Left
-- Canvas/LocationRoot/Location_Study/View_Study_Left
-- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer
-- Canvas/LocationRoot/Location_SecondFloorHallway
-- Canvas/LocationRoot/Location_SecondFloorHallway
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer
-- Canvas/LocationRoot/Location_LivingRoom
-- Canvas/LocationRoot/Location_LivingRoom
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer
-- Canvas/LocationRoot/Location_Entrance
-- Canvas/LocationRoot/Location_Entrance
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer
-- Canvas/LocationRoot/Location_Kitchen
-- Canvas/LocationRoot/Location_Kitchen
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer
-- Canvas/LocationRoot/Location_BasementStorage
-- Canvas/LocationRoot/Location_BasementStorage
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer
-- Canvas/LocationRoot/Location_LockedRoom
-- Canvas/LocationRoot/Location_LockedRoom
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right/ButtonLayer
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back/ButtonLayer
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left/ButtonLayer
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Door_Door_Bedroom_SecondFloorHallway
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Door_Door_Bedroom_SecondFloorHallway/Text
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom/Text
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom/Text
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway/Text
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study/Text
-- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway
-- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway/Text
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_LivingRoom
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_LivingRoom/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_SecondFloorHallway
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_SecondFloorHallway/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_Kitchen
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_Kitchen/Text
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_LivingRoom
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_LivingRoom/Text
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_BasementStorage
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_BasementStorage/Text
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_Kitchen
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_Kitchen/Text
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer/Button_Door_Door_BasementStorage_LockedRoom
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer/Button_Door_Door_BasementStorage_LockedRoom/Text
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Door_Door_LockedRoom_BasementStorage
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Door_Door_LockedRoom_BasementStorage/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_Entrance
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_Entrance/Text
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_LivingRoom
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_LivingRoom/Text
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01/Text
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01/Text
-- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01
-- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_02
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_02/Text
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Puzzle_Puzzle_Kitchen_01
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Puzzle_Puzzle_Kitchen_01/Text
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Puzzle_Puzzle_BasementStorage_01
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Puzzle_Puzzle_BasementStorage_01/Text
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LockedRoom_01
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LockedRoom_01/Text
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Puzzle_Puzzle_Entrance_01
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Puzzle_Puzzle_Entrance_01/Text
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Left/ButtonLayer/Button_Clue_BedroomPhotoCodeClue
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Left/ButtonLayer/Button_Clue_BedroomPhotoCodeClue/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue/Text
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Right/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Right/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage/Text
-- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage
-- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage/Text
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage/Text
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue/Text
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer/Button_Clue_BasementPowerPatternClue
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer/Button_Clue_BasementPowerPatternClue/Text
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer/Button_Clue_BasementClueImage
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer/Button_Clue_BasementClueImage/Text
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet/Text
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet/Text
-- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk
-- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk/Text
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_FinalDoor_FrontDoorKey
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_FinalDoor_FrontDoorKey/Text
+- None
 
 ## Reused Objects
 
 - Canvas - Existing Canvas
 - EventSystem - Existing EventSystem
+- Managers - Object exists
+- Managers/GameManager - Existing GameManager
+- Managers/SaveManager - Existing SaveManager
+- Managers/GameDataManager - Existing GameDataManager
+- Managers/LocationManager - Existing LocationManager
+- Managers/InteractionManager - Existing InteractionManager
+- Managers/InventoryManager - Existing InventoryManager
 - PuzzleManager - Existing PuzzleManager
+- Managers/EndingManager - Existing EndingManager
+- Managers/ClueImageManager - Existing ClueImageManager
+- Managers/NoiseManager - Existing NoiseManager
+- Managers/GhostManager - Existing GhostManager
+- Managers/HideManager - Existing HideManager
+- Managers/ChaseManager - Existing ChaseManager
+- Managers/ScreenFadeManager - Existing ScreenFadeManager
 - Canvas/LocationRoot - Object exists
+- Canvas/NavigationButtons - Object exists
 - Canvas/InventoryBar - Object exists
 - Canvas/PuzzleUIRoot - Object exists
 - Canvas/ClueImagePanel - Object exists
 - Canvas/GameOverPanel - Object exists
 - Canvas/EndingPanel - Object exists
+- Canvas/HideViewRoot - Object exists
+- Canvas/HideViewRoot/Background - Hide background exists
+- Canvas/GhostStatusPanel - Object exists
+- Canvas/ScreenFadeOverlay - Object exists
+- Canvas/InventoryBar/Slot_01 - Object exists
+- Canvas/InventoryBar/Slot_01/Text - Object exists
+- Canvas/InventoryBar/Slot_01/EmptyRoot - Object exists
+- Canvas/InventoryBar/Slot_01/FilledRoot - Object exists
+- Canvas/InventoryBar/Slot_01/FilledRoot/IconImage - Object exists
+- Canvas/InventoryBar/Slot_01/FilledRoot/LabelText - Object exists
+- Canvas/InventoryBar/Slot_01/SelectedIndicator - Object exists
+- Canvas/InventoryBar/Slot_02 - Object exists
+- Canvas/InventoryBar/Slot_02/Text - Object exists
+- Canvas/InventoryBar/Slot_02/EmptyRoot - Object exists
+- Canvas/InventoryBar/Slot_02/FilledRoot - Object exists
+- Canvas/InventoryBar/Slot_02/FilledRoot/IconImage - Object exists
+- Canvas/InventoryBar/Slot_02/FilledRoot/LabelText - Object exists
+- Canvas/InventoryBar/Slot_02/SelectedIndicator - Object exists
+- Canvas/InventoryBar/Slot_03 - Object exists
+- Canvas/InventoryBar/Slot_03/Text - Object exists
+- Canvas/InventoryBar/Slot_03/EmptyRoot - Object exists
+- Canvas/InventoryBar/Slot_03/FilledRoot - Object exists
+- Canvas/InventoryBar/Slot_03/FilledRoot/IconImage - Object exists
+- Canvas/InventoryBar/Slot_03/FilledRoot/LabelText - Object exists
+- Canvas/InventoryBar/Slot_03/SelectedIndicator - Object exists
+- Canvas/InventoryBar/Slot_04 - Object exists
+- Canvas/InventoryBar/Slot_04/Text - Object exists
+- Canvas/InventoryBar/Slot_04/EmptyRoot - Object exists
+- Canvas/InventoryBar/Slot_04/FilledRoot - Object exists
+- Canvas/InventoryBar/Slot_04/FilledRoot/IconImage - Object exists
+- Canvas/InventoryBar/Slot_04/FilledRoot/LabelText - Object exists
+- Canvas/InventoryBar/Slot_04/SelectedIndicator - Object exists
+- Canvas/InventoryBar/Slot_05 - Object exists
+- Canvas/InventoryBar/Slot_05/Text - Object exists
+- Canvas/InventoryBar/Slot_05/EmptyRoot - Object exists
+- Canvas/InventoryBar/Slot_05/FilledRoot - Object exists
+- Canvas/InventoryBar/Slot_05/FilledRoot/IconImage - Object exists
+- Canvas/InventoryBar/Slot_05/FilledRoot/LabelText - Object exists
+- Canvas/InventoryBar/Slot_05/SelectedIndicator - Object exists
+- Canvas/InventoryBar/Slot_06 - Object exists
+- Canvas/InventoryBar/Slot_06/Text - Object exists
+- Canvas/InventoryBar/Slot_06/EmptyRoot - Object exists
+- Canvas/InventoryBar/Slot_06/FilledRoot - Object exists
+- Canvas/InventoryBar/Slot_06/FilledRoot/IconImage - Object exists
+- Canvas/InventoryBar/Slot_06/FilledRoot/LabelText - Object exists
+- Canvas/InventoryBar/Slot_06/SelectedIndicator - Object exists
+- Canvas/InventoryToggleButton - Object exists
+- Canvas/InventoryToggleButton/Text - Object exists
+- Canvas/ClueImagePanel/Background - Object exists
+- Canvas/ClueImagePanel/ClueImage - Object exists
+- Canvas/ClueImagePanel/TitleText - Object exists
+- Canvas/ClueImagePanel/DescriptionText - Object exists
+- Canvas/ClueImagePanel/MessageText - Object exists
+- Canvas/ClueImagePanel/CloseButton - Object exists
+- Canvas/ClueImagePanel/CloseButton/Text - Object exists
+- Canvas/GameOverPanel/MessageText - Object exists
+- Canvas/GameOverPanel/RestartButton - Object exists
+- Canvas/GameOverPanel/RestartButton/Text - Object exists
+- Canvas/GameOverPanel/ReturnTitleButton - Object exists
+- Canvas/GameOverPanel/ReturnTitleButton/Text - Object exists
+- Canvas/EndingPanel/TitleText - Object exists
+- Canvas/EndingPanel/MessageText - Object exists
+- Canvas/EndingPanel/SkipButton - Object exists
+- Canvas/EndingPanel/SkipButton/Text - Object exists
+- Canvas/GhostStatusPanel/StateText - Object exists
+- Canvas/GhostStatusPanel/DangerText - Object exists
+- Canvas/GhostStatusPanel/ChaseText - Object exists
+- Canvas/GhostStatusPanel/HideText - Object exists
+- Canvas/NavigationButtons/Button_RotateLeft - Object exists
+- Canvas/NavigationButtons/Button_RotateLeft/Text - Object exists
+- Canvas/NavigationButtons/Button_RotateRight - Object exists
+- Canvas/NavigationButtons/Button_RotateRight/Text - Object exists
+- Canvas/LocationRoot/Location_Bedroom - Location ID Bedroom
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front - View ID Bedroom_Front
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back - View ID Bedroom_Back
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_ChildRoom - Location ID ChildRoom
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front - View ID ChildRoom_Front
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back - View ID ChildRoom_Back
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Study - Location ID Study
+- Canvas/LocationRoot/Location_Study/View_Study_Front - View ID Study_Front
+- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Study/View_Study_Right - View ID Study_Right
+- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Study/View_Study_Back - View ID Study_Back
+- Canvas/LocationRoot/Location_Study/View_Study_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Study/View_Study_Left - View ID Study_Left
+- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SecondFloorHallway - Location ID SecondFloorHallway
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front - View ID SecondFloorHallway_Front
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back - View ID SecondFloorHallway_Back
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_LivingRoom - Location ID LivingRoom
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front - View ID LivingRoom_Front
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back - View ID LivingRoom_Back
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Entrance - Location ID Entrance
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front - View ID Entrance_Front
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Kitchen - Location ID Kitchen
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front - View ID Kitchen_Front
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_BasementStorage - Location ID BasementStorage
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front - View ID BasementStorage_Front
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right - View ID BasementStorage_Right
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back - View ID BasementStorage_Back
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left - View ID BasementStorage_Left
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_LockedRoom - Location ID LockedRoom
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front - View ID LockedRoom_Front
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right - View ID LockedRoom_Right
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back - View ID LockedRoom_Back
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left - View ID LockedRoom_Left
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Door_Door_Bedroom_SecondFloorHallway - Door button Door_Bedroom_SecondFloorHallway
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom - Door button Door_SecondFloorHallway_Bedroom
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom - Door button Door_SecondFloorHallway_ChildRoom
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway - Door button Door_ChildRoom_SecondFloorHallway
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study - Door button Door_SecondFloorHallway_Study
+- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway - Door button Door_Study_SecondFloorHallway
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_LivingRoom - Door button Door_SecondFloorHallway_LivingRoom
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_SecondFloorHallway - Door button Door_LivingRoom_SecondFloorHallway
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_Kitchen - Door button Door_LivingRoom_Kitchen
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_LivingRoom - Door button Door_Kitchen_LivingRoom
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_BasementStorage - Door button Door_Kitchen_BasementStorage
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_Kitchen - Door button Door_BasementStorage_Kitchen
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer/Button_Door_Door_BasementStorage_LockedRoom - Door button Door_BasementStorage_LockedRoom
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Door_Door_LockedRoom_BasementStorage - Door button Door_LockedRoom_BasementStorage
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_Entrance - Door button Door_LivingRoom_Entrance
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_LivingRoom - Door button Door_Entrance_LivingRoom
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01 - Puzzle button Puzzle_Bedroom_01
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01 - Puzzle button Puzzle_LivingRoom_01
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01 - Puzzle button Puzzle_ChildRoom_01
+- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01 - Puzzle button Puzzle_Study_01
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_02 - Puzzle button Puzzle_LivingRoom_02
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Puzzle_Puzzle_Kitchen_01 - Puzzle button Puzzle_Kitchen_01
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Puzzle_Puzzle_BasementStorage_01 - Puzzle button Puzzle_BasementStorage_01
+- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LockedRoom_01 - Puzzle button Puzzle_LockedRoom_01
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Puzzle_Puzzle_Entrance_01 - Puzzle button Puzzle_Entrance_01
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Clue_BedroomPhotoCodeClue - Clue button BedroomPhotoCodeClue
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue - Clue button LivingRoomEntranceCodeClue
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage - Clue button ChildRoomCardSymbolClueImage
+- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage - Clue button StudyBookSymbolClueImage
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage - Clue button KitchenCodeClueImage
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue - Clue button KitchenFridgeSurfaceSymbolClue
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer/Button_Clue_BasementPowerPatternClue - Clue button BasementPowerPatternClue
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer/Button_Clue_BasementClueImage - Clue button BasementClueImage
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet - HidePoint HidePoint_Bedroom_Closet
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet - HidePoint HidePoint_SecondFloorHallway_Cabinet
+- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk - HidePoint HidePoint_Study_Desk
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_FinalDoor_FrontDoorKey - FinalDoor FrontDoorKey
+- (asset) - Scene already in Build Settings: Assets/Scenes/TitleScene.unity
 - (asset) - Scene already in Build Settings: Assets/Scenes/GameScene.unity
 
 ## Linked Fields
 
 - LocationManager.locationRoot = LocationRoot
+- InventoryBar.applyOnAwake = (value)
 - Slot_01.iconImage = IconImage
 - Slot_01.labelText = LabelText
 - Slot_01.selectedIndicator = SelectedIndicator
@@ -340,6 +255,9 @@
 - InventoryBar.slotRoot = InventoryBar
 - InventoryBar.slots = (value)
 - InventoryBar.autoCollectSlots = (value)
+- InventoryBar.canvasGroup = InventoryBar
+- InventoryBar.hideOnAwake = (value)
+- InventoryToggleButton.inventoryBar = InventoryBar
 - ClueImagePanel.rootObject = ClueImagePanel
 - ClueImagePanel.clueImage = ClueImage
 - ClueImagePanel.titleText = TitleText
@@ -359,8 +277,15 @@
 - EndingPanel.skipButton = SkipButton
 - EndingPanel.hideOnAwake = (value)
 - EndingManager.endingPanel = EndingPanel
+- Background.rootObject = HideViewRoot
+- Background.targetImage = Background
+- Background.hideInteriorViews = (value)
+- Background.fallbackResourcePath = (value)
 - HideExitButton.rootObject = HideExitButton
 - HideExitButton.showOnlyWhileHiding = (value)
+- ScreenFadeManager.fadeCanvasGroup = ScreenFadeOverlay
+- ScreenFadeManager.fadeOutSeconds = (value)
+- ScreenFadeManager.fadeInSeconds = (value)
 - GhostStatusPanel.rootObject = GhostStatusPanel
 - GhostStatusPanel.stateText = StateText
 - GhostStatusPanel.dangerText = DangerText
@@ -369,30 +294,19 @@
 - Button_RotateLeft.actionType = (value)
 - Button_RotateRight.actionType = (value)
 - Location_Bedroom.locationId = (value)
-- Location_Bedroom.locationId = (value)
 - Location_Bedroom.defaultViewId = (value)
 - View_Bedroom_Front.viewId = (value)
 - View_Bedroom_Front.rootObject = View_Bedroom_Front
-- View_Bedroom_Right.viewId = (value)
-- View_Bedroom_Right.rootObject = View_Bedroom_Right
 - View_Bedroom_Back.viewId = (value)
 - View_Bedroom_Back.rootObject = View_Bedroom_Back
-- View_Bedroom_Left.viewId = (value)
-- View_Bedroom_Left.rootObject = View_Bedroom_Left
 - Location_Bedroom.views = (value)
-- Location_ChildRoom.locationId = (value)
 - Location_ChildRoom.locationId = (value)
 - Location_ChildRoom.defaultViewId = (value)
 - View_ChildRoom_Front.viewId = (value)
 - View_ChildRoom_Front.rootObject = View_ChildRoom_Front
-- View_ChildRoom_Right.viewId = (value)
-- View_ChildRoom_Right.rootObject = View_ChildRoom_Right
 - View_ChildRoom_Back.viewId = (value)
 - View_ChildRoom_Back.rootObject = View_ChildRoom_Back
-- View_ChildRoom_Left.viewId = (value)
-- View_ChildRoom_Left.rootObject = View_ChildRoom_Left
 - Location_ChildRoom.views = (value)
-- Location_Study.locationId = (value)
 - Location_Study.locationId = (value)
 - Location_Study.defaultViewId = (value)
 - View_Study_Front.viewId = (value)
@@ -405,14 +319,12 @@
 - View_Study_Left.rootObject = View_Study_Left
 - Location_Study.views = (value)
 - Location_SecondFloorHallway.locationId = (value)
-- Location_SecondFloorHallway.locationId = (value)
 - Location_SecondFloorHallway.defaultViewId = (value)
 - View_SecondFloorHallway_Front.viewId = (value)
 - View_SecondFloorHallway_Front.rootObject = View_SecondFloorHallway_Front
 - View_SecondFloorHallway_Back.viewId = (value)
 - View_SecondFloorHallway_Back.rootObject = View_SecondFloorHallway_Back
 - Location_SecondFloorHallway.views = (value)
-- Location_LivingRoom.locationId = (value)
 - Location_LivingRoom.locationId = (value)
 - Location_LivingRoom.defaultViewId = (value)
 - View_LivingRoom_Front.viewId = (value)
@@ -421,18 +333,15 @@
 - View_LivingRoom_Back.rootObject = View_LivingRoom_Back
 - Location_LivingRoom.views = (value)
 - Location_Entrance.locationId = (value)
-- Location_Entrance.locationId = (value)
 - Location_Entrance.defaultViewId = (value)
 - View_Entrance_Front.viewId = (value)
 - View_Entrance_Front.rootObject = View_Entrance_Front
 - Location_Entrance.views = (value)
 - Location_Kitchen.locationId = (value)
-- Location_Kitchen.locationId = (value)
 - Location_Kitchen.defaultViewId = (value)
 - View_Kitchen_Front.viewId = (value)
 - View_Kitchen_Front.rootObject = View_Kitchen_Front
 - Location_Kitchen.views = (value)
-- Location_BasementStorage.locationId = (value)
 - Location_BasementStorage.locationId = (value)
 - Location_BasementStorage.defaultViewId = (value)
 - View_BasementStorage_Front.viewId = (value)
@@ -444,7 +353,6 @@
 - View_BasementStorage_Left.viewId = (value)
 - View_BasementStorage_Left.rootObject = View_BasementStorage_Left
 - Location_BasementStorage.views = (value)
-- Location_LockedRoom.locationId = (value)
 - Location_LockedRoom.locationId = (value)
 - Location_LockedRoom.defaultViewId = (value)
 - View_LockedRoom_Front.viewId = (value)
@@ -461,19 +369,10 @@
 - LocationManager.collectLocationsFromRoot = (value)
 - LocationManager.startingLocationId = (value)
 - LocationManager.startingViewId = (value)
-- Button_HidePoint_HidePoint_Bedroom_Closet.hidePointId = (value)
-- Button_HidePoint_HidePoint_Bedroom_Closet.rootObject = Button_HidePoint_HidePoint_Bedroom_Closet
-- Button_HidePoint_HidePoint_Bedroom_Closet.usable = (value)
-- Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet.hidePointId = (value)
-- Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet.rootObject = Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet
-- Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet.usable = (value)
-- Button_HidePoint_HidePoint_Study_Desk.hidePointId = (value)
-- Button_HidePoint_HidePoint_Study_Desk.rootObject = Button_HidePoint_HidePoint_Study_Desk
-- Button_HidePoint_HidePoint_Study_Desk.usable = (value)
 
 ## Warnings
 
-- Scene file not found, cannot add to Build Settings: Assets/Scenes/TitleScene.unity
+- None
 
 ## Errors
 

@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Sequence Option Button
+// Role: Controls puzzle UI input, answer validation, retry behavior, and reward handoff to PuzzleManager.
+// Scope: This script belongs to Puzzles\PuzzleSequenceOptionButton.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
     [RequireComponent(typeof(Button))]
+    // Puzzle controller for the Puzzle Sequence Option Button screen, translating UI input into puzzle progress and completion.
     public class PuzzleSequenceOptionButton : MonoBehaviour
     {
         [SerializeField] private string optionId;
@@ -12,6 +20,7 @@ namespace EscapeFromNightmare
         [SerializeField] private GameObject selectedRoot;
         [SerializeField] private PuzzleSequenceUIBase target;
 
+        // Stores the button value used by this script's runtime or editor workflow.
         private Button button;
 
         public string OptionId
@@ -19,11 +28,13 @@ namespace EscapeFromNightmare
             get { return optionId; }
         }
 
+        // Caches required component references and prepares this object before other startup code runs.
         private void Awake()
         {
             CacheReferences();
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         private void OnEnable()
         {
             CacheReferences();
@@ -35,6 +46,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         private void OnDisable()
         {
             if (button != null)
@@ -43,22 +55,26 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private void Reset()
         {
             CacheReferences();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetTarget(PuzzleSequenceUIBase newTarget)
         {
             target = newTarget;
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetOptionId(string newOptionId)
         {
             optionId = newOptionId;
             RefreshVisualFromSymbolRecord();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetSelected(bool selected)
         {
             if (selectedRoot != null)
@@ -67,6 +83,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetInteractable(bool interactable)
         {
             CacheReferences();
@@ -77,6 +94,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         public void RefreshVisualFromSymbolRecord()
         {
             if (GameDataManager.Instance == null || string.IsNullOrEmpty(optionId))
@@ -114,6 +132,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Handle Click operation while keeping its implementation details inside this script.
         private void HandleClick()
         {
             if (string.IsNullOrEmpty(optionId))
@@ -136,6 +155,7 @@ namespace EscapeFromNightmare
             target.SelectOption(optionId);
         }
 
+        // Performs the Cache References operation while keeping its implementation details inside this script.
         private void CacheReferences()
         {
             if (button == null)

@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Puzzle Prefab Contract Validator
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\PuzzlePrefabContractValidator.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,16 +14,21 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Puzzle Prefab Contract Validator workflow, exposed through menu items or called by other validation tools.
     public static class PuzzlePrefabContractValidator
     {
+        // Stores the error Count value used by this script's runtime or editor workflow.
         private static int errorCount;
+        // Stores the warning Count value used by this script's runtime or editor workflow.
         private static int warningCount;
 
         private static readonly Dictionary<string, PuzzleAnswerRecord> answerByVariableName = new Dictionary<string, PuzzleAnswerRecord>();
         private static readonly Dictionary<string, PuzzleAnswerRecord> answerByPuzzleId = new Dictionary<string, PuzzleAnswerRecord>();
+        // Stores the symbol Ids value used by this script's runtime or editor workflow.
         private static readonly HashSet<string> symbolIds = new HashSet<string>();
 
         [MenuItem("Escape From Nightmare/Validate Puzzle Prefab Contracts")]
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         public static void ValidatePuzzlePrefabContracts()
         {
             errorCount = 0;
@@ -39,6 +51,7 @@ namespace EscapeFromNightmare
             Debug.Log("Puzzle prefab contract validation completed. Errors: " + errorCount + ", Warnings: " + warningCount);
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidatePuzzlePrefab(PuzzleRecord puzzle)
         {
             if (puzzle == null)
@@ -108,6 +121,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateNumberCodePrefab(PuzzleRecord puzzle, GameObject prefab)
         {
             PuzzleNumberCodeUIBase ui = prefab.GetComponentInChildren<PuzzleNumberCodeUIBase>(true);
@@ -171,6 +185,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateSequencePrefab(PuzzleRecord puzzle, GameObject prefab, bool symbolSequence)
         {
             PuzzleSequenceUIBase ui = prefab.GetComponentInChildren<PuzzleSequenceUIBase>(true);
@@ -249,6 +264,7 @@ namespace EscapeFromNightmare
             ValidateExpectedOptionsForKnownSequence(puzzle, optionIds, path);
         }
 
+        // Performs the Resolve Answer operation while keeping its implementation details inside this script.
         private static PuzzleAnswerRecord ResolveAnswer(PuzzleRecord puzzle)
         {
             if (puzzle == null)
@@ -270,6 +286,7 @@ namespace EscapeFromNightmare
             return null;
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateSymbolCyclePrefab(PuzzleRecord puzzle, GameObject prefab)
         {
             PuzzleSymbolCycleUIBase ui = prefab.GetComponentInChildren<PuzzleSymbolCycleUIBase>(true);
@@ -342,6 +359,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsFirstFivePuzzle(PuzzleRecord puzzle)
         {
             if (puzzle == null)
@@ -356,6 +374,7 @@ namespace EscapeFromNightmare
                 || puzzle.puzzleId == "Puzzle_LivingRoom_02";
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool IsRemainingPuzzle(PuzzleRecord puzzle)
         {
             if (puzzle == null)
@@ -369,6 +388,7 @@ namespace EscapeFromNightmare
                 || puzzle.puzzleId == "Puzzle_Entrance_01";
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateExpectedOptionsForKnownSequence(PuzzleRecord puzzle, HashSet<string> optionIds, string path)
         {
             if (puzzle == null || optionIds == null)
@@ -395,6 +415,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Require Option operation while keeping its implementation details inside this script.
         private static void RequireOption(HashSet<string> optionIds, string optionId, string owner)
         {
             if (!optionIds.Contains(optionId))
@@ -403,6 +424,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidatePowerDevicePrefab(PuzzleRecord puzzle, GameObject prefab)
         {
             PuzzlePowerDeviceUIBase ui = prefab.GetComponentInChildren<PuzzlePowerDeviceUIBase>(true);
@@ -474,6 +496,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateItemUsePrefab(PuzzleRecord puzzle, GameObject prefab)
         {
             PuzzleItemUseUIBase ui = prefab.GetComponentInChildren<PuzzleItemUseUIBase>(true);
@@ -499,6 +522,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateFinalSymbolItemPrefab(PuzzleRecord puzzle, GameObject prefab)
         {
             PuzzleSymbolCycleUIBase ui = prefab.GetComponentInChildren<PuzzleSymbolCycleUIBase>(true);
@@ -542,6 +566,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Require Switch Id operation while keeping its implementation details inside this script.
         private static void RequireSwitchId(HashSet<string> switchIds, string switchId, string owner)
         {
             if (!switchIds.Contains(switchId))
@@ -550,6 +575,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static void BuildAnswerMaps(PuzzleAnswerRecordList answers)
         {
             answerByVariableName.Clear();
@@ -580,6 +606,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static void BuildSymbolIds(SymbolRecordList symbols)
         {
             symbolIds.Clear();
@@ -617,6 +644,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Check Object Field operation while keeping its implementation details inside this script.
         private static void CheckObjectField(UnityEngine.Object target, string fieldName, string label, string owner, bool errorIfNull)
         {
             SerializedProperty property = GetProperty(target, fieldName);
@@ -641,24 +669,28 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static bool GetBoolField(UnityEngine.Object target, string fieldName, bool defaultValue)
         {
             SerializedProperty property = GetProperty(target, fieldName);
             return property != null ? property.boolValue : defaultValue;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetStringField(UnityEngine.Object target, string fieldName)
         {
             SerializedProperty property = GetProperty(target, fieldName);
             return property != null ? property.stringValue : string.Empty;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static int GetIntField(UnityEngine.Object target, string fieldName, int defaultValue)
         {
             SerializedProperty property = GetProperty(target, fieldName);
             return property != null ? property.intValue : defaultValue;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string[] GetStringArrayField(UnityEngine.Object target, string fieldName)
         {
             SerializedProperty property = GetProperty(target, fieldName);
@@ -676,6 +708,7 @@ namespace EscapeFromNightmare
             return values;
         }
 
+        // Performs the Require String In Array operation while keeping its implementation details inside this script.
         private static void RequireStringInArray(string[] values, string requiredValue, string label, string owner)
         {
             for (int i = 0; i < values.Length; i++)
@@ -689,6 +722,7 @@ namespace EscapeFromNightmare
             AddError(label + " is missing required value: " + owner + " / " + requiredValue);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static SerializedProperty GetProperty(UnityEngine.Object target, string fieldName)
         {
             if (target == null)
@@ -700,6 +734,7 @@ namespace EscapeFromNightmare
             return serializedObject.FindProperty(fieldName);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetHierarchyPath(GameObject obj)
         {
             if (obj == null)
@@ -718,18 +753,21 @@ namespace EscapeFromNightmare
             return path;
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string message)
         {
             errorCount++;
             Debug.LogError("[PuzzlePrefabContractValidator] " + message);
         }
 
+        // Records a non-blocking validation concern for follow-up review.
         private static void AddWarning(string message)
         {
             warningCount++;
             Debug.LogWarning("[PuzzlePrefabContractValidator] " + message);
         }
 
+        // Records contextual validation information that helps explain the current setup.
         private static void AddInfo(string message)
         {
             Debug.Log("[PuzzlePrefabContractValidator] " + message);

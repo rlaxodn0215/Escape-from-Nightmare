@@ -1,9 +1,17 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Hide Manager
+// Role: Coordinates a runtime system that other UI, puzzle, and interaction scripts call into.
+// Scope: This script belongs to Managers\HideManager.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Runtime owner for the Hide Manager system, keeping shared state and events behind one access point.
     public class HideManager : Singleton<HideManager>
     {
         [SerializeField] private float minHideSeconds = 5f;
@@ -12,9 +20,16 @@ namespace EscapeFromNightmare
         [SerializeField] private bool allowExitBeforeSafe = false;
         [SerializeField] private bool failChaseWhenExitEarly = true;
 
+        // Stores the is Hiding value used by this script's runtime or editor workflow.
         private bool isHiding;
+        // Stores the can Exit Safely value used by this script's runtime or editor workflow.
         private bool canExitSafely;
+        // Stores the current Hide Point Id value used by this script's runtime or editor workflow.
         private string currentHidePointId;
+        private string returnLocationId;
+        private string returnViewId;
+        private bool hasReturnPosition;
+        // Stores the hide Routine value used by this script's runtime or editor workflow.
         private Coroutine hideRoutine;
 
         public bool IsHiding
@@ -36,6 +51,7 @@ namespace EscapeFromNightmare
         public event Action<string> HideExited;
         public event Action<string> HideBecameSafe;
 
+        // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {
             if (applySettingsOnStart)
@@ -44,6 +60,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Enter Hide Point operation while keeping its implementation details inside this script.
         public void EnterHidePoint(string hidePointId)
         {
             string resolvedHidePointId = !string.IsNullOrEmpty(hidePointId) ? hidePointId : "UnknownHidePoint";
@@ -53,6 +70,8 @@ namespace EscapeFromNightmare
                 Debug.Log("Already hiding at: " + currentHidePointId);
                 return;
             }
+
+            CaptureReturnPosition();
 
             currentHidePointId = resolvedHidePointId;
             canExitSafely = false;
@@ -78,6 +97,7 @@ namespace EscapeFromNightmare
             hideRoutine = StartCoroutine(WaitForGhostToLeave());
         }
 
+        // Performs the Exit Hide Point operation while keeping its implementation details inside this script.
         public void ExitHidePoint()
         {
             if (!isHiding)
@@ -106,6 +126,7 @@ namespace EscapeFromNightmare
             ForceExitHidePoint();
         }
 
+        // Performs the Wait For Ghost To Leave operation while keeping its implementation details inside this script.
         public IEnumerator WaitForGhostToLeave()
         {
             yield return new WaitForSeconds(GetHideWaitSeconds());
@@ -131,6 +152,7 @@ namespace EscapeFromNightmare
             Debug.Log("Hide point is now safe to exit: " + currentHidePointId);
         }
 
+        // Performs the Force Exit Hide Point operation while keeping its implementation details inside this script.
         public void ForceExitHidePoint()
         {
             string exitedHidePointId = currentHidePointId;
@@ -148,9 +170,53 @@ namespace EscapeFromNightmare
                 HideExited(exitedHidePointId);
             }
 
+            RestoreReturnPosition();
+
             Debug.Log("Exited hide point: " + exitedHidePointId);
         }
 
+        private void CaptureReturnPosition()
+        {
+            if (LocationManager.Instance == null)
+            {
+                hasReturnPosition = false;
+                returnLocationId = string.Empty;
+                returnViewId = string.Empty;
+                return;
+            }
+
+            returnLocationId = LocationManager.Instance.CurrentLocationId;
+            returnViewId = LocationManager.Instance.CurrentViewId;
+            hasReturnPosition = !string.IsNullOrEmpty(returnLocationId);
+        }
+
+        private void RestoreReturnPosition()
+        {
+            if (!hasReturnPosition)
+            {
+                return;
+            }
+
+            string targetLocationId = returnLocationId;
+            string targetViewId = returnViewId;
+            hasReturnPosition = false;
+            returnLocationId = string.Empty;
+            returnViewId = string.Empty;
+
+            if (LocationManager.Instance == null)
+            {
+                return;
+            }
+
+            if (LocationManager.Instance.CurrentLocationId == targetLocationId && LocationManager.Instance.CurrentViewId == targetViewId)
+            {
+                return;
+            }
+
+            LocationManager.Instance.SetLocation(targetLocationId, targetViewId);
+        }
+
+        // Applies calculated settings to Unity components or runtime state.
         private void ApplySettings()
         {
             if (GameDataManager.Instance == null || GameDataManager.Instance.Settings == null)
@@ -170,6 +236,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private float GetHideWaitSeconds()
         {
             float min = Mathf.Max(0f, minHideSeconds);
@@ -190,11 +257,13 @@ namespace EscapeFromNightmare
             return UnityEngine.Random.Range(min, max);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private bool IsGhostThreatNearby()
         {
             return GhostManager.Instance != null && GhostManager.Instance.IsGhostThreateningCurrentLocation();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private void SetHidingState(bool value)
         {
             isHiding = value;

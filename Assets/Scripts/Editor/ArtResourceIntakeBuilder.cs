@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Art Resource Requirement
+// Role: Automates Unity Editor tasks such as scene building, prefab generation, resource validation, and report writing.
+// Scope: This script belongs to Editor\ArtResourceIntakeBuilder.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,25 +14,36 @@ using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Editor utility for the Art Resource Requirement workflow, exposed through menu items or called by other validation tools.
     internal class ArtResourceRequirement
     {
+        // Stores the type value used by this script's runtime or editor workflow.
         public string type;
+        // Stores the id value used by this script's runtime or editor workflow.
         public string id;
+        // Stores the resources Path value used by this script's runtime or editor workflow.
         public string resourcesPath;
+        // Stores the intake Folder value used by this script's runtime or editor workflow.
         public string intakeFolder;
+        // Stores the optional value used by this script's runtime or editor workflow.
         public bool optional;
     }
 
+    // Editor utility for the Art Resource Catalog workflow, exposed through menu items or called by other validation tools.
     internal static class ArtResourceCatalog
     {
+        // Stores the Art Intake Root value used by this script's runtime or editor workflow.
         public const string ArtIntakeRoot = "Assets/ArtIntake";
+        // Stores the Resources Root value used by this script's runtime or editor workflow.
         public const string ResourcesRoot = "Assets/Resources";
 
+        // Stores the Supported Extensions value used by this script's runtime or editor workflow.
         private static readonly string[] SupportedExtensions =
         {
             ".png", ".jpg", ".jpeg", ".psd", ".tga"
         };
 
+        // Stores the Required Clue Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredClueIds =
         {
             "BedroomPhotoCodeClue",
@@ -38,6 +56,7 @@ namespace EscapeFromNightmare
             "BasementClueImage"
         };
 
+        // Stores the Required Item Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredItemIds =
         {
             "OldDrawerKey",
@@ -47,6 +66,7 @@ namespace EscapeFromNightmare
             "FrontDoorKey"
         };
 
+        // Stores the Required Symbol Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredSymbolIds =
         {
             "Symbol_01",
@@ -57,6 +77,7 @@ namespace EscapeFromNightmare
             "Symbol_06"
         };
 
+        // Stores the Optional Resource Paths value used by this script's runtime or editor workflow.
         private static readonly string[] OptionalResourcePaths =
         {
             "UI/Buttons/DefaultButton",
@@ -108,6 +129,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public static List<ArtResourceRequirement> GetRequirements()
         {
             List<ArtResourceRequirement> requirements = new List<ArtResourceRequirement>();
@@ -150,6 +172,7 @@ namespace EscapeFromNightmare
             return requirements;
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         public static void EnsureFolders()
         {
             for (int i = 0; i < IntakeFolders.Length; i++)
@@ -163,6 +186,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         public static void EnsureFolder(string assetPath)
         {
             if (AssetDatabase.IsValidFolder(assetPath))
@@ -190,6 +214,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public static string FindExistingAssetPath(string resourcesPath)
         {
             if (string.IsNullOrEmpty(resourcesPath))
@@ -210,6 +235,7 @@ namespace EscapeFromNightmare
             return string.Empty;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public static string FindMatchingIntakePath(ArtResourceRequirement requirement)
         {
             if (requirement == null || string.IsNullOrEmpty(requirement.resourcesPath))
@@ -231,6 +257,7 @@ namespace EscapeFromNightmare
             return string.Empty;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public static string GetTargetAssetPath(ArtResourceRequirement requirement, string sourcePath)
         {
             if (requirement == null || string.IsNullOrEmpty(requirement.resourcesPath))
@@ -242,6 +269,7 @@ namespace EscapeFromNightmare
             return (ResourcesRoot + "/" + requirement.resourcesPath + extension).Replace("\\", "/");
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public static bool IsSupportedImagePath(string assetPath)
         {
             string extension = Path.GetExtension(assetPath);
@@ -256,6 +284,7 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public static List<string> FindVisualResourceImageAssets()
         {
             List<string> assets = new List<string>();
@@ -273,11 +302,13 @@ namespace EscapeFromNightmare
             return assets;
         }
 
+        // Performs the Escape operation while keeping its implementation details inside this script.
         public static string Escape(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value.Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static ArtResourceRequirement Create(string type, string id, string resourcesPath, bool optional)
         {
             return new ArtResourceRequirement
@@ -290,6 +321,7 @@ namespace EscapeFromNightmare
             };
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetIntakeFolder(string resourcesPath)
         {
             if (string.IsNullOrEmpty(resourcesPath))
@@ -430,22 +462,33 @@ namespace EscapeFromNightmare
         }
     }
 
+    // Editor utility for the Art Resource Intake Builder workflow, exposed through menu items or called by other validation tools.
     public static class ArtResourceIntakeBuilder
     {
+        // Editor utility for the Intake Row workflow, exposed through menu items or called by other validation tools.
         private class IntakeRow
         {
+            // Stores the requirement value used by this script's runtime or editor workflow.
             public ArtResourceRequirement requirement;
+            // Stores the resources Asset Path value used by this script's runtime or editor workflow.
             public string resourcesAssetPath;
+            // Stores the intake Asset Path value used by this script's runtime or editor workflow.
             public string intakeAssetPath;
+            // Stores the ready To Copy value used by this script's runtime or editor workflow.
             public bool readyToCopy;
         }
 
+        // Stores the copied value used by this script's runtime or editor workflow.
         private static readonly List<string> copied = new List<string>();
+        // Stores the backups value used by this script's runtime or editor workflow.
         private static readonly List<string> backups = new List<string>();
+        // Stores the warnings value used by this script's runtime or editor workflow.
         private static readonly List<string> warnings = new List<string>();
+        // Stores the errors value used by this script's runtime or editor workflow.
         private static readonly List<string> errors = new List<string>();
 
         [MenuItem("Escape From Nightmare/Art Resources/Prepare Art Intake Folders")]
+        // Performs the Prepare Art Intake Folders operation while keeping its implementation details inside this script.
         public static void PrepareArtIntakeFolders()
         {
             Reset();
@@ -457,6 +500,7 @@ namespace EscapeFromNightmare
         }
 
         [MenuItem("Escape From Nightmare/Art Resources/Generate Art Resource Intake Report")]
+        // Performs the Generate Art Resource Intake Report operation while keeping its implementation details inside this script.
         public static void GenerateArtResourceIntakeReport()
         {
             Reset();
@@ -467,6 +511,7 @@ namespace EscapeFromNightmare
         }
 
         [MenuItem("Escape From Nightmare/Art Resources/Copy Matching ArtIntake Files To Resources With Backup")]
+        // Performs the Copy Matching Art Intake Files To Resources With Backup operation while keeping its implementation details inside this script.
         public static void CopyMatchingArtIntakeFilesToResourcesWithBackup()
         {
             Reset();
@@ -516,6 +561,7 @@ namespace EscapeFromNightmare
             Debug.Log("[ArtResourceIntakeBuilder] Copy completed. Copied: " + copyCount + ", Errors: " + errors.Count);
         }
 
+        // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static List<IntakeRow> BuildRows()
         {
             List<ArtResourceRequirement> requirements = ArtResourceCatalog.GetRequirements();
@@ -537,6 +583,7 @@ namespace EscapeFromNightmare
             return rows;
         }
 
+        // Writes validation or generation results to a report that can be inspected from the project files.
         private static void WriteReport(List<IntakeRow> rows, bool copyAttempted, string backupFolder)
         {
             string path = Path.Combine(Application.dataPath, "Docs/GeneratedArtResourceIntakeReport.md");
@@ -588,6 +635,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static string GetStatus(IntakeRow row)
         {
             if (row == null || row.requirement == null)
@@ -608,6 +656,7 @@ namespace EscapeFromNightmare
             return row.requirement.optional ? "Optional Missing" : "Missing";
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static int CountRequired(List<IntakeRow> rows)
         {
             int count = 0;
@@ -622,6 +671,7 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static int CountResourcesFound(List<IntakeRow> rows, bool optional)
         {
             int count = 0;
@@ -636,6 +686,7 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static int CountReady(List<IntakeRow> rows)
         {
             int count = 0;
@@ -650,6 +701,7 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private static int CountMissing(List<IntakeRow> rows, bool optional)
         {
             int count = 0;
@@ -664,6 +716,7 @@ namespace EscapeFromNightmare
             return count;
         }
 
+        // Adds a formatted section, row, or detail line to a report or UI string builder.
         private static void AppendList(StringBuilder builder, string title, List<string> values)
         {
             builder.AppendLine();
@@ -681,12 +734,14 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Performs the Write Intake Guide Seed operation while keeping its implementation details inside this script.
         private static void WriteIntakeGuideSeed()
         {
             string docsFolder = Path.Combine(Application.dataPath, "Docs");
             Directory.CreateDirectory(docsFolder);
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private static void Reset()
         {
             copied.Clear();
@@ -695,6 +750,7 @@ namespace EscapeFromNightmare
             errors.Clear();
         }
 
+        // Records a blocking validation problem for the final report and console output.
         private static void AddError(string message)
         {
             errors.Add(message);

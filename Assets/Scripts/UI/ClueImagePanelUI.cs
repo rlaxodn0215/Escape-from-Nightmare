@@ -1,8 +1,16 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Clue Image Panel UI
+// Role: Updates visible Unity UI elements so the screen reflects the current game, save, inventory, or title state.
+// Scope: This script belongs to UI\ClueImagePanelUI.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+    // Presentation controller for Clue Image Panel UI UI elements, keeping references cached and visuals synchronized.
     public class ClueImagePanelUI : MonoBehaviour
     {
         [SerializeField] private GameObject rootObject;
@@ -24,6 +32,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Caches required component references and prepares this object before other startup code runs.
         private void Awake()
         {
             EnsureRootObject();
@@ -34,6 +43,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Reconnects event subscriptions and visible state whenever this object becomes active.
         private void OnEnable()
         {
             if (closeButton != null)
@@ -43,6 +53,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Disconnects event subscriptions so inactive objects do not receive duplicate callbacks.
         private void OnDisable()
         {
             if (closeButton != null)
@@ -51,6 +62,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private void Reset()
         {
             EnsureRootObject();
@@ -61,6 +73,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Makes the related panel or visual element visible and fills in its current content.
         public void ShowClue(ClueRecord record, Sprite sprite)
         {
             if (record == null)
@@ -93,6 +106,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Makes the related panel or visual element visible and fills in its current content.
         public void ShowLockedMessage(string message)
         {
             SetRootActive(true);
@@ -119,6 +133,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Makes the related panel or visual element visible and fills in its current content.
         public void ShowMessageOnly(string title, string message)
         {
             SetRootActive(true);
@@ -145,6 +160,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Hides the related panel or visual element and clears transient interaction state.
         public void Hide()
         {
             if (clueImage != null)
@@ -171,6 +187,7 @@ namespace EscapeFromNightmare
             SetRootActive(false);
         }
 
+        // Handles a UI button press and routes it to the matching game flow.
         private void HandleCloseClicked()
         {
             if (ClueImageManager.Instance != null)
@@ -182,12 +199,14 @@ namespace EscapeFromNightmare
             Hide();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         private void SetRootActive(bool active)
         {
             EnsureRootObject();
             rootObject.SetActive(active);
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private string GetDisplayTitle(ClueRecord record)
         {
             if (record == null)
@@ -198,11 +217,13 @@ namespace EscapeFromNightmare
             return !string.IsNullOrEmpty(record.displayName) ? record.displayName : record.clueId;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private string GetDescription(ClueRecord record)
         {
             return record != null && !string.IsNullOrEmpty(record.description) ? record.description : string.Empty;
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private void EnsureRootObject()
         {
             if (rootObject == null)

@@ -1,14 +1,23 @@
+// -----------------------------------------------------------------------------
+// Codex comment pass: Location Controller
+// Role: Connects scene objects and UI buttons to player interactions such as movement, pickup, hiding, and puzzle access.
+// Scope: This script belongs to Interaction\LocationController.cs and keeps its behavior isolated to that folder's responsibility.
+// Maintenance note: These comments explain intent only; they do not change serialized fields, scene wiring, or runtime behavior.
+// -----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EscapeFromNightmare
 {
+    // Scene interaction component for Location Controller, converting player input into manager-level requests.
     public class LocationController : MonoBehaviour
     {
         [SerializeField] private string locationId;
         [SerializeField] private string defaultViewId;
         [SerializeField] private List<LocationView> views = new List<LocationView>();
 
+        // Stores the current View Index value used by this script's runtime or editor workflow.
         private int currentViewIndex = -1;
 
         public string LocationId
@@ -39,6 +48,7 @@ namespace EscapeFromNightmare
             get { return views; }
         }
 
+        // Performs the Cache Views operation while keeping its implementation details inside this script.
         public void CacheViews()
         {
             LocationView[] foundViews = GetComponentsInChildren<LocationView>(true);
@@ -55,11 +65,13 @@ namespace EscapeFromNightmare
             ValidateIds();
         }
 
+        // Stores an incoming value and updates any dependent visual or runtime state.
         public void SetLocationActive(bool active)
         {
             gameObject.SetActive(active);
         }
 
+        // Performs the Activate Default View operation while keeping its implementation details inside this script.
         public bool ActivateDefaultView()
         {
             EnsureViews();
@@ -80,6 +92,7 @@ namespace EscapeFromNightmare
             return false;
         }
 
+        // Performs the Activate View operation while keeping its implementation details inside this script.
         public bool ActivateView(string viewId)
         {
             EnsureViews();
@@ -96,6 +109,7 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Performs the Rotate View operation while keeping its implementation details inside this script.
         public bool RotateView(int delta)
         {
             EnsureViews();
@@ -123,11 +137,13 @@ namespace EscapeFromNightmare
             return true;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public bool HasView(string viewId)
         {
             return FindViewIndex(viewId) >= 0;
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public LocationView GetView(string viewId)
         {
             int index = FindViewIndex(viewId);
@@ -139,6 +155,7 @@ namespace EscapeFromNightmare
             return views[index];
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         public string GetViewIdByOffset(int delta)
         {
             EnsureViews();
@@ -163,6 +180,7 @@ namespace EscapeFromNightmare
             return views[nextIndex] != null ? views[nextIndex].ViewId : null;
         }
 
+        // Re-reads current game data and manager state, then redraws the visible UI.
         public void RefreshViewVisibility()
         {
             EnsureViews();
@@ -176,6 +194,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Queries current data or scene state and returns a value used by the caller's next branch.
         private int FindViewIndex(string viewId)
         {
             if (string.IsNullOrEmpty(viewId))
@@ -196,17 +215,20 @@ namespace EscapeFromNightmare
             return -1;
         }
 
+        // Provides safe default Inspector values when the component is first attached.
         private void Reset()
         {
             CacheViews();
             ValidateIds();
         }
 
+        // Keeps Inspector-edited values and cached references valid while working in the editor.
         private void OnValidate()
         {
             ValidateIds();
         }
 
+        // Finds or creates a required reference so later logic can run without null setup errors.
         private void EnsureViews()
         {
             if (views == null)
@@ -220,6 +242,7 @@ namespace EscapeFromNightmare
             }
         }
 
+        // Checks scene, prefab, resource, or data requirements and records any issues found.
         private void ValidateIds()
         {
             if (string.IsNullOrEmpty(locationId))

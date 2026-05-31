@@ -15,6 +15,7 @@
 - GhostManager
 - HideManager
 - ChaseManager
+- ScreenFadeManager
 
 ## UI Roots
 
@@ -25,8 +26,11 @@
 - ClueImagePanel
 - GameOverPanel
 - EndingPanel
-- HideExitButton
+- HideViewRoot
+- HideViewRoot/Background
+- HideViewRoot/HideExitButton
 - GhostStatusPanel
+- ScreenFadeOverlay
 
 ## Door Buttons
 
@@ -53,7 +57,7 @@
 
 | Puzzle ID | Parent View | Button Name |
 |---|---|---|
-| Puzzle_Bedroom_01 | Bedroom_Front | Button_Puzzle_Puzzle_Bedroom_01 |
+| Puzzle_Bedroom_01 | Bedroom_Back | Button_Puzzle_Puzzle_Bedroom_01 |
 | Puzzle_LivingRoom_01 | LivingRoom_Front | Button_Puzzle_Puzzle_LivingRoom_01 |
 | Puzzle_ChildRoom_01 | ChildRoom_Front | Button_Puzzle_Puzzle_ChildRoom_01 |
 | Puzzle_Study_01 | Study_Front | Button_Puzzle_Puzzle_Study_01 |
@@ -67,9 +71,9 @@
 
 | Clue ID | Parent View | Button Name |
 |---|---|---|
-| BedroomPhotoCodeClue | Bedroom_Left | Button_Clue_BedroomPhotoCodeClue |
+| BedroomPhotoCodeClue | Bedroom_Back | Button_Clue_BedroomPhotoCodeClue |
 | LivingRoomEntranceCodeClue | LivingRoom_Front | Button_Clue_LivingRoomEntranceCodeClue |
-| ChildRoomCardSymbolClueImage | ChildRoom_Right | Button_Clue_ChildRoomCardSymbolClueImage |
+| ChildRoomCardSymbolClueImage | ChildRoom_Back | Button_Clue_ChildRoomCardSymbolClueImage |
 | StudyBookSymbolClueImage | Study_Right | Button_Clue_StudyBookSymbolClueImage |
 | KitchenCodeClueImage | LivingRoom_Back | Button_Clue_KitchenCodeClueImage |
 | KitchenFridgeSurfaceSymbolClue | Kitchen_Front | Button_Clue_KitchenFridgeSurfaceSymbolClue |
