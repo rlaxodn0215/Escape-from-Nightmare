@@ -3,34 +3,10 @@
     {
       "locationId": "Bedroom",
       "displayName": "Bedroom",
-      "defaultViewId": "Bedroom_Front",
+      "defaultViewId": "Bedroom_Back",
       "viewIds": [
         "Bedroom_Front",
         "Bedroom_Back"
-      ],
-      "isConnectorLocation": false
-    },
-    {
-      "locationId": "ChildRoom",
-      "displayName": "Child Room",
-      "defaultViewId": "ChildRoom_Front",
-      "viewIds": [
-        "ChildRoom_Front",
-        "ChildRoom_Right",
-        "ChildRoom_Back",
-        "ChildRoom_Left"
-      ],
-      "isConnectorLocation": false
-    },
-    {
-      "locationId": "Study",
-      "displayName": "Study",
-      "defaultViewId": "Study_Front",
-      "viewIds": [
-        "Study_Front",
-        "Study_Right",
-        "Study_Back",
-        "Study_Left"
       ],
       "isConnectorLocation": false
     },
@@ -45,6 +21,66 @@
       "isConnectorLocation": true
     },
     {
+      "locationId": "ChildRoom",
+      "displayName": "Child Room",
+      "defaultViewId": "ChildRoom_Front",
+      "viewIds": [
+        "ChildRoom_Front",
+        "ChildRoom_Back"
+      ],
+      "isConnectorLocation": false
+    },
+    {
+      "locationId": "Study",
+      "displayName": "Study",
+      "defaultViewId": "Study_Front",
+      "viewIds": [
+        "Study_Front",
+        "Study_Back"
+      ],
+      "isConnectorLocation": false
+    },
+    {
+      "locationId": "SecondFloorStairs",
+      "displayName": "Second Floor Stairs",
+      "defaultViewId": "SecondFloorStairs_Front",
+      "viewIds": [
+        "SecondFloorStairs_Front",
+        "SecondFloorStairs_Back"
+      ],
+      "isConnectorLocation": true
+    },
+    {
+      "locationId": "FirstFloorHall",
+      "displayName": "First Floor Hall",
+      "defaultViewId": "FirstFloorHall_Front",
+      "viewIds": [
+        "FirstFloorHall_Front",
+        "FirstFloorHall_Back"
+      ],
+      "isConnectorLocation": true
+    },
+    {
+      "locationId": "Entrance",
+      "displayName": "Entrance",
+      "defaultViewId": "Entrance_Front",
+      "viewIds": [
+        "Entrance_Front",
+        "Entrance_Back"
+      ],
+      "isConnectorLocation": false
+    },
+    {
+      "locationId": "SmallLivingRoom",
+      "displayName": "Small Living Room",
+      "defaultViewId": "SmallLivingRoom_Front",
+      "viewIds": [
+        "SmallLivingRoom_Front",
+        "SmallLivingRoom_Back"
+      ],
+      "isConnectorLocation": false
+    },
+    {
       "locationId": "LivingRoom",
       "displayName": "Living Room",
       "defaultViewId": "LivingRoom_Front",
@@ -55,22 +91,24 @@
       "isConnectorLocation": false
     },
     {
-      "locationId": "Entrance",
-      "displayName": "Entrance",
-      "defaultViewId": "Entrance_Front",
-      "viewIds": [
-        "Entrance_Front"
-      ],
-      "isConnectorLocation": false
-    },
-    {
       "locationId": "Kitchen",
       "displayName": "Kitchen",
       "defaultViewId": "Kitchen_Front",
       "viewIds": [
-        "Kitchen_Front"
+        "Kitchen_Front",
+        "Kitchen_Back"
       ],
       "isConnectorLocation": false
+    },
+    {
+      "locationId": "BasementStairs",
+      "displayName": "Basement Stairs",
+      "defaultViewId": "BasementStairs_Front",
+      "viewIds": [
+        "BasementStairs_Front",
+        "BasementStairs_Back"
+      ],
+      "isConnectorLocation": true
     },
     {
       "locationId": "BasementStorage",
@@ -78,21 +116,7 @@
       "defaultViewId": "BasementStorage_Front",
       "viewIds": [
         "BasementStorage_Front",
-        "BasementStorage_Right",
-        "BasementStorage_Back",
-        "BasementStorage_Left"
-      ],
-      "isConnectorLocation": false
-    },
-    {
-      "locationId": "LockedRoom",
-      "displayName": "Locked Room",
-      "defaultViewId": "LockedRoom_Front",
-      "viewIds": [
-        "LockedRoom_Front",
-        "LockedRoom_Right",
-        "LockedRoom_Back",
-        "LockedRoom_Left"
+        "BasementStorage_Back"
       ],
       "isConnectorLocation": false
     }

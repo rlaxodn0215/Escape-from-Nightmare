@@ -82,6 +82,12 @@ namespace EscapeFromNightmare
         {
             ApplySettings();
 
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                StopPatrol();
+                return;
+            }
+
             if (autoStartPatrolOnStart)
             {
                 StartPatrol();
@@ -100,6 +106,12 @@ namespace EscapeFromNightmare
         // Begins this system's runtime flow and initializes any timers, events, or counters it needs.
         public void StartPatrol()
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                StopPatrol();
+                return;
+            }
+
             targetNoiseLocationId = string.Empty;
             ResetDanger();
             SetRuntimeState(GhostRuntimeState.Patrolling);
@@ -123,6 +135,11 @@ namespace EscapeFromNightmare
         // Performs the React To Noise operation while keeping its implementation details inside this script.
         public void ReactToNoise(string locationId)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(locationId))
             {
                 Debug.LogWarning("Ghost cannot react to noise without a locationId.");
@@ -149,6 +166,11 @@ namespace EscapeFromNightmare
         // Performs the Enter Location operation while keeping its implementation details inside this script.
         public void EnterLocation(string locationId)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(locationId))
             {
                 Debug.LogWarning("Ghost cannot enter an empty locationId.");
@@ -193,6 +215,11 @@ namespace EscapeFromNightmare
         // Begins this system's runtime flow and initializes any timers, events, or counters it needs.
         public void StartChase()
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                return;
+            }
+
             if (runtimeState == GhostRuntimeState.Chasing)
             {
                 return;

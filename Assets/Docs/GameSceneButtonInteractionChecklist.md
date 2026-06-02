@@ -13,16 +13,20 @@
 - [ ] Door_ChildRoom_SecondFloorHallway
 - [ ] Door_SecondFloorHallway_Study
 - [ ] Door_Study_SecondFloorHallway
-- [ ] Door_SecondFloorHallway_LivingRoom
-- [ ] Door_LivingRoom_SecondFloorHallway
-- [ ] Door_LivingRoom_Kitchen
-- [ ] Door_Kitchen_LivingRoom
-- [ ] Door_Kitchen_BasementStorage
-- [ ] Door_BasementStorage_Kitchen
-- [ ] Door_BasementStorage_LockedRoom
-- [ ] Door_LockedRoom_BasementStorage
-- [ ] Door_LivingRoom_Entrance
-- [ ] Door_Entrance_LivingRoom
+- [ ] Door_SecondFloorHallway_FirstFloorHall
+- [ ] Door_FirstFloorHall_SecondFloorHallway
+- [ ] Door_Entrance_FirstFloorHall
+- [ ] Door_FirstFloorHall_Entrance
+- [ ] Door_FirstFloorHall_SmallLivingRoom
+- [ ] Door_SmallLivingRoom_FirstFloorHall
+- [ ] Door_FirstFloorHall_LivingRoom
+- [ ] Door_LivingRoom_FirstFloorHall
+- [ ] Door_FirstFloorHall_Kitchen
+- [ ] Door_Kitchen_FirstFloorHall
+- [ ] Door_Kitchen_BasementStairs
+- [ ] Door_BasementStairs_Kitchen
+- [ ] Door_BasementStairs_BasementStorage
+- [ ] Door_BasementStorage_BasementStairs
 
 ## Puzzle Buttons
 
@@ -50,8 +54,7 @@
 ## HidePoint
 
 - [ ] HidePoint_Bedroom_Closet
-- [ ] HidePoint_SecondFloorHallway_Cabinet
-- [ ] HidePoint_Study_Desk
+- [ ] HidePoint_Bedroom_CurtainCloset
 
 ## FinalDoor
 

@@ -1,6 +1,6 @@
 # Source Route Scene Wiring Report
 
-- Generated At: 2026-05-31 15:30:50
+- Generated At: 2026-06-02 21:45:16
 - Active Scene: GameScene
 - Errors: 0
 - Warnings: 0
@@ -29,49 +29,47 @@
 | Location ID | Found | Views Found | Result |
 |---|---:|---:|---|
 | Bedroom | 1 | 2 | Found |
-| ChildRoom | 1 | 2 | Found |
-| Study | 1 | 4 | Found |
 | SecondFloorHallway | 1 | 2 | Found |
+| ChildRoom | 1 | 2 | Found |
+| Study | 1 | 2 | Found |
+| SecondFloorStairs | 1 | 2 | Found |
+| FirstFloorHall | 1 | 2 | Found |
+| Entrance | 1 | 2 | Found |
+| SmallLivingRoom | 1 | 2 | Found |
 | LivingRoom | 1 | 2 | Found |
-| Entrance | 1 | 1 | Found |
-| Kitchen | 1 | 1 | Found |
-| BasementStorage | 1 | 4 | Found |
-| LockedRoom | 1 | 4 | Found |
+| Kitchen | 1 | 2 | Found |
+| BasementStairs | 1 | 2 | Found |
+| BasementStorage | 1 | 2 | Found |
 
 ## Required Door Buttons
 
 | Door ID | Found | Button Path | Result |
 |---|---:|---|---|
 | Door_Bedroom_SecondFloorHallway | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Door_Door_Bedroom_SecondFloorHallway | Found |
-| Door_SecondFloorHallway_Bedroom | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom | Found |
-| Door_SecondFloorHallway_ChildRoom | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom | Found |
+| Door_SecondFloorHallway_Bedroom | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom | Found |
+| Door_SecondFloorHallway_ChildRoom | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom | Found |
 | Door_ChildRoom_SecondFloorHallway | 1 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway | Found |
-| Door_SecondFloorHallway_Study | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study | Found |
-| Door_Study_SecondFloorHallway | 1 | Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway | Found |
-| Door_SecondFloorHallway_LivingRoom | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_LivingRoom | Found |
-| Door_LivingRoom_SecondFloorHallway | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_SecondFloorHallway | Found |
-| Door_LivingRoom_Kitchen | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_Kitchen | Found |
-| Door_Kitchen_LivingRoom | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_LivingRoom | Found |
-| Door_Kitchen_BasementStorage | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_BasementStorage | Found |
-| Door_BasementStorage_Kitchen | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_Kitchen | Found |
-| Door_BasementStorage_LockedRoom | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer/Button_Door_Door_BasementStorage_LockedRoom | Found |
-| Door_LockedRoom_BasementStorage | 1 | Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Door_Door_LockedRoom_BasementStorage | Found |
-| Door_LivingRoom_Entrance | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_Entrance | Found |
-| Door_Entrance_LivingRoom | 1 | Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_LivingRoom | Found |
+| Door_SecondFloorHallway_Study | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study | Found |
+| Door_Study_SecondFloorHallway | 1 | Canvas/LocationRoot/Location_Study/View_Study_Back/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway | Found |
+| Door_SecondFloorHallway_FirstFloorHall | 1 | Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_FirstFloorHall | Found |
+| Door_FirstFloorHall_SecondFloorHallway | 1 | Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer/Button_Door_Door_FirstFloorHall_SecondFloorHallway | Found |
+| Door_Entrance_FirstFloorHall | 1 | Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_FirstFloorHall | Found |
+| Door_FirstFloorHall_Entrance | 1 | Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_Entrance | Found |
+| Door_SmallLivingRoom_FirstFloorHall | 1 | Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Front/ButtonLayer/Button_Door_Door_SmallLivingRoom_FirstFloorHall | Found |
+| Door_FirstFloorHall_SmallLivingRoom | 1 | Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_SmallLivingRoom | Found |
+| Door_LivingRoom_FirstFloorHall | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_FirstFloorHall | Found |
+| Door_FirstFloorHall_LivingRoom | 1 | Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_LivingRoom | Found |
+| Door_Kitchen_FirstFloorHall | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_FirstFloorHall | Found |
+| Door_FirstFloorHall_Kitchen | 1 | Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer/Button_Door_Door_FirstFloorHall_Kitchen | Found |
+| Door_Kitchen_BasementStairs | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Back/ButtonLayer/Button_Door_Door_Kitchen_BasementStairs | Found |
+| Door_BasementStairs_Kitchen | 1 | Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Front/ButtonLayer/Button_Door_Door_BasementStairs_Kitchen | Found |
+| Door_BasementStairs_BasementStorage | 1 | Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Back/ButtonLayer/Button_Door_Door_BasementStairs_BasementStorage | Found |
+| Door_BasementStorage_BasementStairs | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_BasementStairs | Found |
 
 ## Required Puzzle Buttons
 
 | Puzzle ID | Found | Button Path | Prefab Load | Result |
 |---|---:|---|---|---|
-| Puzzle_Bedroom_01 | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01 | Loaded | Found |
-| Puzzle_LivingRoom_01 | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01 | Loaded | Found |
-| Puzzle_ChildRoom_01 | 1 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01 | Loaded | Found |
-| Puzzle_Study_01 | 1 | Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01 | Loaded | Found |
-| Puzzle_LivingRoom_02 | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_02 | Loaded | Found |
-| Puzzle_Kitchen_01 | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Puzzle_Puzzle_Kitchen_01 | Loaded | Found |
-| Puzzle_BasementStorage_01 | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Puzzle_Puzzle_BasementStorage_01 | Loaded | Found |
-| Puzzle_LockedRoom_01 | 1 | Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LockedRoom_01 | Loaded | Found |
-| Puzzle_Entrance_01 | 1 | Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Puzzle_Puzzle_Entrance_01 | Loaded | Found |
 
 ## Recommended ExamineImage Buttons
 
@@ -80,17 +78,17 @@
 | BedroomPhotoCodeClue | 1 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Clue_BedroomPhotoCodeClue | Found |
 | LivingRoomEntranceCodeClue | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue | Found |
 | ChildRoomCardSymbolClueImage | 1 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage | Found |
-| StudyBookSymbolClueImage | 1 | Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage | Found |
+| StudyBookSymbolClueImage | 1 | Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Clue_StudyBookSymbolClueImage | Found |
 | KitchenCodeClueImage | 1 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage | Found |
 | KitchenFridgeSurfaceSymbolClue | 1 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue | Found |
-| BasementPowerPatternClue | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer/Button_Clue_BasementPowerPatternClue | Found |
+| BasementPowerPatternClue | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Clue_BasementPowerPatternClue | Found |
 | BasementClueImage | 1 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer/Button_Clue_BasementClueImage | Found |
 
 ## Final Door / Entrance
 
 | Requirement | Found | Result | Notes |
 |---|---:|---|---|
-| Puzzle_Entrance_01 or FinalDoor FrontDoorKey | 1 | OK | Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_FinalDoor_FrontDoorKey requiredItemId=FrontDoorKey linkedPuzzleId=Puzzle_Entrance_01 |
+| Puzzle_Entrance_01 or FinalDoor FrontDoorKey | 0 | Missing |  |
 
 ## Missing Wiring
 

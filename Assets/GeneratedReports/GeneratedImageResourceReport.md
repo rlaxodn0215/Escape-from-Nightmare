@@ -1,15 +1,15 @@
 # Visual Resource Validation Report
 
-- Generated At: 2026-05-31 15:31:38
+- Generated At: 2026-06-01 23:16:53
 - Errors: 0
 - Warnings: 0
 - Info: 3
-- Required Found: 41
+- Required Found: 43
 - Required Missing: 0
 - Optional Found: 0
 - Optional Missing: 3
 - ArtIntake Ready: 0
-- Resources Ready: 41
+- Resources Ready: 43
 
 ## Backgrounds
 
@@ -17,26 +17,28 @@
 |---|---|---:|---|---|---|---|---|---|
 | Bedroom_Front | Backgrounds/Bedroom_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Bedroom_Front.png |
 | Bedroom_Back | Backgrounds/Bedroom_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Bedroom_Back.png |
+| SecondFloorHallway_Front | Backgrounds/SecondFloorHallway_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SecondFloorHallway_Front.png |
+| SecondFloorHallway_Back | Backgrounds/SecondFloorHallway_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SecondFloorHallway_Back.png |
 | ChildRoom_Front | Backgrounds/ChildRoom_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/ChildRoom_Front.png |
 | ChildRoom_Back | Backgrounds/ChildRoom_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/ChildRoom_Back.png |
 | Study_Front | Backgrounds/Study_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Study_Front.png |
-| Study_Right | Backgrounds/Study_Right | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Study_Right.png |
 | Study_Back | Backgrounds/Study_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Study_Back.png |
-| Study_Left | Backgrounds/Study_Left | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Study_Left.png |
-| SecondFloorHallway_Front | Backgrounds/SecondFloorHallway_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SecondFloorHallway_Front.png |
-| SecondFloorHallway_Back | Backgrounds/SecondFloorHallway_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SecondFloorHallway_Back.png |
+| SecondFloorStairs_Front | Backgrounds/SecondFloorStairs_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SecondFloorStairs_Front.png |
+| SecondFloorStairs_Back | Backgrounds/SecondFloorStairs_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SecondFloorStairs_Back.png |
+| FirstFloorHall_Front | Backgrounds/FirstFloorHall_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/FirstFloorHall_Front.png |
+| FirstFloorHall_Back | Backgrounds/FirstFloorHall_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/FirstFloorHall_Back.png |
+| Entrance_Front | Backgrounds/Entrance_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Entrance_Front.png |
+| Entrance_Back | Backgrounds/Entrance_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Entrance_Back.png |
+| SmallLivingRoom_Front | Backgrounds/SmallLivingRoom_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SmallLivingRoom_Front.png |
+| SmallLivingRoom_Back | Backgrounds/SmallLivingRoom_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/SmallLivingRoom_Back.png |
 | LivingRoom_Front | Backgrounds/LivingRoom_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/LivingRoom_Front.png |
 | LivingRoom_Back | Backgrounds/LivingRoom_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/LivingRoom_Back.png |
-| Entrance_Front | Backgrounds/Entrance_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Entrance_Front.png |
 | Kitchen_Front | Backgrounds/Kitchen_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Kitchen_Front.png |
+| Kitchen_Back | Backgrounds/Kitchen_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/Kitchen_Back.png |
+| BasementStairs_Front | Backgrounds/BasementStairs_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/BasementStairs_Front.png |
+| BasementStairs_Back | Backgrounds/BasementStairs_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/BasementStairs_Back.png |
 | BasementStorage_Front | Backgrounds/BasementStorage_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/BasementStorage_Front.png |
-| BasementStorage_Right | Backgrounds/BasementStorage_Right | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/BasementStorage_Right.png |
 | BasementStorage_Back | Backgrounds/BasementStorage_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/BasementStorage_Back.png |
-| BasementStorage_Left | Backgrounds/BasementStorage_Left | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/BasementStorage_Left.png |
-| LockedRoom_Front | Backgrounds/LockedRoom_Front | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/LockedRoom_Front.png |
-| LockedRoom_Right | Backgrounds/LockedRoom_Right | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/LockedRoom_Right.png |
-| LockedRoom_Back | Backgrounds/LockedRoom_Back | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/LockedRoom_Back.png |
-| LockedRoom_Left | Backgrounds/LockedRoom_Left | Yes | 1920x1080 / 1920x1080 | type=Sprite, alpha=True, compression=Uncompressed, max=4096 | OK |  | Resources Ready | Assets/Resources/Backgrounds/LockedRoom_Left.png |
 
 ## Clue Images
 

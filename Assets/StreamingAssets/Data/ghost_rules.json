@@ -10,6 +10,15 @@
       "dangerIncreasePerSecond": 0.25
     },
     {
+      "ruleId": "GhostRule_SecondFloorHallway",
+      "locationId": "SecondFloorHallway",
+      "minArrivalTime": 4,
+      "maxArrivalTime": 10,
+      "minLeaveTime": 5,
+      "maxLeaveTime": 16,
+      "dangerIncreasePerSecond": 0.3
+    },
+    {
       "ruleId": "GhostRule_ChildRoom",
       "locationId": "ChildRoom",
       "minArrivalTime": 5,
@@ -28,8 +37,8 @@
       "dangerIncreasePerSecond": 0.3
     },
     {
-      "ruleId": "GhostRule_SecondFloorHallway",
-      "locationId": "SecondFloorHallway",
+      "ruleId": "GhostRule_SecondFloorStairs",
+      "locationId": "SecondFloorStairs",
       "minArrivalTime": 4,
       "maxArrivalTime": 10,
       "minLeaveTime": 5,
@@ -37,8 +46,8 @@
       "dangerIncreasePerSecond": 0.3
     },
     {
-      "ruleId": "GhostRule_LivingRoom",
-      "locationId": "LivingRoom",
+      "ruleId": "GhostRule_FirstFloorHall",
+      "locationId": "FirstFloorHall",
       "minArrivalTime": 4,
       "maxArrivalTime": 9,
       "minLeaveTime": 6,
@@ -55,6 +64,24 @@
       "dangerIncreasePerSecond": 0.45
     },
     {
+      "ruleId": "GhostRule_SmallLivingRoom",
+      "locationId": "SmallLivingRoom",
+      "minArrivalTime": 4,
+      "maxArrivalTime": 9,
+      "minLeaveTime": 6,
+      "maxLeaveTime": 18,
+      "dangerIncreasePerSecond": 0.32
+    },
+    {
+      "ruleId": "GhostRule_LivingRoom",
+      "locationId": "LivingRoom",
+      "minArrivalTime": 4,
+      "maxArrivalTime": 9,
+      "minLeaveTime": 6,
+      "maxLeaveTime": 18,
+      "dangerIncreasePerSecond": 0.32
+    },
+    {
       "ruleId": "GhostRule_Kitchen",
       "locationId": "Kitchen",
       "minArrivalTime": 3,
@@ -64,8 +91,8 @@
       "dangerIncreasePerSecond": 0.35
     },
     {
-      "ruleId": "GhostRule_BasementStorage",
-      "locationId": "BasementStorage",
+      "ruleId": "GhostRule_BasementStairs",
+      "locationId": "BasementStairs",
       "minArrivalTime": 2,
       "maxArrivalTime": 6,
       "minLeaveTime": 8,
@@ -73,13 +100,13 @@
       "dangerIncreasePerSecond": 0.5
     },
     {
-      "ruleId": "GhostRule_LockedRoom",
-      "locationId": "LockedRoom",
+      "ruleId": "GhostRule_BasementStorage",
+      "locationId": "BasementStorage",
       "minArrivalTime": 2,
-      "maxArrivalTime": 5,
+      "maxArrivalTime": 6,
       "minLeaveTime": 8,
       "maxLeaveTime": 20,
-      "dangerIncreasePerSecond": 0.55
+      "dangerIncreasePerSecond": 0.5
     }
   ]
 }

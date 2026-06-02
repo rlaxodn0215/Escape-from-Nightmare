@@ -28,7 +28,6 @@ Incorrect examples:
 - `Study_Front`
 - `Study_Right`
 - `Study_Back`
-- `Study_Left`
 - `SecondFloorHallway_Front`
 - `SecondFloorHallway_Back`
 - `LivingRoom_Front`

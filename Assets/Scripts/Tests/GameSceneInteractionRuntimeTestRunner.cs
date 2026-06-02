@@ -20,15 +20,15 @@ namespace EscapeFromNightmare
     public class GameSceneInteractionRuntimeTestRunner : MonoBehaviour
     {
         [SerializeField] private bool runOnStart = false;
-        [SerializeField] private float waitAfterClickSeconds = 0.1f;
-        [SerializeField] private float waitAfterOpenSeconds = 0.1f;
+        [SerializeField] private float waitAfterClickSeconds = 1.35f;
+        [SerializeField] private float waitAfterOpenSeconds = 1.35f;
         [SerializeField] private string reportRelativePath = "Docs/GeneratedGameSceneInteractionRuntimeTestReport.md";
         [SerializeField] private bool testDoorButtons = true;
-        [SerializeField] private bool testPuzzleButtons = true;
+        [SerializeField] private bool testPuzzleButtons = false;
         [SerializeField] private bool testClueButtons = true;
         [SerializeField] private bool testNavigationButtons = true;
         [SerializeField] private bool testHidePointButtons = true;
-        [SerializeField] private bool testFinalDoorButton = true;
+        [SerializeField] private bool testFinalDoorButton = false;
         [SerializeField] private bool runFullClickRoute = true;
 
         // Stores the Required Door Ids value used by this script's runtime or editor workflow.
@@ -40,30 +40,25 @@ namespace EscapeFromNightmare
             "Door_ChildRoom_SecondFloorHallway",
             "Door_SecondFloorHallway_Study",
             "Door_Study_SecondFloorHallway",
-            "Door_SecondFloorHallway_LivingRoom",
-            "Door_LivingRoom_SecondFloorHallway",
-            "Door_LivingRoom_Kitchen",
-            "Door_Kitchen_LivingRoom",
-            "Door_Kitchen_BasementStorage",
-            "Door_BasementStorage_Kitchen",
-            "Door_BasementStorage_LockedRoom",
-            "Door_LockedRoom_BasementStorage",
-            "Door_LivingRoom_Entrance",
-            "Door_Entrance_LivingRoom"
+            "Door_SecondFloorHallway_FirstFloorHall",
+            "Door_FirstFloorHall_SecondFloorHallway",
+            "Door_Entrance_FirstFloorHall",
+            "Door_FirstFloorHall_Entrance",
+            "Door_SmallLivingRoom_FirstFloorHall",
+            "Door_FirstFloorHall_SmallLivingRoom",
+            "Door_LivingRoom_FirstFloorHall",
+            "Door_FirstFloorHall_LivingRoom",
+            "Door_Kitchen_FirstFloorHall",
+            "Door_FirstFloorHall_Kitchen",
+            "Door_Kitchen_BasementStairs",
+            "Door_BasementStairs_Kitchen",
+            "Door_BasementStairs_BasementStorage",
+            "Door_BasementStorage_BasementStairs"
         };
 
         // Stores the Required Puzzle Ids value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredPuzzleIds =
         {
-            "Puzzle_Bedroom_01",
-            "Puzzle_LivingRoom_01",
-            "Puzzle_ChildRoom_01",
-            "Puzzle_Study_01",
-            "Puzzle_LivingRoom_02",
-            "Puzzle_Kitchen_01",
-            "Puzzle_BasementStorage_01",
-            "Puzzle_LockedRoom_01",
-            "Puzzle_Entrance_01"
         };
 
         // Stores the Recommended Clue Ids value used by this script's runtime or editor workflow.
@@ -657,95 +652,69 @@ namespace EscapeFromNightmare
             ResetRuntimeStateForInteractionTests();
 
             bool ok = true;
-            ok &= yieldReturnCompatible(true);
-
-            yield return CompletePuzzleFromSceneButton("Puzzle_Bedroom_01");
-            ok &= HasItem("OldDrawerKey") && IsPuzzleCompleted("Puzzle_Bedroom_01");
 
             yield return ClickDoorAndWait("Door_Bedroom_SecondFloorHallway");
             ok &= LocationManager.Instance.CurrentLocationId == "SecondFloorHallway";
 
-            yield return ClickDoorAndWait("Door_SecondFloorHallway_LivingRoom");
-            ok &= LocationManager.Instance.CurrentLocationId == "LivingRoom";
-
-            SelectItemIfNeeded("OldDrawerKey");
-            yield return CompletePuzzleFromSceneButton("Puzzle_LivingRoom_01");
-            ok &= HasItem("SmallClockworkDevice") && IsPuzzleCompleted("Puzzle_LivingRoom_01");
-
-            yield return ClickDoorAndWait("Door_LivingRoom_SecondFloorHallway");
             yield return ClickDoorAndWait("Door_SecondFloorHallway_ChildRoom");
-            ok &= LocationManager.Instance.CurrentLocationId == "ChildRoom";
+            ok &= LocationManager.Instance.CurrentLocationId == "ChildRoom" && LocationManager.Instance.CurrentViewId == "ChildRoom_Front";
 
-            yield return CompletePuzzleFromSceneButton("Puzzle_ChildRoom_01");
-            ok &= IsClueUnlocked("ChildRoomCardSymbolClueImage");
-
+            LocationManager.Instance.SetView("ChildRoom_Back");
+            yield return new WaitForSeconds(waitAfterClickSeconds);
             yield return ClickDoorAndWait("Door_ChildRoom_SecondFloorHallway");
-            yield return ClickDoorAndWait("Door_SecondFloorHallway_Study");
-            ok &= LocationManager.Instance.CurrentLocationId == "Study";
+            ok &= LocationManager.Instance.CurrentLocationId == "SecondFloorHallway" && LocationManager.Instance.CurrentViewId == "SecondFloorHallway_Front";
 
-            yield return CompletePuzzleFromSceneButton("Puzzle_Study_01");
-            ok &= IsClueUnlocked("StudyBookSymbolClueImage");
+            LocationManager.Instance.SetView("SecondFloorHallway_Back");
+            yield return new WaitForSeconds(waitAfterClickSeconds);
+            yield return ClickDoorAndWait("Door_SecondFloorHallway_Study");
+            ok &= LocationManager.Instance.CurrentLocationId == "Study" && LocationManager.Instance.CurrentViewId == "Study_Front";
 
             yield return ClickDoorAndWait("Door_Study_SecondFloorHallway");
-            yield return ClickDoorAndWait("Door_SecondFloorHallway_LivingRoom");
-            ok &= LocationManager.Instance.CurrentLocationId == "LivingRoom";
+            ok &= LocationManager.Instance.CurrentLocationId == "SecondFloorHallway" && LocationManager.Instance.CurrentViewId == "SecondFloorHallway_Front";
 
-            yield return CompletePuzzleFromSceneButton("Puzzle_LivingRoom_02");
-            ok &= IsClueUnlocked("KitchenCodeClueImage");
+            yield return ClickDoorAndWait("Door_SecondFloorHallway_Bedroom");
+            ok &= LocationManager.Instance.CurrentLocationId == "Bedroom" && LocationManager.Instance.CurrentViewId == "Bedroom_Front";
 
-            yield return ClickDoorAndWait("Door_LivingRoom_Kitchen");
-            ok &= LocationManager.Instance.CurrentLocationId == "Kitchen";
+            yield return ClickDoorAndWait("Door_Bedroom_SecondFloorHallway");
+            ok &= LocationManager.Instance.CurrentLocationId == "SecondFloorHallway" && LocationManager.Instance.CurrentViewId == "SecondFloorHallway_Front";
 
-            yield return CompletePuzzleFromSceneButton("Puzzle_Kitchen_01");
-            ok &= HasItem("BasementFuse") && !HasItem("FrontDoorKey");
+            yield return ClickDoorAndWait("Door_SecondFloorHallway_FirstFloorHall");
+            ok &= LocationManager.Instance.CurrentLocationId == "FirstFloorHall" && LocationManager.Instance.CurrentViewId == "FirstFloorHall_Front";
 
-            yield return ClickDoorAndWait("Door_Kitchen_BasementStorage");
-            ok &= LocationManager.Instance.CurrentLocationId == "BasementStorage";
-
-            yield return CompletePuzzleFromSceneButton("Puzzle_BasementStorage_01");
-            ok &= IsDoorOpened("Door_BasementStorage_LockedRoom") && IsClueUnlocked("BasementClueImage") && HasItem("ModifiedClockworkDevice");
-
-            yield return ClickDoorAndWait("Door_BasementStorage_LockedRoom");
-            ok &= LocationManager.Instance.CurrentLocationId == "LockedRoom";
-
-            yield return CompletePuzzleFromSceneButton("Puzzle_LockedRoom_01");
-            ok &= HasItem("FrontDoorKey") && IsFinalChaseStarted();
-
-            yield return ClickDoorAndWait("Door_LockedRoom_BasementStorage");
-            yield return ClickDoorAndWait("Door_BasementStorage_Kitchen");
-            yield return ClickDoorAndWait("Door_Kitchen_LivingRoom");
-            SelectItemIfNeeded("FrontDoorKey");
-            yield return ClickDoorAndWait("Door_LivingRoom_Entrance");
+            yield return ClickDoorAndWait("Door_FirstFloorHall_Entrance");
             ok &= LocationManager.Instance.CurrentLocationId == "Entrance";
 
-            SelectItemIfNeeded("FrontDoorKey");
-            ClickableButton finalDoor = FindFinalDoorButton();
-            if (finalDoor != null)
-            {
-                yield return ClickButtonAndWait(GetButtonForClickable(finalDoor));
-                yield return new WaitForSeconds(waitAfterOpenSeconds);
-                PuzzleItemUseUIBase entranceUi = FindCurrentPuzzleUi<PuzzleItemUseUIBase>();
-                if (entranceUi != null)
-                {
-                    SelectItemIfNeeded("FrontDoorKey");
-                    entranceUi.UseSelectedItem();
-                    yield return new WaitForSeconds(waitAfterClickSeconds);
-                }
-            }
-            else
-            {
-                yield return CompletePuzzleFromSceneButton("Puzzle_Entrance_01");
-            }
+            yield return ClickDoorAndWait("Door_Entrance_FirstFloorHall");
+            yield return ClickDoorAndWait("Door_FirstFloorHall_SmallLivingRoom");
+            ok &= LocationManager.Instance.CurrentLocationId == "SmallLivingRoom";
 
-            ok &= IsEndingState();
+            yield return ClickDoorAndWait("Door_SmallLivingRoom_FirstFloorHall");
+            yield return ClickDoorAndWait("Door_FirstFloorHall_LivingRoom");
+            ok &= LocationManager.Instance.CurrentLocationId == "LivingRoom";
+
+            yield return ClickDoorAndWait("Door_LivingRoom_FirstFloorHall");
+            LocationManager.Instance.SetView("FirstFloorHall_Back");
+            yield return new WaitForSeconds(waitAfterClickSeconds);
+            yield return ClickDoorAndWait("Door_FirstFloorHall_Kitchen");
+            ok &= LocationManager.Instance.CurrentLocationId == "Kitchen";
+
+            LocationManager.Instance.SetView("Kitchen_Back");
+            yield return new WaitForSeconds(waitAfterClickSeconds);
+            yield return ClickDoorAndWait("Door_Kitchen_BasementStairs");
+            ok &= LocationManager.Instance.CurrentLocationId == "BasementStairs";
+
+            LocationManager.Instance.SetView("BasementStairs_Back");
+            yield return new WaitForSeconds(waitAfterClickSeconds);
+            yield return ClickDoorAndWait("Door_BasementStairs_BasementStorage");
+            ok &= LocationManager.Instance.CurrentLocationId == "BasementStorage";
 
             if (ok)
             {
-                AddPass(category, "BedroomToEnding", "Scene buttons completed the full route and reached Ending.", Elapsed(start));
+                AddPass(category, "BedroomToBasement", "Scene buttons completed the layout route from Bedroom to BasementStorage.", Elapsed(start));
             }
             else
             {
-                AddFail(category, "BedroomToEnding", "Full scene click route did not satisfy every expected progression state.", Elapsed(start));
+                AddFail(category, "BedroomToBasement", "Layout route did not satisfy every expected room transition.", Elapsed(start));
             }
         }
 

@@ -5,47 +5,55 @@ This document is the first-pass ID map for wiring Unity Editor objects to the JS
 ## Locations
 
 - Bedroom
-- Hallway
 - ChildRoom
 - Study
+- SecondFloorHallway
 - LivingRoom
 - Kitchen
-- Basement
+- BasementStorage
 - LockedRoom
 - Entrance
+
+## Floor Plan
+
+- 2F: Bedroom, ChildRoom, Study, SecondFloorHallway
+- 1F: LivingRoom, Kitchen, Entrance
+- B1: BasementStorage, LockedRoom
+
+`SecondFloorHallway_Front` includes the direct stairs route down to `FirstFloorHall`. The main 2F to 1F route does not stop at a separate staircase location.
 
 ## Views
 
 - Bedroom: Bedroom_Front, Bedroom_Back
-- Hallway: Hallway_Front, Hallway_Right, Hallway_Back, Hallway_Left
-- ChildRoom: ChildRoom_Front, ChildRoom_Back
-- Study: Study_Front, Study_Right, Study_Back, Study_Left
-- LivingRoom: LivingRoom_Front, LivingRoom_Right, LivingRoom_Back, LivingRoom_Left
-- Kitchen: Kitchen_Front, Kitchen_Right, Kitchen_Back, Kitchen_Left
-- Basement: Basement_Front, Basement_Right, Basement_Back, Basement_Left
+- ChildRoom: ChildRoom_Front, ChildRoom_Right, ChildRoom_Back, ChildRoom_Left
+- Study: Study_Front, Study_Right, Study_Back
+- SecondFloorHallway: SecondFloorHallway_Front, SecondFloorHallway_Back
+- LivingRoom: LivingRoom_Front, LivingRoom_Back
+- Kitchen: Kitchen_Front
+- BasementStorage: BasementStorage_Front, BasementStorage_Right, BasementStorage_Back, BasementStorage_Left
 - LockedRoom: LockedRoom_Front, LockedRoom_Right, LockedRoom_Back, LockedRoom_Left
-- Entrance: Entrance_Front, Entrance_Right, Entrance_Back, Entrance_Left
+- Entrance: Entrance_Front
 
 ## Doors
 
 | Door ID | From | To | Requirement | Notes |
 |---|---|---|---|---|
-| Door_Bedroom_Hallway | Bedroom_Front | Hallway_Back | None | First exit |
-| Door_Hallway_Bedroom | Hallway_Back | Bedroom_Front | None | Return to bedroom |
-| Door_Hallway_ChildRoom | Hallway_Left | ChildRoom_Front | None | Child room access |
-| Door_ChildRoom_Hallway | ChildRoom_Front | Hallway_Left | None | Return to hallway |
-| Door_Hallway_Study | Hallway_Right | Study_Front | Puzzle_ChildRoom_01 | Unlocked by child room puzzle |
-| Door_Study_Hallway | Study_Front | Hallway_Right | None | Return to hallway |
-| Door_Hallway_LivingRoom | Hallway_Front | LivingRoom_Back | None | Living room access |
-| Door_LivingRoom_Hallway | LivingRoom_Back | Hallway_Front | None | Return to hallway |
-| Door_LivingRoom_Kitchen | LivingRoom_Right | Kitchen_Front | Puzzle_LivingRoom_01 | Unlocked by symbol puzzle |
-| Door_Kitchen_LivingRoom | Kitchen_Front | LivingRoom_Right | None | Return to living room |
-| Door_Kitchen_Basement | Kitchen_Back | Basement_Front | Puzzle_Kitchen_01 | Future route after kitchen code |
-| Door_Basement_Kitchen | Basement_Front | Kitchen_Back | None | Return to kitchen |
-| Door_Basement_LockedRoom | Basement_Right | LockedRoom_Front | Puzzle_BasementPower_01 | Future locked room access |
-| Door_LockedRoom_Basement | LockedRoom_Front | Basement_Right | None | Return to basement |
-| Door_LivingRoom_Entrance | LivingRoom_Front | Entrance_Front | FrontDoorKey | Exit route |
-| Door_Entrance_LivingRoom | Entrance_Back | LivingRoom_Front | None | Return to living room |
+| Door_Bedroom_SecondFloorHallway | Bedroom_Front | SecondFloorHallway_Back | None | Bedroom exit to 2F hallway |
+| Door_SecondFloorHallway_Bedroom | SecondFloorHallway_Back | Bedroom_Front | None | Return to bedroom |
+| Door_SecondFloorHallway_ChildRoom | SecondFloorHallway_Front | ChildRoom_Front | None | Child room access |
+| Door_ChildRoom_SecondFloorHallway | ChildRoom_Front | SecondFloorHallway_Front | None | Return to hallway Front |
+| Door_SecondFloorHallway_Study | SecondFloorHallway_Back | Study_Front | None | Study access from 2F hallway Back |
+| Door_Study_SecondFloorHallway | Study_Front | SecondFloorHallway_Front | None | Return to hallway Front |
+| Door_SecondFloorHallway_FirstFloorHall | SecondFloorHallway_Front | FirstFloorHall_Front | None | Click stairs to go down to 1F hall |
+| Door_FirstFloorHall_SecondFloorHallway | FirstFloorHall_Back | SecondFloorHallway_Front | None | Return upstairs to 2F hallway Front |
+| Door_LivingRoom_Kitchen | LivingRoom_Front | Kitchen_Front | None | Kitchen access |
+| Door_Kitchen_LivingRoom | Kitchen_Front | LivingRoom_Front | None | Return to living room |
+| Door_Kitchen_BasementStorage | Kitchen_Front | BasementStorage_Front | None | Basement storage access |
+| Door_BasementStorage_Kitchen | BasementStorage_Front | Kitchen_Front | None | Return to kitchen |
+| Door_BasementStorage_LockedRoom | BasementStorage_Right | LockedRoom_Front | Puzzle_BasementStorage_01 | Locked room access |
+| Door_LockedRoom_BasementStorage | LockedRoom_Front | BasementStorage_Right | None | Return to basement storage |
+| Door_LivingRoom_Entrance | LivingRoom_Back | Entrance_Front | FrontDoorKey | Exit route |
+| Door_Entrance_LivingRoom | Entrance_Front | LivingRoom_Back | None | Return to living room |
 
 ## Items
 
@@ -108,7 +116,7 @@ This document is the first-pass ID map for wiring Unity Editor objects to the JS
 
 ## Main Test Route
 
-Bedroom -> Hallway -> ChildRoom -> Hallway -> Study -> Hallway -> LivingRoom -> Kitchen -> Entrance -> Ending
+Bedroom -> SecondFloorHallway_Front -> ChildRoom -> SecondFloorHallway_Front -> SecondFloorHallway_Back -> Study -> SecondFloorHallway_Front stairs -> FirstFloorHall -> LivingRoom/SmallLivingRoom -> Kitchen -> Entrance -> Ending
 
 ## Wiring Rules
 

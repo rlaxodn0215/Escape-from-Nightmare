@@ -804,7 +804,6 @@ namespace EscapeFromNightmare
             RequireSourceId(itemIds, "FrontDoorKey", "items.json");
             RequireSourceId(clueIds, "BasementClueImage", "clues.json");
             RequireSourceId(clueIds, "KitchenCodeClueImage", "clues.json");
-            RequireSourceId(doorIds, "Door_BasementStorage_LockedRoom", "doors.json");
         }
 
         // Performs the Require Source Id operation while keeping its implementation details inside this script.

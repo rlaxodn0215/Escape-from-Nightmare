@@ -54,6 +54,12 @@ namespace EscapeFromNightmare
         // Begins this system's runtime flow and initializes any timers, events, or counters it needs.
         public void StartChase()
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                Debug.Log("Chase start ignored because ghost is disabled for layout testing.");
+                return;
+            }
+
             if (isChasing)
             {
                 return;

@@ -1,7 +1,7 @@
 {
   "audio": {
-    "musicVolume": 0.55,
-    "ambienceVolume": 0.22,
+    "musicVolume": 0,
+    "ambienceVolume": 0,
     "sfxVolume": 0.85,
     "uiVolume": 0.75,
     "fadeSeconds": 0.75,

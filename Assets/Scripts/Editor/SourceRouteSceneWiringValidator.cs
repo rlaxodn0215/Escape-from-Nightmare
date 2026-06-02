@@ -65,28 +65,34 @@ namespace EscapeFromNightmare
         private static readonly string[] RequiredLocations =
         {
             "Bedroom",
+            "SecondFloorHallway",
             "ChildRoom",
             "Study",
-            "SecondFloorHallway",
-            "LivingRoom",
+            "SecondFloorStairs",
+            "FirstFloorHall",
             "Entrance",
+            "SmallLivingRoom",
+            "LivingRoom",
             "Kitchen",
-            "BasementStorage",
-            "LockedRoom"
+            "BasementStairs",
+            "BasementStorage"
         };
 
         // Stores the Required Views value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredViews =
         {
             "Bedroom_Front", "Bedroom_Back",
-            "ChildRoom_Front", "ChildRoom_Back",
-            "Study_Front", "Study_Right", "Study_Back", "Study_Left",
             "SecondFloorHallway_Front", "SecondFloorHallway_Back",
+            "ChildRoom_Front", "ChildRoom_Back",
+            "Study_Front", "Study_Back",
+            "SecondFloorStairs_Front", "SecondFloorStairs_Back",
+            "FirstFloorHall_Front", "FirstFloorHall_Back",
+            "Entrance_Front", "Entrance_Back",
+            "SmallLivingRoom_Front", "SmallLivingRoom_Back",
             "LivingRoom_Front", "LivingRoom_Back",
-            "Entrance_Front",
-            "Kitchen_Front",
-            "BasementStorage_Front", "BasementStorage_Right", "BasementStorage_Back", "BasementStorage_Left",
-            "LockedRoom_Front", "LockedRoom_Right", "LockedRoom_Back", "LockedRoom_Left"
+            "Kitchen_Front", "Kitchen_Back",
+            "BasementStairs_Front", "BasementStairs_Back",
+            "BasementStorage_Front", "BasementStorage_Back"
         };
 
         // Stores the Required Doors value used by this script's runtime or editor workflow.
@@ -98,30 +104,25 @@ namespace EscapeFromNightmare
             "Door_ChildRoom_SecondFloorHallway",
             "Door_SecondFloorHallway_Study",
             "Door_Study_SecondFloorHallway",
-            "Door_SecondFloorHallway_LivingRoom",
-            "Door_LivingRoom_SecondFloorHallway",
-            "Door_LivingRoom_Kitchen",
-            "Door_Kitchen_LivingRoom",
-            "Door_Kitchen_BasementStorage",
-            "Door_BasementStorage_Kitchen",
-            "Door_BasementStorage_LockedRoom",
-            "Door_LockedRoom_BasementStorage",
-            "Door_LivingRoom_Entrance",
-            "Door_Entrance_LivingRoom"
+            "Door_SecondFloorHallway_FirstFloorHall",
+            "Door_FirstFloorHall_SecondFloorHallway",
+            "Door_Entrance_FirstFloorHall",
+            "Door_FirstFloorHall_Entrance",
+            "Door_SmallLivingRoom_FirstFloorHall",
+            "Door_FirstFloorHall_SmallLivingRoom",
+            "Door_LivingRoom_FirstFloorHall",
+            "Door_FirstFloorHall_LivingRoom",
+            "Door_Kitchen_FirstFloorHall",
+            "Door_FirstFloorHall_Kitchen",
+            "Door_Kitchen_BasementStairs",
+            "Door_BasementStairs_Kitchen",
+            "Door_BasementStairs_BasementStorage",
+            "Door_BasementStorage_BasementStairs"
         };
 
         // Stores the Required Puzzles value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredPuzzles =
         {
-            "Puzzle_Bedroom_01",
-            "Puzzle_LivingRoom_01",
-            "Puzzle_ChildRoom_01",
-            "Puzzle_Study_01",
-            "Puzzle_LivingRoom_02",
-            "Puzzle_Kitchen_01",
-            "Puzzle_BasementStorage_01",
-            "Puzzle_LockedRoom_01",
-            "Puzzle_Entrance_01"
         };
 
         // Stores the Recommended Clues value used by this script's runtime or editor workflow.
@@ -428,6 +429,27 @@ namespace EscapeFromNightmare
             {
                 AddError("ScreenFadeManager.fadeCanvasGroup is missing.");
             }
+
+            GameSceneNightmareIntroController[] nightmareIntros = FindSceneObjects<GameSceneNightmareIntroController>();
+            if (nightmareIntros.Length == 0)
+            {
+                AddWarning("GameSceneNightmareIntroController is missing.");
+            }
+            else
+            {
+                if (GetObjectField(nightmareIntros[0], "overlayCanvasGroup") == null)
+                {
+                    AddWarning("GameSceneNightmareIntroController.overlayCanvasGroup is missing.");
+                }
+                if (GetObjectField(nightmareIntros[0], "overlayImage") == null)
+                {
+                    AddWarning("GameSceneNightmareIntroController.overlayImage is missing.");
+                }
+                if (GetObjectField(nightmareIntros[0], "locationRoot") == null)
+                {
+                    AddWarning("GameSceneNightmareIntroController.locationRoot is missing.");
+                }
+            }
         }
 
         // Checks scene, prefab, resource, or data requirements and records any issues found.
@@ -587,6 +609,11 @@ namespace EscapeFromNightmare
         // Checks scene, prefab, resource, or data requirements and records any issues found.
         private static void ValidateFinalDoorOrEntrance()
         {
+            if (RequiredPuzzles.Length == 0)
+            {
+                return;
+            }
+
             bool hasEntrancePuzzle = puzzleButtonPaths.ContainsKey("Puzzle_Entrance_01");
             bool hasFinalDoor = HasFinalDoorForEntrance();
             if (!hasEntrancePuzzle && !hasFinalDoor)

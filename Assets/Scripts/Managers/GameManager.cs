@@ -22,6 +22,7 @@ namespace EscapeFromNightmare
 
         // Stores the pending Start Mode value used by this script's runtime or editor workflow.
         private GameStartMode pendingStartMode = GameStartMode.None;
+        private GameStartMode lastGameSceneStartMode = GameStartMode.None;
 
         protected override bool UseDontDestroyOnLoad
         {
@@ -38,6 +39,11 @@ namespace EscapeFromNightmare
             get { return pendingStartMode; }
         }
 
+        public GameStartMode LastGameSceneStartMode
+        {
+            get { return lastGameSceneStartMode; }
+        }
+
         public string TitleSceneName
         {
             get { return titleSceneName; }
@@ -50,6 +56,7 @@ namespace EscapeFromNightmare
 
         public event Action<GameState> StateChanged;
         public event Action<GameStartMode> GameStartModeChanged;
+        public event Action<GameStartMode> GameSceneStarted;
 
         // Caches required component references and prepares this object before other startup code runs.
         protected override void Awake()
@@ -110,6 +117,7 @@ namespace EscapeFromNightmare
             if (scene.name == titleSceneName)
             {
                 pendingStartMode = GameStartMode.None;
+                lastGameSceneStartMode = GameStartMode.None;
                 RaiseGameStartModeChanged();
                 SetState(GameState.Title);
                 return;
@@ -291,10 +299,11 @@ namespace EscapeFromNightmare
         private void FinalizeGameSceneStart()
         {
             ApplySettings();
+            GameStartMode finalizedStartMode = pendingStartMode;
 
             if (SaveManager.Instance != null)
             {
-                if (pendingStartMode == GameStartMode.Continue || pendingStartMode == GameStartMode.RestartFromCheckpoint)
+                if (finalizedStartMode == GameStartMode.Continue || finalizedStartMode == GameStartMode.RestartFromCheckpoint)
                 {
                     if (!SaveManager.Instance.TryLoadGame())
                     {
@@ -302,7 +311,7 @@ namespace EscapeFromNightmare
                         SaveManager.Instance.ResetDataForNewGame();
                     }
                 }
-                else if (pendingStartMode == GameStartMode.NewGame)
+                else if (finalizedStartMode == GameStartMode.NewGame)
                 {
                     SaveManager.Instance.MarkGameStarted();
                 }
@@ -322,6 +331,9 @@ namespace EscapeFromNightmare
             {
                 Debug.LogWarning("LocationManager instance is missing.");
             }
+
+            lastGameSceneStartMode = finalizedStartMode;
+            RaiseGameSceneStarted(finalizedStartMode);
 
             pendingStartMode = GameStartMode.None;
             RaiseGameStartModeChanged();
@@ -345,6 +357,14 @@ namespace EscapeFromNightmare
             if (GameStartModeChanged != null)
             {
                 GameStartModeChanged(pendingStartMode);
+            }
+        }
+
+        private void RaiseGameSceneStarted(GameStartMode mode)
+        {
+            if (GameSceneStarted != null)
+            {
+                GameSceneStarted(mode);
             }
         }
     }

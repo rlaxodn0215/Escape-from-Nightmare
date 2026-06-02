@@ -1,9 +1,9 @@
 # Source Route GameScene Builder Report
 
-- Generated At: 2026-05-31 15:29:58
+- Generated At: 2026-06-02 22:18:42
 - Scene: Assets/Scenes/GameScene.unity
 - Saved: True
-- Backup Path: Assets/Backups/Scenes/GameScene.backup_before_source_route_wiring_20260531_152958.unity
+- Backup Path: Assets/Backups/Scenes/GameScene.backup_before_source_route_wiring_20260602_221841.unity
 
 ## Summary
 
@@ -13,19 +13,25 @@
 | UI Roots | 0 | 13 | 1 | 0 | 0 |
 | Managers | 0 | 15 | 0 | 0 | 0 |
 | Inventory UI | 0 | 44 | 37 | 0 | 0 |
-| Panels | 0 | 20 | 33 | 0 | 0 |
+| Panels | 0 | 20 | 45 | 0 | 0 |
 | Navigation | 0 | 4 | 2 | 0 | 0 |
-| Locations | 0 | 9 | 32 | 0 | 0 |
-| Views | 0 | 44 | 44 | 0 | 0 |
-| Door Buttons | 0 | 16 | 0 | 0 | 0 |
-| Puzzle Buttons | 0 | 9 | 0 | 0 | 0 |
+| Locations | 0 | 12 | 41 | 0 | 0 |
+| Views | 0 | 48 | 432 | 0 | 0 |
+| Door Buttons | 0 | 20 | 0 | 0 | 0 |
 | Clue Buttons | 0 | 8 | 0 | 0 | 0 |
-| HidePoints | 0 | 3 | 0 | 0 | 0 |
-| FinalDoor | 0 | 1 | 0 | 0 | 0 |
+| HidePoints | 8 | 0 | 40 | 0 | 0 |
+| FinalDoor | 0 | 0 | 0 | 0 | 0 |
 
 ## Created Objects
 
-- None
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet/Text
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_CurtainCloset
+- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_CurtainCloset/Text
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_HidePoint_HidePoint_ChildRoom_Wardrobe
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_HidePoint_HidePoint_ChildRoom_Wardrobe/Text
+- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk
+- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk/Text
 
 ## Reused Objects
 
@@ -130,6 +136,11 @@
 - Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back - View ID Bedroom_Back
 - Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SecondFloorHallway - Location ID SecondFloorHallway
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front - View ID SecondFloorHallway_Front
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back - View ID SecondFloorHallway_Back
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_ChildRoom - Location ID ChildRoom
 - Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front - View ID ChildRoom_Front
 - Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer - Object exists
@@ -138,83 +149,76 @@
 - Canvas/LocationRoot/Location_Study - Location ID Study
 - Canvas/LocationRoot/Location_Study/View_Study_Front - View ID Study_Front
 - Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_Study/View_Study_Right - View ID Study_Right
-- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_Study/View_Study_Back - View ID Study_Back
 - Canvas/LocationRoot/Location_Study/View_Study_Back/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_Study/View_Study_Left - View ID Study_Left
-- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_SecondFloorHallway - Location ID SecondFloorHallway
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front - View ID SecondFloorHallway_Front
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back - View ID SecondFloorHallway_Back
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SecondFloorStairs - Location ID SecondFloorStairs
+- Canvas/LocationRoot/Location_SecondFloorStairs/View_SecondFloorStairs_Front - View ID SecondFloorStairs_Front
+- Canvas/LocationRoot/Location_SecondFloorStairs/View_SecondFloorStairs_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SecondFloorStairs/View_SecondFloorStairs_Back - View ID SecondFloorStairs_Back
+- Canvas/LocationRoot/Location_SecondFloorStairs/View_SecondFloorStairs_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_FirstFloorHall - Location ID FirstFloorHall
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front - View ID FirstFloorHall_Front
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back - View ID FirstFloorHall_Back
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Entrance - Location ID Entrance
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front - View ID Entrance_Front
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Back - View ID Entrance_Back
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SmallLivingRoom - Location ID SmallLivingRoom
+- Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Front - View ID SmallLivingRoom_Front
+- Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Back - View ID SmallLivingRoom_Back
+- Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Back/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_LivingRoom - Location ID LivingRoom
 - Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front - View ID LivingRoom_Front
 - Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back - View ID LivingRoom_Back
 - Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_Entrance - Location ID Entrance
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front - View ID Entrance_Front
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_Kitchen - Location ID Kitchen
 - Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front - View ID Kitchen_Front
 - Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Back - View ID Kitchen_Back
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Back/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_BasementStairs - Location ID BasementStairs
+- Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Front - View ID BasementStairs_Front
+- Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Front/ButtonLayer - Object exists
+- Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Back - View ID BasementStairs_Back
+- Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Back/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_BasementStorage - Location ID BasementStorage
 - Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front - View ID BasementStorage_Front
 - Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right - View ID BasementStorage_Right
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back - View ID BasementStorage_Back
 - Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left - View ID BasementStorage_Left
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_LockedRoom - Location ID LockedRoom
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front - View ID LockedRoom_Front
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right - View ID LockedRoom_Right
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back - View ID LockedRoom_Back
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back/ButtonLayer - Object exists
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left - View ID LockedRoom_Left
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left/ButtonLayer - Object exists
 - Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Door_Door_Bedroom_SecondFloorHallway - Door button Door_Bedroom_SecondFloorHallway
 - Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom - Door button Door_SecondFloorHallway_Bedroom
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom - Door button Door_SecondFloorHallway_ChildRoom
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway - Door button Door_ChildRoom_SecondFloorHallway
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study - Door button Door_SecondFloorHallway_Study
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom - Door button Door_SecondFloorHallway_ChildRoom
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway - Door button Door_ChildRoom_SecondFloorHallway
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study - Door button Door_SecondFloorHallway_Study
 - Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway - Door button Door_Study_SecondFloorHallway
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_LivingRoom - Door button Door_SecondFloorHallway_LivingRoom
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_SecondFloorHallway - Door button Door_LivingRoom_SecondFloorHallway
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_Kitchen - Door button Door_LivingRoom_Kitchen
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_LivingRoom - Door button Door_Kitchen_LivingRoom
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_BasementStorage - Door button Door_Kitchen_BasementStorage
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_Kitchen - Door button Door_BasementStorage_Kitchen
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer/Button_Door_Door_BasementStorage_LockedRoom - Door button Door_BasementStorage_LockedRoom
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Door_Door_LockedRoom_BasementStorage - Door button Door_LockedRoom_BasementStorage
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_Entrance - Door button Door_LivingRoom_Entrance
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_LivingRoom - Door button Door_Entrance_LivingRoom
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01 - Puzzle button Puzzle_Bedroom_01
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01 - Puzzle button Puzzle_LivingRoom_01
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01 - Puzzle button Puzzle_ChildRoom_01
-- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01 - Puzzle button Puzzle_Study_01
-- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_02 - Puzzle button Puzzle_LivingRoom_02
-- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Puzzle_Puzzle_Kitchen_01 - Puzzle button Puzzle_Kitchen_01
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Puzzle_Puzzle_BasementStorage_01 - Puzzle button Puzzle_BasementStorage_01
-- Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LockedRoom_01 - Puzzle button Puzzle_LockedRoom_01
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Puzzle_Puzzle_Entrance_01 - Puzzle button Puzzle_Entrance_01
+- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_FirstFloorHall - Door button Door_SecondFloorHallway_FirstFloorHall
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer/Button_Door_Door_FirstFloorHall_SecondFloorHallway - Door button Door_FirstFloorHall_SecondFloorHallway
+- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_FirstFloorHall - Door button Door_Entrance_FirstFloorHall
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_Entrance - Door button Door_FirstFloorHall_Entrance
+- Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Front/ButtonLayer/Button_Door_Door_SmallLivingRoom_FirstFloorHall - Door button Door_SmallLivingRoom_FirstFloorHall
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_SmallLivingRoom - Door button Door_FirstFloorHall_SmallLivingRoom
+- Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_FirstFloorHall - Door button Door_LivingRoom_FirstFloorHall
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_LivingRoom - Door button Door_FirstFloorHall_LivingRoom
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_FirstFloorHall - Door button Door_Kitchen_FirstFloorHall
+- Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer/Button_Door_Door_FirstFloorHall_Kitchen - Door button Door_FirstFloorHall_Kitchen
+- Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Back/ButtonLayer/Button_Door_Door_Kitchen_BasementStairs - Door button Door_Kitchen_BasementStairs
+- Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Front/ButtonLayer/Button_Door_Door_BasementStairs_Kitchen - Door button Door_BasementStairs_Kitchen
+- Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Back/ButtonLayer/Button_Door_Door_BasementStairs_BasementStorage - Door button Door_BasementStairs_BasementStorage
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_BasementStairs - Door button Door_BasementStorage_BasementStairs
 - Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Clue_BedroomPhotoCodeClue - Clue button BedroomPhotoCodeClue
 - Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue - Clue button LivingRoomEntranceCodeClue
-- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage - Clue button ChildRoomCardSymbolClueImage
-- Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage - Clue button StudyBookSymbolClueImage
+- Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage - Clue button ChildRoomCardSymbolClueImage
+- Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Clue_StudyBookSymbolClueImage - Clue button StudyBookSymbolClueImage
 - Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage - Clue button KitchenCodeClueImage
 - Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue - Clue button KitchenFridgeSurfaceSymbolClue
-- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer/Button_Clue_BasementPowerPatternClue - Clue button BasementPowerPatternClue
+- Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Clue_BasementPowerPatternClue - Clue button BasementPowerPatternClue
 - Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer/Button_Clue_BasementClueImage - Clue button BasementClueImage
-- Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet - HidePoint HidePoint_Bedroom_Closet
-- Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet - HidePoint HidePoint_SecondFloorHallway_Cabinet
-- Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk - HidePoint HidePoint_Study_Desk
-- Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_FinalDoor_FrontDoorKey - FinalDoor FrontDoorKey
 - (asset) - Scene already in Build Settings: Assets/Scenes/TitleScene.unity
 - (asset) - Scene already in Build Settings: Assets/Scenes/GameScene.unity
 
@@ -277,6 +281,18 @@
 - EndingPanel.skipButton = SkipButton
 - EndingPanel.hideOnAwake = (value)
 - EndingManager.endingPanel = EndingPanel
+- Background.targetImage = Background
+- Background.baseAlpha = (value)
+- Background.minOffAlpha = (value)
+- Background.maxOffAlpha = (value)
+- Background.minIdleInterval = (value)
+- Background.maxIdleInterval = (value)
+- Background.minFlickerCount = (value)
+- Background.maxFlickerCount = (value)
+- Background.minOffDuration = (value)
+- Background.maxOffDuration = (value)
+- Background.minOnDuration = (value)
+- Background.maxOnDuration = (value)
 - Background.rootObject = HideViewRoot
 - Background.targetImage = Background
 - Background.hideInteriorViews = (value)
@@ -297,78 +313,515 @@
 - Location_Bedroom.defaultViewId = (value)
 - View_Bedroom_Front.viewId = (value)
 - View_Bedroom_Front.rootObject = View_Bedroom_Front
+- View_Bedroom_Front.resourcesPath = (value)
+- View_Bedroom_Front.targetImage = View_Bedroom_Front
+- View_Bedroom_Front.loadOnEnable = (value)
+- View_Bedroom_Front.hideImageWhenMissing = (value)
+- View_Bedroom_Front.targetImage = View_Bedroom_Front
+- View_Bedroom_Front.baseAlpha = (value)
+- View_Bedroom_Front.minOffAlpha = (value)
+- View_Bedroom_Front.maxOffAlpha = (value)
+- View_Bedroom_Front.minIdleInterval = (value)
+- View_Bedroom_Front.maxIdleInterval = (value)
+- View_Bedroom_Front.minFlickerCount = (value)
+- View_Bedroom_Front.maxFlickerCount = (value)
+- View_Bedroom_Front.minOffDuration = (value)
+- View_Bedroom_Front.maxOffDuration = (value)
+- View_Bedroom_Front.minOnDuration = (value)
+- View_Bedroom_Front.maxOnDuration = (value)
 - View_Bedroom_Back.viewId = (value)
 - View_Bedroom_Back.rootObject = View_Bedroom_Back
+- View_Bedroom_Back.resourcesPath = (value)
+- View_Bedroom_Back.targetImage = View_Bedroom_Back
+- View_Bedroom_Back.loadOnEnable = (value)
+- View_Bedroom_Back.hideImageWhenMissing = (value)
+- View_Bedroom_Back.targetImage = View_Bedroom_Back
+- View_Bedroom_Back.baseAlpha = (value)
+- View_Bedroom_Back.minOffAlpha = (value)
+- View_Bedroom_Back.maxOffAlpha = (value)
+- View_Bedroom_Back.minIdleInterval = (value)
+- View_Bedroom_Back.maxIdleInterval = (value)
+- View_Bedroom_Back.minFlickerCount = (value)
+- View_Bedroom_Back.maxFlickerCount = (value)
+- View_Bedroom_Back.minOffDuration = (value)
+- View_Bedroom_Back.maxOffDuration = (value)
+- View_Bedroom_Back.minOnDuration = (value)
+- View_Bedroom_Back.maxOnDuration = (value)
 - Location_Bedroom.views = (value)
+- Location_SecondFloorHallway.locationId = (value)
+- Location_SecondFloorHallway.defaultViewId = (value)
+- View_SecondFloorHallway_Front.viewId = (value)
+- View_SecondFloorHallway_Front.rootObject = View_SecondFloorHallway_Front
+- View_SecondFloorHallway_Front.resourcesPath = (value)
+- View_SecondFloorHallway_Front.targetImage = View_SecondFloorHallway_Front
+- View_SecondFloorHallway_Front.loadOnEnable = (value)
+- View_SecondFloorHallway_Front.hideImageWhenMissing = (value)
+- View_SecondFloorHallway_Front.targetImage = View_SecondFloorHallway_Front
+- View_SecondFloorHallway_Front.baseAlpha = (value)
+- View_SecondFloorHallway_Front.minOffAlpha = (value)
+- View_SecondFloorHallway_Front.maxOffAlpha = (value)
+- View_SecondFloorHallway_Front.minIdleInterval = (value)
+- View_SecondFloorHallway_Front.maxIdleInterval = (value)
+- View_SecondFloorHallway_Front.minFlickerCount = (value)
+- View_SecondFloorHallway_Front.maxFlickerCount = (value)
+- View_SecondFloorHallway_Front.minOffDuration = (value)
+- View_SecondFloorHallway_Front.maxOffDuration = (value)
+- View_SecondFloorHallway_Front.minOnDuration = (value)
+- View_SecondFloorHallway_Front.maxOnDuration = (value)
+- View_SecondFloorHallway_Back.viewId = (value)
+- View_SecondFloorHallway_Back.rootObject = View_SecondFloorHallway_Back
+- View_SecondFloorHallway_Back.resourcesPath = (value)
+- View_SecondFloorHallway_Back.targetImage = View_SecondFloorHallway_Back
+- View_SecondFloorHallway_Back.loadOnEnable = (value)
+- View_SecondFloorHallway_Back.hideImageWhenMissing = (value)
+- View_SecondFloorHallway_Back.targetImage = View_SecondFloorHallway_Back
+- View_SecondFloorHallway_Back.baseAlpha = (value)
+- View_SecondFloorHallway_Back.minOffAlpha = (value)
+- View_SecondFloorHallway_Back.maxOffAlpha = (value)
+- View_SecondFloorHallway_Back.minIdleInterval = (value)
+- View_SecondFloorHallway_Back.maxIdleInterval = (value)
+- View_SecondFloorHallway_Back.minFlickerCount = (value)
+- View_SecondFloorHallway_Back.maxFlickerCount = (value)
+- View_SecondFloorHallway_Back.minOffDuration = (value)
+- View_SecondFloorHallway_Back.maxOffDuration = (value)
+- View_SecondFloorHallway_Back.minOnDuration = (value)
+- View_SecondFloorHallway_Back.maxOnDuration = (value)
+- Location_SecondFloorHallway.views = (value)
 - Location_ChildRoom.locationId = (value)
 - Location_ChildRoom.defaultViewId = (value)
 - View_ChildRoom_Front.viewId = (value)
 - View_ChildRoom_Front.rootObject = View_ChildRoom_Front
+- View_ChildRoom_Front.resourcesPath = (value)
+- View_ChildRoom_Front.targetImage = View_ChildRoom_Front
+- View_ChildRoom_Front.loadOnEnable = (value)
+- View_ChildRoom_Front.hideImageWhenMissing = (value)
+- View_ChildRoom_Front.targetImage = View_ChildRoom_Front
+- View_ChildRoom_Front.baseAlpha = (value)
+- View_ChildRoom_Front.minOffAlpha = (value)
+- View_ChildRoom_Front.maxOffAlpha = (value)
+- View_ChildRoom_Front.minIdleInterval = (value)
+- View_ChildRoom_Front.maxIdleInterval = (value)
+- View_ChildRoom_Front.minFlickerCount = (value)
+- View_ChildRoom_Front.maxFlickerCount = (value)
+- View_ChildRoom_Front.minOffDuration = (value)
+- View_ChildRoom_Front.maxOffDuration = (value)
+- View_ChildRoom_Front.minOnDuration = (value)
+- View_ChildRoom_Front.maxOnDuration = (value)
 - View_ChildRoom_Back.viewId = (value)
 - View_ChildRoom_Back.rootObject = View_ChildRoom_Back
+- View_ChildRoom_Back.resourcesPath = (value)
+- View_ChildRoom_Back.targetImage = View_ChildRoom_Back
+- View_ChildRoom_Back.loadOnEnable = (value)
+- View_ChildRoom_Back.hideImageWhenMissing = (value)
+- View_ChildRoom_Back.targetImage = View_ChildRoom_Back
+- View_ChildRoom_Back.baseAlpha = (value)
+- View_ChildRoom_Back.minOffAlpha = (value)
+- View_ChildRoom_Back.maxOffAlpha = (value)
+- View_ChildRoom_Back.minIdleInterval = (value)
+- View_ChildRoom_Back.maxIdleInterval = (value)
+- View_ChildRoom_Back.minFlickerCount = (value)
+- View_ChildRoom_Back.maxFlickerCount = (value)
+- View_ChildRoom_Back.minOffDuration = (value)
+- View_ChildRoom_Back.maxOffDuration = (value)
+- View_ChildRoom_Back.minOnDuration = (value)
+- View_ChildRoom_Back.maxOnDuration = (value)
 - Location_ChildRoom.views = (value)
 - Location_Study.locationId = (value)
 - Location_Study.defaultViewId = (value)
 - View_Study_Front.viewId = (value)
 - View_Study_Front.rootObject = View_Study_Front
-- View_Study_Right.viewId = (value)
-- View_Study_Right.rootObject = View_Study_Right
+- View_Study_Front.resourcesPath = (value)
+- View_Study_Front.targetImage = View_Study_Front
+- View_Study_Front.loadOnEnable = (value)
+- View_Study_Front.hideImageWhenMissing = (value)
+- View_Study_Front.targetImage = View_Study_Front
+- View_Study_Front.baseAlpha = (value)
+- View_Study_Front.minOffAlpha = (value)
+- View_Study_Front.maxOffAlpha = (value)
+- View_Study_Front.minIdleInterval = (value)
+- View_Study_Front.maxIdleInterval = (value)
+- View_Study_Front.minFlickerCount = (value)
+- View_Study_Front.maxFlickerCount = (value)
+- View_Study_Front.minOffDuration = (value)
+- View_Study_Front.maxOffDuration = (value)
+- View_Study_Front.minOnDuration = (value)
+- View_Study_Front.maxOnDuration = (value)
 - View_Study_Back.viewId = (value)
 - View_Study_Back.rootObject = View_Study_Back
-- View_Study_Left.viewId = (value)
-- View_Study_Left.rootObject = View_Study_Left
+- View_Study_Back.resourcesPath = (value)
+- View_Study_Back.targetImage = View_Study_Back
+- View_Study_Back.loadOnEnable = (value)
+- View_Study_Back.hideImageWhenMissing = (value)
+- View_Study_Back.targetImage = View_Study_Back
+- View_Study_Back.baseAlpha = (value)
+- View_Study_Back.minOffAlpha = (value)
+- View_Study_Back.maxOffAlpha = (value)
+- View_Study_Back.minIdleInterval = (value)
+- View_Study_Back.maxIdleInterval = (value)
+- View_Study_Back.minFlickerCount = (value)
+- View_Study_Back.maxFlickerCount = (value)
+- View_Study_Back.minOffDuration = (value)
+- View_Study_Back.maxOffDuration = (value)
+- View_Study_Back.minOnDuration = (value)
+- View_Study_Back.maxOnDuration = (value)
 - Location_Study.views = (value)
-- Location_SecondFloorHallway.locationId = (value)
-- Location_SecondFloorHallway.defaultViewId = (value)
-- View_SecondFloorHallway_Front.viewId = (value)
-- View_SecondFloorHallway_Front.rootObject = View_SecondFloorHallway_Front
-- View_SecondFloorHallway_Back.viewId = (value)
-- View_SecondFloorHallway_Back.rootObject = View_SecondFloorHallway_Back
-- Location_SecondFloorHallway.views = (value)
-- Location_LivingRoom.locationId = (value)
-- Location_LivingRoom.defaultViewId = (value)
-- View_LivingRoom_Front.viewId = (value)
-- View_LivingRoom_Front.rootObject = View_LivingRoom_Front
-- View_LivingRoom_Back.viewId = (value)
-- View_LivingRoom_Back.rootObject = View_LivingRoom_Back
-- Location_LivingRoom.views = (value)
+- Location_SecondFloorStairs.locationId = (value)
+- Location_SecondFloorStairs.defaultViewId = (value)
+- View_SecondFloorStairs_Front.viewId = (value)
+- View_SecondFloorStairs_Front.rootObject = View_SecondFloorStairs_Front
+- View_SecondFloorStairs_Front.resourcesPath = (value)
+- View_SecondFloorStairs_Front.targetImage = View_SecondFloorStairs_Front
+- View_SecondFloorStairs_Front.loadOnEnable = (value)
+- View_SecondFloorStairs_Front.hideImageWhenMissing = (value)
+- View_SecondFloorStairs_Front.targetImage = View_SecondFloorStairs_Front
+- View_SecondFloorStairs_Front.baseAlpha = (value)
+- View_SecondFloorStairs_Front.minOffAlpha = (value)
+- View_SecondFloorStairs_Front.maxOffAlpha = (value)
+- View_SecondFloorStairs_Front.minIdleInterval = (value)
+- View_SecondFloorStairs_Front.maxIdleInterval = (value)
+- View_SecondFloorStairs_Front.minFlickerCount = (value)
+- View_SecondFloorStairs_Front.maxFlickerCount = (value)
+- View_SecondFloorStairs_Front.minOffDuration = (value)
+- View_SecondFloorStairs_Front.maxOffDuration = (value)
+- View_SecondFloorStairs_Front.minOnDuration = (value)
+- View_SecondFloorStairs_Front.maxOnDuration = (value)
+- View_SecondFloorStairs_Back.viewId = (value)
+- View_SecondFloorStairs_Back.rootObject = View_SecondFloorStairs_Back
+- View_SecondFloorStairs_Back.resourcesPath = (value)
+- View_SecondFloorStairs_Back.targetImage = View_SecondFloorStairs_Back
+- View_SecondFloorStairs_Back.loadOnEnable = (value)
+- View_SecondFloorStairs_Back.hideImageWhenMissing = (value)
+- View_SecondFloorStairs_Back.targetImage = View_SecondFloorStairs_Back
+- View_SecondFloorStairs_Back.baseAlpha = (value)
+- View_SecondFloorStairs_Back.minOffAlpha = (value)
+- View_SecondFloorStairs_Back.maxOffAlpha = (value)
+- View_SecondFloorStairs_Back.minIdleInterval = (value)
+- View_SecondFloorStairs_Back.maxIdleInterval = (value)
+- View_SecondFloorStairs_Back.minFlickerCount = (value)
+- View_SecondFloorStairs_Back.maxFlickerCount = (value)
+- View_SecondFloorStairs_Back.minOffDuration = (value)
+- View_SecondFloorStairs_Back.maxOffDuration = (value)
+- View_SecondFloorStairs_Back.minOnDuration = (value)
+- View_SecondFloorStairs_Back.maxOnDuration = (value)
+- Location_SecondFloorStairs.views = (value)
+- Location_FirstFloorHall.locationId = (value)
+- Location_FirstFloorHall.defaultViewId = (value)
+- View_FirstFloorHall_Front.viewId = (value)
+- View_FirstFloorHall_Front.rootObject = View_FirstFloorHall_Front
+- View_FirstFloorHall_Front.resourcesPath = (value)
+- View_FirstFloorHall_Front.targetImage = View_FirstFloorHall_Front
+- View_FirstFloorHall_Front.loadOnEnable = (value)
+- View_FirstFloorHall_Front.hideImageWhenMissing = (value)
+- View_FirstFloorHall_Front.targetImage = View_FirstFloorHall_Front
+- View_FirstFloorHall_Front.baseAlpha = (value)
+- View_FirstFloorHall_Front.minOffAlpha = (value)
+- View_FirstFloorHall_Front.maxOffAlpha = (value)
+- View_FirstFloorHall_Front.minIdleInterval = (value)
+- View_FirstFloorHall_Front.maxIdleInterval = (value)
+- View_FirstFloorHall_Front.minFlickerCount = (value)
+- View_FirstFloorHall_Front.maxFlickerCount = (value)
+- View_FirstFloorHall_Front.minOffDuration = (value)
+- View_FirstFloorHall_Front.maxOffDuration = (value)
+- View_FirstFloorHall_Front.minOnDuration = (value)
+- View_FirstFloorHall_Front.maxOnDuration = (value)
+- View_FirstFloorHall_Back.viewId = (value)
+- View_FirstFloorHall_Back.rootObject = View_FirstFloorHall_Back
+- View_FirstFloorHall_Back.resourcesPath = (value)
+- View_FirstFloorHall_Back.targetImage = View_FirstFloorHall_Back
+- View_FirstFloorHall_Back.loadOnEnable = (value)
+- View_FirstFloorHall_Back.hideImageWhenMissing = (value)
+- View_FirstFloorHall_Back.targetImage = View_FirstFloorHall_Back
+- View_FirstFloorHall_Back.baseAlpha = (value)
+- View_FirstFloorHall_Back.minOffAlpha = (value)
+- View_FirstFloorHall_Back.maxOffAlpha = (value)
+- View_FirstFloorHall_Back.minIdleInterval = (value)
+- View_FirstFloorHall_Back.maxIdleInterval = (value)
+- View_FirstFloorHall_Back.minFlickerCount = (value)
+- View_FirstFloorHall_Back.maxFlickerCount = (value)
+- View_FirstFloorHall_Back.minOffDuration = (value)
+- View_FirstFloorHall_Back.maxOffDuration = (value)
+- View_FirstFloorHall_Back.minOnDuration = (value)
+- View_FirstFloorHall_Back.maxOnDuration = (value)
+- Location_FirstFloorHall.views = (value)
 - Location_Entrance.locationId = (value)
 - Location_Entrance.defaultViewId = (value)
 - View_Entrance_Front.viewId = (value)
 - View_Entrance_Front.rootObject = View_Entrance_Front
+- View_Entrance_Front.resourcesPath = (value)
+- View_Entrance_Front.targetImage = View_Entrance_Front
+- View_Entrance_Front.loadOnEnable = (value)
+- View_Entrance_Front.hideImageWhenMissing = (value)
+- View_Entrance_Front.targetImage = View_Entrance_Front
+- View_Entrance_Front.baseAlpha = (value)
+- View_Entrance_Front.minOffAlpha = (value)
+- View_Entrance_Front.maxOffAlpha = (value)
+- View_Entrance_Front.minIdleInterval = (value)
+- View_Entrance_Front.maxIdleInterval = (value)
+- View_Entrance_Front.minFlickerCount = (value)
+- View_Entrance_Front.maxFlickerCount = (value)
+- View_Entrance_Front.minOffDuration = (value)
+- View_Entrance_Front.maxOffDuration = (value)
+- View_Entrance_Front.minOnDuration = (value)
+- View_Entrance_Front.maxOnDuration = (value)
+- View_Entrance_Back.viewId = (value)
+- View_Entrance_Back.rootObject = View_Entrance_Back
+- View_Entrance_Back.resourcesPath = (value)
+- View_Entrance_Back.targetImage = View_Entrance_Back
+- View_Entrance_Back.loadOnEnable = (value)
+- View_Entrance_Back.hideImageWhenMissing = (value)
+- View_Entrance_Back.targetImage = View_Entrance_Back
+- View_Entrance_Back.baseAlpha = (value)
+- View_Entrance_Back.minOffAlpha = (value)
+- View_Entrance_Back.maxOffAlpha = (value)
+- View_Entrance_Back.minIdleInterval = (value)
+- View_Entrance_Back.maxIdleInterval = (value)
+- View_Entrance_Back.minFlickerCount = (value)
+- View_Entrance_Back.maxFlickerCount = (value)
+- View_Entrance_Back.minOffDuration = (value)
+- View_Entrance_Back.maxOffDuration = (value)
+- View_Entrance_Back.minOnDuration = (value)
+- View_Entrance_Back.maxOnDuration = (value)
 - Location_Entrance.views = (value)
+- Location_SmallLivingRoom.locationId = (value)
+- Location_SmallLivingRoom.defaultViewId = (value)
+- View_SmallLivingRoom_Front.viewId = (value)
+- View_SmallLivingRoom_Front.rootObject = View_SmallLivingRoom_Front
+- View_SmallLivingRoom_Front.resourcesPath = (value)
+- View_SmallLivingRoom_Front.targetImage = View_SmallLivingRoom_Front
+- View_SmallLivingRoom_Front.loadOnEnable = (value)
+- View_SmallLivingRoom_Front.hideImageWhenMissing = (value)
+- View_SmallLivingRoom_Front.targetImage = View_SmallLivingRoom_Front
+- View_SmallLivingRoom_Front.baseAlpha = (value)
+- View_SmallLivingRoom_Front.minOffAlpha = (value)
+- View_SmallLivingRoom_Front.maxOffAlpha = (value)
+- View_SmallLivingRoom_Front.minIdleInterval = (value)
+- View_SmallLivingRoom_Front.maxIdleInterval = (value)
+- View_SmallLivingRoom_Front.minFlickerCount = (value)
+- View_SmallLivingRoom_Front.maxFlickerCount = (value)
+- View_SmallLivingRoom_Front.minOffDuration = (value)
+- View_SmallLivingRoom_Front.maxOffDuration = (value)
+- View_SmallLivingRoom_Front.minOnDuration = (value)
+- View_SmallLivingRoom_Front.maxOnDuration = (value)
+- View_SmallLivingRoom_Back.viewId = (value)
+- View_SmallLivingRoom_Back.rootObject = View_SmallLivingRoom_Back
+- View_SmallLivingRoom_Back.resourcesPath = (value)
+- View_SmallLivingRoom_Back.targetImage = View_SmallLivingRoom_Back
+- View_SmallLivingRoom_Back.loadOnEnable = (value)
+- View_SmallLivingRoom_Back.hideImageWhenMissing = (value)
+- View_SmallLivingRoom_Back.targetImage = View_SmallLivingRoom_Back
+- View_SmallLivingRoom_Back.baseAlpha = (value)
+- View_SmallLivingRoom_Back.minOffAlpha = (value)
+- View_SmallLivingRoom_Back.maxOffAlpha = (value)
+- View_SmallLivingRoom_Back.minIdleInterval = (value)
+- View_SmallLivingRoom_Back.maxIdleInterval = (value)
+- View_SmallLivingRoom_Back.minFlickerCount = (value)
+- View_SmallLivingRoom_Back.maxFlickerCount = (value)
+- View_SmallLivingRoom_Back.minOffDuration = (value)
+- View_SmallLivingRoom_Back.maxOffDuration = (value)
+- View_SmallLivingRoom_Back.minOnDuration = (value)
+- View_SmallLivingRoom_Back.maxOnDuration = (value)
+- Location_SmallLivingRoom.views = (value)
+- Location_LivingRoom.locationId = (value)
+- Location_LivingRoom.defaultViewId = (value)
+- View_LivingRoom_Front.viewId = (value)
+- View_LivingRoom_Front.rootObject = View_LivingRoom_Front
+- View_LivingRoom_Front.resourcesPath = (value)
+- View_LivingRoom_Front.targetImage = View_LivingRoom_Front
+- View_LivingRoom_Front.loadOnEnable = (value)
+- View_LivingRoom_Front.hideImageWhenMissing = (value)
+- View_LivingRoom_Front.targetImage = View_LivingRoom_Front
+- View_LivingRoom_Front.baseAlpha = (value)
+- View_LivingRoom_Front.minOffAlpha = (value)
+- View_LivingRoom_Front.maxOffAlpha = (value)
+- View_LivingRoom_Front.minIdleInterval = (value)
+- View_LivingRoom_Front.maxIdleInterval = (value)
+- View_LivingRoom_Front.minFlickerCount = (value)
+- View_LivingRoom_Front.maxFlickerCount = (value)
+- View_LivingRoom_Front.minOffDuration = (value)
+- View_LivingRoom_Front.maxOffDuration = (value)
+- View_LivingRoom_Front.minOnDuration = (value)
+- View_LivingRoom_Front.maxOnDuration = (value)
+- View_LivingRoom_Back.viewId = (value)
+- View_LivingRoom_Back.rootObject = View_LivingRoom_Back
+- View_LivingRoom_Back.resourcesPath = (value)
+- View_LivingRoom_Back.targetImage = View_LivingRoom_Back
+- View_LivingRoom_Back.loadOnEnable = (value)
+- View_LivingRoom_Back.hideImageWhenMissing = (value)
+- View_LivingRoom_Back.targetImage = View_LivingRoom_Back
+- View_LivingRoom_Back.baseAlpha = (value)
+- View_LivingRoom_Back.minOffAlpha = (value)
+- View_LivingRoom_Back.maxOffAlpha = (value)
+- View_LivingRoom_Back.minIdleInterval = (value)
+- View_LivingRoom_Back.maxIdleInterval = (value)
+- View_LivingRoom_Back.minFlickerCount = (value)
+- View_LivingRoom_Back.maxFlickerCount = (value)
+- View_LivingRoom_Back.minOffDuration = (value)
+- View_LivingRoom_Back.maxOffDuration = (value)
+- View_LivingRoom_Back.minOnDuration = (value)
+- View_LivingRoom_Back.maxOnDuration = (value)
+- Location_LivingRoom.views = (value)
 - Location_Kitchen.locationId = (value)
 - Location_Kitchen.defaultViewId = (value)
 - View_Kitchen_Front.viewId = (value)
 - View_Kitchen_Front.rootObject = View_Kitchen_Front
+- View_Kitchen_Front.resourcesPath = (value)
+- View_Kitchen_Front.targetImage = View_Kitchen_Front
+- View_Kitchen_Front.loadOnEnable = (value)
+- View_Kitchen_Front.hideImageWhenMissing = (value)
+- View_Kitchen_Front.targetImage = View_Kitchen_Front
+- View_Kitchen_Front.baseAlpha = (value)
+- View_Kitchen_Front.minOffAlpha = (value)
+- View_Kitchen_Front.maxOffAlpha = (value)
+- View_Kitchen_Front.minIdleInterval = (value)
+- View_Kitchen_Front.maxIdleInterval = (value)
+- View_Kitchen_Front.minFlickerCount = (value)
+- View_Kitchen_Front.maxFlickerCount = (value)
+- View_Kitchen_Front.minOffDuration = (value)
+- View_Kitchen_Front.maxOffDuration = (value)
+- View_Kitchen_Front.minOnDuration = (value)
+- View_Kitchen_Front.maxOnDuration = (value)
+- View_Kitchen_Back.viewId = (value)
+- View_Kitchen_Back.rootObject = View_Kitchen_Back
+- View_Kitchen_Back.resourcesPath = (value)
+- View_Kitchen_Back.targetImage = View_Kitchen_Back
+- View_Kitchen_Back.loadOnEnable = (value)
+- View_Kitchen_Back.hideImageWhenMissing = (value)
+- View_Kitchen_Back.targetImage = View_Kitchen_Back
+- View_Kitchen_Back.baseAlpha = (value)
+- View_Kitchen_Back.minOffAlpha = (value)
+- View_Kitchen_Back.maxOffAlpha = (value)
+- View_Kitchen_Back.minIdleInterval = (value)
+- View_Kitchen_Back.maxIdleInterval = (value)
+- View_Kitchen_Back.minFlickerCount = (value)
+- View_Kitchen_Back.maxFlickerCount = (value)
+- View_Kitchen_Back.minOffDuration = (value)
+- View_Kitchen_Back.maxOffDuration = (value)
+- View_Kitchen_Back.minOnDuration = (value)
+- View_Kitchen_Back.maxOnDuration = (value)
 - Location_Kitchen.views = (value)
+- Location_BasementStairs.locationId = (value)
+- Location_BasementStairs.defaultViewId = (value)
+- View_BasementStairs_Front.viewId = (value)
+- View_BasementStairs_Front.rootObject = View_BasementStairs_Front
+- View_BasementStairs_Front.resourcesPath = (value)
+- View_BasementStairs_Front.targetImage = View_BasementStairs_Front
+- View_BasementStairs_Front.loadOnEnable = (value)
+- View_BasementStairs_Front.hideImageWhenMissing = (value)
+- View_BasementStairs_Front.targetImage = View_BasementStairs_Front
+- View_BasementStairs_Front.baseAlpha = (value)
+- View_BasementStairs_Front.minOffAlpha = (value)
+- View_BasementStairs_Front.maxOffAlpha = (value)
+- View_BasementStairs_Front.minIdleInterval = (value)
+- View_BasementStairs_Front.maxIdleInterval = (value)
+- View_BasementStairs_Front.minFlickerCount = (value)
+- View_BasementStairs_Front.maxFlickerCount = (value)
+- View_BasementStairs_Front.minOffDuration = (value)
+- View_BasementStairs_Front.maxOffDuration = (value)
+- View_BasementStairs_Front.minOnDuration = (value)
+- View_BasementStairs_Front.maxOnDuration = (value)
+- View_BasementStairs_Back.viewId = (value)
+- View_BasementStairs_Back.rootObject = View_BasementStairs_Back
+- View_BasementStairs_Back.resourcesPath = (value)
+- View_BasementStairs_Back.targetImage = View_BasementStairs_Back
+- View_BasementStairs_Back.loadOnEnable = (value)
+- View_BasementStairs_Back.hideImageWhenMissing = (value)
+- View_BasementStairs_Back.targetImage = View_BasementStairs_Back
+- View_BasementStairs_Back.baseAlpha = (value)
+- View_BasementStairs_Back.minOffAlpha = (value)
+- View_BasementStairs_Back.maxOffAlpha = (value)
+- View_BasementStairs_Back.minIdleInterval = (value)
+- View_BasementStairs_Back.maxIdleInterval = (value)
+- View_BasementStairs_Back.minFlickerCount = (value)
+- View_BasementStairs_Back.maxFlickerCount = (value)
+- View_BasementStairs_Back.minOffDuration = (value)
+- View_BasementStairs_Back.maxOffDuration = (value)
+- View_BasementStairs_Back.minOnDuration = (value)
+- View_BasementStairs_Back.maxOnDuration = (value)
+- Location_BasementStairs.views = (value)
 - Location_BasementStorage.locationId = (value)
 - Location_BasementStorage.defaultViewId = (value)
 - View_BasementStorage_Front.viewId = (value)
 - View_BasementStorage_Front.rootObject = View_BasementStorage_Front
-- View_BasementStorage_Right.viewId = (value)
-- View_BasementStorage_Right.rootObject = View_BasementStorage_Right
+- View_BasementStorage_Front.resourcesPath = (value)
+- View_BasementStorage_Front.targetImage = View_BasementStorage_Front
+- View_BasementStorage_Front.loadOnEnable = (value)
+- View_BasementStorage_Front.hideImageWhenMissing = (value)
+- View_BasementStorage_Front.targetImage = View_BasementStorage_Front
+- View_BasementStorage_Front.baseAlpha = (value)
+- View_BasementStorage_Front.minOffAlpha = (value)
+- View_BasementStorage_Front.maxOffAlpha = (value)
+- View_BasementStorage_Front.minIdleInterval = (value)
+- View_BasementStorage_Front.maxIdleInterval = (value)
+- View_BasementStorage_Front.minFlickerCount = (value)
+- View_BasementStorage_Front.maxFlickerCount = (value)
+- View_BasementStorage_Front.minOffDuration = (value)
+- View_BasementStorage_Front.maxOffDuration = (value)
+- View_BasementStorage_Front.minOnDuration = (value)
+- View_BasementStorage_Front.maxOnDuration = (value)
 - View_BasementStorage_Back.viewId = (value)
 - View_BasementStorage_Back.rootObject = View_BasementStorage_Back
-- View_BasementStorage_Left.viewId = (value)
-- View_BasementStorage_Left.rootObject = View_BasementStorage_Left
+- View_BasementStorage_Back.resourcesPath = (value)
+- View_BasementStorage_Back.targetImage = View_BasementStorage_Back
+- View_BasementStorage_Back.loadOnEnable = (value)
+- View_BasementStorage_Back.hideImageWhenMissing = (value)
+- View_BasementStorage_Back.targetImage = View_BasementStorage_Back
+- View_BasementStorage_Back.baseAlpha = (value)
+- View_BasementStorage_Back.minOffAlpha = (value)
+- View_BasementStorage_Back.maxOffAlpha = (value)
+- View_BasementStorage_Back.minIdleInterval = (value)
+- View_BasementStorage_Back.maxIdleInterval = (value)
+- View_BasementStorage_Back.minFlickerCount = (value)
+- View_BasementStorage_Back.maxFlickerCount = (value)
+- View_BasementStorage_Back.minOffDuration = (value)
+- View_BasementStorage_Back.maxOffDuration = (value)
+- View_BasementStorage_Back.minOnDuration = (value)
+- View_BasementStorage_Back.maxOnDuration = (value)
 - Location_BasementStorage.views = (value)
-- Location_LockedRoom.locationId = (value)
-- Location_LockedRoom.defaultViewId = (value)
-- View_LockedRoom_Front.viewId = (value)
-- View_LockedRoom_Front.rootObject = View_LockedRoom_Front
-- View_LockedRoom_Right.viewId = (value)
-- View_LockedRoom_Right.rootObject = View_LockedRoom_Right
-- View_LockedRoom_Back.viewId = (value)
-- View_LockedRoom_Back.rootObject = View_LockedRoom_Back
-- View_LockedRoom_Left.viewId = (value)
-- View_LockedRoom_Left.rootObject = View_LockedRoom_Left
-- Location_LockedRoom.views = (value)
 - LocationManager.locationRoot = LocationRoot
 - LocationManager.locationControllers = (value)
 - LocationManager.collectLocationsFromRoot = (value)
 - LocationManager.startingLocationId = (value)
 - LocationManager.startingViewId = (value)
+- Button_HidePoint_HidePoint_Bedroom_Closet.hidePointId = (value)
+- Button_HidePoint_HidePoint_Bedroom_Closet.rootObject = Button_HidePoint_HidePoint_Bedroom_Closet
+- Button_HidePoint_HidePoint_Bedroom_Closet.usable = (value)
+- Button_HidePoint_HidePoint_Bedroom_Closet.buttonImage = Button_HidePoint_HidePoint_Bedroom_Closet
+- Button_HidePoint_HidePoint_Bedroom_Closet.labelText = Text
+- Button_HidePoint_HidePoint_Bedroom_Closet.labelRoot = Text
+- Button_HidePoint_HidePoint_Bedroom_Closet.showDebugLabel = (value)
+- Button_HidePoint_HidePoint_Bedroom_Closet.visibleAlpha = (value)
+- Button_HidePoint_HidePoint_Bedroom_Closet.hiddenAlpha = (value)
+- Button_HidePoint_HidePoint_Bedroom_Closet.keepRaycastTarget = (value)
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.hidePointId = (value)
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.rootObject = Button_HidePoint_HidePoint_Bedroom_CurtainCloset
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.usable = (value)
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.buttonImage = Button_HidePoint_HidePoint_Bedroom_CurtainCloset
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.labelText = Text
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.labelRoot = Text
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.showDebugLabel = (value)
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.visibleAlpha = (value)
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.hiddenAlpha = (value)
+- Button_HidePoint_HidePoint_Bedroom_CurtainCloset.keepRaycastTarget = (value)
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.hidePointId = (value)
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.rootObject = Button_HidePoint_HidePoint_ChildRoom_Wardrobe
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.usable = (value)
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.buttonImage = Button_HidePoint_HidePoint_ChildRoom_Wardrobe
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.labelText = Text
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.labelRoot = Text
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.showDebugLabel = (value)
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.visibleAlpha = (value)
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.hiddenAlpha = (value)
+- Button_HidePoint_HidePoint_ChildRoom_Wardrobe.keepRaycastTarget = (value)
+- Button_HidePoint_HidePoint_Study_Desk.hidePointId = (value)
+- Button_HidePoint_HidePoint_Study_Desk.rootObject = Button_HidePoint_HidePoint_Study_Desk
+- Button_HidePoint_HidePoint_Study_Desk.usable = (value)
+- Button_HidePoint_HidePoint_Study_Desk.buttonImage = Button_HidePoint_HidePoint_Study_Desk
+- Button_HidePoint_HidePoint_Study_Desk.labelText = Text
+- Button_HidePoint_HidePoint_Study_Desk.labelRoot = Text
+- Button_HidePoint_HidePoint_Study_Desk.showDebugLabel = (value)
+- Button_HidePoint_HidePoint_Study_Desk.visibleAlpha = (value)
+- Button_HidePoint_HidePoint_Study_Desk.hiddenAlpha = (value)
+- Button_HidePoint_HidePoint_Study_Desk.keepRaycastTarget = (value)
 
 ## Warnings
 

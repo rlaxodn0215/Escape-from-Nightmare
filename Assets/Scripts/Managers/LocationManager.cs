@@ -517,6 +517,11 @@ namespace EscapeFromNightmare
                 return true;
             }
 
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableDoorRequirements)
+            {
+                return true;
+            }
+
             bool hasItemRequirement = !string.IsNullOrEmpty(door.requiredItemId);
             bool hasPuzzleRequirement = !string.IsNullOrEmpty(door.requiredPuzzleId);
 

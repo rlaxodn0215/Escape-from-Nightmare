@@ -89,6 +89,12 @@ namespace EscapeFromNightmare
         // Performs the Handle Puzzle operation while keeping its implementation details inside this script.
         private void HandlePuzzle(ClickableButton button)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisablePuzzles)
+            {
+                Debug.Log("Puzzle click ignored because puzzles are disabled for layout testing: " + button.ClickableId);
+                return;
+            }
+
             if (string.IsNullOrEmpty(button.LinkedPuzzleId))
             {
                 PlayUiFail();
@@ -154,6 +160,12 @@ namespace EscapeFromNightmare
         // Performs the Handle Hide Point operation while keeping its implementation details inside this script.
         private void HandleHidePoint(ClickableButton button)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableHiding)
+            {
+                Debug.Log("Hide point ignored because hiding is disabled for layout testing: " + (button != null ? button.ClickableId : string.Empty));
+                return;
+            }
+
             if (button == null)
             {
                 return;

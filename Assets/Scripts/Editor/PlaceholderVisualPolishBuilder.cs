@@ -81,6 +81,8 @@ namespace EscapeFromNightmare
         private const string GameScenePath = "Assets/Scenes/GameScene.unity";
         // Stores the Report Path value used by this script's runtime or editor workflow.
         private const string ReportPath = "Assets/Docs/GeneratedPlaceholderVisualPolishReport.md";
+        private const string RotateArrowLeftSpritePath = "Assets/Resources/UI/Buttons/RotateArrowLeft.png";
+        private const string RotateArrowRightSpritePath = "Assets/Resources/UI/Buttons/RotateArrowRight.png";
         // Stores the last Backup Path value used by this script's runtime or editor workflow.
         private static string lastBackupPath = string.Empty;
         // Stores the last Saved value used by this script's runtime or editor workflow.
@@ -426,11 +428,25 @@ namespace EscapeFromNightmare
                 Text label = EnsureButtonLabel(navigation.gameObject);
                 if (label != null)
                 {
-                    label.text = navigation.ActionType == NavigationActionType.RotateLeft ? "Left" : navigation.ActionType == NavigationActionType.RotateRight ? "Right" : navigation.ActionType.ToString();
-                    label.enabled = true;
+                    label.text = string.Empty;
+                    label.enabled = false;
                 }
 
-                image.color = new Color(0.12f, 0.12f, 0.12f, 0.65f);
+                string spritePath = navigation.ActionType == NavigationActionType.RotateLeft ? RotateArrowLeftSpritePath : RotateArrowRightSpritePath;
+                Sprite arrowSprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+                if (arrowSprite != null)
+                {
+                    image.sprite = arrowSprite;
+                    image.type = Image.Type.Simple;
+                    image.preserveAspect = true;
+                    image.color = Color.white;
+                }
+                else
+                {
+                    image.color = new Color(1f, 1f, 1f, 0.65f);
+                    AddWarning("Navigation button sprite is missing: " + spritePath);
+                }
+
                 image.raycastTarget = true;
                 if (navigation.ActionType == NavigationActionType.RotateLeft)
                 {

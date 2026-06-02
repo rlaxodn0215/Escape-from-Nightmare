@@ -20,7 +20,6 @@
 | Background | Study_Front | Backgrounds/Study_Front | Assets/Resources/Backgrounds/Study_Front.png |  | Resources Ready |
 | Background | Study_Right | Backgrounds/Study_Right | Assets/Resources/Backgrounds/Study_Right.png |  | Resources Ready |
 | Background | Study_Back | Backgrounds/Study_Back | Assets/Resources/Backgrounds/Study_Back.png |  | Resources Ready |
-| Background | Study_Left | Backgrounds/Study_Left | Assets/Resources/Backgrounds/Study_Left.png |  | Resources Ready |
 | Background | SecondFloorHallway_Front | Backgrounds/SecondFloorHallway_Front | Assets/Resources/Backgrounds/SecondFloorHallway_Front.png |  | Resources Ready |
 | Background | SecondFloorHallway_Back | Backgrounds/SecondFloorHallway_Back | Assets/Resources/Backgrounds/SecondFloorHallway_Back.png |  | Resources Ready |
 | Background | LivingRoom_Front | Backgrounds/LivingRoom_Front | Assets/Resources/Backgrounds/LivingRoom_Front.png |  | Resources Ready |

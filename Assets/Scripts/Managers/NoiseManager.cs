@@ -24,6 +24,11 @@ namespace EscapeFromNightmare
         // Performs the Make Noise operation while keeping its implementation details inside this script.
         public void MakeNoise(string locationId, string sourceId)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+            {
+                return;
+            }
+
             if (!noiseEnabled)
             {
                 return;

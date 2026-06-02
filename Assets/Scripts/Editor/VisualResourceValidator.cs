@@ -65,14 +65,17 @@ namespace EscapeFromNightmare
         private static readonly string[] RequiredViewIds =
         {
             "Bedroom_Front", "Bedroom_Back",
-            "ChildRoom_Front", "ChildRoom_Back",
-            "Study_Front", "Study_Right", "Study_Back", "Study_Left",
             "SecondFloorHallway_Front", "SecondFloorHallway_Back",
+            "ChildRoom_Front", "ChildRoom_Back",
+            "Study_Front", "Study_Back",
+            "SecondFloorStairs_Front", "SecondFloorStairs_Back",
+            "FirstFloorHall_Front", "FirstFloorHall_Back",
+            "Entrance_Front", "Entrance_Back",
+            "SmallLivingRoom_Front", "SmallLivingRoom_Back",
             "LivingRoom_Front", "LivingRoom_Back",
-            "Entrance_Front",
-            "Kitchen_Front",
-            "BasementStorage_Front", "BasementStorage_Right", "BasementStorage_Back", "BasementStorage_Left",
-            "LockedRoom_Front", "LockedRoom_Right", "LockedRoom_Back", "LockedRoom_Left"
+            "Kitchen_Front", "Kitchen_Back",
+            "BasementStairs_Front", "BasementStairs_Back",
+            "BasementStorage_Front", "BasementStorage_Back"
         };
 
         [MenuItem("Escape From Nightmare/Visual Polish/Validate Visual Resources")]

@@ -63,6 +63,12 @@ namespace EscapeFromNightmare
         // Performs the Enter Hide Point operation while keeping its implementation details inside this script.
         public void EnterHidePoint(string hidePointId)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisableHiding)
+            {
+                Debug.Log("Hide point entry is disabled for layout testing: " + hidePointId);
+                return;
+            }
+
             string resolvedHidePointId = !string.IsNullOrEmpty(hidePointId) ? hidePointId : "UnknownHidePoint";
 
             if (isHiding)

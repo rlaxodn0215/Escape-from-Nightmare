@@ -11,6 +11,10 @@
     "ghostDefaultMinLeaveTime": 5,
     "ghostDefaultMaxLeaveTime": 20,
     "ghostDangerThreshold": 1,
-    "chaseMoveLimit": 3
+    "chaseMoveLimit": 3,
+    "disablePuzzles": true,
+    "disableHiding": false,
+    "disableGhost": true,
+    "disableDoorRequirements": true
   }
 }

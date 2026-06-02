@@ -38,5 +38,9 @@ namespace EscapeFromNightmare
         public float ghostDangerThreshold;
         // Stores the chase Move Limit value used by this script's runtime or editor workflow.
         public int chaseMoveLimit;
+        public bool disablePuzzles;
+        public bool disableHiding;
+        public bool disableGhost;
+        public bool disableDoorRequirements;
     }
 }

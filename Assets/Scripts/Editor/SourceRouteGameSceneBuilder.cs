@@ -31,6 +31,12 @@ namespace EscapeFromNightmare
         private const string InventorySlotEmptySpritePath = "Assets/Resources/UI/Panels/InventorySlotEmpty.png";
         private const string InventorySlotSelectedSpritePath = "Assets/Resources/UI/Panels/InventorySlotSelected.png";
         private const float InventorySlotSize = 72f;
+        private const string BedroomClosetInteriorResourcePath = "Backgrounds/Bedroom_ClosetInside";
+        private const string BedroomLeftWardrobeInteriorResourcePath = "Backgrounds/Bedroom_LeftWardrobeInside";
+        private const string BedroomCurtainClosetInteriorResourcePath = "Backgrounds/Bedroom_CurtainClosetInside";
+        private const string ChildRoomWardrobeInteriorResourcePath = "Backgrounds/ChildRoom_WardrobeInside";
+        private const string StudyDeskInteriorResourcePath = "Backgrounds/Study_DeskInside";
+        private const bool EnableGameSceneBackgroundFlicker = false;
 
         private static readonly Dictionary<string, SourceRouteGameSceneBuilderCategoryStats> stats = new Dictionary<string, SourceRouteGameSceneBuilderCategoryStats>();
         // Stores the created Objects value used by this script's runtime or editor workflow.
@@ -65,6 +71,7 @@ namespace EscapeFromNightmare
         // Stores the ghost Status Root value used by this script's runtime or editor workflow.
         private static Transform ghostStatusRoot;
         private static Transform screenFadeRoot;
+        private static Transform nightmareIntroRoot;
 
         // Stores the game Data Manager value used by this script's runtime or editor workflow.
         private static GameDataManager gameDataManager;
@@ -114,30 +121,25 @@ namespace EscapeFromNightmare
             "Door_ChildRoom_SecondFloorHallway",
             "Door_SecondFloorHallway_Study",
             "Door_Study_SecondFloorHallway",
-            "Door_SecondFloorHallway_LivingRoom",
-            "Door_LivingRoom_SecondFloorHallway",
-            "Door_LivingRoom_Kitchen",
-            "Door_Kitchen_LivingRoom",
-            "Door_Kitchen_BasementStorage",
-            "Door_BasementStorage_Kitchen",
-            "Door_BasementStorage_LockedRoom",
-            "Door_LockedRoom_BasementStorage",
-            "Door_LivingRoom_Entrance",
-            "Door_Entrance_LivingRoom"
+            "Door_SecondFloorHallway_FirstFloorHall",
+            "Door_FirstFloorHall_SecondFloorHallway",
+            "Door_Entrance_FirstFloorHall",
+            "Door_FirstFloorHall_Entrance",
+            "Door_SmallLivingRoom_FirstFloorHall",
+            "Door_FirstFloorHall_SmallLivingRoom",
+            "Door_LivingRoom_FirstFloorHall",
+            "Door_FirstFloorHall_LivingRoom",
+            "Door_Kitchen_FirstFloorHall",
+            "Door_FirstFloorHall_Kitchen",
+            "Door_Kitchen_BasementStairs",
+            "Door_BasementStairs_Kitchen",
+            "Door_BasementStairs_BasementStorage",
+            "Door_BasementStorage_BasementStairs"
         };
 
         // Stores the Required Puzzles value used by this script's runtime or editor workflow.
         private static readonly string[] RequiredPuzzles =
         {
-            "Puzzle_Bedroom_01",
-            "Puzzle_LivingRoom_01",
-            "Puzzle_ChildRoom_01",
-            "Puzzle_Study_01",
-            "Puzzle_LivingRoom_02",
-            "Puzzle_Kitchen_01",
-            "Puzzle_BasementStorage_01",
-            "Puzzle_LockedRoom_01",
-            "Puzzle_Entrance_01"
         };
 
         // Stores the Recommended Clues value used by this script's runtime or editor workflow.
@@ -156,15 +158,18 @@ namespace EscapeFromNightmare
         // Stores the Location Views value used by this script's runtime or editor workflow.
         private static readonly string[,] LocationViews =
         {
-            { "Bedroom", "Bedroom_Front,Bedroom_Back", "Bedroom_Front" },
-            { "ChildRoom", "ChildRoom_Front,ChildRoom_Back", "ChildRoom_Front" },
-            { "Study", "Study_Front,Study_Right,Study_Back,Study_Left", "Study_Front" },
+            { "Bedroom", "Bedroom_Front,Bedroom_Back", "Bedroom_Back" },
             { "SecondFloorHallway", "SecondFloorHallway_Front,SecondFloorHallway_Back", "SecondFloorHallway_Front" },
+            { "ChildRoom", "ChildRoom_Front,ChildRoom_Back", "ChildRoom_Front" },
+            { "Study", "Study_Front,Study_Back", "Study_Front" },
+            { "SecondFloorStairs", "SecondFloorStairs_Front,SecondFloorStairs_Back", "SecondFloorStairs_Front" },
+            { "FirstFloorHall", "FirstFloorHall_Front,FirstFloorHall_Back", "FirstFloorHall_Front" },
+            { "Entrance", "Entrance_Front,Entrance_Back", "Entrance_Front" },
+            { "SmallLivingRoom", "SmallLivingRoom_Front,SmallLivingRoom_Back", "SmallLivingRoom_Front" },
             { "LivingRoom", "LivingRoom_Front,LivingRoom_Back", "LivingRoom_Front" },
-            { "Entrance", "Entrance_Front", "Entrance_Front" },
-            { "Kitchen", "Kitchen_Front", "Kitchen_Front" },
-            { "BasementStorage", "BasementStorage_Front,BasementStorage_Right,BasementStorage_Back,BasementStorage_Left", "BasementStorage_Front" },
-            { "LockedRoom", "LockedRoom_Front,LockedRoom_Right,LockedRoom_Back,LockedRoom_Left", "LockedRoom_Front" }
+            { "Kitchen", "Kitchen_Front,Kitchen_Back", "Kitchen_Front" },
+            { "BasementStairs", "BasementStairs_Front,BasementStairs_Back", "BasementStairs_Front" },
+            { "BasementStorage", "BasementStorage_Front,BasementStorage_Back", "BasementStorage_Front" }
         };
 
         [MenuItem("Escape From Nightmare/Scene Setup/Build Missing Source Route GameScene Wiring")]
@@ -227,6 +232,7 @@ namespace EscapeFromNightmare
             EnsurePanels();
             EnsureNavigationButtons();
             EnsureLocationsAndViews();
+            RemoveStaleLayoutObjects();
             EnsureDoorButtons();
             EnsurePuzzleButtons();
             EnsureClueButtons();
@@ -277,6 +283,7 @@ namespace EscapeFromNightmare
             hideInteriorRoot = null;
             ghostStatusRoot = null;
             screenFadeRoot = null;
+            nightmareIntroRoot = null;
         }
 
         // Finds or creates a required reference so later logic can run without null setup errors.
@@ -503,7 +510,9 @@ namespace EscapeFromNightmare
             hideInteriorRoot = CreateHideBackground(hideViewRoot);
             ghostStatusRoot = CreatePanel("GhostStatusPanel", canvasTransform, "UI Roots").transform;
             screenFadeRoot = CreatePanel("ScreenFadeOverlay", canvasTransform, "UI Roots").transform;
+            nightmareIntroRoot = CreatePanel("NightmareIntroOverlay", canvasTransform, "UI Roots").transform;
             screenFadeRoot.SetAsLastSibling();
+            nightmareIntroRoot.SetAsLastSibling();
             GetOrCreateComponent<InteractionInputGate>(canvas.gameObject, "UI Roots");
 
             SetSerializedObjectReference(locationManager, "locationRoot", locationRoot, "UI Roots");
@@ -776,6 +785,7 @@ namespace EscapeFromNightmare
             hideInteriorImage.color = Color.white;
             hideInteriorImage.raycastTarget = false;
             hideInteriorImage.preserveAspect = false;
+            ConfigureBackgroundFlicker(hideInteriorImage, "Panels");
             CanvasGroup hideInteriorCanvasGroup = GetOrCreateComponent<CanvasGroup>(hideInteriorRoot.gameObject, "Panels");
             hideInteriorCanvasGroup.alpha = 0f;
             hideInteriorCanvasGroup.interactable = false;
@@ -784,7 +794,7 @@ namespace EscapeFromNightmare
             SetSerializedObjectReference(hideInteriorView, "rootObject", hideViewRoot.gameObject, "Panels");
             SetSerializedObjectReference(hideInteriorView, "targetImage", hideInteriorImage, "Panels");
             SetSerializedHideInteriorMappings(hideInteriorView, "Panels");
-            SetSerializedString(hideInteriorView, "fallbackResourcePath", "Backgrounds/Bedroom_ClosetInside", "Panels");
+            SetSerializedString(hideInteriorView, "fallbackResourcePath", BedroomClosetInteriorResourcePath, "Panels");
 
             GameObject hideExit = FindObjectInSceneByName("HideExitButton");
             if (hideExit == null)
@@ -811,6 +821,24 @@ namespace EscapeFromNightmare
             SetSerializedObjectReference(screenFadeManager, "fadeCanvasGroup", fadeCanvasGroup, "Panels");
             SetSerializedFloat(screenFadeManager, "fadeOutSeconds", 0.6f, "Panels");
             SetSerializedFloat(screenFadeManager, "fadeInSeconds", 0.6f, "Panels");
+
+            Image nightmareImage = GetOrCreateComponent<Image>(nightmareIntroRoot.gameObject, "Panels");
+            nightmareImage.color = Color.black;
+            nightmareImage.raycastTarget = true;
+            CanvasGroup nightmareCanvasGroup = GetOrCreateComponent<CanvasGroup>(nightmareIntroRoot.gameObject, "Panels");
+            nightmareCanvasGroup.alpha = 0f;
+            nightmareCanvasGroup.interactable = false;
+            nightmareCanvasGroup.blocksRaycasts = false;
+            GameSceneNightmareIntroController nightmareIntro = GetOrCreateComponent<GameSceneNightmareIntroController>(nightmareIntroRoot.gameObject, "Panels");
+            SetSerializedObjectReference(nightmareIntro, "overlayCanvasGroup", nightmareCanvasGroup, "Panels");
+            SetSerializedObjectReference(nightmareIntro, "overlayImage", nightmareImage, "Panels");
+            SetSerializedObjectReference(nightmareIntro, "locationRoot", locationRoot != null ? locationRoot.GetComponent<RectTransform>() : null, "Panels");
+            SetSerializedFloat(nightmareIntro, "totalDuration", 2.6f, "Panels");
+            SetSerializedFloat(nightmareIntro, "startAlpha", 0.96f, "Panels");
+            SetSerializedFloat(nightmareIntro, "revealAlpha", 0.34f, "Panels");
+            SetSerializedFloat(nightmareIntro, "pullInScale", 1.045f, "Panels");
+            SetSerializedFloat(nightmareIntro, "shakePixels", 9f, "Panels");
+            SetSerializedFloat(nightmareIntro, "redPulseStrength", 0.55f, "Panels");
 
             GhostStatusUI ghostStatus = GetOrCreateComponent<GhostStatusUI>(ghostStatusRoot.gameObject, "Panels");
             Text stateText = CreateText("StateText", ghostStatusRoot, "Ghost: N/A", 18, "Panels");
@@ -883,6 +911,11 @@ namespace EscapeFromNightmare
             if (screenFadeRoot != null)
             {
                 screenFadeRoot.SetAsLastSibling();
+            }
+
+            if (nightmareIntroRoot != null)
+            {
+                nightmareIntroRoot.SetAsLastSibling();
             }
         }
 
@@ -990,7 +1023,14 @@ namespace EscapeFromNightmare
 
                     SetSerializedString(view, "viewId", viewId, "Views");
                     SetSerializedObjectReference(view, "rootObject", view.gameObject, "Views");
-                    GetOrCreateComponent<Image>(view.gameObject, "Views").color = new Color(0.08f, 0.08f, 0.08f, 0.22f);
+                    Image viewImage = GetOrCreateComponent<Image>(view.gameObject, "Views");
+                    viewImage.color = new Color(0.08f, 0.08f, 0.08f, 0.22f);
+                    ViewBackgroundBinding backgroundBinding = GetOrCreateComponent<ViewBackgroundBinding>(view.gameObject, "Views");
+                    SetSerializedString(backgroundBinding, "resourcesPath", "Backgrounds/" + viewId, "Views");
+                    SetSerializedObjectReference(backgroundBinding, "targetImage", viewImage, "Views");
+                    SetSerializedBool(backgroundBinding, "loadOnEnable", true, "Views");
+                    SetSerializedBool(backgroundBinding, "hideImageWhenMissing", false, "Views");
+                    ConfigureBackgroundFlicker(viewImage, "Views");
                     GetOrCreateGameObject("ButtonLayer", view.transform, "Views");
                     viewList.Add(view);
                     viewsById[viewId] = view;
@@ -1005,7 +1045,7 @@ namespace EscapeFromNightmare
             SetSerializedObjectList(locationManager, "locationControllers", locationControllers, "Locations");
             SetSerializedBool(locationManager, "collectLocationsFromRoot", true, "Locations");
             SetSerializedString(locationManager, "startingLocationId", "Bedroom", "Locations");
-            SetSerializedString(locationManager, "startingViewId", "Bedroom_Front", "Locations");
+            SetSerializedString(locationManager, "startingViewId", "Bedroom_Back", "Locations");
         }
 
         // Finds or creates a required reference so later logic can run without null setup errors.
@@ -1014,12 +1054,6 @@ namespace EscapeFromNightmare
             for (int i = 0; i < RequiredDoors.Length; i++)
             {
                 string doorId = RequiredDoors[i];
-                if (FindClickableButton(b => b.ClickableType == ClickableType.Door && b.LinkedDoorId == doorId) != null)
-                {
-                    AddReused("Door Buttons", FindClickableButton(b => b.ClickableType == ClickableType.Door && b.LinkedDoorId == doorId).gameObject, "Door button " + doorId);
-                    continue;
-                }
-
                 DoorRecord record;
                 if (!doorsById.TryGetValue(doorId, out record))
                 {
@@ -1028,12 +1062,197 @@ namespace EscapeFromNightmare
                 }
 
                 Transform parent = ResolveViewParent(record.fromViewId, record.fromLocationId, "Door Buttons");
-                GameObject buttonObject = CreateButton("Button_Door_" + doorId, parent, "Door " + doorId, "Door Buttons");
+                ClickableButton existing = FindClickableButton(b => b.ClickableType == ClickableType.Door && b.LinkedDoorId == doorId);
+                GameObject buttonObject;
+                if (existing != null)
+                {
+                    buttonObject = existing.gameObject;
+                    if (parent != null && buttonObject.transform.parent != parent)
+                    {
+                        buttonObject.transform.SetParent(parent, false);
+                    }
+                    AddReused("Door Buttons", buttonObject, "Door button " + doorId);
+                }
+                else
+                {
+                    buttonObject = CreateButton("Button_Door_" + doorId, parent, "Door " + doorId, "Door Buttons");
+                }
+
+                ConfigureDoorButtonRect(doorId, buttonObject.GetComponent<RectTransform>());
                 ClickableButton clickable = GetOrCreateComponent<ClickableButton>(buttonObject, "Door Buttons");
                 clickable.clickableId = doorId;
                 clickable.clickableType = ClickableType.Door;
                 clickable.linkedDoorId = doorId;
                 EditorUtility.SetDirty(clickable);
+            }
+        }
+
+        private static void RemoveStaleLayoutObjects()
+        {
+            CacheSceneObjects();
+            HashSet<string> validLocations = new HashSet<string>();
+            HashSet<string> validViews = new HashSet<string>();
+            for (int i = 0; i < LocationViews.GetLength(0); i++)
+            {
+                validLocations.Add(LocationViews[i, 0]);
+                string[] viewIds = LocationViews[i, 1].Split(',');
+                for (int j = 0; j < viewIds.Length; j++)
+                {
+                    validViews.Add(viewIds[j]);
+                }
+            }
+
+            LocationController[] locationControllers = FindComponentsInScene<LocationController>();
+            for (int i = 0; i < locationControllers.Length; i++)
+            {
+                LocationController controller = locationControllers[i];
+                if (controller == null || string.IsNullOrEmpty(controller.LocationId) || validLocations.Contains(controller.LocationId))
+                {
+                    continue;
+                }
+
+                AddInfo("Locations", "Removed stale location from previous layout: " + controller.LocationId);
+                UnityEngine.Object.DestroyImmediate(controller.gameObject);
+            }
+
+            LocationView[] views = FindComponentsInScene<LocationView>();
+            for (int i = 0; i < views.Length; i++)
+            {
+                LocationView view = views[i];
+                if (view == null || string.IsNullOrEmpty(view.ViewId) || validViews.Contains(view.ViewId))
+                {
+                    continue;
+                }
+
+                AddInfo("Views", "Removed stale view from previous layout: " + view.ViewId);
+                UnityEngine.Object.DestroyImmediate(view.gameObject);
+            }
+
+            ClickableButton[] buttons = FindComponentsInScene<ClickableButton>();
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                ClickableButton button = buttons[i];
+                if (button == null)
+                {
+                    continue;
+                }
+
+                bool remove = false;
+                if (button.ClickableType == ClickableType.Door && !string.IsNullOrEmpty(button.LinkedDoorId) && !doorsById.ContainsKey(button.LinkedDoorId))
+                {
+                    remove = true;
+                }
+                else if (button.ClickableType == ClickableType.Puzzle && RequiredPuzzles.Length == 0)
+                {
+                    remove = true;
+                }
+                else if (button.ClickableType == ClickableType.FinalDoor && RequiredPuzzles.Length == 0)
+                {
+                    remove = true;
+                }
+                else if (button.ClickableType == ClickableType.HidePoint)
+                {
+                    remove = true;
+                }
+
+                if (!remove)
+                {
+                    continue;
+                }
+
+                AddInfo("Door Buttons", "Removed stale or disabled clickable: " + GetHierarchyPath(button.gameObject));
+                UnityEngine.Object.DestroyImmediate(button.gameObject);
+            }
+
+            CacheSceneObjects();
+        }
+
+        private static void ConfigureDoorButtonRect(string doorId, RectTransform rect)
+        {
+            if (rect == null)
+            {
+                return;
+            }
+
+            if (doorId == "Door_SecondFloorHallway_Bedroom")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(-520f, -60f);
+                rect.sizeDelta = new Vector2(300f, 520f);
+            }
+            else if (doorId == "Door_SecondFloorHallway_ChildRoom")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(520f, -60f);
+                rect.sizeDelta = new Vector2(300f, 520f);
+            }
+            else if (doorId == "Door_ChildRoom_SecondFloorHallway")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(9.7764f, 26.7481f);
+                rect.sizeDelta = new Vector2(257.8788f, 544.8958f);
+            }
+            else if (doorId == "Door_Study_SecondFloorHallway")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(0f, -60f);
+                rect.sizeDelta = new Vector2(340f, 520f);
+            }
+            else if (doorId == "Door_SecondFloorHallway_Study")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(0f, -85f);
+                rect.sizeDelta = new Vector2(320f, 440f);
+            }
+            else if (doorId == "Door_SecondFloorHallway_FirstFloorHall" || doorId == "Door_FirstFloorHall_SecondFloorHallway")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(0f, -145f);
+                rect.sizeDelta = new Vector2(460f, 320f);
+            }
+            else if (doorId == "Door_FirstFloorHall_SmallLivingRoom")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(-420f, -40f);
+                rect.sizeDelta = new Vector2(280f, 430f);
+            }
+            else if (doorId == "Door_FirstFloorHall_LivingRoom")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(420f, -40f);
+                rect.sizeDelta = new Vector2(280f, 430f);
+            }
+            else if (doorId == "Door_FirstFloorHall_Kitchen" || doorId == "Door_Kitchen_FirstFloorHall")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(520f, -40f);
+                rect.sizeDelta = new Vector2(280f, 430f);
+            }
+            else if (doorId == "Door_FirstFloorHall_Entrance" || doorId == "Door_Entrance_FirstFloorHall")
+            {
+                rect.anchorMin = new Vector2(0.5f, 0.5f);
+                rect.anchorMax = new Vector2(0.5f, 0.5f);
+                rect.pivot = new Vector2(0.5f, 0.5f);
+                rect.anchoredPosition = new Vector2(0f, 0f);
+                rect.sizeDelta = new Vector2(380f, 520f);
             }
         }
 
@@ -1106,21 +1325,42 @@ namespace EscapeFromNightmare
         private static void EnsureHidePoints()
         {
             CreateHidePoint("HidePoint_Bedroom_Closet", "Bedroom_Back");
-            CreateHidePoint("HidePoint_SecondFloorHallway_Cabinet", "SecondFloorHallway_Back");
-            CreateHidePoint("HidePoint_Study_Desk", "Study_Left");
+            CreateHidePoint("HidePoint_Bedroom_CurtainCloset", "Bedroom_Back");
+            CreateHidePoint("HidePoint_ChildRoom_Wardrobe", "ChildRoom_Front");
+            CreateHidePoint("HidePoint_Study_Desk", "Study_Front");
         }
 
         // Creates the required Unity objects and components, then places them in the expected hierarchy.
         private static void CreateHidePoint(string hidePointId, string viewId)
         {
-            if (FindClickableButton(b => b.ClickableType == ClickableType.HidePoint && (b.TargetObjectId == hidePointId || b.ClickableId == hidePointId)) != null)
+            ClickableButton existing = FindClickableButton(b => b.ClickableType == ClickableType.HidePoint && (b.TargetObjectId == hidePointId || b.ClickableId == hidePointId));
+            if (existing != null)
             {
-                AddReused("HidePoints", FindClickableButton(b => b.ClickableType == ClickableType.HidePoint && (b.TargetObjectId == hidePointId || b.ClickableId == hidePointId)).gameObject, "HidePoint " + hidePointId);
+                Transform existingParent = ResolveViewParent(viewId, string.Empty, "HidePoints");
+                if (existingParent != null && existing.transform.parent != existingParent)
+                {
+                    existing.transform.SetParent(existingParent, false);
+                }
+
+                ConfigureHidePointRect(hidePointId, existing.GetComponent<RectTransform>());
+                ConfigureHidePointComponents(existing.gameObject, hidePointId);
+                AddReused("HidePoints", existing.gameObject, "HidePoint " + hidePointId);
                 return;
             }
 
             Transform parent = ResolveViewParent(viewId, string.Empty, "HidePoints");
             GameObject buttonObject = CreateButton("Button_HidePoint_" + hidePointId, parent, "Hide", "HidePoints");
+            ConfigureHidePointRect(hidePointId, buttonObject.GetComponent<RectTransform>());
+            ConfigureHidePointComponents(buttonObject, hidePointId);
+        }
+
+        private static void ConfigureHidePointComponents(GameObject buttonObject, string hidePointId)
+        {
+            if (buttonObject == null)
+            {
+                return;
+            }
+
             ClickableButton clickable = GetOrCreateComponent<ClickableButton>(buttonObject, "HidePoints");
             clickable.clickableId = hidePointId;
             clickable.clickableType = ClickableType.HidePoint;
@@ -1129,12 +1369,99 @@ namespace EscapeFromNightmare
             SetSerializedString(controller, "hidePointId", hidePointId, "HidePoints");
             SetSerializedObjectReference(controller, "rootObject", buttonObject, "HidePoints");
             SetSerializedBool(controller, "usable", true, "HidePoints");
+            ConfigureHotspotButtonVisual(buttonObject, hidePointId, "HidePoints");
             EditorUtility.SetDirty(clickable);
+        }
+
+        private static void ConfigureHidePointRect(string hidePointId, RectTransform rect)
+        {
+            if (rect == null)
+            {
+                return;
+            }
+
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+
+            if (hidePointId == "HidePoint_Bedroom_Closet")
+            {
+                rect.anchoredPosition = new Vector2(-390f, 35f);
+                rect.sizeDelta = new Vector2(330f, 520f);
+            }
+            else if (hidePointId == "HidePoint_Bedroom_CurtainCloset")
+            {
+                rect.anchoredPosition = new Vector2(500f, 5f);
+                rect.sizeDelta = new Vector2(380f, 570f);
+            }
+            else if (hidePointId == "HidePoint_ChildRoom_Wardrobe")
+            {
+                rect.anchoredPosition = new Vector2(455f, -10f);
+                rect.sizeDelta = new Vector2(390f, 640f);
+            }
+            else if (hidePointId == "HidePoint_Study_Desk")
+            {
+                rect.anchoredPosition = new Vector2(0f, -165f);
+                rect.sizeDelta = new Vector2(560f, 260f);
+            }
+        }
+
+        private static void ConfigureBackgroundFlicker(Image targetImage, string category)
+        {
+            if (targetImage == null)
+            {
+                return;
+            }
+
+            TitleBackgroundFlicker flicker = GetOrCreateComponent<TitleBackgroundFlicker>(targetImage.gameObject, category);
+            flicker.enabled = EnableGameSceneBackgroundFlicker;
+            SetSerializedObjectReference(flicker, "targetImage", targetImage, category);
+            SetSerializedFloat(flicker, "baseAlpha", 1f, category);
+            SetSerializedFloat(flicker, "minOffAlpha", 0.25f, category);
+            SetSerializedFloat(flicker, "maxOffAlpha", 0.45f, category);
+            SetSerializedFloat(flicker, "minIdleInterval", 4f, category);
+            SetSerializedFloat(flicker, "maxIdleInterval", 9f, category);
+            SetSerializedInt(flicker, "minFlickerCount", 1, category);
+            SetSerializedInt(flicker, "maxFlickerCount", 3, category);
+            SetSerializedFloat(flicker, "minOffDuration", 0.05f, category);
+            SetSerializedFloat(flicker, "maxOffDuration", 0.16f, category);
+            SetSerializedFloat(flicker, "minOnDuration", 0.04f, category);
+            SetSerializedFloat(flicker, "maxOnDuration", 0.12f, category);
+            EditorUtility.SetDirty(flicker);
+        }
+
+        private static void ConfigureHotspotButtonVisual(GameObject buttonObject, string label, string category)
+        {
+            if (buttonObject == null)
+            {
+                return;
+            }
+
+            Image image = GetOrCreateComponent<Image>(buttonObject, category);
+            image.raycastTarget = true;
+            Text labelText = buttonObject.GetComponentInChildren<Text>(true);
+            HotspotButtonVisual visual = GetOrCreateComponent<HotspotButtonVisual>(buttonObject, category);
+            visual.SetDisplayLabel(label);
+            SetSerializedObjectReference(visual, "buttonImage", image, category);
+            SetSerializedObjectReference(visual, "labelText", labelText, category);
+            SetSerializedObjectReference(visual, "labelRoot", labelText != null ? labelText.gameObject : null, category);
+            SetSerializedBool(visual, "showDebugLabel", true, category);
+            SetSerializedFloat(visual, "visibleAlpha", 0.25f, category);
+            SetSerializedFloat(visual, "hiddenAlpha", 0.02f, category);
+            SetSerializedBool(visual, "keepRaycastTarget", true, category);
+            visual.MakeDebugVisible();
+            EditorUtility.SetDirty(visual);
         }
 
         // Finds or creates a required reference so later logic can run without null setup errors.
         private static void EnsureFinalDoor()
         {
+            if (RequiredPuzzles.Length == 0)
+            {
+                AddInfo("FinalDoor", "Final door creation skipped because puzzles and ending gates are disabled for layout testing.");
+                return;
+            }
+
             if (FindClickableButton(b => b.ClickableType == ClickableType.FinalDoor && b.RequiredItemId == "FrontDoorKey") != null)
             {
                 AddReused("FinalDoor", FindClickableButton(b => b.ClickableType == ClickableType.FinalDoor && b.RequiredItemId == "FrontDoorKey").gameObject, "FinalDoor FrontDoorKey");
@@ -1232,10 +1559,10 @@ namespace EscapeFromNightmare
                 case "Puzzle_LivingRoom_01": return "LivingRoom_Front";
                 case "Puzzle_ChildRoom_01": return "ChildRoom_Front";
                 case "Puzzle_Study_01": return "Study_Front";
-                case "Puzzle_LivingRoom_02": return "LivingRoom_Back";
+                case "Puzzle_LivingRoom_02": return "SmallLivingRoom_Front";
                 case "Puzzle_Kitchen_01": return "Kitchen_Front";
                 case "Puzzle_BasementStorage_01": return "BasementStorage_Front";
-                case "Puzzle_LockedRoom_01": return "LockedRoom_Front";
+                case "Puzzle_LockedRoom_01": return "BasementStorage_Back";
                 case "Puzzle_Entrance_01": return "Entrance_Front";
                 default: return GetDefaultViewForLocation(locationId);
             }
@@ -1249,10 +1576,10 @@ namespace EscapeFromNightmare
                 case "BedroomPhotoCodeClue": return "Bedroom_Back";
                 case "LivingRoomEntranceCodeClue": return "LivingRoom_Front";
                 case "ChildRoomCardSymbolClueImage": return "ChildRoom_Back";
-                case "StudyBookSymbolClueImage": return "Study_Right";
-                case "KitchenCodeClueImage": return "LivingRoom_Back";
+                case "StudyBookSymbolClueImage": return "Study_Back";
+                case "KitchenCodeClueImage": return "SmallLivingRoom_Back";
                 case "KitchenFridgeSurfaceSymbolClue": return "Kitchen_Front";
-                case "BasementPowerPatternClue": return "BasementStorage_Left";
+                case "BasementPowerPatternClue": return "BasementStorage_Front";
                 case "BasementClueImage": return "BasementStorage_Back";
                 default: return GetDefaultViewForLocation(locationId);
             }
@@ -1318,6 +1645,7 @@ namespace EscapeFromNightmare
             builder.AppendLine("- HideViewRoot/HideExitButton");
             builder.AppendLine("- GhostStatusPanel");
             builder.AppendLine("- ScreenFadeOverlay");
+            builder.AppendLine("- NightmareIntroOverlay");
             builder.AppendLine();
             AppendDoorMap(builder);
             AppendPuzzleMap(builder);
@@ -1327,8 +1655,8 @@ namespace EscapeFromNightmare
             builder.AppendLine("| HidePoint ID | Parent View | Button Name |");
             builder.AppendLine("|---|---|---|");
             builder.AppendLine("| HidePoint_Bedroom_Closet | Bedroom_Back | Button_HidePoint_HidePoint_Bedroom_Closet |");
-            builder.AppendLine("| HidePoint_SecondFloorHallway_Cabinet | SecondFloorHallway_Back | Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet |");
-            builder.AppendLine("| HidePoint_Study_Desk | Study_Left | Button_HidePoint_HidePoint_Study_Desk |");
+            builder.AppendLine("| HidePoint_Bedroom_CurtainCloset | Bedroom_Back | Button_HidePoint_HidePoint_Bedroom_CurtainCloset |");
+            builder.AppendLine("| HidePoint_ChildRoom_Wardrobe | ChildRoom_Front | Button_HidePoint_HidePoint_ChildRoom_Wardrobe |");
             builder.AppendLine();
             builder.AppendLine("## FinalDoor");
             builder.AppendLine();
@@ -1693,9 +2021,10 @@ namespace EscapeFromNightmare
 
             string[,] mappings =
             {
-                { "HidePoint_Bedroom_Closet", "Backgrounds/Bedroom_ClosetInside" },
-                { "HidePoint_SecondFloorHallway_Cabinet", "Backgrounds/SecondFloorHallway_CabinetInside" },
-                { "HidePoint_Study_Desk", "Backgrounds/Study_DeskInside" }
+                { "HidePoint_Bedroom_Closet", BedroomLeftWardrobeInteriorResourcePath },
+                { "HidePoint_Bedroom_CurtainCloset", BedroomCurtainClosetInteriorResourcePath },
+                { "HidePoint_ChildRoom_Wardrobe", ChildRoomWardrobeInteriorResourcePath },
+                { "HidePoint_Study_Desk", StudyDeskInteriorResourcePath }
             };
 
             property.arraySize = mappings.GetLength(0);

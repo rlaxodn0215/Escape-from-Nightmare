@@ -24,7 +24,6 @@ All paths below are `Resources.Load<Sprite>()` paths. Do not include file extens
 | Study_Front | Backgrounds/Study_Front | Assets/ArtIntake/Backgrounds/Study_Front.png | Assets/Resources/Backgrounds/Study_Front.png |
 | Study_Right | Backgrounds/Study_Right | Assets/ArtIntake/Backgrounds/Study_Right.png | Assets/Resources/Backgrounds/Study_Right.png |
 | Study_Back | Backgrounds/Study_Back | Assets/ArtIntake/Backgrounds/Study_Back.png | Assets/Resources/Backgrounds/Study_Back.png |
-| Study_Left | Backgrounds/Study_Left | Assets/ArtIntake/Backgrounds/Study_Left.png | Assets/Resources/Backgrounds/Study_Left.png |
 | SecondFloorHallway_Front | Backgrounds/SecondFloorHallway_Front | Assets/ArtIntake/Backgrounds/SecondFloorHallway_Front.png | Assets/Resources/Backgrounds/SecondFloorHallway_Front.png |
 | SecondFloorHallway_Back | Backgrounds/SecondFloorHallway_Back | Assets/ArtIntake/Backgrounds/SecondFloorHallway_Back.png | Assets/Resources/Backgrounds/SecondFloorHallway_Back.png |
 | LivingRoom_Front | Backgrounds/LivingRoom_Front | Assets/ArtIntake/Backgrounds/LivingRoom_Front.png | Assets/Resources/Backgrounds/LivingRoom_Front.png |

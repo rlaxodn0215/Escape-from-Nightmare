@@ -36,6 +36,9 @@ namespace EscapeFromNightmare
             }
 
             SetBoolField(runner, "runOnStart", false);
+            SetBoolField(runner, "testHidePointButtons", true);
+            SetFloatField(runner, "waitAfterClickSeconds", 1.35f);
+            SetFloatField(runner, "waitAfterOpenSeconds", 1.35f);
             Selection.activeGameObject = runner.gameObject;
             Debug.Log("[GameSceneInteractionRuntimeTestMenu] Prepared GameSceneInteractionRuntimeTestRunner for manual selection. Scene was not saved automatically.");
         }
@@ -107,6 +110,25 @@ namespace EscapeFromNightmare
             }
 
             property.boolValue = value;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void SetFloatField(Object target, string fieldName, float value)
+        {
+            if (target == null || string.IsNullOrEmpty(fieldName))
+            {
+                return;
+            }
+
+            SerializedObject serializedObject = new SerializedObject(target);
+            SerializedProperty property = serializedObject.FindProperty(fieldName);
+            if (property == null)
+            {
+                Debug.LogWarning("[GameSceneInteractionRuntimeTestMenu] Serialized field not found: " + fieldName);
+                return;
+            }
+
+            property.floatValue = value;
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
     }

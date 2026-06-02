@@ -17,7 +17,6 @@
 | Background | Study_Front.png | Backgrounds/Study_Front | 1920x1080 | False | generated |
 | Background | Study_Right.png | Backgrounds/Study_Right | 1920x1080 | False | generated |
 | Background | Study_Back.png | Backgrounds/Study_Back | 1920x1080 | False | generated |
-| Background | Study_Left.png | Backgrounds/Study_Left | 1920x1080 | False | generated |
 | Background | SecondFloorHallway_Front.png | Backgrounds/SecondFloorHallway_Front | 1920x1080 | False | generated |
 | Background | SecondFloorHallway_Back.png | Backgrounds/SecondFloorHallway_Back | 1920x1080 | False | generated |
 | Background | LivingRoom_Front.png | Backgrounds/LivingRoom_Front | 1920x1080 | False | generated |
@@ -123,7 +122,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/Study_Front.png
 - Resources Path: Assets/Resources/Backgrounds/Study_Front.png
 - Resource Load Path: Backgrounds/Study_Front
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Front view, no visible player character, objects blend naturally into the room.
+- Prompt: Dark hand-drawn 2D psychological horror, current project style preserved: ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Front view with exactly one visible exit door back to the second-floor hallway, no extra doors, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### Study_Right.png
@@ -131,7 +130,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/Study_Right.png
 - Resources Path: Assets/Resources/Backgrounds/Study_Right.png
 - Resource Load Path: Backgrounds/Study_Right
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Right view, no visible player character, objects blend naturally into the room.
+- Prompt: Dark hand-drawn 2D psychological horror, current project style preserved: ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Right view, no visible doors, no open corridor, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### Study_Back.png
@@ -139,15 +138,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/Study_Back.png
 - Resources Path: Assets/Resources/Backgrounds/Study_Back.png
 - Resource Load Path: Backgrounds/Study_Back
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Back view, no visible player character, objects blend naturally into the room.
-- Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
-
-### Study_Left.png
-- Category: Background
-- Output Path: Assets/ArtIntake/Backgrounds/Study_Left.png
-- Resources Path: Assets/Resources/Backgrounds/Study_Left.png
-- Resource Load Path: Backgrounds/Study_Left
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Left view, no visible player character, objects blend naturally into the room.
+- Prompt: Dark hand-drawn 2D psychological horror, current project style preserved: ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person Study_Back view with no visible doors, no open corridor, no staircase, antique desk and study furniture, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### SecondFloorHallway_Front.png
@@ -155,7 +146,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/SecondFloorHallway_Front.png
 - Resources Path: Assets/Resources/Backgrounds/SecondFloorHallway_Front.png
 - Resource Load Path: Backgrounds/SecondFloorHallway_Front
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person SecondFloorHallway_Front view, no visible player character, objects blend naturally into the room. Only two enterable doors should be clearly visible, one on each foreground side; any deeper hallway openings should read as damaged wall, shadow, portrait frames, cracks, or indistinct texture rather than doors. The far end of the hallway must be a solid closed wall with old wallpaper, cracked plaster, stains, and wall molding; it must not appear as an open corridor, passage, doorway, tunnel, archway, stairwell, or black void.
+- Prompt: Dark hand-drawn 2D psychological horror matching the Bedroom and ChildRoom background style: rough charcoal linework, low light, heavy vignette, peeling wallpaper, old wood floor, and room-like object density. First-person SecondFloorHallway_Front view with exactly one clear forward-facing study door centered on the front wall. No side doors, no extra doors, no staircase, no living-room passage, no open corridor, no black tunnel. Strict grayscale only, no red, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### SecondFloorHallway_Back.png
@@ -163,7 +154,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/SecondFloorHallway_Back.png
 - Resources Path: Assets/Resources/Backgrounds/SecondFloorHallway_Back.png
 - Resource Load Path: Backgrounds/SecondFloorHallway_Back
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person SecondFloorHallway_Back view, no visible player character, objects blend naturally into the room.
+- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person SecondFloorHallway_Back view with visible stairs down to the first-floor LivingRoom, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### LivingRoom_Front.png
@@ -171,7 +162,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/LivingRoom_Front.png
 - Resources Path: Assets/Resources/Backgrounds/LivingRoom_Front.png
 - Resource Load Path: Backgrounds/LivingRoom_Front
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person LivingRoom_Front view, no visible player character, objects blend naturally into the room.
+- Prompt: Dark hand-drawn 2D psychological horror, current project style preserved: ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person LivingRoom_Front view with the kitchen connection visible and clickable from this view, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### LivingRoom_Back.png
@@ -179,7 +170,7 @@
 - Output Path: Assets/ArtIntake/Backgrounds/LivingRoom_Back.png
 - Resources Path: Assets/Resources/Backgrounds/LivingRoom_Back.png
 - Resource Load Path: Backgrounds/LivingRoom_Back
-- Prompt: Dark hand-drawn 2D psychological horror, ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person LivingRoom_Back view, no visible player character, objects blend naturally into the room.
+- Prompt: Dark hand-drawn 2D psychological horror, current project style preserved: ordinary family house escape-room atmosphere, rough unstable charcoal linework, dusty worn surfaces, low light, heavy shadows, strict grayscale only, no red. First-person LivingRoom_Back view with the entrance/front-door hallway visible and clickable from this view, no visible player character, objects blend naturally into the room.
 - Negative Prompt: bright colors, red, saturated colors, cute cartoon, anime, realistic 3D, clean vector art, fantasy castle, hospital, school, sci-fi, gore, labels, arrows, markers, glowing outlines, readable UI text
 
 ### Entrance_Front.png

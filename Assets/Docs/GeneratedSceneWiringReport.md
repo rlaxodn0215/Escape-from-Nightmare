@@ -1,6 +1,6 @@
 # Generated Scene Wiring Report
 
-- Generated At: 2026-05-31 15:31:55
+- Generated At: 2026-06-02 21:46:35
 - Active Scene: GameScene
 
 ## Managers
@@ -32,15 +32,21 @@
   - Managers/ClueImageManager
 
 ## Locations
+### SmallLivingRoom
+- Path: Canvas/LocationRoot/Location_SmallLivingRoom
+- Default View: SmallLivingRoom_Front
+- JSON Location Exists: True
+- Views:
+  - SmallLivingRoom_Front (Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Front)
+  - SmallLivingRoom_Back (Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Back)
+
 ### BasementStorage
 - Path: Canvas/LocationRoot/Location_BasementStorage
 - Default View: BasementStorage_Front
 - JSON Location Exists: True
 - Views:
   - BasementStorage_Front (Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front)
-  - BasementStorage_Right (Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right)
   - BasementStorage_Back (Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back)
-  - BasementStorage_Left (Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left)
 
 ### Entrance
 - Path: Canvas/LocationRoot/Location_Entrance
@@ -48,16 +54,7 @@
 - JSON Location Exists: True
 - Views:
   - Entrance_Front (Canvas/LocationRoot/Location_Entrance/View_Entrance_Front)
-
-### LockedRoom
-- Path: Canvas/LocationRoot/Location_LockedRoom
-- Default View: LockedRoom_Front
-- JSON Location Exists: True
-- Views:
-  - LockedRoom_Front (Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front)
-  - LockedRoom_Right (Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Right)
-  - LockedRoom_Back (Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Back)
-  - LockedRoom_Left (Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Left)
+  - Entrance_Back (Canvas/LocationRoot/Location_Entrance/View_Entrance_Back)
 
 ### LivingRoom
 - Path: Canvas/LocationRoot/Location_LivingRoom
@@ -81,14 +78,23 @@
 - JSON Location Exists: True
 - Views:
   - Kitchen_Front (Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front)
+  - Kitchen_Back (Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Back)
 
 ### Bedroom
 - Path: Canvas/LocationRoot/Location_Bedroom
-- Default View: Bedroom_Front
+- Default View: Bedroom_Back
 - JSON Location Exists: True
 - Views:
   - Bedroom_Front (Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front)
   - Bedroom_Back (Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back)
+
+### BasementStairs
+- Path: Canvas/LocationRoot/Location_BasementStairs
+- Default View: BasementStairs_Front
+- JSON Location Exists: True
+- Views:
+  - BasementStairs_Front (Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Front)
+  - BasementStairs_Back (Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Back)
 
 ### SecondFloorHallway
 - Path: Canvas/LocationRoot/Location_SecondFloorHallway
@@ -98,56 +104,63 @@
   - SecondFloorHallway_Front (Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front)
   - SecondFloorHallway_Back (Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back)
 
+### SecondFloorStairs
+- Path: Canvas/LocationRoot/Location_SecondFloorStairs
+- Default View: SecondFloorStairs_Front
+- JSON Location Exists: True
+- Views:
+  - SecondFloorStairs_Front (Canvas/LocationRoot/Location_SecondFloorStairs/View_SecondFloorStairs_Front)
+  - SecondFloorStairs_Back (Canvas/LocationRoot/Location_SecondFloorStairs/View_SecondFloorStairs_Back)
+
+### FirstFloorHall
+- Path: Canvas/LocationRoot/Location_FirstFloorHall
+- Default View: FirstFloorHall_Front
+- JSON Location Exists: True
+- Views:
+  - FirstFloorHall_Front (Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front)
+  - FirstFloorHall_Back (Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back)
+
 ### Study
 - Path: Canvas/LocationRoot/Location_Study
 - Default View: Study_Front
 - JSON Location Exists: True
 - Views:
   - Study_Front (Canvas/LocationRoot/Location_Study/View_Study_Front)
-  - Study_Right (Canvas/LocationRoot/Location_Study/View_Study_Right)
   - Study_Back (Canvas/LocationRoot/Location_Study/View_Study_Back)
-  - Study_Left (Canvas/LocationRoot/Location_Study/View_Study_Left)
 
 ## Clickable Buttons
 | Path | Type | clickableId | Door | Puzzle | Clue | Item | Required Item | Target | Location | View |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_LivingRoom | Door | Door_SecondFloorHallway_LivingRoom | Door_SecondFloorHallway_LivingRoom |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Front |
-| Canvas/LocationRoot/Location_Study/View_Study_Right/ButtonLayer/Button_Clue_StudyBookSymbolClueImage | ExamineImage | StudyBookSymbolClueImage |  |  | StudyBookSymbolClueImage |  |  |  | Study | Study_Right |
+| Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Back/ButtonLayer/Button_Door_Door_Kitchen_BasementStairs | Door | Door_Kitchen_BasementStairs | Door_Kitchen_BasementStairs |  |  |  |  |  | Kitchen | Kitchen_Back |
 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Door_Door_ChildRoom_SecondFloorHallway | Door | Door_ChildRoom_SecondFloorHallway | Door_ChildRoom_SecondFloorHallway |  |  |  |  |  | ChildRoom | ChildRoom_Front |
-| Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Puzzle_Puzzle_Kitchen_01 | Puzzle | Puzzle_Kitchen_01 |  | Puzzle_Kitchen_01 |  |  |  |  | Kitchen | Kitchen_Front |
-| Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Puzzle_Puzzle_Entrance_01 | Puzzle | Puzzle_Entrance_01 |  | Puzzle_Entrance_01 |  |  |  |  | Entrance | Entrance_Front |
 | Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Back/ButtonLayer/Button_Clue_ChildRoomCardSymbolClueImage | ExamineImage | ChildRoomCardSymbolClueImage |  |  | ChildRoomCardSymbolClueImage |  |  |  | ChildRoom | ChildRoom_Back |
-| Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Right/ButtonLayer/Button_Door_Door_BasementStorage_LockedRoom | Door | Door_BasementStorage_LockedRoom | Door_BasementStorage_LockedRoom |  |  |  |  |  | BasementStorage | BasementStorage_Right |
 | Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Clue_KitchenFridgeSurfaceSymbolClue | ExamineImage | KitchenFridgeSurfaceSymbolClue |  |  | KitchenFridgeSurfaceSymbolClue |  |  |  | Kitchen | Kitchen_Front |
-| Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_Entrance | Door | Door_LivingRoom_Entrance | Door_LivingRoom_Entrance |  |  |  |  |  | LivingRoom | LivingRoom_Front |
-| Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_FinalDoor_FrontDoorKey | FinalDoor | FinalDoor_FrontDoorKey |  | Puzzle_Entrance_01 |  |  | FrontDoorKey |  | Entrance | Entrance_Front |
 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Clue_KitchenCodeClueImage | ExamineImage | KitchenCodeClueImage |  |  | KitchenCodeClueImage |  |  |  | LivingRoom | LivingRoom_Back |
-| Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_02 | Puzzle | Puzzle_LivingRoom_02 |  | Puzzle_LivingRoom_02 |  |  |  |  | LivingRoom | LivingRoom_Back |
-| Canvas/LocationRoot/Location_Study/View_Study_Left/ButtonLayer/Button_HidePoint_HidePoint_Study_Desk | HidePoint | HidePoint_Study_Desk |  |  |  |  |  | HidePoint_Study_Desk | Study | Study_Left |
-| Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_SecondFloorHallway | Door | Door_LivingRoom_SecondFloorHallway | Door_LivingRoom_SecondFloorHallway |  |  |  |  |  | LivingRoom | LivingRoom_Back |
-| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_HidePoint_HidePoint_SecondFloorHallway_Cabinet | HidePoint | HidePoint_SecondFloorHallway_Cabinet |  |  |  |  |  | HidePoint_SecondFloorHallway_Cabinet | SecondFloorHallway | SecondFloorHallway_Back |
-| Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Left/ButtonLayer/Button_Clue_BasementPowerPatternClue | ExamineImage | BasementPowerPatternClue |  |  | BasementPowerPatternClue |  |  |  | BasementStorage | BasementStorage_Left |
-| Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LivingRoom_01 | Puzzle | Puzzle_LivingRoom_01 |  | Puzzle_LivingRoom_01 |  |  |  |  | LivingRoom | LivingRoom_Front |
+| Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer/Button_Door_Door_FirstFloorHall_SecondFloorHallway | Door | Door_FirstFloorHall_SecondFloorHallway | Door_FirstFloorHall_SecondFloorHallway |  |  |  |  |  | FirstFloorHall | FirstFloorHall_Back |
+| Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Clue_BasementPowerPatternClue | ExamineImage | BasementPowerPatternClue |  |  | BasementPowerPatternClue |  |  |  | BasementStorage | BasementStorage_Front |
+| Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_FirstFloorHall | Door | Door_Entrance_FirstFloorHall | Door_Entrance_FirstFloorHall |  |  |  |  |  | Entrance | Entrance_Front |
+| Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_FirstFloorHall | Door | Door_Kitchen_FirstFloorHall | Door_Kitchen_FirstFloorHall |  |  |  |  |  | Kitchen | Kitchen_Front |
 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Front/ButtonLayer/Button_Door_Door_Bedroom_SecondFloorHallway | Door | Door_Bedroom_SecondFloorHallway | Door_Bedroom_SecondFloorHallway |  |  |  |  |  | Bedroom | Bedroom_Front |
-| Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet | HidePoint | HidePoint_Bedroom_Closet |  |  |  |  |  | HidePoint_Bedroom_Closet | Bedroom | Bedroom_Back |
-| Canvas/LocationRoot/Location_ChildRoom/View_ChildRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_ChildRoom_01 | Puzzle | Puzzle_ChildRoom_01 |  | Puzzle_ChildRoom_01 |  |  |  |  | ChildRoom | ChildRoom_Front |
-| Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_BasementStorage | Door | Door_Kitchen_BasementStorage | Door_Kitchen_BasementStorage |  |  |  |  |  | Kitchen | Kitchen_Front |
+| Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_SmallLivingRoom | Door | Door_FirstFloorHall_SmallLivingRoom | Door_FirstFloorHall_SmallLivingRoom |  |  |  |  |  | FirstFloorHall | FirstFloorHall_Front |
+| Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_Entrance | Door | Door_FirstFloorHall_Entrance | Door_FirstFloorHall_Entrance |  |  |  |  |  | FirstFloorHall | FirstFloorHall_Front |
 | Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Back/ButtonLayer/Button_Clue_BasementClueImage | ExamineImage | BasementClueImage |  |  | BasementClueImage |  |  |  | BasementStorage | BasementStorage_Back |
-| Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway | Door | Door_Study_SecondFloorHallway | Door_Study_SecondFloorHallway |  |  |  |  |  | Study | Study_Front |
-| Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Back/ButtonLayer/Button_Door_Door_LivingRoom_Kitchen | Door | Door_LivingRoom_Kitchen | Door_LivingRoom_Kitchen |  |  |  |  |  | LivingRoom | LivingRoom_Back |
+| Canvas/LocationRoot/Location_Study/View_Study_Back/ButtonLayer/Button_Door_Door_Study_SecondFloorHallway | Door | Door_Study_SecondFloorHallway | Door_Study_SecondFloorHallway |  |  |  |  |  | Study | Study_Back |
+| Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Front/ButtonLayer/Button_Door_Door_BasementStairs_Kitchen | Door | Door_BasementStairs_Kitchen | Door_BasementStairs_Kitchen |  |  |  |  |  | BasementStairs | BasementStairs_Front |
+| Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Door_Door_LivingRoom_FirstFloorHall | Door | Door_LivingRoom_FirstFloorHall | Door_LivingRoom_FirstFloorHall |  |  |  |  |  | LivingRoom | LivingRoom_Front |
+| Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Back/ButtonLayer/Button_Door_Door_FirstFloorHall_Kitchen | Door | Door_FirstFloorHall_Kitchen | Door_FirstFloorHall_Kitchen |  |  |  |  |  | FirstFloorHall | FirstFloorHall_Back |
 | Canvas/LocationRoot/Location_LivingRoom/View_LivingRoom_Front/ButtonLayer/Button_Clue_LivingRoomEntranceCodeClue | ExamineImage | LivingRoomEntranceCodeClue |  |  | LivingRoomEntranceCodeClue |  |  |  | LivingRoom | LivingRoom_Front |
-| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study | Door | Door_SecondFloorHallway_Study | Door_SecondFloorHallway_Study |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Front |
-| Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Puzzle_Puzzle_LockedRoom_01 | Puzzle | Puzzle_LockedRoom_01 |  | Puzzle_LockedRoom_01 |  |  |  |  | LockedRoom | LockedRoom_Front |
-| Canvas/LocationRoot/Location_Kitchen/View_Kitchen_Front/ButtonLayer/Button_Door_Door_Kitchen_LivingRoom | Door | Door_Kitchen_LivingRoom | Door_Kitchen_LivingRoom |  |  |  |  |  | Kitchen | Kitchen_Front |
-| Canvas/LocationRoot/Location_Entrance/View_Entrance_Front/ButtonLayer/Button_Door_Door_Entrance_LivingRoom | Door | Door_Entrance_LivingRoom | Door_Entrance_LivingRoom |  |  |  |  |  | Entrance | Entrance_Front |
-| Canvas/LocationRoot/Location_LockedRoom/View_LockedRoom_Front/ButtonLayer/Button_Door_Door_LockedRoom_BasementStorage | Door | Door_LockedRoom_BasementStorage | Door_LockedRoom_BasementStorage |  |  |  |  |  | LockedRoom | LockedRoom_Front |
-| Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Puzzle_Puzzle_Bedroom_01 | Puzzle | Puzzle_Bedroom_01 |  | Puzzle_Bedroom_01 |  |  |  |  | Bedroom | Bedroom_Back |
-| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom | Door | Door_SecondFloorHallway_ChildRoom | Door_SecondFloorHallway_ChildRoom |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Back |
-| Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Puzzle_Puzzle_BasementStorage_01 | Puzzle | Puzzle_BasementStorage_01 |  | Puzzle_BasementStorage_01 |  |  |  |  | BasementStorage | BasementStorage_Front |
-| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom | Door | Door_SecondFloorHallway_Bedroom | Door_SecondFloorHallway_Bedroom |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Back |
-| Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Puzzle_Puzzle_Study_01 | Puzzle | Puzzle_Study_01 |  | Puzzle_Study_01 |  |  |  |  | Study | Study_Front |
+| Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_CurtainCloset | HidePoint | HidePoint_Bedroom_CurtainCloset |  |  |  |  |  | HidePoint_Bedroom_CurtainCloset | Bedroom | Bedroom_Back |
+| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Back/ButtonLayer/Button_Door_Door_SecondFloorHallway_Study | Door | Door_SecondFloorHallway_Study | Door_SecondFloorHallway_Study |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Back |
+| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_FirstFloorHall | Door | Door_SecondFloorHallway_FirstFloorHall | Door_SecondFloorHallway_FirstFloorHall |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Front |
+| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_ChildRoom | Door | Door_SecondFloorHallway_ChildRoom | Door_SecondFloorHallway_ChildRoom |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Front |
+| Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_HidePoint_HidePoint_Bedroom_Closet | HidePoint | HidePoint_Bedroom_Closet |  |  |  |  |  | HidePoint_Bedroom_Closet | Bedroom | Bedroom_Back |
+| Canvas/LocationRoot/Location_SmallLivingRoom/View_SmallLivingRoom_Front/ButtonLayer/Button_Door_Door_SmallLivingRoom_FirstFloorHall | Door | Door_SmallLivingRoom_FirstFloorHall | Door_SmallLivingRoom_FirstFloorHall |  |  |  |  |  | SmallLivingRoom | SmallLivingRoom_Front |
+| Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_BasementStairs | Door | Door_BasementStorage_BasementStairs | Door_BasementStorage_BasementStairs |  |  |  |  |  | BasementStorage | BasementStorage_Front |
+| Canvas/LocationRoot/Location_BasementStairs/View_BasementStairs_Back/ButtonLayer/Button_Door_Door_BasementStairs_BasementStorage | Door | Door_BasementStairs_BasementStorage | Door_BasementStairs_BasementStorage |  |  |  |  |  | BasementStairs | BasementStairs_Back |
+| Canvas/LocationRoot/Location_SecondFloorHallway/View_SecondFloorHallway_Front/ButtonLayer/Button_Door_Door_SecondFloorHallway_Bedroom | Door | Door_SecondFloorHallway_Bedroom | Door_SecondFloorHallway_Bedroom |  |  |  |  |  | SecondFloorHallway | SecondFloorHallway_Front |
 | Canvas/LocationRoot/Location_Bedroom/View_Bedroom_Back/ButtonLayer/Button_Clue_BedroomPhotoCodeClue | ExamineImage | BedroomPhotoCodeClue |  |  | BedroomPhotoCodeClue |  |  |  | Bedroom | Bedroom_Back |
-| Canvas/LocationRoot/Location_BasementStorage/View_BasementStorage_Front/ButtonLayer/Button_Door_Door_BasementStorage_Kitchen | Door | Door_BasementStorage_Kitchen | Door_BasementStorage_Kitchen |  |  |  |  |  | BasementStorage | BasementStorage_Front |
+| Canvas/LocationRoot/Location_Study/View_Study_Front/ButtonLayer/Button_Clue_StudyBookSymbolClueImage | ExamineImage | StudyBookSymbolClueImage |  |  | StudyBookSymbolClueImage |  |  |  | Study | Study_Front |
+| Canvas/LocationRoot/Location_FirstFloorHall/View_FirstFloorHall_Front/ButtonLayer/Button_Door_Door_FirstFloorHall_LivingRoom | Door | Door_FirstFloorHall_LivingRoom | Door_FirstFloorHall_LivingRoom |  |  |  |  |  | FirstFloorHall | FirstFloorHall_Front |
 
 ## Navigation Buttons
 | Path | actionType | targetLocationId | targetViewId |

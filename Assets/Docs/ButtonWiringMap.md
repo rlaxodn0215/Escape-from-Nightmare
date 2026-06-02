@@ -12,9 +12,9 @@
 | Study | Study_Front | Return to Hallway | Door | Door_Study_Hallway |
 | Hallway | Hallway_Front | Go to LivingRoom | Door | Door_Hallway_LivingRoom |
 | LivingRoom | LivingRoom_Back | Return to Hallway | Door | Door_LivingRoom_Hallway |
-| LivingRoom | LivingRoom_Right | Go to Kitchen | Door | Door_LivingRoom_Kitchen |
+| LivingRoom | LivingRoom_Front | Go to Kitchen | Door | Door_LivingRoom_Kitchen |
 | Kitchen | Kitchen_Front | Return to LivingRoom | Door | Door_Kitchen_LivingRoom |
-| LivingRoom | LivingRoom_Front | Go to Entrance | Door | Door_LivingRoom_Entrance |
+| LivingRoom | LivingRoom_Back | Go to Entrance | Door | Door_LivingRoom_Entrance |
 
 ## Puzzle Buttons
 
@@ -47,8 +47,7 @@
 | Location | View | HidePoint ID | clickableType | targetObjectId |
 |---|---|---|---|---|
 | Bedroom | Bedroom_Back | HidePoint_Bedroom_Closet | HidePoint | HidePoint_Bedroom_Closet |
-| Hallway | Hallway_Right | HidePoint_Hallway_Cabinet | HidePoint | HidePoint_Hallway_Cabinet |
-| Study | Study_Left | HidePoint_Study_Desk | HidePoint | HidePoint_Study_Desk |
+| Bedroom | Bedroom_Back | HidePoint_Bedroom_CurtainCloset | HidePoint | HidePoint_Bedroom_CurtainCloset |
 
 ## FinalDoor Buttons
 

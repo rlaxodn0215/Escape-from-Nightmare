@@ -85,6 +85,36 @@ namespace EscapeFromNightmare
             get { return audioSettings; }
         }
 
+        public bool DisablePuzzles
+        {
+            get { return settings != null && settings.disablePuzzles; }
+        }
+
+        public bool DisableHiding
+        {
+            get { return settings != null && settings.disableHiding; }
+        }
+
+        public bool DisableGhost
+        {
+            get { return settings != null && settings.disableGhost; }
+        }
+
+        public bool DisableDoorRequirements
+        {
+            get { return settings != null && settings.disableDoorRequirements; }
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (Instance == this)
+            {
+                LoadAllData();
+            }
+        }
+
         // Finishes startup after the scene has initialized other objects and managers.
         private void Start()
         {

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bf4b153efa56473887574d021e7c1917
+guid: 21891a03ca994264e884e72c013af53c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8771235408948017168
-    second: Bedroom_ClosetInside_0
+      213: -384143847274961346
+    second: Resources_Study_Back_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,11 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -99,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bedroom_ClosetInside_0
+      name: Resources_Study_Back_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 018bca7e120b9b970800000000000000
-      internalID: 8771235408948017168
+      spriteID: e362688c43f3baaf0800000000000000
+      internalID: -384143847274961346
       vertices: []
       indices: 
       edges: []
@@ -124,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bedroom_ClosetInside_0: 8771235408948017168
+      Resources_Study_Back_0: -384143847274961346
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

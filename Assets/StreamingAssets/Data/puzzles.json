@@ -114,7 +114,7 @@
     },
     {
       "puzzleId": "Puzzle_LockedRoom_01",
-      "locationId": "LockedRoom",
+      "locationId": "BasementStorage",
       "type": "FinalSymbolItem",
       "prefabPath": "PuzzleUI/PuzzleUI_LockedRoomFinal",
       "codeLength": 0,

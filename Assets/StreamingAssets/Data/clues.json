@@ -46,7 +46,7 @@
     },
     {
       "clueId": "KitchenCodeClueImage",
-      "locationId": "LivingRoom",
+      "locationId": "SmallLivingRoom",
       "imagePath": "ClueImages/KitchenCodeClueImage",
       "requiredPuzzleId": "Puzzle_LivingRoom_02",
       "requiredItemId": "",

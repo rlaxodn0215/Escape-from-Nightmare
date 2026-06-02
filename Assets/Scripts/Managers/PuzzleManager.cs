@@ -37,6 +37,12 @@ namespace EscapeFromNightmare
         // Opens the requested puzzle, clue, screen, or navigation target for the player.
         public void OpenPuzzle(string puzzleId)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisablePuzzles)
+            {
+                Debug.Log("Puzzle opening is disabled for layout testing: " + puzzleId);
+                return;
+            }
+
             if (string.IsNullOrEmpty(puzzleId))
             {
                 Debug.LogWarning("Cannot open puzzle with an empty puzzleId.");
@@ -126,6 +132,13 @@ namespace EscapeFromNightmare
         // Performs the Complete Puzzle operation while keeping its implementation details inside this script.
         public void CompletePuzzle(string puzzleId)
         {
+            if (GameDataManager.Instance != null && GameDataManager.Instance.DisablePuzzles)
+            {
+                Debug.Log("Puzzle completion is disabled for layout testing: " + puzzleId);
+                CloseCurrentPuzzle();
+                return;
+            }
+
             if (string.IsNullOrEmpty(puzzleId))
             {
                 Debug.LogWarning("Cannot complete puzzle with an empty puzzleId.");
@@ -261,6 +274,12 @@ namespace EscapeFromNightmare
                     break;
                 case PuzzleRewardType.FinalChase:
                 case PuzzleRewardType.StartFinalChase:
+                    if (GameDataManager.Instance != null && GameDataManager.Instance.DisableGhost)
+                    {
+                        Debug.Log("Final chase reward ignored because ghost is disabled for layout testing: " + puzzle.puzzleId);
+                        break;
+                    }
+
                     if (SaveManager.Instance != null)
                     {
                         SaveManager.Instance.SetFinalChaseStarted(true);

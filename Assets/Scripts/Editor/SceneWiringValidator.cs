@@ -445,7 +445,21 @@ namespace EscapeFromNightmare
         {
             LocationController[] controllers = FindSceneObjects<LocationController>();
             Dictionary<string, LocationController> sceneLocations = new Dictionary<string, LocationController>();
-            HashSet<string> requiredLocations = new HashSet<string> { "Bedroom", "ChildRoom", "Study", "SecondFloorHallway", "LivingRoom", "Entrance", "Kitchen", "BasementStorage", "LockedRoom" };
+            HashSet<string> requiredLocations = new HashSet<string>
+            {
+                "Bedroom",
+                "SecondFloorHallway",
+                "ChildRoom",
+                "Study",
+                "SecondFloorStairs",
+                "FirstFloorHall",
+                "Entrance",
+                "SmallLivingRoom",
+                "LivingRoom",
+                "Kitchen",
+                "BasementStairs",
+                "BasementStorage"
+            };
 
             for (int i = 0; i < controllers.Length; i++)
             {
