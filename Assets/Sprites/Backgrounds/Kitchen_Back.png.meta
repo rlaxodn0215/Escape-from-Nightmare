@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 319e3b5be7bd4f60b62d23874897ac93
+guid: b7c7936b5542ee4439e235adba5359dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 402307567039337757
-    second: Kitchen_Back_0
+      213: 8304744015480189204
+    second: Kitchen_Back_1_stairSide_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kitchen_Back_0
+      name: Kitchen_Back_1_stairSide_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d225dbbf28e9b1a0800000000000000
-      internalID: 402307567039337757
+      spriteID: 4117f318ea0604370800000000000000
+      internalID: 8304744015480189204
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 444d15459ba1cccc0800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Kitchen_Back_0: 402307567039337757
+      Kitchen_Back_1_stairSide_0: 8304744015480189204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

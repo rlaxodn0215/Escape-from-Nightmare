@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace EscapeFromNightmare
 {
-	// 오디오 설정 값을 저장하고 불러오는 데이터 구조입니다.
-	// 값은 모두 0~1 범위이며 AudioManager가 AudioMixer dB 값으로 변환해 적용합니다.
+	// 오디오 설정 값을 저장하고 불러올 때 사용하는 데이터입니다.
+	// 모든 볼륨 값은 0에서 1 사이의 정규화된 값입니다.
 	[System.Serializable]
 	public struct AudioSettingsData
 	{
@@ -27,8 +27,8 @@ namespace EscapeFromNightmare
 		}
 	}
 
-	// 게임 저장과 불러오기 기능을 담당할 매니저입니다.
-	// 현재는 오디오 설정 저장 API를 제공하며, 실제 저장 매체는 PlayerPrefs를 사용합니다.
+	// 게임 설정 저장과 불러오기를 담당하는 전역 매니저입니다.
+	// 현재는 오디오 설정을 플레이어 설정 저장소에 저장합니다.
 	public class SaveManager : Singleton<SaveManager>
 	{
 		private const string MasterVolumeKey = "Audio.MasterVolume";

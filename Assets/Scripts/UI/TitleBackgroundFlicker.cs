@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+	// 타이틀 배경 이미지의 알파 값을 불규칙하게 바꿔 깜빡이는 효과를 만듭니다.
 	public class TitleBackgroundFlicker : MonoBehaviour
 	{
 		[SerializeField] private Image targetImage;
@@ -24,11 +25,13 @@ namespace EscapeFromNightmare
 		private int remainingFlickers;
 		private bool isOff;
 
+		// 대상 이미지가 비어 있으면 같은 오브젝트의 이미지 컴포넌트를 사용합니다.
 		private void Awake()
 		{
 			EnsureTargetImage();
 		}
 
+		// 원래 색상을 저장하고 다음 깜빡임 시간을 예약합니다.
 		private void OnEnable()
 		{
 			EnsureTargetImage();
@@ -45,6 +48,7 @@ namespace EscapeFromNightmare
 			ApplyAlpha(baseAlpha);
 		}
 
+		// 비활성화될 때 이미지 색상을 원래 상태로 되돌립니다.
 		private void OnDisable()
 		{
 			if (targetImage != null && hasOriginalColor)
@@ -53,6 +57,7 @@ namespace EscapeFromNightmare
 			}
 		}
 
+		// 예약된 시간이 되면 켜짐과 꺼짐 상태를 다음 단계로 진행합니다.
 		private void Update()
 		{
 			if (targetImage == null)
@@ -66,6 +71,7 @@ namespace EscapeFromNightmare
 			}
 		}
 
+		// 깜빡임 횟수와 켜짐/꺼짐 시간을 갱신합니다.
 		private void AdvanceState()
 		{
 			if (remainingFlickers <= 0 && !isOff)
@@ -104,6 +110,7 @@ namespace EscapeFromNightmare
 			}
 		}
 
+		// 인스펙터에서 최소값보다 작은 최대값이 들어가지 않도록 보정합니다.
 		private void OnValidate()
 		{
 			if (maxOffAlpha < minOffAlpha)

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
+	// 타이틀 화면의 시작, 설정, 종료 버튼을 실제 게임 동작과 연결합니다.
 	public class UITitleWindow : MonoBehaviour
 	{
 		[SerializeField] private Button startButton;
@@ -27,6 +28,7 @@ namespace EscapeFromNightmare
 			UnregisterEvents();
 		}
 
+		// 인스펙터 연결이 비어 있으면 자식 오브젝트와 씬에서 필요한 참조를 찾아옵니다.
 		private void CacheReferences()
 		{
 			startButton = startButton != null ? startButton : FindChildButton("StartButton");
@@ -49,6 +51,7 @@ namespace EscapeFromNightmare
 			}
 		}
 
+		// 버튼 클릭 이벤트를 등록합니다.
 		private void RegisterEvents()
 		{
 			if (startButton != null)
@@ -79,6 +82,7 @@ namespace EscapeFromNightmare
 			}
 		}
 
+		// 오브젝트가 비활성화될 때 중복 등록을 막기 위해 이벤트를 해제합니다.
 		private void UnregisterEvents()
 		{
 			if (startButton != null)

@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 namespace EscapeFromNightmare
 {
-	// 설정 창에서 Master/BGM/SFX/UI 음량 슬라이더를 AudioManager와 연결하는 UI 뷰입니다.
-	// 슬라이더는 Fill 이미지를 가진 progress bar 형태로 배치하고, 값 변경 즉시 AudioMixer에 반영합니다.
+	// 설정 창의 마스터, 배경음, 효과음, 사용자 인터페이스 볼륨 슬라이더를 오디오 매니저와 연결합니다.
+	// 슬라이더 값이 바뀌면 즉시 오디오 믹서와 저장 데이터에 반영됩니다.
 	public class UIAudioSettingsView : MonoBehaviour
 	{
 		[SerializeField] private GameObject rootPanel;
@@ -16,6 +16,7 @@ namespace EscapeFromNightmare
 
 		private bool isSyncing;
 
+		// 패널 참조를 보정하고 이벤트를 등록한 뒤 기본 상태를 닫힘으로 둡니다.
 		private void Awake()
 		{
 			if (rootPanel == null)
@@ -32,17 +33,20 @@ namespace EscapeFromNightmare
 			UnregisterEvents();
 		}
 
+		// 설정 창을 열고 현재 오디오 설정 값을 슬라이더에 반영합니다.
 		public void Open()
 		{
 			SyncFromAudioManager();
 			rootPanel.SetActive(true);
 		}
 
+		// 설정 창을 닫습니다.
 		public void Close()
 		{
 			rootPanel.SetActive(false);
 		}
 
+		// 오디오 매니저의 현재 볼륨 값을 슬라이더 화면에 동기화합니다.
 		public void SyncFromAudioManager()
 		{
 			if (AudioManager.Instance == null)
@@ -58,6 +62,7 @@ namespace EscapeFromNightmare
 			isSyncing = false;
 		}
 
+		// 슬라이더와 닫기 버튼 이벤트를 등록합니다.
 		private void RegisterEvents()
 		{
 			if (masterVolumeSlider != null)
@@ -86,6 +91,7 @@ namespace EscapeFromNightmare
 			}
 		}
 
+		// 등록된 화면 이벤트를 해제합니다.
 		private void UnregisterEvents()
 		{
 			if (masterVolumeSlider != null)

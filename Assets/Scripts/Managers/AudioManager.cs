@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 
 namespace EscapeFromNightmare
 {
-	// Controls global audio volume and routes sounds through BGM, SFX, and UI channels.
+	// 게임 전체 오디오 볼륨과 배경음, 효과음, 사용자 인터페이스 사운드 재생을 관리합니다.
 	public class AudioManager : Singleton<AudioManager>
 	{
 		private const string MasterVolumeParameter = "MasterVolume";
@@ -51,26 +51,31 @@ namespace EscapeFromNightmare
 			LoadAndApplySettings();
 		}
 
+		// 현재 적용된 마스터 볼륨 값을 반환합니다.
 		public float GetMasterVolume()
 		{
 			return audioSettings.masterVolume;
 		}
 
+		// 현재 적용된 배경음 볼륨 값을 반환합니다.
 		public float GetBgmVolume()
 		{
 			return audioSettings.bgmVolume;
 		}
 
+		// 현재 적용된 효과음 볼륨 값을 반환합니다.
 		public float GetSfxVolume()
 		{
 			return audioSettings.sfxVolume;
 		}
 
+		// 현재 적용된 사용자 인터페이스 볼륨 값을 반환합니다.
 		public float GetUiVolume()
 		{
 			return audioSettings.uiVolume;
 		}
 
+		// 마스터 볼륨을 설정하고 필요하면 저장합니다.
 		public void SetMasterVolume(float value, bool save = true)
 		{
 			audioSettings.masterVolume = ClampVolume(value);
@@ -78,6 +83,7 @@ namespace EscapeFromNightmare
 			SaveSettingsIfNeeded(save);
 		}
 
+		// 배경음 볼륨을 설정하고 필요하면 저장합니다.
 		public void SetBgmVolume(float value, bool save = true)
 		{
 			audioSettings.bgmVolume = ClampVolume(value);
@@ -85,6 +91,7 @@ namespace EscapeFromNightmare
 			SaveSettingsIfNeeded(save);
 		}
 
+		// 효과음 볼륨을 설정하고 필요하면 저장합니다.
 		public void SetSfxVolume(float value, bool save = true)
 		{
 			audioSettings.sfxVolume = ClampVolume(value);
@@ -92,6 +99,7 @@ namespace EscapeFromNightmare
 			SaveSettingsIfNeeded(save);
 		}
 
+		// 사용자 인터페이스 사운드 볼륨을 설정하고 필요하면 저장합니다.
 		public void SetUiVolume(float value, bool save = true)
 		{
 			audioSettings.uiVolume = ClampVolume(value);
@@ -99,6 +107,7 @@ namespace EscapeFromNightmare
 			SaveSettingsIfNeeded(save);
 		}
 
+		// 사운드 식별자에 등록된 채널 정보에 맞춰 사운드를 재생합니다.
 		public bool Play(AudioSoundId id)
 		{
 			if (!TryGetSoundEntry(id, out AudioSoundEntry entry))
@@ -238,6 +247,7 @@ namespace EscapeFromNightmare
 			PlayOneShot(uiOneShotSources, ref uiOneShotIndex, clip, volumeScale, pitch, GetUiSourceVolume());
 		}
 
+		// 저장된 볼륨 설정을 불러와 믹서와 오디오 소스에 반영합니다.
 		private void LoadAndApplySettings()
 		{
 			if (SaveManager.Instance != null)
@@ -283,6 +293,7 @@ namespace EscapeFromNightmare
 			SaveManager.Instance.SaveAudioSettings(audioSettings);
 		}
 
+		// 필요한 오디오 소스와 원샷 재생 풀을 준비합니다.
 		private void EnsureAudioSources()
 		{
 			bgmSource = EnsureAudioSource(bgmSource, "BGM Audio Source", bgmMixerGroup);
@@ -421,6 +432,7 @@ namespace EscapeFromNightmare
 			return Mathf.Clamp01(value);
 		}
 
+		// 정규화된 볼륨 값을 오디오 믹서에서 사용하는 데시벨 값으로 변환합니다.
 		private static float ConvertNormalizedVolumeToDecibel(float normalizedVolume)
 		{
 			if (normalizedVolume <= 0.0001f)

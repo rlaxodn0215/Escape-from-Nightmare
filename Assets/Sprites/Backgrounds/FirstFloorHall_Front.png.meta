@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 43616a91e3df4301a603ac7efbc84e70
+guid: ff36050e022f83b4fb8ba8a52dd499fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 45703913090276792
-    second: FirstFloorHall_Front_0
+      213: -3479519735278802587
+    second: FirstFloorHall_Front_noLeftDoor_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FirstFloorHall_Front_0
+      name: FirstFloorHall_Front_noLeftDoor_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f18076054c59f05a0800000000000000
-      internalID: 45703913090276792
+      spriteID: 569eebd6c3346bfc0800000000000000
+      internalID: -3479519735278802587
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6c94335e2c38ee9f0800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FirstFloorHall_Front_0: 45703913090276792
+      FirstFloorHall_Front_noLeftDoor_0: -3479519735278802587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
