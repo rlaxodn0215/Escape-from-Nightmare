@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87656a34b2d648b4aa8d7aebc7958f3a, type: 3}
+  m_Name: AudioDatabase
+  m_EditorClassIdentifier: 
+  sounds:
+  - id: 1
+    channel: 0
+    clip: {fileID: 8300000, guid: 3104d4f310c00ef429cd3c05d919ffb7, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 1
+  - id: 2
+    channel: 0
+    clip: {fileID: 8300000, guid: a9cf337caca4494428c76ee0e91aa224, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 1
+  - id: 3
+    channel: 0
+    clip: {fileID: 8300000, guid: a9cf337caca4494428c76ee0e91aa224, type: 3}
+    volumeScale: 0.8
+    pitch: 1
+    loop: 1
+  - id: 4
+    channel: 0
+    clip: {fileID: 8300000, guid: ae7cab5f9c03c3e4b93a1633e4a2f6df, type: 3}
+    volumeScale: 0.8
+    pitch: 1
+    loop: 1
+  - id: 5
+    channel: 2
+    clip: {fileID: 8300000, guid: 56ef799210147ce489a90837f121ecd9, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 6
+    channel: 2
+    clip: {fileID: 8300000, guid: 884ad692bdce89d4483817d25ea6fbbb, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 7
+    channel: 2
+    clip: {fileID: 8300000, guid: b9e2d19b8e6b0c646b7460d471af1d42, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 8
+    channel: 1
+    clip: {fileID: 8300000, guid: d5257d84621a6634db0901c75eb689ff, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 9
+    channel: 1
+    clip: {fileID: 8300000, guid: 2068cfa26d0792f498ee6a6409a1d30a, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 10
+    channel: 1
+    clip: {fileID: 8300000, guid: 45a10f05ca6a38949b722aac902c8265, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 11
+    channel: 1
+    clip: {fileID: 8300000, guid: 550b6e4ed23b2074595abe7225ec80bf, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 12
+    channel: 1
+    clip: {fileID: 8300000, guid: f47d507b893ef0c498e7d88c727f6948, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
+  - id: 13
+    channel: 1
+    clip: {fileID: 8300000, guid: a8d7432801886c644b3752dafe6c8b7d, type: 3}
+    volumeScale: 1
+    pitch: 1
+    loop: 0
