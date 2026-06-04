@@ -27,6 +27,25 @@ namespace EscapeFromNightmare
 		}
 	}
 
+	[System.Serializable]
+	public struct InventorySaveData
+	{
+		public string[] itemIds;
+		public string selectedItemId;
+
+		public static InventorySaveData Empty
+		{
+			get
+			{
+				return new InventorySaveData
+				{
+					itemIds = System.Array.Empty<string>(),
+					selectedItemId = string.Empty
+				};
+			}
+		}
+	}
+
 	// 게임 설정 저장과 불러오기를 담당하는 전역 매니저입니다.
 	// 현재는 오디오 설정을 플레이어 설정 저장소에 저장합니다.
 	public class SaveManager : Singleton<SaveManager>
@@ -35,6 +54,7 @@ namespace EscapeFromNightmare
 		private const string BgmVolumeKey = "Audio.BGMVolume";
 		private const string SfxVolumeKey = "Audio.SFXVolume";
 		private const string UiVolumeKey = "Audio.UIVolume";
+		private const string InventoryDataKey = "Inventory.Data";
 
 		public AudioSettingsData LoadAudioSettings()
 		{
@@ -61,6 +81,57 @@ namespace EscapeFromNightmare
 		public void ResetAudioSettings()
 		{
 			SaveAudioSettings(AudioSettingsData.Default);
+		}
+
+		public InventorySaveData LoadInventoryData()
+		{
+			string json = PlayerPrefs.GetString(InventoryDataKey, string.Empty);
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return InventorySaveData.Empty;
+			}
+
+			try
+			{
+				InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json);
+				if (data.itemIds == null)
+				{
+					data.itemIds = System.Array.Empty<string>();
+				}
+
+				if (data.selectedItemId == null)
+				{
+					data.selectedItemId = string.Empty;
+				}
+
+				return data;
+			}
+			catch (System.ArgumentException)
+			{
+				return InventorySaveData.Empty;
+			}
+		}
+
+		public void SaveInventoryData(InventorySaveData data)
+		{
+			if (data.itemIds == null)
+			{
+				data.itemIds = System.Array.Empty<string>();
+			}
+
+			if (data.selectedItemId == null)
+			{
+				data.selectedItemId = string.Empty;
+			}
+
+			PlayerPrefs.SetString(InventoryDataKey, JsonUtility.ToJson(data));
+			PlayerPrefs.Save();
+		}
+
+		public void ResetInventoryData()
+		{
+			PlayerPrefs.DeleteKey(InventoryDataKey);
+			PlayerPrefs.Save();
 		}
 	}
 }
