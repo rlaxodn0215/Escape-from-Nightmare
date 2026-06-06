@@ -46,6 +46,25 @@ namespace EscapeFromNightmare
 		}
 	}
 
+	[System.Serializable]
+	public struct PuzzleSaveData
+	{
+		public string[] solvedPuzzleIds;
+		public string[] flagIds;
+
+		public static PuzzleSaveData Empty
+		{
+			get
+			{
+				return new PuzzleSaveData
+				{
+					solvedPuzzleIds = System.Array.Empty<string>(),
+					flagIds = System.Array.Empty<string>()
+				};
+			}
+		}
+	}
+
 	// 게임 설정 저장과 불러오기를 담당하는 전역 매니저입니다.
 	// 현재는 오디오 설정을 플레이어 설정 저장소에 저장합니다.
 	public class SaveManager : Singleton<SaveManager>
@@ -55,6 +74,7 @@ namespace EscapeFromNightmare
 		private const string SfxVolumeKey = "Audio.SFXVolume";
 		private const string UiVolumeKey = "Audio.UIVolume";
 		private const string InventoryDataKey = "Inventory.Data";
+		private const string PuzzleDataKey = "Puzzle.Data";
 
 		public AudioSettingsData LoadAudioSettings()
 		{
@@ -131,6 +151,57 @@ namespace EscapeFromNightmare
 		public void ResetInventoryData()
 		{
 			PlayerPrefs.DeleteKey(InventoryDataKey);
+			PlayerPrefs.Save();
+		}
+
+		public PuzzleSaveData LoadPuzzleData()
+		{
+			string json = PlayerPrefs.GetString(PuzzleDataKey, string.Empty);
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return PuzzleSaveData.Empty;
+			}
+
+			try
+			{
+				PuzzleSaveData data = JsonUtility.FromJson<PuzzleSaveData>(json);
+				if (data.solvedPuzzleIds == null)
+				{
+					data.solvedPuzzleIds = System.Array.Empty<string>();
+				}
+
+				if (data.flagIds == null)
+				{
+					data.flagIds = System.Array.Empty<string>();
+				}
+
+				return data;
+			}
+			catch (System.ArgumentException)
+			{
+				return PuzzleSaveData.Empty;
+			}
+		}
+
+		public void SavePuzzleData(PuzzleSaveData data)
+		{
+			if (data.solvedPuzzleIds == null)
+			{
+				data.solvedPuzzleIds = System.Array.Empty<string>();
+			}
+
+			if (data.flagIds == null)
+			{
+				data.flagIds = System.Array.Empty<string>();
+			}
+
+			PlayerPrefs.SetString(PuzzleDataKey, JsonUtility.ToJson(data));
+			PlayerPrefs.Save();
+		}
+
+		public void ResetPuzzleData()
+		{
+			PlayerPrefs.DeleteKey(PuzzleDataKey);
 			PlayerPrefs.Save();
 		}
 	}

@@ -47,6 +47,11 @@ namespace EscapeFromNightmare
 
 		public void HandleSlotClicked(int slotIndex)
 		{
+			if (PuzzleManager.Instance != null && PuzzleManager.Instance.IsPuzzleOpen)
+			{
+				return;
+			}
+
 			if (inventoryManager == null || slots == null || slotIndex < 0 || slotIndex >= slots.Length)
 			{
 				return;
@@ -66,6 +71,11 @@ namespace EscapeFromNightmare
 
 		public void ToggleWindow()
 		{
+			if (PuzzleManager.Instance != null && PuzzleManager.Instance.IsPuzzleOpen)
+			{
+				return;
+			}
+
 			SetWindowOpen(!isOpen, true);
 		}
 

@@ -23,6 +23,9 @@ namespace EscapeFromNightmare
 		public string targetRoomId;
 		public RoomDirection targetDirection = RoomDirection.Front;
 		public Button button;
+		public string requiredFlagId;
+		public string requiredItemId;
+		public string requiredSolvedPuzzleId;
 	}
 
 	[Serializable]
@@ -65,7 +68,8 @@ namespace EscapeFromNightmare
 		public RoomDirection CurrentDirection => currentDirection;
 		public bool IsHidden => !string.IsNullOrEmpty(currentHidePointId);
 		public string CurrentHidePointId => currentHidePointId;
-		public bool IsInputBlocked => screenFadeManager != null && screenFadeManager.IsTransitioning;
+		public bool IsInputBlocked => (screenFadeManager != null && screenFadeManager.IsTransitioning)
+			|| (PuzzleManager.Instance != null && PuzzleManager.Instance.IsPuzzleOpen);
 
 		protected override bool DontDestroy => false;
 		private IReadOnlyList<RoomExit> Exits => navigationDatabase != null ? navigationDatabase.Exits : Array.Empty<RoomExit>();
@@ -225,6 +229,11 @@ namespace EscapeFromNightmare
 			if (!IsExitAvailable(exit))
 			{
 				Debug.LogWarning($"RoomExit '{exitId}' is not available from '{currentRoomId}/{currentDirection}'.", this);
+				if (AudioManager.Instance != null)
+				{
+					AudioManager.Instance.PlaySfx(AudioSoundId.DoorLocked);
+				}
+
 				return;
 			}
 
@@ -424,8 +433,22 @@ namespace EscapeFromNightmare
 
 		private bool IsExitAvailable(RoomExit exit)
 		{
-			return string.Equals(exit.fromRoomId, currentRoomId, StringComparison.Ordinal)
-				&& exit.fromDirection == currentDirection;
+			if (!string.Equals(exit.fromRoomId, currentRoomId, StringComparison.Ordinal) || exit.fromDirection != currentDirection)
+			{
+				return false;
+			}
+
+			if (PuzzleManager.Instance == null)
+			{
+				return string.IsNullOrWhiteSpace(exit.requiredFlagId)
+					&& string.IsNullOrWhiteSpace(exit.requiredItemId)
+					&& string.IsNullOrWhiteSpace(exit.requiredSolvedPuzzleId);
+			}
+
+			return PuzzleManager.Instance.MeetsConditions(
+				ToConditionArray(exit.requiredFlagId),
+				ToConditionArray(exit.requiredSolvedPuzzleId),
+				ToConditionArray(exit.requiredItemId));
 		}
 
 		private RoomHidePoint FindHidePoint(string hidePointId)
@@ -445,6 +468,11 @@ namespace EscapeFromNightmare
 		{
 			return string.Equals(hidePoint.roomId, currentRoomId, StringComparison.Ordinal)
 				&& hidePoint.direction == currentDirection;
+		}
+
+		private static string[] ToConditionArray(string value)
+		{
+			return string.IsNullOrWhiteSpace(value) ? Array.Empty<string>() : new[] { value };
 		}
 
 		private void BindExitButtons()
